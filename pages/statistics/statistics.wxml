@@ -1,0 +1,259 @@
+<!-- pages/statistics/statistics.wxml -->
+
+<view class="safe-area">
+  <!-- 顶部信息卡片 -->
+  <view class="header-card card">
+    <image class="user-avatar" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="user-info">
+      <view class="user-name font-display">单词小超人</view>
+      <view class="user-level text-secondary">第{{overallStats.currentLevel}}关</view>
+    </view>
+    <view class="header-actions">
+      <button class="icon-btn" bindtap="onBackToMap">
+        🗺️
+      </button>
+      <button class="icon-btn" open-type="share" bindtap="onShareResults">
+        📤
+      </button>
+    </view>
+  </view>
+
+  <!-- 选项卡导航 -->
+  <view class="tab-nav">
+    <view 
+      class="tab-item {{selectedTab === 'overview' ? 'active' : ''}}"
+      data-tab="overview"
+      bindtap="onTabChange"
+    >
+      总览
+    </view>
+    <view 
+      class="tab-item {{selectedTab === 'progress' ? 'active' : ''}}"
+      data-tab="progress"
+      bindtap="onTabChange"
+    >
+      进度
+    </view>
+    <view 
+      class="tab-item {{selectedTab === 'achievements' ? 'active' : ''}}"
+      data-tab="achievements"
+      bindtap="onTabChange"
+    >
+      成就
+    </view>
+    <view 
+      class="tab-item {{selectedTab === 'charts' ? 'active' : ''}}"
+      data-tab="charts"
+      bindtap="onTabChange"
+    >
+      图表
+    </view>
+  </view>
+
+  <!-- 总览页面 -->
+  <view class="tab-content" wx:if="{{selectedTab === 'overview'}}">
+    <!-- 核心统计数据 -->
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-icon">📚</view>
+        <view class="stat-value">{{overallStats.totalWords}}</view>
+        <view class="stat-label">学会单词</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon">🎯</view>
+        <view class="stat-value">{{overallStats.accuracy}}%</view>
+        <view class="stat-label">准确率</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon">⚡</view>
+        <view class="stat-value">{{overallStats.streak}}</view>
+        <view class="stat-label">连击记录</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon">🔥</view>
+        <view class="stat-value">{{overallStats.studyDays}}</view>
+        <view class="stat-label">学习天数</view>
+      </view>
+    </view>
+
+    <!-- 每日学习数据 -->
+    <view class="daily-stats card">
+      <view class="card-header">
+        <view class="card-title">📊 近7天学习情况</view>
+      </view>
+      <view class="daily-chart">
+        <view class="chart-days">
+          <view 
+            class="day-item"
+            wx:for="{{dailyStats}}"
+            wx:key="date"
+          >
+            <view class="day-bar">
+              <view 
+                class="bar-fill"
+                style="height: {{item.barHeight}}rpx; max-height: 100rpx;"
+              ></view>
+            </view>
+            <view class="day-label">{{item.weekday}}</view>
+            <view class="day-value">{{item.words}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 快速操作 -->
+    <view class="quick-actions card">
+      <view class="card-header">
+        <view class="card-title">⚡ 快速操作</view>
+      </view>
+      <view class="action-grid">
+        <button class="action-btn" bindtap="onBackToMap">
+          <view class="action-icon">🗺️</view>
+          <view class="action-text">继续学习</view>
+        </button>
+        <button class="action-btn" bindtap="onExportData">
+          <view class="action-icon">📊</view>
+          <view class="action-text">导出数据</view>
+        </button>
+        <button class="action-btn" open-type="share" bindtap="onShareResults">
+          <view class="action-icon">📤</view>
+          <view class="action-text">分享成绩</view>
+        </button>
+        <button class="action-btn btn-danger" bindtap="onResetStats">
+          <view class="action-icon">🔄</view>
+          <view class="action-text">重置数据</view>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 进度页面 -->
+  <view class="tab-content" wx:if="{{selectedTab === 'progress'}}">
+    <view class="progress-header card">
+      <view class="progress-title">🎯 关卡进度</view>
+      <view class="progress-summary">
+        已完成 {{overallStats.currentLevel - 1}}/20 关
+      </view>
+    </view>
+
+    <view class="levels-grid">
+      <view 
+        class="level-card {{item.status}}"
+        wx:for="{{levelProgress}}"
+        wx:key="level"
+        data-level="{{item.level}}"
+        bindtap="onLevelDetail"
+      >
+        <view class="level-number">{{item.level}}</view>
+        <view class="level-theme">{{item.theme}}</view>
+        <view class="level-words">{{item.totalWords}}词</view>
+        <view class="level-stars">
+          <view 
+            class="star {{index < item.stars ? 'filled' : ''}}"
+            wx:for="{{[1,2,3]}}"
+            wx:key="*this"
+            wx:for-index="index"
+          >
+            ⭐
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成就页面 -->
+  <view class="tab-content" wx:if="{{selectedTab === 'achievements'}}">
+    <view class="achievements-header card">
+      <view class="achievements-title">🏆 成就系统</view>
+      <view class="achievements-summary">
+        已获得 {{completedAchievements}}/{{achievements.length}} 个成就
+      </view>
+    </view>
+
+    <view class="achievements-list">
+      <view 
+        class="achievement-card {{item.completed ? 'completed' : ''}}"
+        wx:for="{{achievements}}"
+        wx:key="id"
+      >
+        <view class="achievement-icon">{{item.icon}}</view>
+        <view class="achievement-info">
+          <view class="achievement-title">{{item.title}}</view>
+          <view class="achievement-desc">{{item.description}}</view>
+          <view class="achievement-progress">
+            <view class="progress-bar">
+              <view 
+                class="progress-fill"
+                style="width: {{item.progressWidth}}%;"
+              ></view>
+            </view>
+            <view class="progress-text">{{item.current}}/{{item.requirement}}</view>
+          </view>
+        </view>
+        <view class="achievement-status">
+          {{item.completed ? '✅' : '⏳'}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图表页面 -->
+  <view class="tab-content" wx:if="{{selectedTab === 'charts'}}">
+    <view class="chart-section card">
+      <view class="card-header">
+        <view class="card-title">📈 学习趋势</view>
+      </view>
+      
+      <!-- 准确率图表 -->
+      <view class="chart-container">
+        <view class="chart-title">准确率变化</view>
+        <view class="line-chart">
+          <view class="chart-grid">
+            <view class="grid-line" wx:for="{{[100,80,60,40,20,0]}}" wx:key="*this">
+              <view class="grid-label">{{item}}%</view>
+              <view class="grid-line-bg"></view>
+            </view>
+          </view>
+          <view class="chart-data">
+            <view 
+              class="data-point"
+              wx:for="{{chartData.accuracy}}"
+              wx:key="label"
+              style="left: {{index * 14.3}}%; bottom: {{item.value}}%;"
+            >
+              <view class="point-dot"></view>
+              <view class="point-label">{{item.label}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 学习单词数图表 -->
+      <view class="chart-container">
+        <view class="chart-title">每日学习单词数</view>
+        <view class="bar-chart">
+          <view 
+            class="bar-item"
+            wx:for="{{chartData.words}}"
+            wx:key="label"
+          >
+            <view class="bar-column">
+              <view 
+                class="bar-fill"
+                style="height: {{item.barHeight}}rpx; max-height: 200rpx;"
+              ></view>
+            </view>
+            <view class="bar-label">{{item.label}}</view>
+            <view class="bar-value">{{item.value}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-overlay" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+</view>

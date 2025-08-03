@@ -1,0 +1,417 @@
+/**app.wxss - VDS 设计系统**/
+
+/* === VDS 变量定义 === */
+:root, page {
+  --color-primary: #7FB3D3;
+  --color-secondary: #A8C8E1;
+  --color-accent: #F4A6A6;
+  --color-success: #A8D8A8;
+  --color-warning: #F4D03F;
+  --color-danger: #F56565;
+  --color-white: #FFFFFF;
+  --color-gray-light: #F5F5F5;
+  --color-gray: #E0E0E0;
+  --color-text-primary: #4A4A4A;
+  --color-text-secondary: #6B6B6B;
+  --color-text-light: #8A8A8A;
+  
+  --bg-color: #F8F6F0;
+  --font-display: 'PingFang SC', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  
+  /* 尺寸变量 */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-xl: 32rpx;
+  
+  /* 间距变量 */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+  --spacing-xl: 48rpx;
+  --spacing-xxl: 64rpx;
+  
+  /* 阴影变量 */
+  --shadow-sm: 0 4rpx 12rpx rgba(74, 74, 74, 0.1);
+  --shadow-md: 0 8rpx 24rpx rgba(74, 74, 74, 0.1);
+  --shadow-lg: 0 12rpx 32rpx rgba(74, 74, 74, 0.15);
+}
+
+/* === 基础重置 === */
+page, view, text, image, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 重置微信小程序button默认样式 */
+button {
+  border: none !important;
+  outline: none !important;
+  background: none;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  text-align: inherit;
+  text-decoration: none;
+}
+
+button::after {
+  border: none;
+}
+
+page {
+  font-family: var(--font-body);
+  background: var(--bg-color);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* === 动画定义 === */
+@keyframes jellyBounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.25, 0.75); }
+  40% { transform: scale(0.75, 1.25); }
+  50% { transform: scale(1.15, 0.85); }
+  65% { transform: scale(0.95, 1.05); }
+  75% { transform: scale(1.05, 0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(60rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60rpx); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60rpx); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 16rpx rgba(127, 179, 211, 0.6); }
+  50% { box-shadow: 0 0 40rpx rgba(127, 179, 211, 0.8), 0 0 60rpx rgba(127, 179, 211, 0.4); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* === 通用布局 === */
+.safe-area {
+  padding: 176rpx 32rpx 68rpx;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* === 文字样式 === */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-light {
+  color: var(--color-text-light);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: bold;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* === 按钮组件 === */
+.btn {
+  border: none !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 32rpx 64rpx !important;
+  font-size: 32rpx !important;
+  font-weight: bold;
+  font-family: var(--font-body);
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  min-height: 88rpx;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), #A8C8E1);
+  color: white;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--color-accent), #F7C4C4);
+  color: var(--color-text-primary);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--color-success), #C8E6C8);
+  color: var(--color-text-primary);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, var(--color-warning), #F7DC6F);
+  color: var(--color-text-primary);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 2rpx solid var(--color-text-secondary) !important;
+  box-shadow: none;
+}
+
+.btn-outline:active {
+  background: var(--color-text-secondary);
+  color: white;
+}
+
+.btn:active {
+  transform: scale(0.95);
+  animation: jellyBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* 小尺寸按钮 */
+.icon-btn {
+  width: 64rpx !important;
+  height: 64rpx !important;
+  min-height: 64rpx !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx !important;
+  border: none !important;
+  margin: 0;
+}
+
+.icon-sm {
+  width: 48rpx !important;
+  height: 48rpx !important;
+  min-height: 48rpx !important;
+  font-size: 24rpx !important;
+}
+
+.icon-md {
+  width: 80rpx !important;
+  height: 80rpx !important;
+  min-height: 80rpx !important;
+  font-size: 36rpx !important;
+}
+
+/* === 卡片组件 === */
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.card:active {
+  transform: translateY(-8rpx);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 36rpx;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.card-content {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* === 进度条组件 === */
+.progress-bar {
+  width: 100%;
+  height: 16rpx;
+  background: rgba(127, 179, 211, 0.2);
+  border-radius: 8rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), #A8C8E1);
+  border-radius: 8rpx;
+  transition: width 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* === 图标组件 === */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), #A8C8E1);
+  color: white;
+  font-size: 40rpx;
+  box-shadow: var(--shadow-md);
+}
+
+.icon-sm {
+  width: 64rpx;
+  height: 64rpx;
+  font-size: 32rpx;
+}
+
+.icon-md {
+  width: 80rpx;
+  height: 80rpx;
+  font-size: 40rpx;
+}
+
+.icon-lg {
+  width: 120rpx;
+  height: 120rpx;
+  font-size: 56rpx;
+}
+
+/* === 动画类 === */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.8s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* === 工具类 === */
+.hidden {
+  display: none;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* === 响应式设计 === */
+@media (max-width: 480px) {
+  .safe-area {
+    padding: 176rpx 24rpx 68rpx;
+  }
+  
+  .btn {
+    font-size: 28rpx;
+    padding: 28rpx 56rpx;
+    min-height: 80rpx;
+  }
+  
+  .card-title {
+    font-size: 32rpx;
+  }
+  
+  .card-content {
+    font-size: 26rpx;
+  }
+}

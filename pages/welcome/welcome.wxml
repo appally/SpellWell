@@ -1,0 +1,43 @@
+<!-- pages/welcome/welcome.wxml -->
+
+<!-- 加载界面 -->
+<view class="loading-container {{showLoading ? '' : 'hidden'}}" wx:if="{{showLoading}}">
+  <image class="loading-logo animate-pulse" src="/images/logo.png" mode="aspectFit"></image>
+  <view class="loading-text font-display">单词小超人</view>
+  <view class="progress-bar">
+    <view class="progress-fill" style="width: {{loadingProgress}}%;"></view>
+  </view>
+</view>
+
+<!-- 背景装饰 -->
+<view class="bg-decoration">
+  <view class="floating-star star-1">✨</view>
+  <view class="floating-star star-2">⭐</view>
+  <view class="floating-star star-3">🌟</view>
+  <view class="floating-star star-4">💫</view>
+</view>
+
+<!-- 主要内容 -->
+<view class="safe-area {{showWelcome ? 'show' : ''}}" wx:if="{{showWelcome}}" animation="{{welcomeAnimation}}">
+  <view class="welcome-container text-center">
+    <!-- Logo -->
+    <image class="logo icon-lg animate-glow" src="/images/logo.png" mode="aspectFit"></image>
+    
+    <!-- 标题 -->
+    <view class="title font-display">单词小超人</view>
+    <view class="subtitle text-secondary">Word Hero</view>
+    
+    <!-- 描述 -->
+    <view class="description text-light">
+      通过AI智能讲解，让英语单词学习变得简单快乐！
+    </view>
+    
+    <!-- 按钮组 -->
+    <view class="button-container">
+      <button class="btn btn-primary" bindtap="onStartAdventure">
+        🚀 开始冒险
+      </button>
+      
+    </view>
+  </view>
+</view>

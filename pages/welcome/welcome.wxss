@@ -1,0 +1,228 @@
+/* pages/welcome/welcome.wxss */
+
+/* === 调试面板 === */
+.debug-panel {
+  margin-top: 40rpx;
+  padding: 20rpx;
+  border: 2rpx dashed var(--color-secondary);
+  border-radius: 16rpx;
+  background: rgba(127, 179, 211, 0.1);
+}
+
+.debug-panel .btn {
+  margin: 0;
+  font-size: 28rpx;
+}
+
+/* === 加载界面 === */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-logo {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-bottom: 48rpx;
+  box-shadow: var(--shadow-lg);
+}
+
+.loading-text {
+  font-size: 36rpx;
+  color: var(--color-primary);
+  margin-bottom: 32rpx;
+}
+
+.loading-container .progress-bar {
+  width: 400rpx;
+  height: 16rpx;
+  background: rgba(127, 179, 211, 0.2);
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.loading-container .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), #A8C8E1);
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+/* === 背景装饰 === */
+.bg-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-star {
+  position: absolute;
+  font-size: 40rpx;
+  animation: floatStar 3s ease-in-out infinite;
+}
+
+.star-1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 30%;
+  right: 20%;
+  animation-delay: 0.5s;
+}
+
+.star-3 {
+  bottom: 30%;
+  left: 10%;
+  animation-delay: 1s;
+}
+
+.star-4 {
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+@keyframes floatStar {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20rpx) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* === 主要内容 === */
+.safe-area {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.safe-area.show {
+  opacity: 1;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 352rpx);
+  padding: var(--spacing-lg);
+}
+
+.logo {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 48rpx;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12rpx);
+  }
+}
+
+.title {
+  font-size: 72rpx;
+  color: var(--color-primary);
+  margin-bottom: 32rpx;
+  text-shadow: 4rpx 4rpx 8rpx rgba(127, 179, 211, 0.3);
+  animation: fadeIn 1.2s ease-out;
+}
+
+.subtitle {
+  font-size: 36rpx;
+  margin-bottom: 64rpx;
+  animation: fadeIn 1.4s ease-out;
+}
+
+.description {
+  font-size: 32rpx;
+  max-width: 600rpx;
+  line-height: 1.5;
+  margin-bottom: 96rpx;
+  animation: fadeIn 1.6s ease-out;
+}
+
+/* === 按钮组 === */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+  width: 100%;
+  max-width: 400rpx;
+  animation: fadeIn 1.8s ease-out;
+}
+
+.button-container .btn {
+  width: 100%;
+  min-height: 112rpx;
+  font-size: 36rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-container .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.button-container .btn:active::before {
+  left: 100%;
+}
+
+/* === 响应式设计 === */
+@media (max-width: 480px) {
+  .title {
+    font-size: 56rpx;
+  }
+  
+  .subtitle {
+    font-size: 32rpx;
+  }
+  
+  .description {
+    font-size: 28rpx;
+    max-width: 500rpx;
+  }
+  
+  .button-container .btn {
+    font-size: 32rpx;
+    min-height: 96rpx;
+  }
+}

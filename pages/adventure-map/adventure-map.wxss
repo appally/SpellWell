@@ -1,0 +1,907 @@
+/* pages/adventure-map/adventure-map.wxss */
+/* 基于VDS视觉设计系统的冒险地图页面 */
+/* 设计DNA: 可爱Q版 + 纸张质感 + 果冻按钮 + Q弹动效 + 多汁反馈 + 莫兰迪色彩 */
+
+/* ===== 页面基础布局 ===== */
+.adventure-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #E8F4FD 0%, #B6E5D8 100%);
+  position: relative;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* 纸张质感背景 */
+.paper-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+    linear-gradient(135deg, #F8F6F0 0%, #F2EFE7 100%);
+  background-size: 100rpx 100rpx, 80rpx 80rpx, 120rpx 120rpx, 100% 100%;
+  background-position: 0 0, 40rpx 60rpx, 130rpx 270rpx, 0 0;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* ===== 用户信息卡片 ===== */
+.user-card {
+  margin: 32rpx 24rpx 24rpx 24rpx;
+  padding: 32rpx;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border-radius: 32rpx;
+  box-shadow: 
+    0 16rpx 40rpx rgba(74, 74, 74, 0.1),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+  border: 2rpx solid rgba(127, 179, 211, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  box-shadow: 
+    0 8rpx 24rpx rgba(127, 179, 211, 0.3),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+  animation: gentleBreathe 3s ease-in-out infinite;
+}
+
+.user-level-badge {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  background: linear-gradient(135deg, #F4A6A6, #F7C4C4);
+  color: #4A4A4A;
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 6rpx 12rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(244, 166, 166, 0.4);
+  border: 2rpx solid rgba(255, 255, 255, 0.8);
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #4A4A4A;
+  font-family: "Comic Sans MS", "PingFang SC", sans-serif;
+}
+
+.user-grade {
+  font-size: 24rpx;
+  color: #6B6B6B;
+  margin-bottom: 8rpx;
+}
+
+.user-motto {
+  font-size: 22rpx;
+  color: #8A8A8A;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* ===== 圆形进度条 ===== */
+.circular-progress {
+  position: absolute;
+  top: 50%;
+  right: 32rpx;
+  transform: translateY(-50%);
+  z-index: 10;
+  animation: progressAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both;
+}
+
+.progress-ring {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: 
+    conic-gradient(
+      from 0deg,
+      #7FB3D3 0%,
+      #7FB3D3 var(--progress, 0%),
+      rgba(127, 179, 211, 0.15) var(--progress, 0%),
+      rgba(127, 179, 211, 0.15) 100%
+    );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-90deg);
+  box-shadow: 0 8rpx 24rpx rgba(127, 179, 211, 0.2);
+}
+
+.progress-circle::before {
+  content: '';
+  position: absolute;
+  width: 76rpx;
+  height: 76rpx;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 2rpx 8rpx rgba(74, 74, 74, 0.06),
+    0 0 0 2rpx rgba(255, 255, 255, 0.8);
+}
+
+.progress-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-number {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #7FB3D3;
+  line-height: 1;
+}
+
+.progress-total {
+  font-size: 18rpx;
+  color: #8A8A8A;
+  line-height: 1;
+  margin-top: 2rpx;
+}
+
+/* ===== 地图标题区域 ===== */
+.map-header {
+  text-align: center;
+  padding: 32rpx 24rpx;
+  position: relative;
+}
+
+.map-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16rpx;
+}
+
+.title-icon {
+  font-size: 64rpx;
+  margin-right: 16rpx;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.1));
+  animation: titleFloat 3s ease-in-out infinite;
+}
+
+.title-text {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #7FB3D3;
+  font-family: "Comic Sans MS", "PingFang SC", sans-serif;
+  text-shadow: 0 4rpx 8rpx rgba(127, 179, 211, 0.2);
+}
+
+.title-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 24rpx;
+  opacity: 0;
+  animation: sparkleAnimation 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  top: 20%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.sparkle-3 {
+  bottom: 15%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+.map-subtitle {
+  font-size: 28rpx;
+  color: #6B6B6B;
+  line-height: 1.4;
+}
+
+/* ===== 地图滚动容器 ===== */
+.map-scroll-container {
+  flex: 1;
+  margin: 0 24rpx 40rpx 24rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 250, 252, 0.5) 100%);
+  box-shadow: 
+    0 16rpx 40rpx rgba(74, 74, 74, 0.1),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+  border: 2rpx solid rgba(127, 179, 211, 0.1);
+  position: relative;
+}
+
+.map-scroll {
+  height: 100%;
+  min-height: 800rpx;
+  padding: 40rpx 20rpx;
+}
+
+/* ===== 地图路径 ===== */
+.map-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.path-canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+/* ===== 关卡容器 ===== */
+.levels-container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 80rpx 60rpx;
+  padding: 40rpx 30rpx;
+  align-items: start;
+  justify-items: center;
+}
+
+/* ===== 关卡节点 ===== */
+.level-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40rpx) scale(0.8);
+  animation: levelAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.level-ring {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 16rpx;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 关卡状态样式 */
+.level-ring-locked {
+  background: linear-gradient(135deg, #E8E8E8, #D0D0D0);
+  box-shadow: 0 8rpx 24rpx rgba(232, 232, 232, 0.3);
+  border: 4rpx solid #C0C0C0;
+}
+
+.level-ring-available {
+  background: linear-gradient(135deg, #A8D8A8, #90C890);
+  box-shadow: 
+    0 12rpx 32rpx rgba(168, 216, 168, 0.4),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+  border: 4rpx solid #88B888;
+  animation: availablePulse 2s ease-in-out infinite;
+}
+
+.level-ring-current {
+  background: linear-gradient(135deg, #FFD93D, #F4C430);
+  box-shadow: 
+    0 16rpx 40rpx rgba(244, 196, 48, 0.5),
+    0 0 40rpx rgba(255, 217, 61, 0.3),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.4);
+  border: 4rpx solid #E5B420;
+  transform: scale(1.1);
+}
+
+.level-ring-completed {
+  background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
+  box-shadow: 
+    0 12rpx 32rpx rgba(127, 179, 211, 0.4),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+  border: 4rpx solid #6FA3C3;
+}
+
+.level-icon-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.level-icon {
+  font-size: 48rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.1));
+  position: relative;
+  z-index: 6;
+}
+
+.level-status-indicator {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 36rpx;
+  height: 36rpx;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.lock-indicator {
+  background: linear-gradient(135deg, #E8E8E8, #D0D0D0);
+}
+
+.status-icon {
+  font-size: 20rpx;
+}
+
+.current-pulse {
+  animation: currentIconPulse 1.5s ease-in-out infinite;
+}
+
+.level-info-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(74, 74, 74, 0.1);
+  border: 1rpx solid rgba(127, 179, 211, 0.2);
+  min-width: 160rpx;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.level-number {
+  font-size: 20rpx;
+  color: #8A8A8A;
+  margin-bottom: 4rpx;
+}
+
+.level-name {
+  font-size: 24rpx;
+  color: #4A4A4A;
+  font-weight: bold;
+  margin-bottom: 4rpx;
+  line-height: 1.2;
+}
+
+
+.level-connector {
+  position: absolute;
+  top: 60rpx;
+  left: 50%;
+  width: 4rpx;
+  height: 80rpx;
+  background: linear-gradient(to bottom, #7FB3D3, transparent);
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* ===== 节点交互效果 ===== */
+.level-node:active:not(.level-locked) .level-ring {
+  transform: scale(0.95);
+}
+
+.level-node:active:not(.level-locked) .level-info-card {
+  transform: translateY(-4rpx);
+  box-shadow: 0 12rpx 32rpx rgba(74, 74, 74, 0.15);
+}
+
+.current-bounce .level-ring {
+  animation: currentBounce 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* ===== 装饰元素 ===== */
+.map-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decoration {
+  position: absolute;
+  opacity: 0.6;
+  font-size: 32rpx;
+  animation: decorationFloat 4s ease-in-out infinite;
+}
+
+.cloud-1 {
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.cloud-2 {
+  top: 30%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.tree-1 {
+  bottom: 40%;
+  left: 10%;
+  animation-delay: 1s;
+}
+
+.tree-2 {
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+.mountain {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 1.5s;
+}
+
+.castle {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 2.5s;
+}
+
+
+/* ===== 关卡预览弹窗 ===== */
+.level-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10rpx);
+}
+
+.level-preview-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.level-preview-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+  border-radius: 40rpx;
+  padding: 0;
+  margin: 32rpx;
+  max-width: 600rpx;
+  width: 90%;
+  box-shadow: 
+    0 32rpx 80rpx rgba(74, 74, 74, 0.2),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.4);
+  border: 2rpx solid rgba(127, 179, 211, 0.2);
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  overflow: hidden;
+}
+
+.level-preview-overlay.show .level-preview-card {
+  transform: scale(1);
+}
+
+.preview-header {
+  position: relative;
+  padding: 40rpx 40rpx 20rpx 40rpx;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(127, 179, 211, 0.1), rgba(168, 200, 225, 0.05));
+}
+
+.preview-level-ring {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 0 auto 20rpx auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-icon {
+  font-size: 56rpx;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.1));
+}
+
+.preview-close {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #6B6B6B;
+  transition: all 0.3s ease;
+}
+
+.preview-close:active {
+  transform: scale(0.9);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.preview-content {
+  padding: 20rpx 40rpx 32rpx 40rpx;
+}
+
+.preview-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #4A4A4A;
+  text-align: center;
+  margin-bottom: 16rpx;
+  font-family: "Comic Sans MS", "PingFang SC", sans-serif;
+}
+
+.preview-description {
+  font-size: 28rpx;
+  color: #6B6B6B;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 32rpx;
+}
+
+.preview-stats {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 12rpx;
+  background: rgba(127, 179, 211, 0.05);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(127, 179, 211, 0.1);
+}
+
+.stat-icon {
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 20rpx;
+  color: #8A8A8A;
+  margin-bottom: 4rpx;
+}
+
+.stat-value {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #4A4A4A;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 16rpx;
+  padding: 0 40rpx 40rpx 40rpx;
+}
+
+.preview-btn {
+  flex: 1;
+  height: 88rpx !important;
+  border-radius: 28rpx !important;
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7FB3D3, #A8C8E1) !important;
+  box-shadow: 
+    0 8rpx 24rpx rgba(127, 179, 211, 0.3),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #F4A6A6, #F7C4C4) !important;
+  box-shadow: 
+    0 8rpx 24rpx rgba(244, 166, 166, 0.3),
+    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-icon {
+  font-size: 28rpx;
+}
+
+.btn-text {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.preview-btn:active {
+  transform: scale(0.95);
+}
+
+.preview-btn:active .btn-glow {
+  left: 100%;
+}
+
+/* ===== 通用果冻卡片效果 ===== */
+.jelly-card {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.jelly-card:active {
+  transform: scale(0.98);
+}
+
+.jelly-btn {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.jelly-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== 动画关键帧 ===== */
+@keyframes levelAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(40rpx) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes availablePulse {
+  0%, 100% {
+    box-shadow: 
+      0 12rpx 32rpx rgba(168, 216, 168, 0.4),
+      inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 16rpx 40rpx rgba(168, 216, 168, 0.6),
+      0 0 30rpx rgba(168, 216, 168, 0.3),
+      inset 0 2rpx 0 rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes currentBounce {
+  0%, 100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes currentIconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes gentleBreathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes progressGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes titleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8rpx);
+  }
+}
+
+@keyframes sparkleAnimation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes decorationFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12rpx);
+  }
+}
+
+@keyframes progressAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* ===== 响应式设计 ===== */
+@media screen and (max-width: 480px) {
+  .levels-container {
+    gap: 48rpx 32rpx;
+  }
+  
+  .level-ring {
+    width: 100rpx;
+    height: 100rpx;
+  }
+  
+  .level-icon {
+    font-size: 40rpx;
+  }
+  
+  .level-info-card {
+    min-width: 120rpx;
+    padding: 12rpx 16rpx;
+  }
+  
+  .level-name {
+    font-size: 22rpx;
+  }
+  
+  .user-card {
+    margin: 24rpx 16rpx 20rpx 16rpx;
+    padding: 24rpx;
+  }
+  
+  .user-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    font-size: 40rpx;
+  }
+  
+  .circular-progress {
+    right: 24rpx;
+  }
+  
+  .progress-ring {
+    width: 80rpx;
+    height: 80rpx;
+  }
+  
+  .progress-circle {
+    width: 80rpx;
+    height: 80rpx;
+  }
+  
+  .progress-circle::before {
+    width: 60rpx;
+    height: 60rpx;
+  }
+  
+  .progress-number {
+    font-size: 24rpx;
+  }
+  
+  .progress-total {
+    font-size: 16rpx;
+  }
+}

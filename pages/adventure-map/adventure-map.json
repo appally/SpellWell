@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "冒险地图",
+  "navigationBarBackgroundColor": "#7FB3D3",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F8F6F0",
+  "enablePullDownRefresh": true
+}

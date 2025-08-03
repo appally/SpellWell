@@ -1,0 +1,199 @@
+<!-- pages/word-learning/word-learning.wxml -->
+
+<scroll-view class="page-scroll" scroll-y="true" enable-back-to-top="true">
+<view class="safe-area">
+  <!-- 顶部导航栏已移除 -->
+
+  <!-- 进度条 -->
+  <view class="progress-container">
+    <view class="progress-header">
+      <view class="progress-text">学习进度</view>
+      <view class="progress-number">{{currentWordIndex + 1}}/{{levelData.words.length}}</view>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{progressPercentage}}%;"></view>
+    </view>
+  </view>
+
+  <!-- 学习模式 -->
+  <view class="word-card" wx:if="{{mode === 'learn'}}">
+    <!-- 单词信息 -->
+    <view class="word-display">
+      <view class="word-image">{{currentWord.image || '📚'}}</view>
+      <view class="word-text">{{currentWord.word}}</view>
+      <view class="word-phonetic">{{currentWord.phonetic}}</view>
+      <view class="word-meaning">{{currentWord.chinese}}</view>
+      
+      <!-- 例句区域 - 统一样式 -->
+      <view class="sentence-simple" wx:if="{{currentWord.sentence && mode === 'learn'}}">
+        <view class="sentence-simple-label">📚 读一读例句：</view>
+        <text class="sentence-simple-text">{{currentWord.sentence}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons-row">
+      <button 
+        class="btn btn-ai"
+        bindtap="onGetAIExplanation"
+        disabled="{{isLoadingAI}}"
+      >
+        {{isLoadingAI ? '生成中...' : '🤖 AI讲解'}}
+      </button>
+      <button class="btn btn-learned" bindtap="onConfirmLearning">
+        📝 学会了
+      </button>
+    </view>
+  </view>
+
+  <!-- AI讲解弹窗 -->
+  <view class="ai-overlay {{showAIExplanation ? 'show' : ''}}" wx:if="{{showAIExplanation}}" bindtap="onCloseAIExplanation">
+    <view class="ai-card-enhanced" catchtap="">
+      <view class="ai-close-btn" bindtap="onCloseAIExplanation">
+        <text class="close-icon">✕</text>
+      </view>
+      
+      <!-- Loading状态 -->
+      <view class="ai-loading" wx:if="{{isLoadingAI}}">
+        <view class="loading-robot">🤖</view>
+        <view class="loading-text">{{loadingText}}</view>
+        <view class="loading-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
+      
+      <!-- 内容状态 -->
+      <view wx:else>
+        <view class="ai-header-enhanced">
+          <view class="ai-avatar">🤖</view>
+          <view class="ai-title-enhanced">AI老师小贴士</view>
+        </view>
+        <view class="ai-content-enhanced">
+          <view class="ai-explanation-enhanced">{{aiExplanation}}</view>
+          
+          <!-- 查看详细按钮 -->
+          <view class="ai-action-buttons" wx:if="{{aiExplanation && !showDetailedMode}}">
+            <button class="btn-detailed" bindtap="onShowDetailedExplanation">
+              📚 查看详细讲解
+            </button>
+          </view>
+        </view>
+        <view class="ai-footer">
+          <view class="ai-tip">💡 专为小朋友设计的学习助手</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 默写模式 - 与学习模式统一设计 -->
+  <view class="word-card" wx:if="{{mode === 'dictation'}}">
+    <!-- 单词信息 - 简洁设计 -->
+    <view class="word-display dictation-display">
+      <view class="word-image">🎯</view>
+      <view class="word-meaning-primary">{{currentWord.chinese}}</view>
+      <view class="word-phonetic">{{currentWord.phonetic}}</view>
+    </view>
+
+    <!-- 例句填空 - 简化为单层结构 -->
+    <view class="sentence-simple" wx:if="{{sentenceWithBlank}}">
+      <view class="sentence-simple-label">📚 读一读例句：</view>
+      <text class="sentence-simple-text">{{sentenceWithBlank}}</text>
+    </view>
+
+    <!-- 统一游戏区域 - 整合拼写和字母选择 -->
+    <view class="unified-game-area">
+      <!-- 答案显示 -->
+      <view class="answer-section">
+        <view class="answer-label">点击字母拼出单词：</view>
+        <view class="answer-display">
+          <view 
+            class="answer-letter {{item.status}}" 
+            wx:for="{{userAnswer}}" 
+            wx:for-item="item"
+            wx:for-index="idx"
+            wx:key="{{idx}}"
+          >
+            {{item.char}}
+          </view>
+          <view class="cursor" wx:if="{{userAnswer.length < targetWord.length}}">|</view>
+        </view>
+      </view>
+
+      <!-- 字母选择 -->
+      <view class="letters-section">
+        <view class="letters-grid">
+          <view 
+            class="letter-btn {{item.used ? 'used' : ''}} {{item.correct ? 'correct' : ''}}" 
+            wx:for="{{shuffledLetters}}" 
+            wx:for-item="item"
+            wx:for-index="idx"
+            wx:key="{{idx}}"
+            bindtap="onLetterTap"
+            data-index="{{idx}}"
+          >
+            {{item.char}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 - 统一样式 -->
+    <view class="action-buttons-row dictation-actions">
+      <button class="btn btn-reset" bindtap="onResetAnswer" wx:if="{{userAnswer.length > 0}}">
+        🔄 重新开始
+      </button>
+      <button class="btn btn-hint" bindtap="onShowLetterHint" wx:if="{{userAnswer.length > 0 && showHintOption}}">
+        💡 提示
+      </button>
+    </view>
+
+    <!-- 完成提示已移除 - 统一使用反馈弹窗显示庆祝信息 -->
+  </view>
+
+  <!-- 确认模式（保留作为备用） -->
+  <view class="confirm-card" wx:if="{{mode === 'confirm'}}">
+    <view class="confirm-content">
+      <view class="confirm-icon">🎯</view>
+      <view class="confirm-title">确认掌握</view>
+      <view class="confirm-message">你已经掌握了单词 "{{currentWord.word}}" 吗？</view>
+      
+      <view class="confirm-buttons">
+        <button class="btn btn-outline" bindtap="onNeedRelearn">
+          需要再学习
+        </button>
+        <button class="btn btn-primary" bindtap="onConfirmMastery">
+          确认掌握
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-container" wx:if="{{mode !== 'result'}}">
+    <view class="stat-item">
+      <view class="stat-value">{{stats.correct}}</view>
+      <view class="stat-label">已掌握</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{stats.streak}}</view>
+      <view class="stat-label">连续正确</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{accuracyPercentage}}%</view>
+      <view class="stat-label">准确率</view>
+    </view>
+  </view>
+</view>
+</scroll-view>
+
+<!-- 反馈弹窗 -->
+<view class="feedback-overlay {{showFeedback ? 'show' : ''}}" wx:if="{{showFeedback}}">
+  <view class="feedback-card">
+    <view class="feedback-icon">{{feedbackData.success ? '🎉' : '💪'}}</view>
+    <view class="feedback-title">{{feedbackData.success ? '太棒了！' : '继续加油！'}}</view>
+    <view class="feedback-message">{{feedbackData.message}}</view>
+    <view class="feedback-word">{{feedbackData.word}}</view>
+  </view>
+</view>

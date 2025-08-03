@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>单词小超人 - 设计风格预览</title>
+    <style>
+        /* 导入VDS系统样式 */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@400;700&display=swap');
+        
+        /* CSS关键帧动画 */
+        @keyframes jellyBounce {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.25, 0.75); }
+            40% { transform: scale(0.75, 1.25); }
+            50% { transform: scale(1.15, 0.85); }
+            65% { transform: scale(0.95, 1.05); }
+            75% { transform: scale(1.05, 0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px #FFE5B4; }
+            50% { box-shadow: 0 0 20px #FFE5B4, 0 0 30px #FFE5B4; }
+        }
+        
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Neue', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+                       radial-gradient(circle at 40% 80%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+                       #F8F6F0;
+            background-size: 100px 100px, 80px 80px, 120px 120px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            color: #4A4A4A;
+            line-height: 1.6;
+            padding: 88px 16px 34px;
+            min-height: 100vh;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 36px;
+            color: #7FB3D3;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 4px rgba(127, 179, 211, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #6B6B6B;
+            margin-bottom: 8px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #8A8A8A;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            background: #F8F6F0;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 8px 24px rgba(74, 74, 74, 0.1);
+            border: 1px solid rgba(74, 74, 74, 0.15);
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 24px;
+            color: #7FB3D3;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        
+        /* 色彩面板 */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .color-item {
+            text-align: center;
+        }
+        
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 12px rgba(74, 74, 74, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .color-name {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .color-value {
+            font-size: 10px;
+            color: #8A8A8A;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* 按钮展示 */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .demo-button {
+            border: none;
+            border-radius: 24px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-height: 48px;
+            font-family: inherit;
+        }
+        
+        .demo-button.primary {
+            background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
+            color: white;
+            box-shadow: 0 4px 12px rgba(74, 74, 74, 0.1), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .demo-button.secondary {
+            background: linear-gradient(135deg, #F4A6A6, #F7C4C4);
+            color: #4A4A4A;
+            box-shadow: 0 4px 12px rgba(74, 74, 74, 0.1), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 74, 74, 0.15), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .demo-button:active {
+            transform: scale(0.95);
+            animation: jellyBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* 字体展示 */
+        .typography-demo {
+            margin-bottom: 24px;
+        }
+        
+        .font-sample {
+            margin-bottom: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(74, 74, 74, 0.1);
+        }
+        
+        .font-display {
+            font-family: 'Fredoka One', cursive;
+            font-size: 28px;
+            color: #7FB3D3;
+            margin-bottom: 8px;
+        }
+        
+        .font-body {
+            font-size: 16px;
+            color: #4A4A4A;
+            margin-bottom: 4px;
+        }
+        
+        .font-small {
+            font-size: 14px;
+            color: #6B6B6B;
+        }
+        
+        /* 动画展示 */
+        .animation-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        
+        .animation-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .animation-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .animation-demo-element {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F4A6A6, #F7C4C4);
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .bounce-demo:hover .animation-demo-element {
+            animation: jellyBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .glow-demo:hover .animation-demo-element {
+            animation: glow 1s ease-in-out infinite;
+        }
+        
+        /* 素材资源推荐 */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(74, 74, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(74, 74, 74, 0.15);
+        }
+        
+        .resource-title {
+            font-weight: bold;
+            color: #7FB3D3;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .resource-description {
+            font-size: 14px;
+            color: #6B6B6B;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            color: #F4A6A6;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 6px 12px;
+            background: rgba(244, 166, 166, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            background: rgba(244, 166, 166, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px;
+            color: #8A8A8A;
+            font-size: 14px;
+        }
+        
+        .next-step {
+            background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
+            color: white;
+            text-align: center;
+            padding: 24px;
+            border-radius: 16px;
+            margin-top: 32px;
+            box-shadow: 0 8px 24px rgba(127, 179, 211, 0.3);
+        }
+        
+        .next-step h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .command {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">单词小超人</h1>
+            <p class="subtitle">设计风格预览 & 资源指南</p>
+            <p class="description">基于您选择的设计风格卡片生成的视觉设计系统(VDS)预览</p>
+        </div>
+        
+        <!-- 色彩规范 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎨</span>
+                色彩规范 (莫兰迪色系)
+            </h2>
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #7FB3D3;"></div>
+                    <div class="color-name">主色调</div>
+                    <div class="color-value">#7FB3D3</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #F4A6A6;"></div>
+                    <div class="color-name">强调色</div>
+                    <div class="color-value">#F4A6A6</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #F8F6F0;"></div>
+                    <div class="color-name">背景色</div>
+                    <div class="color-value">#F8F6F0</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #A8D8A8;"></div>
+                    <div class="color-name">成功色</div>
+                    <div class="color-value">#A8D8A8</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #F4D03F;"></div>
+                    <div class="color-name">警告色</div>
+                    <div class="color-value">#F4D03F</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background: #FFE5B4;"></div>
+                    <div class="color-name">发光色</div>
+                    <div class="color-value">#FFE5B4</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 按钮样式 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔘</span>
+                按钮样式 (果冻质感)
+            </h2>
+            <div class="button-grid">
+                <button class="demo-button primary">开始冒险</button>
+                <button class="demo-button secondary">学习单词</button>
+                <button class="demo-button primary">手写练习</button>
+                <button class="demo-button secondary">设置</button>
+            </div>
+            <p style="font-size: 14px; color: #6B6B6B; margin-top: 16px;">💡 点击按钮体验Q弹的交互反馈效果</p>
+        </div>
+        
+        <!-- 字体展示 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📝</span>
+                字体规范 (可爱Q版)
+            </h2>
+            <div class="typography-demo">
+                <div class="font-sample">
+                    <div class="font-display">单词小超人 Word Hero</div>
+                    <div class="font-body">这是正文字体，用于游戏中的主要内容展示</div>
+                    <div class="font-small">这是小号字体，用于提示信息和说明文字</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 动画效果 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                动画效果 (Q弹趣味)
+            </h2>
+            <div class="animation-demo">
+                <div class="animation-item bounce-demo">
+                    <div class="animation-demo-element">🎈</div>
+                    <div>Q弹效果</div>
+                </div>
+                <div class="animation-item glow-demo">
+                    <div class="animation-demo-element">⭐</div>
+                    <div>发光效果</div>
+                </div>
+            </div>
+            <p style="font-size: 14px; color: #6B6B6B; margin-top: 16px;">💡 悬停在元素上查看动画效果</p>
+        </div>
+        
+        <!-- 推荐游戏素材 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎮</span>
+                推荐游戏素材资源
+            </h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-title">Kenney Game Assets All-in-1</div>
+                    <div class="resource-description">包含60,000+游戏素材的完整资源包，包括2D精灵、3D模型、音频等。风格统一，非常适合儿童教育游戏。</div>
+                    <a href="https://kenney.itch.io/kenney-game-assets" class="resource-link" target="_blank">查看资源 →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-title">itch.io 可爱图标包</div>
+                    <div class="resource-description">itch.io上最受欢迎的图标包，包含数千个可爱、卡通风格的彩色图标，完美匹配Q版风格。</div>
+                    <a href="https://itch.io/game-assets" class="resource-link" target="_blank">浏览素材 →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-title">Kenney 官方工具</div>
+                    <div class="resource-description">Asset Forge和Kenney Shape等工具，可以快速创建3D模型和2D精灵，无需复杂软件知识。</div>
+                    <a href="https://kenney.nl/" class="resource-link" target="_blank">访问官网 →</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-title">像素艺术资源包</div>
+                    <div class="resource-description">16x16像素风格的角色和瓦片集，适合创建复古可爱的游戏场景，与纸张质感背景形成有趣对比。</div>
+                    <a href="https://itch.io/game-assets" class="resource-link" target="_blank">探索更多 →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 下一步指引 -->
+        <div class="next-step">
+            <h3>🚀 设计基础已就绪！</h3>
+            <p>VDS设计系统和素材资源已准备完毕。确认风格无误后，请输入下方指令开始生成游戏原型：</p>
+            <div class="command">/生成游戏原型</div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 这个预览页面展示了完整的视觉设计系统，所有原型页面都将严格遵循这些设计规范</p>
+        </div>
+    </div>
+    
+    <script>
+        // 添加交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有按钮添加点击音效反馈（模拟）
+            const buttons = document.querySelectorAll('.demo-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 这里可以添加音效播放逻辑
+                    console.log('🔊 按钮点击音效');
+                });
+            });
+            
+            // 添加页面加载完成提示
+            setTimeout(() => {
+                console.log('🎨 设计风格预览页面加载完成！');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>单词小超人 - 欢迎</title>
+    <style>
+        /* 导入字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@400;700&display=swap');
+        
+        /* VDS 系统变量 */
+        :root {
+            --primary-color: #7FB3D3;
+            --accent-color: #F4A6A6;
+            --bg-color: #F8F6F0;
+            --success-color: #A8D8A8;
+            --warning-color: #F4D03F;
+            --glow-color: #FFE5B4;
+            --text-primary: #4A4A4A;
+            --text-secondary: #6B6B6B;
+            --text-light: #8A8A8A;
+            --font-display: 'Fredoka One', cursive;
+            --font-body: 'Comic Neue', 'PingFang SC', sans-serif;
+        }
+        
+        /* 关键帧动画 */
+        @keyframes jellyBounce {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.25, 0.75); }
+            40% { transform: scale(0.75, 1.25); }
+            50% { transform: scale(1.15, 0.85); }
+            65% { transform: scale(0.95, 1.05); }
+            75% { transform: scale(1.05, 0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--glow-color); }
+            50% { box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+                       radial-gradient(circle at 40% 80%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
+                       var(--bg-color);
+            background-size: 100px 100px, 80px 80px, 120px 120px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 安全区适配 */
+        .safe-area {
+            padding: 88px 16px 34px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 背景装饰 */
+        .bg-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .star {
+            width: 20px;
+            height: 20px;
+            background: var(--glow-color);
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .star:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.5s; }
+        .star:nth-child(3) { bottom: 30%; left: 10%; animation-delay: 1s; }
+        .star:nth-child(4) { bottom: 15%; right: 15%; animation-delay: 1.5s; }
+        
+        /* 主要内容 */
+        .welcome-container {
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-color), #A8C8E1);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            box-shadow: 0 8px 24px rgba(127, 179, 211, 0.3),
+                       inset 0 1px 0 rgba(255,255,255,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .title {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 4px rgba(127, 179, 211, 0.3);
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            animation: fadeIn 1.4s ease-out;
+        }
+        
+        .description {
+            font-size: 16px;
+            color: var(--text-light);
+            max-width: 300px;
+            margin: 0 auto 48px;
+            line-height: 1.5;
+            animation: fadeIn 1.6s ease-out;
+        }
+        
+        /* 按钮样式 */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            animation: fadeIn 1.8s ease-out;
+        }
+        
+        .btn {
+            border: none;
+            border-radius: 24px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-height: 56px;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #A8C8E1);
+            color: white;
+            box-shadow: 0 4px 12px rgba(74, 74, 74, 0.1),
+                       inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--accent-color), #F7C4C4);
+            color: var(--text-primary);
+            box-shadow: 0 4px 12px rgba(74, 74, 74, 0.1),
+                       inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 74, 74, 0.15),
+                       inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+            animation: jellyBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* 加载进度 */
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), #A8C8E1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            animation: jellyBounce 1s ease-in-out infinite;
+        }
+        
+        .loading-text {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(127, 179, 211, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #A8C8E1);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 480px) {
+            .title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .btn {
+                font-size: 16px;
+                min-width: 180px;
+                padding: 14px 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载界面 -->
+    <div class="loading-container" id="loadingContainer">
+        <div class="loading-logo">📚</div>
+        <div class="loading-text">单词小超人</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+    
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="floating-element star"></div>
+        <div class="floating-element star"></div>
+        <div class="floating-element star"></div>
+        <div class="floating-element star"></div>
+    </div>
+    
+    <!-- 主要内容 -->
+    <div class="safe-area">
+        <div class="welcome-container">
+            <div class="logo">📚</div>
+            <h1 class="title">单词小超人</h1>
+            <p class="subtitle">Word Hero</p>
+            <p class="description">通过有趣的手写练习，让英语单词学习变得简单快乐！</p>
+            
+            <div class="button-container">
+                <button class="btn btn-primary" onclick="startAdventure()">🚀 开始冒险</button>
+                <button class="btn btn-secondary" onclick="selectGrade()">📖 选择年级</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // VDS 核心工具集
+        const VDS = {
+            colors: {
+                primary: '#7FB3D3',
+                accent: '#F4A6A6',
+                bg: '#F8F6F0',
+                success: '#A8D8A8',
+                warning: '#F4D03F',
+                glow: '#FFE5B4'
+            },
+            animations: {
+                easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                duration: {
+                    fast: 0.15,
+                    normal: 0.3,
+                    slow: 0.6
+                }
+            }
+        };
+        
+        // 场景管理器
+        function goToScene(sceneFile) {
+            document.body.style.transition = 'opacity 0.3s ease-in-out';
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = sceneFile;
+            }, 300);
+        }
+        
+        // 触控反馈
+        function addTouchFeedback(element) {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        }
+        
+        // 音效模拟
+        function playSound(type) {
+            console.log(`🔊 播放音效: ${type}`);
+            // 这里可以集成真实的音效播放逻辑
+        }
+        
+        // 页面控制器
+        class WelcomeController {
+            constructor() {
+                this.loadingProgress = 0;
+                this.init();
+            }
+            
+            init() {
+                this.simulateLoading();
+                this.bindEvents();
+                this.addTouchFeedbacks();
+            }
+            
+            simulateLoading() {
+                const progressFill = document.getElementById('progressFill');
+                const loadingContainer = document.getElementById('loadingContainer');
+                
+                const interval = setInterval(() => {
+                    this.loadingProgress += Math.random() * 15 + 5;
+                    
+                    if (this.loadingProgress >= 100) {
+                        this.loadingProgress = 100;
+                        clearInterval(interval);
+                        
+                        setTimeout(() => {
+                            loadingContainer.classList.add('hidden');
+                            this.showWelcome();
+                        }, 500);
+                    }
+                    
+                    progressFill.style.width = this.loadingProgress + '%';
+                }, 100);
+            }
+            
+            showWelcome() {
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                
+                setTimeout(() => {
+                    document.body.style.opacity = '1';
+                }, 100);
+                
+                playSound('welcome');
+            }
+            
+            bindEvents() {
+                // 键盘快捷键
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        startAdventure();
+                    } else if (e.key === 'g' || e.key === 'G') {
+                        selectGrade();
+                    }
+                });
+            }
+            
+            addTouchFeedbacks() {
+                const buttons = document.querySelectorAll('.btn');
+                buttons.forEach(button => {
+                    addTouchFeedback(button);
+                });
+            }
+        }
+        
+        // 主要功能函数
+        function startAdventure() {
+            playSound('button_click');
+            
+            // 检查是否有保存的进度
+            const savedProgress = localStorage.getItem('wordHero_progress');
+            
+            if (savedProgress) {
+                // 有进度，直接进入地图
+                goToScene('./V003_AdventureMap.html');
+            } else {
+                // 新用户，先选择年级
+                selectGrade();
+            }
+        }
+        
+        function selectGrade() {
+            playSound('button_click');
+            goToScene('./V002_GradeSelection.html');
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            new WelcomeController();
+            
+            // 添加页面可见性检测
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    console.log('📱 应用进入后台');
+                } else {
+                    console.log('📱 应用回到前台');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
