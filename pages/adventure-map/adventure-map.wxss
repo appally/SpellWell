@@ -1,17 +1,18 @@
 /* pages/adventure-map/adventure-map.wxss */
-/* 基于VDS视觉设计系统的冒险地图页面 */
-/* 设计DNA: 可爱Q版 + 纸张质感 + 果冻按钮 + Q弹动效 + 多汁反馈 + 莫兰迪色彩 */
+/* Neo-Brutalism儿童APP设计系统 - 优化版冒险地图 */
+/* 设计原则: 清晰层次 + 居中布局 + 强化关卡关系 + 减少视觉干扰 */
 
 /* ===== 页面基础布局 ===== */
 .adventure-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #E8F4FD 0%, #B6E5D8 100%);
+  background: #FFFFFF;
   position: relative;
   padding: 0;
   overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
 }
 
-/* 纸张质感背景 */
+/* 丰富的背景纹路设计 */
 .paper-background {
   position: fixed;
   top: 0;
@@ -19,444 +20,386 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(120, 119, 108, 0.03) 0%, transparent 50%),
-    linear-gradient(135deg, #F8F6F0 0%, #F2EFE7 100%);
-  background-size: 100rpx 100rpx, 80rpx 80rpx, 120rpx 120rpx, 100% 100%;
-  background-position: 0 0, 40rpx 60rpx, 130rpx 270rpx, 0 0;
+    /* 主要几何纹理 */
+    radial-gradient(circle at 25% 25%, #FFE66D 2rpx, transparent 2rpx),
+    radial-gradient(circle at 75% 75%, #4ECDC4 2rpx, transparent 2rpx),
+    /* 对角线条纹 */
+    linear-gradient(45deg, transparent 40%, #A8E6CF 40%, #A8E6CF 42%, transparent 42%),
+    linear-gradient(-45deg, transparent 58%, #FF6B35 58%, #FF6B35 60%, transparent 60%),
+    /* 网格纹理 */
+    linear-gradient(90deg, #F4A6A6 1rpx, transparent 1rpx),
+    linear-gradient(0deg, #7FB3D3 1rpx, transparent 1rpx),
+    /* 基础渐变背景 */
+    linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 50%, #FFFFFF 100%);
+  background-size: 
+    80rpx 80rpx,
+    80rpx 80rpx,
+    120rpx 120rpx,
+    120rpx 120rpx,
+    40rpx 40rpx,
+    40rpx 40rpx,
+    100% 100%;
+  background-position:
+    0 0,
+    40rpx 40rpx,
+    0 0,
+    60rpx 60rpx,
+    0 0,
+    0 0,
+    0 0;
+  opacity: 0.08;
   pointer-events: none;
-  opacity: 0.8;
+  animation: backgroundShift 20s ease-in-out infinite;
 }
 
-/* ===== 用户信息卡片 ===== */
-.user-card {
-  margin: 32rpx 24rpx 24rpx 24rpx;
-  padding: 32rpx;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border-radius: 32rpx;
-  box-shadow: 
-    0 16rpx 40rpx rgba(74, 74, 74, 0.1),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-  border: 2rpx solid rgba(127, 179, 211, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 24rpx;
-  position: relative;
-  overflow: hidden;
+/* 背景动画效果 */
+@keyframes backgroundShift {
+  0%, 100% { 
+    background-position:
+      0 0,
+      40rpx 40rpx,
+      0 0,
+      60rpx 60rpx,
+      0 0,
+      0 0,
+      0 0;
+  }
+  50% { 
+    background-position:
+      20rpx 20rpx,
+      60rpx 60rpx,
+      30rpx 30rpx,
+      90rpx 90rpx,
+      10rpx 10rpx,
+      10rpx 10rpx,
+      0 0;
+  }
 }
 
-.user-avatar-container {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.user-avatar {
-  width: 96rpx;
-  height: 96rpx;
-  background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48rpx;
-  box-shadow: 
-    0 8rpx 24rpx rgba(127, 179, 211, 0.3),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-  animation: gentleBreathe 3s ease-in-out infinite;
-}
-
-.user-level-badge {
-  position: absolute;
-  top: -8rpx;
-  right: -8rpx;
-  background: linear-gradient(135deg, #F4A6A6, #F7C4C4);
-  color: #4A4A4A;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 6rpx 12rpx;
-  border-radius: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(244, 166, 166, 0.4);
-  border: 2rpx solid rgba(255, 255, 255, 0.8);
-}
-
-.user-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8rpx;
-}
-
-.user-name {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #4A4A4A;
-  font-family: "Comic Sans MS", "PingFang SC", sans-serif;
-}
-
-.user-grade {
-  font-size: 24rpx;
-  color: #6B6B6B;
-  margin-bottom: 8rpx;
-}
-
-.user-motto {
-  font-size: 22rpx;
-  color: #8A8A8A;
-  font-style: italic;
-  opacity: 0.8;
-}
-
-/* ===== 圆形进度条 ===== */
-.circular-progress {
-  position: absolute;
-  top: 50%;
-  right: 32rpx;
-  transform: translateY(-50%);
-  z-index: 10;
-  animation: progressAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both;
-}
-
-.progress-ring {
-  width: 100rpx;
-  height: 100rpx;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.progress-circle {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  background: 
-    conic-gradient(
-      from 0deg,
-      #7FB3D3 0%,
-      #7FB3D3 var(--progress, 0%),
-      rgba(127, 179, 211, 0.15) var(--progress, 0%),
-      rgba(127, 179, 211, 0.15) 100%
-    );
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(-90deg);
-  box-shadow: 0 8rpx 24rpx rgba(127, 179, 211, 0.2);
-}
-
-.progress-circle::before {
-  content: '';
-  position: absolute;
-  width: 76rpx;
-  height: 76rpx;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
-  border-radius: 50%;
-  box-shadow: 
-    inset 0 2rpx 8rpx rgba(74, 74, 74, 0.06),
-    0 0 0 2rpx rgba(255, 255, 255, 0.8);
-}
-
-.progress-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.progress-number {
-  font-size: 24rpx;
-  font-weight: bold;
-  color: #7FB3D3;
-  line-height: 1;
-}
-
-.progress-total {
-  font-size: 18rpx;
-  color: #8A8A8A;
-  line-height: 1;
-  margin-top: 2rpx;
-}
-
-/* ===== 地图标题区域 ===== */
+/* ===== 简化的地图标题 ===== */
+/* ===== 重新设计的地图标题区域 ===== */
 .map-header {
   text-align: center;
-  padding: 32rpx 24rpx;
+  padding: 40rpx 32rpx;
   position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32rpx;
 }
 
-.map-title {
-  position: relative;
-  display: inline-block;
+/* ===== 装饰性顶部元素 ===== */
+.header-decoration-top {
+  display: flex;
+  align-items: center;
+  gap: 40rpx;
   margin-bottom: 16rpx;
 }
 
-.title-icon {
+.deco-star {
+  font-size: 48rpx;
+  animation: starTwinkle 2s ease-in-out infinite;
+  filter: drop-shadow(2rpx 2rpx 4rpx rgba(255, 107, 53, 0.3));
+}
+
+.deco-compass {
   font-size: 64rpx;
-  margin-right: 16rpx;
-  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.1));
-  animation: titleFloat 3s ease-in-out infinite;
+  animation: compassSpin 8s linear infinite;
+  filter: drop-shadow(4rpx 4rpx 8rpx rgba(0, 0, 0, 0.2));
+}
+
+/* ===== 主标题容器 ===== */
+.title-container {
+  position: relative;
+  margin: 16rpx 0;
+}
+
+.main-title {
+  background: #4ECDC4;
+  border: 8rpx solid #000000;
+  box-shadow: 16rpx 16rpx 0 #FF6B35;
+  padding: 32rpx 48rpx;
+  transform: rotate(-2deg);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-title::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 .title-text {
-  font-size: 56rpx;
-  font-weight: bold;
-  color: #7FB3D3;
-  font-family: "Comic Sans MS", "PingFang SC", sans-serif;
-  text-shadow: 0 4rpx 8rpx rgba(127, 179, 211, 0.2);
+  font-size: 72rpx;
+  font-weight: 900;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 4rpx;
+  line-height: 1.1;
+  margin-bottom: 8rpx;
 }
 
-.title-sparkles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.sparkle {
-  position: absolute;
-  font-size: 24rpx;
-  opacity: 0;
-  animation: sparkleAnimation 3s ease-in-out infinite;
-}
-
-.sparkle-1 {
-  top: 10%;
-  left: 20%;
-  animation-delay: 0s;
-}
-
-.sparkle-2 {
-  top: 20%;
-  right: 15%;
-  animation-delay: 1s;
-}
-
-.sparkle-3 {
-  bottom: 15%;
-  left: 30%;
-  animation-delay: 2s;
-}
-
-.map-subtitle {
+.title-english {
   font-size: 28rpx;
-  color: #6B6B6B;
-  line-height: 1.4;
-}
-
-/* ===== 地图滚动容器 ===== */
-.map-scroll-container {
-  flex: 1;
-  margin: 0 24rpx 40rpx 24rpx;
-  border-radius: 32rpx;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 250, 252, 0.5) 100%);
-  box-shadow: 
-    0 16rpx 40rpx rgba(74, 74, 74, 0.1),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-  border: 2rpx solid rgba(127, 179, 211, 0.1);
-  position: relative;
-}
-
-.map-scroll {
-  height: 100%;
-  min-height: 800rpx;
-  padding: 40rpx 20rpx;
-}
-
-/* ===== 地图路径 ===== */
-.map-path {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.path-canvas {
-  width: 100%;
-  height: 100%;
+  font-weight: 600;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
   opacity: 0.8;
 }
 
-/* ===== 关卡容器 ===== */
-.levels-container {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 80rpx 60rpx;
-  padding: 40rpx 30rpx;
-  align-items: start;
-  justify-items: center;
+/* ===== 副标题容器 ===== */
+.subtitle-container {
+  margin: 16rpx 0;
 }
 
-/* ===== 关卡节点 ===== */
+.subtitle {
+  background: #FFE66D;
+  border: 4rpx solid #000000;
+  box-shadow: 8rpx 8rpx 0 #000000;
+  padding: 20rpx 32rpx;
+  transform: rotate(1deg);
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.subtitle-icon {
+  font-size: 32rpx;
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+.subtitle-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+/* ===== 装饰性底部元素 ===== */
+.header-decoration-bottom {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-top: 16rpx;
+}
+
+.deco-line {
+  width: 80rpx;
+  height: 6rpx;
+  background: #000000;
+  border-radius: 3rpx;
+  box-shadow: 0 4rpx 0 #FF6B35;
+}
+
+.deco-gem {
+  font-size: 40rpx;
+  animation: gemGlow 2.5s ease-in-out infinite;
+  filter: drop-shadow(2rpx 2rpx 6rpx rgba(78, 205, 196, 0.4));
+}
+
+/* ===== 动画效果 ===== */
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 0.7; }
+}
+
+@keyframes compassSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8rpx); }
+}
+
+@keyframes gemGlow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(2rpx 2rpx 6rpx rgba(78, 205, 196, 0.4)); }
+  50% { transform: scale(1.1); filter: drop-shadow(4rpx 4rpx 12rpx rgba(78, 205, 196, 0.6)); }
+}
+
+/* ===== 地图容器优化 ===== */
+.map-scroll-container {
+  flex: 1;
+  position: relative;
+  padding: 0 32rpx 40rpx 32rpx;
+}
+
+.map-scroll {
+  height: calc(100vh - 280rpx);
+  width: 100%;
+}
+
+/* ===== 关卡容器 - 居中对齐 ===== */
+.levels-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40rpx 32rpx;
+  padding: 40rpx 20rpx;
+  justify-items: center;
+  max-width: 600rpx;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== 关卡节点 - 增强视觉层次 ===== */
 .level-node {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0;
-  transform: translateY(40rpx) scale(0.8);
-  animation: levelAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
+/* 关卡状态的视觉差异化 */
+.level-completed {
+  transform: scale(1) rotate(-1deg);
+  opacity: 1;
+}
+
+.level-current {
+  transform: scale(1.08) rotate(1deg);
+  z-index: 10;
+  animation: currentLevelPulse 2s ease-in-out infinite;
+}
+
+.level-locked {
+  transform: scale(0.9) rotate(0deg);
+  opacity: 0.6;
+  filter: grayscale(50%);
+}
+
+/* ===== 关卡圆环设计 ===== */
 .level-ring {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 50%;
-  position: relative;
-  margin-bottom: 16rpx;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 6rpx solid #000000;
+  box-shadow: 8rpx 8rpx 0 #000000;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* 关卡状态样式 */
-.level-ring-locked {
-  background: linear-gradient(135deg, #E8E8E8, #D0D0D0);
-  box-shadow: 0 8rpx 24rpx rgba(232, 232, 232, 0.3);
-  border: 4rpx solid #C0C0C0;
-}
-
-.level-ring-available {
-  background: linear-gradient(135deg, #A8D8A8, #90C890);
-  box-shadow: 
-    0 12rpx 32rpx rgba(168, 216, 168, 0.4),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-  border: 4rpx solid #88B888;
-  animation: availablePulse 2s ease-in-out infinite;
-}
-
-.level-ring-current {
-  background: linear-gradient(135deg, #FFD93D, #F4C430);
-  box-shadow: 
-    0 16rpx 40rpx rgba(244, 196, 48, 0.5),
-    0 0 40rpx rgba(255, 217, 61, 0.3),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.4);
-  border: 4rpx solid #E5B420;
-  transform: scale(1.1);
+  position: relative;
+  margin-bottom: 8rpx;
+  transition: all 0.2s ease;
 }
 
 .level-ring-completed {
-  background: linear-gradient(135deg, #7FB3D3, #A8C8E1);
-  box-shadow: 
-    0 12rpx 32rpx rgba(127, 179, 211, 0.4),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-  border: 4rpx solid #6FA3C3;
+  background: #A8E6CF;
+  box-shadow: 8rpx 8rpx 0 #4ECDC4;
 }
 
+.level-ring-current {
+  background: #FFE66D;
+  box-shadow: 8rpx 8rpx 0 #FF6B35;
+  border-width: 8rpx;
+}
+
+.level-ring-locked {
+  background: #E8E8E8;
+  box-shadow: 8rpx 8rpx 0 #C0C0C0;
+}
+
+/* ===== 关卡图标 ===== */
 .level-icon-container {
-  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
 }
 
 .level-icon {
-  font-size: 48rpx;
-  filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.1));
-  position: relative;
-  z-index: 6;
+  font-size: 56rpx;
+  filter: drop-shadow(2rpx 2rpx 0 rgba(0,0,0,0.3));
 }
 
+/* ===== 状态指示器 ===== */
 .level-status-indicator {
   position: absolute;
-  top: -12rpx;
-  right: -12rpx;
-  width: 36rpx;
-  height: 36rpx;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
-  border-radius: 50%;
+  top: -16rpx;
+  right: -16rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: #FFFFFF;
+  border: 4rpx solid #000000;
+  box-shadow: 4rpx 4rpx 0 #000000;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.15);
-  border: 2rpx solid rgba(255, 255, 255, 0.8);
-  z-index: 10;
-}
-
-.lock-indicator {
-  background: linear-gradient(135deg, #E8E8E8, #D0D0D0);
+  transform: rotate(15deg);
 }
 
 .status-icon {
-  font-size: 20rpx;
+  font-size: 28rpx;
 }
 
 .current-pulse {
-  animation: currentIconPulse 1.5s ease-in-out infinite;
+  animation: iconPulse 1.5s ease-in-out infinite;
 }
 
+.lock-indicator {
+  background: #FF6B35;
+}
+
+/* ===== 关卡信息卡片改进 ===== */
 .level-info-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
-  border-radius: 20rpx;
-  padding: 20rpx 24rpx;
+  background: #FFFFFF;
+  padding: 16rpx 20rpx;
   text-align: center;
-  box-shadow: 0 8rpx 24rpx rgba(74, 74, 74, 0.1);
-  border: 1rpx solid rgba(127, 179, 211, 0.2);
-  min-width: 160rpx;
-  transform: translateY(0);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  min-width: 140rpx;
+  transform: rotate(-1deg);
 }
 
 .level-number {
-  font-size: 20rpx;
-  color: #8A8A8A;
+  font-size: 24rpx;
+  font-weight: 900;
+  color: #FF6B35;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
   margin-bottom: 4rpx;
 }
 
 .level-name {
-  font-size: 24rpx;
-  color: #4A4A4A;
-  font-weight: bold;
-  margin-bottom: 4rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
   line-height: 1.2;
 }
 
-
+/* ===== 移除连接线元素 ===== */
 .level-connector {
-  position: absolute;
-  top: 60rpx;
-  left: 50%;
-  width: 4rpx;
-  height: 80rpx;
-  background: linear-gradient(to bottom, #7FB3D3, transparent);
-  transform: translateX(-50%);
-  z-index: -1;
+  display: none;
 }
 
-/* ===== 节点交互效果 ===== */
-.level-node:active:not(.level-locked) .level-ring {
-  transform: scale(0.95);
+/* ===== 移除地图路径 ===== */
+.map-path {
+  display: none;
 }
 
-.level-node:active:not(.level-locked) .level-info-card {
-  transform: translateY(-4rpx);
-  box-shadow: 0 12rpx 32rpx rgba(74, 74, 74, 0.15);
+.path-canvas {
+  display: none;
 }
 
-.current-bounce .level-ring {
-  animation: currentBounce 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-}
-
-/* ===== 装饰元素 ===== */
+/* ===== 简化装饰元素 ===== */
 .map-decorations {
   position: absolute;
   top: 0;
@@ -464,14 +407,14 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .decoration {
   position: absolute;
-  opacity: 0.6;
   font-size: 32rpx;
-  animation: decorationFloat 4s ease-in-out infinite;
+  opacity: 0.3;
+  animation: floatGentle 4s ease-in-out infinite;
 }
 
 .cloud-1 {
@@ -487,375 +430,329 @@
 }
 
 .tree-1 {
-  bottom: 40%;
+  bottom: 20%;
   left: 10%;
   animation-delay: 1s;
 }
 
 .tree-2 {
-  bottom: 20%;
+  bottom: 40%;
   right: 15%;
   animation-delay: 3s;
 }
 
 .mountain {
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  left: 5%;
   animation-delay: 1.5s;
 }
 
 .castle {
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 10%;
+  right: 5%;
   animation-delay: 2.5s;
 }
 
+/* ===== 关卡悬浮交互 ===== */
+.level-node:hover .level-ring {
+  animation: brutalistShake 0.3s ease;
+}
 
-/* ===== 关卡预览弹窗 ===== */
+.level-node:active {
+  transform: scale(0.95);
+}
+
+.level-current:hover {
+  animation: none;
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* ===== 关卡预览弹窗保持原样 ===== */
 .level-preview-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10rpx);
+  z-index: 1000;
 }
 
 .level-preview-overlay.show {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
 
 .level-preview-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
-  border-radius: 40rpx;
-  padding: 0;
-  margin: 32rpx;
+  background: #FFFFFF;
+  border: 8rpx solid #000000;
+  box-shadow: 16rpx 16rpx 0 #4ECDC4;
+  margin: 40rpx;
   max-width: 600rpx;
   width: 90%;
-  box-shadow: 
-    0 32rpx 80rpx rgba(74, 74, 74, 0.2),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.4);
-  border: 2rpx solid rgba(127, 179, 211, 0.2);
-  transform: scale(0.8);
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  overflow: hidden;
+  transform: rotate(-1deg) scale(0.9);
+  transition: all 0.3s ease;
 }
 
 .level-preview-overlay.show .level-preview-card {
-  transform: scale(1);
+  transform: rotate(-1deg) scale(1);
 }
 
 .preview-header {
-  position: relative;
-  padding: 40rpx 40rpx 20rpx 40rpx;
-  text-align: center;
-  background: linear-gradient(135deg, rgba(127, 179, 211, 0.1), rgba(168, 200, 225, 0.05));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  background: #FFE66D;
+  border-bottom: 4rpx solid #000000;
 }
 
 .preview-level-ring {
-  width: 120rpx;
-  height: 120rpx;
-  margin: 0 auto 20rpx auto;
-  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid #000000;
+  box-shadow: 4rpx 4rpx 0 #000000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .preview-icon {
-  font-size: 56rpx;
-  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.1));
+  font-size: 40rpx;
 }
 
 .preview-close {
-  position: absolute;
-  top: 20rpx;
-  right: 20rpx;
   width: 48rpx;
   height: 48rpx;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
+  background: #FF6B35;
+  border: 4rpx solid #000000;
+  box-shadow: 4rpx 4rpx 0 #000000;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24rpx;
-  color: #6B6B6B;
-  transition: all 0.3s ease;
-}
-
-.preview-close:active {
-  transform: scale(0.9);
-  background: rgba(255, 255, 255, 0.9);
+  font-weight: 900;
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .preview-content {
-  padding: 20rpx 40rpx 32rpx 40rpx;
+  padding: 40rpx 32rpx;
 }
 
 .preview-title {
-  font-size: 44rpx;
-  font-weight: bold;
-  color: #4A4A4A;
-  text-align: center;
+  font-size: 48rpx;
+  font-weight: 900;
+  color: #000000;
   margin-bottom: 16rpx;
-  font-family: "Comic Sans MS", "PingFang SC", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
 }
 
 .preview-description {
   font-size: 28rpx;
-  color: #6B6B6B;
-  text-align: center;
-  line-height: 1.5;
+  font-weight: 600;
+  color: #666666;
   margin-bottom: 32rpx;
+  line-height: 1.5;
 }
 
 .preview-stats {
-  display: flex;
-  gap: 20rpx;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24rpx;
   margin-bottom: 32rpx;
 }
 
 .stat-item {
-  flex: 1;
   text-align: center;
-  padding: 20rpx 12rpx;
-  background: rgba(127, 179, 211, 0.05);
-  border-radius: 20rpx;
-  border: 1rpx solid rgba(127, 179, 211, 0.1);
+  background: #F8F8F8;
+  border: 3rpx solid #000000;
+  box-shadow: 3rpx 3rpx 0 #000000;
+  padding: 20rpx 16rpx;
 }
 
 .stat-icon {
-  font-size: 24rpx;
+  font-size: 32rpx;
   margin-bottom: 8rpx;
 }
 
 .stat-label {
   font-size: 20rpx;
-  color: #8A8A8A;
+  font-weight: 700;
+  color: #666666;
   margin-bottom: 4rpx;
 }
 
 .stat-value {
   font-size: 24rpx;
-  font-weight: bold;
-  color: #4A4A4A;
+  font-weight: 900;
+  color: #000000;
 }
 
 .preview-actions {
-  display: flex;
-  gap: 16rpx;
-  padding: 0 40rpx 40rpx 40rpx;
+  padding: 0 32rpx 32rpx 32rpx;
 }
 
-.preview-btn {
-  flex: 1;
-  height: 88rpx !important;
-  border-radius: 28rpx !important;
-  border: none !important;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.single-btn {
+  width: 100%;
+  background: #A8E6CF;
+  border: 6rpx solid #000000;
+  box-shadow: 8rpx 8rpx 0 #000000;
+  padding: 24rpx;
+  font-size: 36rpx;
+  font-weight: 900;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+  transition: all 0.2s ease;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #7FB3D3, #A8C8E1) !important;
-  box-shadow: 
-    0 8rpx 24rpx rgba(127, 179, 211, 0.3),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-}
-
-.btn-secondary {
-  background: linear-gradient(135deg, #F4A6A6, #F7C4C4) !important;
-  box-shadow: 
-    0 8rpx 24rpx rgba(244, 166, 166, 0.3),
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
+.single-btn:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: 4rpx 4rpx 0 #000000;
 }
 
 .btn-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12rpx;
-  height: 100%;
-  position: relative;
-  z-index: 2;
+  gap: 16rpx;
 }
 
 .btn-icon {
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 
-.btn-text {
-  font-size: 28rpx;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-
-.btn-glow {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.6s ease;
-}
-
-.preview-btn:active {
-  transform: scale(0.95);
-}
-
-.preview-btn:active .btn-glow {
-  left: 100%;
-}
-
-/* ===== 通用果冻卡片效果 ===== */
-.jelly-card {
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.jelly-card:active {
-  transform: scale(0.98);
-}
-
-.jelly-btn {
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.jelly-btn:active {
-  transform: scale(0.95);
-}
-
-/* ===== 动画关键帧 ===== */
-@keyframes levelAppear {
-  0% {
-    opacity: 0;
-    transform: translateY(40rpx) scale(0.8);
+/* ===== 动画定义 ===== */
+@keyframes currentLevelPulse {
+  0%, 100% {
+    transform: scale(1.08) rotate(1deg);
   }
-  100% {
-    opacity: 1;
+  50% {
+    transform: scale(1.12) rotate(2deg);
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes brutalistShake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-3rpx) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(3rpx) rotate(1deg);
+  }
+  75% {
+    transform: translateX(-2rpx) rotate(-0.5deg);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
     transform: translateY(0) scale(1);
   }
-}
-
-@keyframes availablePulse {
-  0%, 100% {
-    box-shadow: 
-      0 12rpx 32rpx rgba(168, 216, 168, 0.4),
-      inset 0 2rpx 0 rgba(255, 255, 255, 0.3);
-  }
   50% {
-    box-shadow: 
-      0 16rpx 40rpx rgba(168, 216, 168, 0.6),
-      0 0 30rpx rgba(168, 216, 168, 0.3),
-      inset 0 2rpx 0 rgba(255, 255, 255, 0.4);
-  }
-}
-
-@keyframes currentBounce {
-  0%, 100% {
-    transform: scale(1.1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-}
-
-@keyframes currentIconPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
-}
-
-@keyframes gentleBreathe {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-}
-
-@keyframes progressGlow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes titleFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8rpx);
-  }
-}
-
-@keyframes sparkleAnimation {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1) rotate(180deg);
-  }
-}
-
-@keyframes decorationFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12rpx);
-  }
-}
-
-@keyframes progressAppear {
-  from {
-    opacity: 0;
-    transform: translateY(-50%) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
+    transform: translateY(-16rpx) scale(1.05);
   }
 }
 
 /* ===== 响应式设计 ===== */
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
+  /* 标题区域响应式 */
+  .map-header {
+    padding: 32rpx 24rpx;
+    gap: 24rpx;
+  }
+  
+  .header-decoration-top {
+    gap: 32rpx;
+    margin-bottom: 12rpx;
+  }
+  
+  .deco-star {
+    font-size: 40rpx;
+  }
+  
+  .deco-compass {
+    font-size: 56rpx;
+  }
+  
+  .main-title {
+    padding: 24rpx 36rpx;
+    box-shadow: 12rpx 12rpx 0 #FF6B35;
+  }
+  
+  .title-text {
+    font-size: 56rpx;
+    letter-spacing: 3rpx;
+    margin-bottom: 6rpx;
+  }
+  
+  .title-english {
+    font-size: 24rpx;
+    letter-spacing: 1rpx;
+  }
+  
+  .subtitle {
+    padding: 16rpx 24rpx;
+    gap: 12rpx;
+    box-shadow: 6rpx 6rpx 0 #000000;
+  }
+  
+  .subtitle-text {
+    font-size: 26rpx;
+    letter-spacing: 1rpx;
+  }
+  
+  .subtitle-icon {
+    font-size: 28rpx;
+  }
+  
+  .header-decoration-bottom {
+    gap: 20rpx;
+    margin-top: 12rpx;
+  }
+  
+  .deco-line {
+    width: 60rpx;
+    height: 5rpx;
+  }
+  
+  .deco-gem {
+    font-size: 36rpx;
+  }
+  
+  /* 关卡区域响应式 */
   .levels-container {
-    gap: 48rpx 32rpx;
+    gap: 32rpx 24rpx;
+    padding: 32rpx 16rpx;
   }
   
   .level-ring {
     width: 100rpx;
     height: 100rpx;
+    border-width: 5rpx;
   }
   
   .level-icon {
-    font-size: 40rpx;
+    font-size: 44rpx;
   }
   
   .level-info-card {
@@ -864,44 +761,10 @@
   }
   
   .level-name {
-    font-size: 22rpx;
-  }
-  
-  .user-card {
-    margin: 24rpx 16rpx 20rpx 16rpx;
-    padding: 24rpx;
-  }
-  
-  .user-avatar {
-    width: 80rpx;
-    height: 80rpx;
-    font-size: 40rpx;
-  }
-  
-  .circular-progress {
-    right: 24rpx;
-  }
-  
-  .progress-ring {
-    width: 80rpx;
-    height: 80rpx;
-  }
-  
-  .progress-circle {
-    width: 80rpx;
-    height: 80rpx;
-  }
-  
-  .progress-circle::before {
-    width: 60rpx;
-    height: 60rpx;
-  }
-  
-  .progress-number {
     font-size: 24rpx;
   }
   
-  .progress-total {
-    font-size: 16rpx;
+  .level-number {
+    font-size: 20rpx;
   }
 }

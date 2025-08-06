@@ -1,0 +1,451 @@
+/* styles/neo-brutalism-system.wxss */
+/* SpellWell Neo-Brutalism 儿童APP设计系统 */
+/* 设计DNA: 大胆色彩 + 几何形状 + 高对比度 + 无圆角 + 强烈阴影 + 儿童友好 */
+
+/* ===== 核心设计原则 ===== */
+/*
+1. 无圆角 (No Border Radius) - 所有元素使用锐利边角
+2. 高对比度 - 黑色边框 + 强烈阴影
+3. 大胆色彩 - 明亮的主色调
+4. 几何形状 - 简单直接的形状
+5. 儿童友好 - 大字体 + 清晰图标 + 有趣动画
+*/
+
+/* ===== 核心颜色系统 ===== */
+:root {
+  /* 主色调 */
+  --neo-primary: #4ECDC4;      /* 青绿色 - 主要按钮和重要元素 */
+  --neo-secondary: #FF6B35;    /* 橙红色 - 强调色和警告 */
+  --neo-accent: #FFE66D;       /* 明黄色 - 高亮和提示 */
+  --neo-success: #A8E6CF;      /* 浅绿色 - 成功状态 */
+  
+  /* 背景色 */
+  --neo-bg-primary: #FFFFFF;   /* 主要背景 */
+  --neo-bg-secondary: #F8F8F8; /* 次要背景 */
+  
+  /* 文字色 */
+  --neo-text-primary: #000000; /* 主要文字 */
+  --neo-text-inverse: #FFFFFF; /* 反色文字 */
+  
+  /* 边框和阴影 */
+  --neo-border: #000000;       /* 统一边框色 */
+  --neo-shadow-light: 4rpx 4rpx 0; /* 轻阴影 */
+  --neo-shadow-medium: 6rpx 6rpx 0; /* 中阴影 */
+  --neo-shadow-heavy: 8rpx 8rpx 0;  /* 重阴影 */
+  --neo-shadow-extra: 12rpx 12rpx 0; /* 超重阴影 */
+  
+  /* 灰度系统 */
+  --neo-gray-100: #F0F0F0;
+  --neo-gray-200: #E8E8E8;
+  --neo-gray-300: #D0D0D0;
+  --neo-gray-400: #C0C0C0;
+}
+
+/* ===== 核心字体系统 ===== */
+.neo-text-xs {
+  font-size: 20rpx;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+}
+
+.neo-text-sm {
+  font-size: 24rpx;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+}
+
+.neo-text-md {
+  font-size: 28rpx;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+}
+
+.neo-text-lg {
+  font-size: 32rpx;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+.neo-text-xl {
+  font-size: 40rpx;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+.neo-text-2xl {
+  font-size: 48rpx;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3rpx;
+}
+
+.neo-text-3xl {
+  font-size: 56rpx;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3rpx;
+}
+
+/* ===== 核心卡片组件 ===== */
+.neo-card {
+  background: var(--neo-bg-primary);
+  border: 6rpx solid var(--neo-border);
+  box-shadow: var(--neo-shadow-medium) var(--neo-border);
+  padding: 32rpx;
+  position: relative;
+}
+
+.neo-card-primary {
+  background: var(--neo-primary);
+  box-shadow: var(--neo-shadow-medium) var(--neo-secondary);
+}
+
+.neo-card-secondary {
+  background: var(--neo-secondary);
+  box-shadow: var(--neo-shadow-medium) var(--neo-primary);
+}
+
+.neo-card-accent {
+  background: var(--neo-accent);
+  box-shadow: var(--neo-shadow-medium) var(--neo-border);
+}
+
+.neo-card-success {
+  background: var(--neo-success);
+  box-shadow: var(--neo-shadow-medium) var(--neo-border);
+}
+
+/* ===== 核心按钮组件 ===== */
+.neo-btn {
+  border: 6rpx solid var(--neo-border);
+  box-shadow: var(--neo-shadow-medium) var(--neo-border);
+  padding: 16rpx 32rpx;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  color: var(--neo-text-inverse);
+  text-shadow: 2rpx 2rpx 0 var(--neo-border);
+}
+
+.neo-btn-primary {
+  background: var(--neo-primary);
+}
+
+.neo-btn-secondary {
+  background: var(--neo-secondary);
+}
+
+.neo-btn-accent {
+  background: var(--neo-accent);
+  color: var(--neo-text-primary);
+  text-shadow: none;
+}
+
+.neo-btn-success {
+  background: var(--neo-success);
+  color: var(--neo-text-primary);
+  text-shadow: none;
+}
+
+.neo-btn:hover {
+  animation: neo-shake 0.3s ease;
+}
+
+.neo-btn:active {
+  transform: translate(3rpx, 3rpx);
+  box-shadow: 3rpx 3rpx 0 var(--neo-border);
+}
+
+/* ===== 核心输入组件 ===== */
+.neo-input {
+  background: var(--neo-bg-primary);
+  border: 4rpx solid var(--neo-border);
+  box-shadow: var(--neo-shadow-light) var(--neo-border);
+  padding: 16rpx 20rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--neo-text-primary);
+}
+
+.neo-input:focus {
+  box-shadow: var(--neo-shadow-medium) var(--neo-primary);
+  border-color: var(--neo-primary);
+}
+
+/* ===== 核心图标容器 ===== */
+.neo-icon-container {
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid var(--neo-border);
+  box-shadow: var(--neo-shadow-light) var(--neo-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  background: var(--neo-accent);
+}
+
+.neo-icon-primary {
+  background: var(--neo-primary);
+}
+
+.neo-icon-secondary {
+  background: var(--neo-secondary);
+}
+
+.neo-icon-success {
+  background: var(--neo-success);
+}
+
+/* ===== 核心徽章组件 ===== */
+.neo-badge {
+  background: var(--neo-secondary);
+  border: 3rpx solid var(--neo-border);
+  box-shadow: 3rpx 3rpx 0 var(--neo-border);
+  padding: 4rpx 12rpx;
+  font-size: 20rpx;
+  font-weight: 900;
+  color: var(--neo-text-inverse);
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+  display: inline-block;
+}
+
+.neo-badge-primary {
+  background: var(--neo-primary);
+}
+
+.neo-badge-accent {
+  background: var(--neo-accent);
+  color: var(--neo-text-primary);
+}
+
+.neo-badge-success {
+  background: var(--neo-success);
+  color: var(--neo-text-primary);
+}
+
+/* ===== 核心进度条组件 ===== */
+.neo-progress {
+  background: var(--neo-gray-200);
+  border: 4rpx solid var(--neo-border);
+  box-shadow: var(--neo-shadow-light) var(--neo-border);
+  height: 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-progress-fill {
+  height: 100%;
+  background: var(--neo-primary);
+  border-right: 2rpx solid var(--neo-border);
+  transition: width 0.5s ease;
+}
+
+.neo-progress-secondary .neo-progress-fill {
+  background: var(--neo-secondary);
+}
+
+.neo-progress-accent .neo-progress-fill {
+  background: var(--neo-accent);
+}
+
+.neo-progress-success .neo-progress-fill {
+  background: var(--neo-success);
+}
+
+/* ===== 核心背景图案 ===== */
+.neo-bg-pattern {
+  position: relative;
+}
+
+.neo-bg-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, var(--neo-accent) 0%, var(--neo-accent) 25%, transparent 25%, transparent 50%, var(--neo-accent) 50%, var(--neo-accent) 75%, transparent 75%),
+    linear-gradient(-45deg, var(--neo-success) 0%, var(--neo-success) 25%, transparent 25%, transparent 50%, var(--neo-success) 50%, var(--neo-success) 75%, transparent 75%);
+  background-size: 80rpx 80rpx, 80rpx 80rpx;
+  background-position: 0 0, 40rpx 40rpx;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== 核心变换和旋转 ===== */
+.neo-rotate-1 { transform: rotate(1deg); }
+.neo-rotate-2 { transform: rotate(2deg); }
+.neo-rotate-3 { transform: rotate(3deg); }
+.neo-rotate--1 { transform: rotate(-1deg); }
+.neo-rotate--2 { transform: rotate(-2deg); }
+.neo-rotate--3 { transform: rotate(-3deg); }
+
+.neo-scale-105 { transform: scale(1.05); }
+.neo-scale-110 { transform: scale(1.1); }
+.neo-scale-95 { transform: scale(0.95); }
+
+/* ===== 核心动画系统 ===== */
+@keyframes neo-bounce {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+  50% {
+    transform: scale(0.95) rotate(1deg);
+  }
+  75% {
+    transform: scale(1.02) rotate(-1deg);
+  }
+}
+
+@keyframes neo-shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-4rpx) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(4rpx) rotate(1deg);
+  }
+  75% {
+    transform: translateX(-2rpx) rotate(-0.5deg);
+  }
+}
+
+@keyframes neo-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--neo-shadow-medium) var(--neo-border);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: var(--neo-shadow-heavy) var(--neo-border);
+  }
+}
+
+@keyframes neo-spin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg) scale(0.9); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes neo-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-15deg);
+  }
+  25% {
+    transform: translateY(-20rpx) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(-12rpx) rotate(-20deg);
+  }
+  75% {
+    transform: translateY(-8rpx) rotate(-12deg);
+  }
+}
+
+/* ===== 动画类 ===== */
+.neo-animate-bounce {
+  animation: neo-bounce 2s ease-in-out infinite;
+}
+
+.neo-animate-shake {
+  animation: neo-shake 0.5s ease-in-out;
+}
+
+.neo-animate-pulse {
+  animation: neo-pulse 2s ease-in-out infinite;
+}
+
+.neo-animate-spin {
+  animation: neo-spin 2s linear infinite;
+}
+
+.neo-animate-float {
+  animation: neo-float 3s ease-in-out infinite;
+}
+
+/* ===== 响应式工具类 ===== */
+.neo-hidden { display: none; }
+.neo-block { display: block; }
+.neo-flex { display: flex; }
+.neo-grid { display: grid; }
+
+.neo-text-center { text-align: center; }
+.neo-text-left { text-align: left; }
+.neo-text-right { text-align: right; }
+
+.neo-items-center { align-items: center; }
+.neo-justify-center { justify-content: center; }
+.neo-justify-between { justify-content: space-between; }
+
+/* ===== 间距系统 ===== */
+.neo-p-0 { padding: 0; }
+.neo-p-1 { padding: 8rpx; }
+.neo-p-2 { padding: 16rpx; }
+.neo-p-3 { padding: 24rpx; }
+.neo-p-4 { padding: 32rpx; }
+.neo-p-5 { padding: 40rpx; }
+.neo-p-6 { padding: 48rpx; }
+
+.neo-m-0 { margin: 0; }
+.neo-m-1 { margin: 8rpx; }
+.neo-m-2 { margin: 16rpx; }
+.neo-m-3 { margin: 24rpx; }
+.neo-m-4 { margin: 32rpx; }
+.neo-m-5 { margin: 40rpx; }
+.neo-m-6 { margin: 48rpx; }
+
+.neo-gap-1 { gap: 8rpx; }
+.neo-gap-2 { gap: 16rpx; }
+.neo-gap-3 { gap: 24rpx; }
+.neo-gap-4 { gap: 32rpx; }
+
+/* ===== 特殊效果 ===== */
+.neo-shadow-text {
+  text-shadow: 3rpx 3rpx 0 var(--neo-border);
+}
+
+.neo-shadow-text-light {
+  text-shadow: 2rpx 2rpx 0 var(--neo-border);
+}
+
+.neo-drop-shadow {
+  filter: drop-shadow(4rpx 4rpx 0 rgba(0,0,0,0.3));
+}
+
+.neo-drop-shadow-light {
+  filter: drop-shadow(2rpx 2rpx 0 rgba(0,0,0,0.2));
+}
+
+/* ===== 设备适配 ===== */
+@media (max-width: 480px) {
+  .neo-text-3xl { font-size: 44rpx; }
+  .neo-text-2xl { font-size: 36rpx; }
+  .neo-text-xl { font-size: 32rpx; }
+  .neo-text-lg { font-size: 28rpx; }
+  
+  .neo-card { padding: 24rpx; }
+  .neo-btn { padding: 12rpx 24rpx; }
+  .neo-icon-container { 
+    width: 64rpx; 
+    height: 64rpx; 
+    font-size: 32rpx; 
+  }
+}

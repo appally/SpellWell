@@ -1,0 +1,66 @@
+<!-- pages/ai-explanation/ai-explanation.wxml -->
+
+<scroll-view class="page-scroll" scroll-y="true" enable-back-to-top="true">
+  <view class="safe-area">
+    
+    <!-- 错误状态 -->
+    <view class="error-container" wx:if="{{hasError}}">
+      <view class="error-icon">⚠️</view>
+      <view class="error-message">{{errorMessage}}</view>
+      <button class="btn btn-retry" bindtap="onGoBack">返回</button>
+    </view>
+    
+    <!-- 正常内容 -->
+    <view wx:else>
+      
+
+      
+      <!-- 简化的单词信息 -->
+      <view class="word-simple-card">
+        <view class="word-image">{{wordData.image || '📚'}}</view>
+        <view class="word-content">
+          <view class="word-text">{{word}}</view>
+          <view class="word-meaning" wx:if="{{wordData.chinese}}">{{wordData.chinese}}</view>
+        </view>
+      </view>
+      
+      <!-- AI讲解内容区域 -->
+      <view class="ai-explanation-container">
+        
+        <!-- Loading状态 -->
+        <view class="ai-loading-section" wx:if="{{isLoadingAI}}">
+          <view class="loading-header">
+            <view class="loading-robot">🤖</view>
+            <view class="loading-title">魔法老师正在准备讲解</view>
+          </view>
+          <view class="loading-text">{{loadingText}}</view>
+          <view class="loading-animation">
+            <view class="loading-dots">
+              <view class="dot"></view>
+              <view class="dot"></view>
+              <view class="dot"></view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- AI讲解内容 -->
+        <view class="ai-content-section" wx:else>
+          <view class="ai-explanation-content">
+            <text class="explanation-text">{{aiExplanation}}</text>
+          </view>
+          
+          <!-- 操作按钮 - Neo-Brutalism设计 -->
+          <view class="ai-actions neo-brutalism-buttons">
+            <button class="neo-btn neo-btn-secondary" bindtap="onGoBack">
+              <view class="neo-btn-icon">⬅️</view>
+              <view class="neo-btn-text">返回</view>
+            </button>
+          </view>
+        </view>
+        
+      </view>
+      
+    </view>
+    
+  </view>
+</scroll-view>

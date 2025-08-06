@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儿童友好按钮设计预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #FFFFFF;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 背景纹理 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, #FFE66D 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, #4ECDC4 1px, transparent 1px),
+                linear-gradient(45deg, transparent 40%, #A8E6CF 40%, #A8E6CF 42%, transparent 42%),
+                linear-gradient(-45deg, transparent 58%, #FF6B35 58%, #FF6B35 60%, transparent 60%),
+                linear-gradient(90deg, #F4A6A6 0.5px, transparent 0.5px),
+                linear-gradient(0deg, #7FB3D3 0.5px, transparent 0.5px),
+                linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 50%, #FFFFFF 100%);
+            background-size: 
+                20px 20px,
+                20px 20px,
+                30px 30px,
+                30px 30px,
+                10px 10px,
+                10px 10px,
+                100% 100%;
+            background-position:
+                0 0,
+                10px 10px,
+                0 0,
+                15px 15px,
+                0 0,
+                0 0,
+                0 0;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #7F8C8D;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            background: #FFFFFF;
+            border: 4px solid #000000;
+            border-radius: 16px;
+            box-shadow: 0 8px 0 #000000, 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* 儿童友好按钮设计系统 */
+        .action-buttons-row {
+            display: flex;
+            gap: 24px;
+            margin-top: 48px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            padding: 0 32px;
+        }
+
+        /* 儿童友好的按钮基础样式 */
+        .neo-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+            min-width: 180px;
+            padding: 28px 36px;
+            border: 8px solid #000000;
+            border-radius: 24px;
+            background: #FFFFFF;
+            box-shadow: 0 12px 0 #000000, 0 12px 24px rgba(0, 0, 0, 0.15);
+            font-weight: 900;
+            position: relative;
+            overflow: visible;
+            transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            transform: translateY(0);
+        }
+
+        /* 按钮悬浮效果 - 增强可点击感 */
+        .neo-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 0 #000000, 0 16px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 按钮点击效果 - 明确的按下反馈 */
+        .neo-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #000000, 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.1s ease;
+        }
+
+        /* 按钮内容布局 */
+        .btn-icon {
+            font-size: 56px;
+            margin-bottom: 12px;
+            filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.3));
+            transition: transform 0.2s ease;
+        }
+
+        .neo-btn:hover .btn-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .btn-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #000000;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        /* 装饰元素 - 增加趣味性 */
+        .btn-decoration {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 32px;
+            height: 32px;
+            background: #FFE66D;
+            border: 4px solid #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .btn-decoration::after {
+            content: '✨';
+            font-size: 20px;
+        }
+
+        /* 闪烁动画 */
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        /* 魔法老师按钮 - 神秘科技感 */
+        .neo-btn-ai {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44B3AC 100%);
+            border-color: #2C3E50;
+            position: relative;
+        }
+
+        .neo-btn-ai::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .neo-btn-ai:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .neo-btn-ai .btn-text {
+            color: #FFFFFF;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .neo-btn-ai .btn-decoration {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+        }
+
+        /* 学会了按钮 - 成功鼓励感 */
+        .neo-btn-learned {
+            background: linear-gradient(135deg, #A8E6CF 0%, #7FD4A8 100%);
+            border-color: #27AE60;
+            position: relative;
+        }
+
+        .neo-btn-learned::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .neo-btn-learned:hover::before {
+            opacity: 1;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .neo-btn-learned .btn-text {
+            color: #2C3E50;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .neo-btn-learned .btn-decoration {
+            background: linear-gradient(135deg, #FFE66D 0%, #FFD93D 100%);
+        }
+
+        /* 特殊动画效果 */
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) skewX(-15deg);
+            }
+            100% {
+                transform: translateX(200%) skewX(-15deg);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        /* 按钮组合效果 - 增强视觉层次 */
+        .neo-btn-ai {
+            margin-right: 8px;
+        }
+
+        .neo-btn-learned {
+            margin-left: 8px;
+            transform: translateY(0);
+        }
+
+        .design-notes {
+            background: #F8F9FA;
+            border: 3px solid #E9ECEF;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .design-notes h3 {
+            color: #2C3E50;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .design-notes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .design-notes li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #5D6D7E;
+            line-height: 1.6;
+        }
+
+        .design-notes li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 750px) {
+            .action-buttons-row {
+                gap: 16px;
+                padding: 0 24px;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .neo-btn {
+                min-width: 160px;
+                min-height: 120px;
+                padding: 24px 28px;
+            }
+            
+            .btn-icon {
+                font-size: 48px;
+            }
+            
+            .btn-text {
+                font-size: 24px;
+            }
+
+            .neo-btn-ai,
+            .neo-btn-learned {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🎨 儿童友好按钮设计系统</h1>
+        <p class="subtitle">
+            专为儿童APP设计的可点击按钮系统<br>
+            设计理念：大胆色彩 + 清晰层次 + 强烈可点击感 + 趣味互动
+        </p>
+
+        <div class="demo-section">
+            <h2 class="section-title">📱 单词学习页面按钮预览</h2>
+            
+            <!-- 学习模式操作按钮 -->
+            <div class="action-buttons-row">
+                <button class="neo-btn neo-btn-ai" onclick="handleAIClick()">
+                    <div class="btn-icon">🤖</div>
+                    <div class="btn-text">魔法老师</div>
+                    <div class="btn-decoration"></div>
+                </button>
+                <button class="neo-btn neo-btn-learned" onclick="handleLearnedClick()">
+                    <div class="btn-icon">📝</div>
+                    <div class="btn-text">学会了</div>
+                    <div class="btn-decoration"></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="design-notes">
+            <h3>🎯 设计优化要点</h3>
+            <ul>
+                <li><strong>强化可点击感：</strong>采用立体阴影设计，悬浮和点击时有明确的视觉反馈</li>
+                <li><strong>儿童友好色彩：</strong>使用鲜艳但不刺眼的渐变色彩，增强视觉吸引力</li>
+                <li><strong>圆角设计：</strong>24px圆角让按钮更加温和友好，符合儿童审美</li>
+                <li><strong>趣味装饰：</strong>添加闪烁的星星装饰元素，增加互动乐趣</li>
+                <li><strong>清晰层次：</strong>通过不同的颜色和效果区分按钮功能</li>
+                <li><strong>响应式适配：</strong>在小屏幕设备上自动调整布局和尺寸</li>
+                <li><strong>动画效果：</strong>悬浮时的微动画增强交互体验</li>
+                <li><strong>无障碍设计：</strong>高对比度文字确保可读性</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 处理魔法老师按钮点击事件
+         */
+        function handleAIClick() {
+            alert('🤖 魔法老师被点击了！\n\n这个按钮将调用AI服务为孩子提供单词解释。');
+        }
+
+        /**
+         * 处理学会了按钮点击事件
+         */
+        function handleLearnedClick() {
+            alert('📝 学会了按钮被点击了！\n\n孩子确认已经学会这个单词，将进入下一个学习环节。');
+        }
+
+        // 添加键盘支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '1') {
+                handleAIClick();
+            } else if (e.key === '2') {
+                handleLearnedClick();
+            }
+        });
+
+        console.log('🎨 儿童友好按钮设计系统已加载');
+        console.log('💡 提示：按数字键 1 或 2 可以快速测试按钮功能');
+    </script>
+</body>
+</html>

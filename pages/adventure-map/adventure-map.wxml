@@ -4,101 +4,85 @@
   <!-- 纸张质感背景 -->
   <view class="paper-background"></view>
   
-  <!-- 顶部用户信息卡片 -->
-  <view class="user-card jelly-card">
-    <view class="user-avatar-container">
-      <view class="user-avatar">{{userInfo.avatar}}</view>
-      <view class="user-level-badge">Lv.{{currentLevel}}</view>
-    </view>
-    <view class="user-info">
-      <view class="user-name">{{userInfo.name}}</view>
-      <view class="user-grade">{{userInfo.grade}}</view>
-      <view class="user-motto">单词小超人，加油学习！</view>
-    </view>
-    <!-- 圆形进度条 -->
-    <view class="circular-progress">
-      <view class="progress-ring">
-        <view class="progress-circle" style="--progress: {{progressPercentage}}%;"></view>
-        <view class="progress-center">
-          <view class="progress-number">{{userProgress}}</view>
-          <view class="progress-total">/{{maxLevel}}</view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 地图标题区域 -->
+  <!-- 重新设计的地图标题区域 -->
   <view class="map-header">
-    <view class="map-title">
-      <text class="title-icon">🗺️</text>
-      <text class="title-text">冒险地图</text>
-      <view class="title-sparkles">
-        <view class="sparkle sparkle-1">✨</view>
-        <view class="sparkle sparkle-2">⭐</view>
-        <view class="sparkle sparkle-3">💫</view>
+    <!-- 装饰性顶部元素 -->
+    <view class="header-decoration-top">
+      <view class="deco-star">⭐</view>
+      <view class="deco-compass">🧭</view>
+      <view class="deco-star">⭐</view>
+    </view>
+    
+    <!-- 主标题容器 -->
+    <view class="title-container">
+      <view class="main-title">
+        <view class="title-text">冒险地图</view>
+        <view class="title-english">Adventure Map</view>
       </view>
     </view>
-    <view class="map-subtitle">选择关卡开始你的单词冒险之旅</view>
+    
+    <!-- 副标题容器 -->
+    <view class="subtitle-container">
+      <view class="subtitle">
+        <view class="subtitle-icon">🎯</view>
+        <view class="subtitle-text">选择关卡开始学习</view>
+        <view class="subtitle-icon">🎯</view>
+      </view>
+    </view>
+    
+    <!-- 装饰性底部元素 -->
+    <view class="header-decoration-bottom">
+      <view class="deco-line"></view>
+      <view class="deco-gem">💎</view>
+      <view class="deco-line"></view>
+    </view>
   </view>
 
-  <!-- 冒险地图容器 -->
-  <view class="map-scroll-container">
-    <scroll-view class="map-scroll" scroll-y enhanced show-scrollbar="{{false}}">
-      <!-- 地图路径背景 -->
-      <view class="map-path">
-        <canvas class="path-canvas" type="2d" id="pathCanvas"></canvas>
-      </view>
-      
-      <!-- 关卡节点网格 -->
-      <view class="levels-container">
-        <view 
-          class="level-node level-{{item.status}} {{item.status === 'current' ? 'current-bounce' : ''}}"
-          wx:for="{{levels}}"
-          wx:key="id"
-          data-id="{{item.id}}"
-          bindtap="onLevelTap"
-          style="animation-delay: {{index * 0.1}}s;"
-        >
-          <!-- 关卡背景圆环 -->
-          <view class="level-ring level-ring-{{item.status}}">
-            <!-- 关卡图标容器 -->
-            <view class="level-icon-container">
-              <view class="level-icon">{{item.icon}}</view>
-            </view>
-            
-            <!-- 状态指示器 -->
-            <view class="level-status-indicator" wx:if="{{item.status === 'completed'}}">
-              <view class="status-icon">⭐</view>
-            </view>
-            <view class="level-status-indicator" wx:if="{{item.status === 'current'}}">
-              <view class="status-icon current-pulse">👑</view>
-            </view>
-            <view class="level-status-indicator lock-indicator" wx:if="{{item.status === 'locked'}}">
-              <view class="status-icon">🔒</view>
-            </view>
-          </view>
-          
-          <!-- 关卡信息卡片 -->
-          <view class="level-info-card">
-            <view class="level-number">第{{item.id}}关</view>
-            <view class="level-name">{{item.name}}</view>
-          </view>
-          
-          <!-- 连接线 -->
-          <view class="level-connector" wx:if="{{index < levels.length - 1}}"></view>
+  <!-- 关卡节点网格 - 整体滚动 -->
+  <view class="levels-container">
+    <view 
+      class="level-node level-{{item.status}} {{item.status === 'current' ? 'current-bounce' : ''}}"
+      wx:for="{{levels}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onLevelTap"
+      style="animation-delay: {{index * 0.1}}s;"
+    >
+      <!-- 关卡背景圆环 -->
+      <view class="level-ring level-ring-{{item.status}}">
+        <!-- 关卡图标容器 -->
+        <view class="level-icon-container">
+          <view class="level-icon">{{item.icon}}</view>
+        </view>
+        
+        <!-- 状态指示器 -->
+        <view class="level-status-indicator" wx:if="{{item.status === 'completed'}}">
+          <view class="status-icon">⭐</view>
+        </view>
+        <view class="level-status-indicator" wx:if="{{item.status === 'current'}}">
+          <view class="status-icon current-pulse">👑</view>
+        </view>
+        <view class="level-status-indicator lock-indicator" wx:if="{{item.status === 'locked'}}">
+          <view class="status-icon">🔒</view>
         </view>
       </view>
       
-      <!-- 装饰元素 -->
-      <view class="map-decorations">
-        <view class="decoration cloud cloud-1">☁️</view>
-        <view class="decoration cloud cloud-2">☁️</view>
-        <view class="decoration tree tree-1">🌳</view>
-        <view class="decoration tree tree-2">🌲</view>
-        <view class="decoration mountain">⛰️</view>
-        <view class="decoration castle">🏰</view>
+      <!-- 关卡信息卡片 -->
+      <view class="level-info-card">
+        <view class="level-number">第{{item.id}}关</view>
+        <view class="level-name">{{item.name}}</view>
       </view>
-    </scroll-view>
+    </view>
+  </view>
+  
+  <!-- 简化的装饰元素 -->
+  <view class="map-decorations">
+    <view class="decoration cloud cloud-1">☁️</view>
+    <view class="decoration cloud cloud-2">☁️</view>
+    <view class="decoration tree tree-1">🌳</view>
+    <view class="decoration tree tree-2">🌲</view>
+    <view class="decoration mountain">⛰️</view>
+    <view class="decoration castle">🏰</view>
   </view>
 
 </view>
@@ -141,13 +125,7 @@
     
     <!-- 操作按钮 -->
     <view class="preview-actions">
-      <button class="preview-btn btn-secondary jelly-btn" bindtap="onClosePreview">
-        <view class="btn-content">
-          <text class="btn-icon">📖</text>
-          <text class="btn-text">预习单词</text>
-        </view>
-      </button>
-      <button class="preview-btn btn-primary jelly-btn" bindtap="onStartLevel">
+      <button class="preview-btn btn-primary jelly-btn single-btn" bindtap="onStartLevel">
         <view class="btn-content">
           <text class="btn-icon">🚀</text>
           <text class="btn-text">开始冒险</text>

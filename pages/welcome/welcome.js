@@ -1,20 +1,23 @@
 // pages/welcome/welcome.js
 const util = require('../../utils/util.js')
+const { processPageEmojis } = require('../../utils/emoji-compatibility')
 
 Page({
   data: {
-    loadingProgress: 0,
-    showLoading: true,
-    showWelcome: false,
+    showLoading: false,
+    showWelcome: true,
   },
 
   onLoad(options) {
     console.log('欢迎页面加载')
-    this.simulateLoading()
+    // 直接显示欢迎页面，无需加载过程
+    this.animateWelcome()
   },
 
   onReady() {
     console.log('欢迎页面准备完成')
+    // 应用表情符号兼容性处理
+    processPageEmojis(this)
   },
 
   onShow() {
@@ -31,31 +34,7 @@ Page({
     console.log('欢迎页面卸载')
   },
 
-  // 模拟加载过程
-  simulateLoading() {
-    const interval = setInterval(() => {
-      let progress = this.data.loadingProgress + Math.random() * 15 + 5
-      
-      if (progress >= 100) {
-        progress = 100
-        clearInterval(interval)
-        
-        setTimeout(() => {
-          this.setData({
-            showLoading: false,
-            showWelcome: true
-          })
-          
-          // 添加入场动画
-          this.animateWelcome()
-        }, 500)
-      }
-      
-      this.setData({
-        loadingProgress: progress
-      })
-    }, 100)
-  },
+  // 已移除模拟加载过程，直接显示欢迎页面
 
   // 欢迎页面入场动画
   animateWelcome() {
@@ -78,6 +57,15 @@ Page({
     // 直接进入冒险地图（使用默认小学词库）
     this.initDefaultProfile()
     util.navigateTo('/pages/adventure-map/adventure-map')
+  },
+
+  /**
+   * 查看学习统计
+   * 跳转到统计页面
+   */
+  onViewStatistics() {
+    util.playSound('button_click')
+    util.navigateTo('/pages/statistics/statistics')
   },
 
 

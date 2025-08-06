@@ -180,10 +180,25 @@ const storage = {
   clear: () => {
     try {
       wx.clearStorageSync()
+      console.log('本地存储已清空')
       return true
     } catch (error) {
-      console.error('清空存储失败:', error)
+      console.error('清空本地存储失败:', error)
       return false
+    }
+  },
+
+  /**
+   * 获取所有存储的键名
+   * @returns {Array} 键名数组
+   */
+  getAllKeys: () => {
+    try {
+      const info = wx.getStorageInfoSync()
+      return info.keys || []
+    } catch (error) {
+      console.error('获取存储键名失败:', error)
+      return []
     }
   }
 }

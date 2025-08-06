@@ -1,6 +1,8 @@
 // pages/statistics/statistics.js
 const util = require('../../utils/util.js')
 const wordLibrary = require('../../utils/word-library.js')
+const dataManager = require('../../utils/data-manager.js')
+const { processPageEmojis } = require('../../utils/emoji-compatibility')
 
 Page({
   data: {
@@ -16,24 +18,14 @@ Page({
       currentLevel: 1
     },
     
-    // 每日学习数据
-    dailyStats: [],
+
     
-    // 关卡进度
-    levelProgress: [],
-    
-    // 成就数据
-    achievements: [],
-    completedAchievements: 0,
-    
-    // 图表数据
-    chartData: {
-      accuracy: [],
-      words: []
-    },
+    // 错误分析数据
+    errorWords: [],
+    totalErrors: 0,
+    averageErrors: '0.0',
     
     // UI状态
-    selectedTab: 'overview', // overview, progress, achievements, charts
     loading: false
   },
 
@@ -45,6 +37,21 @@ Page({
   onShow() {
     console.log('统计页面显示')
     this.refreshData()
+    // 应用表情符号兼容性处理
+    processPageEmojis(this)
+    
+    // 强制刷新页面数据（解决数据绑定问题）
+    setTimeout(() => {
+      console.log('🔄 强制刷新页面数据...')
+      const currentErrorWords = this.data.errorWords
+      console.log('🔍 当前errorWords数据:', currentErrorWords)
+      if (currentErrorWords && currentErrorWords.length > 0) {
+        console.log('📊 强制重新设置errorWords数据')
+        this.setData({
+          errorWords: [...currentErrorWords] // 创建新数组引用
+        })
+      }
+    }, 100)
   },
 
   onPullDownRefresh() {
@@ -54,30 +61,107 @@ Page({
 
   // 加载统计数据
   loadStatistics() {
+    console.log('🚀 loadStatistics 开始执行...')
     this.setData({ loading: true })
     
     try {
       const userProfile = util.storage.get('wordHero_profile') || {}
       const overallStats = this.calculateOverallStats(userProfile)
-      const dailyStats = this.getDailyStats(userProfile)
-      const levelProgress = this.getLevelProgress(userProfile)
-      const achievements = this.getAchievements(userProfile)
-      const completedAchievements = achievements.filter(a => a.completed).length
-      const chartData = this.generateChartData(dailyStats)
       
-      this.setData({
+      // 获取错误单词统计
+      console.log('📞 调用 getErrorWordsStats...')
+      const errorWords = this.getErrorWordsStats()
+      console.log('📊 getErrorWordsStats 返回结果:', errorWords)
+      console.log('📊 errorWords.length:', errorWords.length)
+      
+      // 计算总错误次数 - 如果errorWords为空，直接从存储中统计
+      let totalErrors = errorWords.reduce((sum, word) => sum + word.totalErrors, 0)
+      console.log('🔢 计算的总错误次数:', totalErrors)
+      
+      // 备用计算方法：直接从存储中统计所有错误
+      if (totalErrors === 0) {
+        console.log('⚠️ 总错误次数为0，使用备用计算方法...')
+        const allKeys = util.storage.getAllKeys()
+        const errorKeys = allKeys.filter(key => key.startsWith('word_errors_'))
+        console.log('🔑 找到的错误键:', errorKeys)
+        totalErrors = errorKeys.reduce((sum, key) => {
+          const data = util.storage.get(key)
+          console.log(`📋 处理键 ${key}:`, data)
+          return sum + (data ? data.totalErrors || 0 : 0)
+        }, 0)
+        console.log('🔢 备用方法计算的总错误次数:', totalErrors)
+      }
+      
+      const averageErrors = errorWords.length > 0 ? (totalErrors / errorWords.length).toFixed(1) : '0.0'
+      
+      const dataToSet = {
         userProfile,
         overallStats,
-        dailyStats,
-        levelProgress,
-        achievements,
-        completedAchievements,
-        chartData,
+        errorWords,
+        totalErrors,
+        averageErrors,
         loading: false
+      }
+      
+      console.log('📤 准备设置到页面的数据:', {
+        errorWordsLength: errorWords.length,
+        totalErrors,
+        averageErrors,
+        errorWordsPreview: errorWords.slice(0, 3)
       })
       
+      this.setData(dataToSet)
+      
+      console.log('✅ setData 完成，当前页面数据:', {
+        errorWordsLength: this.data.errorWords.length,
+        totalErrors: this.data.totalErrors
+      })
+      
+      // 延迟验证数据是否正确设置
+      setTimeout(() => {
+        console.log('🔍 延迟验证页面数据:')
+        console.log('- errorWords.length:', this.data.errorWords.length)
+        console.log('- errorWords内容:', this.data.errorWords)
+        console.log('- totalErrors:', this.data.totalErrors)
+        
+        if (this.data.errorWords.length > 0) {
+          console.log('✅ 数据验证成功：错误单词列表不为空')
+        } else {
+          console.log('⚠️ 数据验证失败：错误单词列表为空')
+          // 尝试再次设置数据
+          console.log('🔄 尝试再次设置数据...')
+          const retryErrorWords = this.getErrorWordsStats()
+           if (retryErrorWords.length > 0) {
+             console.log('📊 重试获取到数据，再次设置:', retryErrorWords)
+             this.setData({ errorWords: retryErrorWords })
+             
+             // 再次延迟验证
+             setTimeout(() => {
+               console.log('🔍 二次验证页面数据:')
+               console.log('- errorWords.length:', this.data.errorWords.length)
+               if (this.data.errorWords.length === 0) {
+                 console.log('⚠️ 二次验证仍然失败，尝试强制刷新页面')
+                 // 强制触发页面重新渲染
+                 this.setData({
+                   loading: true
+                 })
+                 setTimeout(() => {
+                   this.setData({
+                     loading: false,
+                     errorWords: [...retryErrorWords]
+                   })
+                 }, 100)
+               }
+             }, 300)
+           } else {
+             console.log('⚠️ 重试仍然没有获取到数据，可能存在数据源问题')
+           }
+        }
+      }, 200)
+      
+      
     } catch (error) {
-      console.error('加载统计数据失败:', error)
+      console.error('❌ 加载统计数据失败:', error)
       util.showToast('加载数据失败', 'none')
       this.setData({ loading: false })
     }
@@ -112,167 +196,128 @@ Page({
     return Object.keys(dailyRecords).length
   },
 
-  // 获取每日统计
-  getDailyStats(profile) {
-    const dailyRecords = profile.dailyRecords || {}
-    const stats = []
-    
-    // 获取最近7天的数据
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date()
-      date.setDate(date.getDate() - i)
-      const dateKey = util.formatDate(date, 'YYYY-MM-DD')
+
+
+  /**
+   * 获取错误单词统计
+   * @returns {Array} 错误单词列表
+   */
+  getErrorWordsStats() {
+    try {
+      console.log('🔍 开始获取错误单词统计...')
       
-      const record = dailyRecords[dateKey] || {
-        words: 0,
-        accuracy: 0,
-        studyTime: 0
+      // 首先检查存储中是否有错误数据
+      const allKeys = util.storage.getAllKeys()
+      const errorKeys = allKeys.filter(key => key.startsWith('word_errors_'))
+      console.log(`📊 找到 ${errorKeys.length} 个错误数据键:`, errorKeys)
+      
+      if (errorKeys.length === 0) {
+        console.log('⚠️ 没有找到任何错误数据，返回空数组')
+        return []
       }
       
-      stats.push({
-        date: dateKey,
-        displayDate: util.formatDate(date, 'MM/DD'),
-        weekday: this.getWeekday(date.getDay()),
-        barHeight: record.words * 10,
-        ...record
+      // 获取最容易出错的单词（前20个）
+      const errorWords = dataManager.getMostErrorProneWords(20)
+      console.log(`📈 dataManager.getMostErrorProneWords返回:`, errorWords)
+      
+      if (!errorWords || errorWords.length === 0) {
+        console.log('⚠️ getMostErrorProneWords返回空数组，尝试手动构建数据...')
+        
+        // 手动构建错误单词数据
+        const manualErrorWords = errorKeys.map(key => {
+          const data = util.storage.get(key)
+          console.log(`📋 处理错误数据 ${key}:`, data)
+          return {
+            word: data.word,
+            totalErrors: data.totalErrors,
+            lastErrorDate: data.lastErrorDate,
+            errorRate: 0 // 简化处理
+          }
+        }).filter(word => word.totalErrors > 0)
+        
+        // 按错误次数降序排序
+        manualErrorWords.sort((a, b) => b.totalErrors - a.totalErrors)
+        console.log(`🔧 手动构建的错误单词数据:`, manualErrorWords)
+        
+        // 使用手动构建的数据
+        const errorWordsToProcess = manualErrorWords.slice(0, 20)
+        
+        // 为每个单词添加中文释义
+        const wordsWithMeaning = errorWordsToProcess.map(errorWord => {
+          // 尝试多种方式查找单词数据
+          let wordData = wordLibrary.getWordByEnglish(errorWord.word)
+          
+          // 如果找不到，尝试小写查找
+          if (!wordData && errorWord.word) {
+            wordData = wordLibrary.getWordByEnglish(errorWord.word.toLowerCase())
+          }
+          
+          // 如果还是找不到，尝试从PRIMARY_WORD_DATABASE直接查找
+          if (!wordData && errorWord.word) {
+            const database = wordLibrary.PRIMARY_WORD_DATABASE
+            wordData = database[errorWord.word] || database[errorWord.word.toLowerCase()]
+          }
+        
+          return {
+            ...errorWord,
+            chinese: wordData ? wordData.chinese : '未知',
+            phonetic: wordData ? wordData.phonetic : '',
+            difficulty: this.calculateWordDifficulty(errorWord.totalErrors)
+          }
+        })
+        
+        console.log(`✅ 最终处理的错误单词数据:`, wordsWithMeaning)
+        return wordsWithMeaning
+      }
+      
+      // 为每个单词添加中文释义
+      const wordsWithMeaning = errorWords.map(errorWord => {
+          // 尝试多种方式查找单词数据
+          let wordData = wordLibrary.getWordByEnglish(errorWord.word)
+          
+          // 如果找不到，尝试小写查找
+          if (!wordData && errorWord.word) {
+            wordData = wordLibrary.getWordByEnglish(errorWord.word.toLowerCase())
+          }
+          
+          // 如果还是找不到，尝试从PRIMARY_WORD_DATABASE直接查找
+          if (!wordData && errorWord.word) {
+            const database = wordLibrary.PRIMARY_WORD_DATABASE
+            wordData = database[errorWord.word] || database[errorWord.word.toLowerCase()]
+          }
+        
+        return {
+          ...errorWord,
+          chinese: wordData ? wordData.chinese : '未知',
+          phonetic: wordData ? wordData.phonetic : '',
+          difficulty: this.calculateWordDifficulty(errorWord.totalErrors)
+        }
       })
-    }
-    
-    return stats
-  },
-
-  // 获取星期几
-  getWeekday(day) {
-    const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-    return weekdays[day]
-  },
-
-  // 获取关卡进度
-  getLevelProgress(profile) {
-    const progress = profile.progress || {}
-    const currentLevel = progress.currentLevel || 1
-    
-    const levels = []
-    
-    for (let level = 1; level <= 20; level++) {
-      const levelData = wordLibrary.getLevelWords(level) // 移除年级参数，使用默认小学词库
       
-      let status = 'locked'
-      if (level < currentLevel) {
-        status = 'completed'
-      } else if (level === currentLevel) {
-        status = 'current'
-      } else if (level === currentLevel + 1) {
-        status = 'available'
-      }
+      // 过滤掉无效的错误单词（totalErrors为0或undefined）
+      const validErrorWords = wordsWithMeaning.filter(word => word.totalErrors > 0)
+      console.log(`✅ 最终返回的有效错误单词:`, validErrorWords)
       
-      levels.push({
-        level,
-        theme: levelData.theme,
-        totalWords: levelData.totalWords,
-        status,
-        stars: level < currentLevel ? 3 : 0 // 简化星级系统
-      })
-    }
-    
-    return levels
-  },
-
-  // 获取成就数据
-  getAchievements(profile) {
-    const achievements = []
-    const stats = profile.stats || {}
-    
-    // 定义成就列表
-    const achievementList = [
-      {
-        id: 'first_word',
-        title: '初学者',
-        description: '学会第一个单词',
-        icon: '🌟',
-        requirement: 1,
-        current: stats.totalWords || 0,
-        type: 'words'
-      },
-      {
-        id: 'word_master_10',
-        title: '小小词汇家',
-        description: '累计学会10个单词',
-        icon: '📚',
-        requirement: 10,
-        current: stats.totalWords || 0,
-        type: 'words'
-      },
-      {
-        id: 'word_master_50',
-        title: '词汇达人',
-        description: '累计学会50个单词',
-        icon: '🎓',
-        requirement: 50,
-        current: stats.totalWords || 0,
-        type: 'words'
-      },
-      {
-        id: 'accuracy_80',
-        title: '精准射手',
-        description: '准确率达到80%',
-        icon: '🎯',
-        requirement: 80,
-        current: stats.accuracy || 0,
-        type: 'accuracy'
-      },
-      {
-        id: 'streak_5',
-        title: '连击高手',
-        description: '连续答对5题',
-        icon: '⚡',
-        requirement: 5,
-        current: stats.streak || 0,
-        type: 'streak'
-      },
-      {
-        id: 'daily_study_7',
-        title: '坚持学习',
-        description: '连续学习7天',
-        icon: '🔥',
-        requirement: 7,
-        current: this.calculateStudyDays(profile),
-        type: 'days'
-      }
-    ]
-    
-    // 计算成就完成状态
-    achievementList.forEach(achievement => {
-      achievement.completed = achievement.current >= achievement.requirement
-      achievement.progress = Math.min(achievement.current / achievement.requirement, 1)
-      achievement.progressWidth = Math.round(achievement.progress * 100)
-    })
-    
-    return achievementList
-  },
-
-  // 生成图表数据
-  generateChartData(dailyStats) {
-    return {
-      accuracy: dailyStats.map(day => ({
-        label: day.weekday,
-        value: day.accuracy
-      })),
-      words: dailyStats.map(day => ({
-        label: day.weekday,
-        value: day.words,
-        barHeight: day.words * 10
-      }))
+      return validErrorWords
+    } catch (error) {
+      console.error('获取错误单词统计失败:', error)
+      return []
     }
   },
 
-  // 切换选项卡
-  onTabChange(e) {
-    const tab = e.currentTarget.dataset.tab
-    util.playSound('button_click')
-    
-    this.setData({ selectedTab: tab })
+  /**
+   * 计算单词难度等级
+   * @param {number} errorCount - 错误次数
+   * @returns {string} 难度等级
+   */
+  calculateWordDifficulty(errorCount) {
+    if (errorCount >= 10) return '极难'
+    if (errorCount >= 5) return '困难'
+    if (errorCount >= 3) return '中等'
+    return '简单'
   },
+
+
 
   // 重置统计数据
   onResetStats() {
@@ -364,16 +409,71 @@ Page({
     }
   },
 
-  // 查看关卡详情
-  onLevelDetail(e) {
-    const level = e.currentTarget.dataset.level
-    const levelData = this.data.levelProgress.find(l => l.level === level)
+
+
+  /**
+   * 查看错误单词详情
+   */
+  onErrorWordDetail(e) {
+    const word = e.currentTarget.dataset.word
+    const errorStats = dataManager.getWordErrorStats(word)
     
-    if (levelData && levelData.status !== 'locked') {
-      util.showModal(
-        `第${level}关 - ${levelData.theme}`,
-        `包含${levelData.totalWords}个单词\n完成度：${levelData.stars}/3星`
-      )
+    console.log('查看错误单词详情:', word, errorStats)
+    
+    // 显示错误详情弹窗
+    const errorHistory = errorStats.errorHistory.slice(-5) // 显示最近5次错误
+    const errorDetails = errorHistory.map(error => {
+      const date = new Date(error.timestamp)
+      return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')} - ${error.userInput || '未完成'}`
+    }).join('\n')
+    
+    wx.showModal({
+      title: `${word} 错误记录`,
+      content: `总错误次数: ${errorStats.totalErrors}次\n\n最近错误记录:\n${errorDetails || '暂无记录'}`,
+      showCancel: true,
+      cancelText: '关闭',
+      confirmText: '重新学习',
+      success: (res) => {
+        if (res.confirm) {
+          // 跳转到单词学习页面重新学习这个单词
+          this.restudyErrorWord(word)
+        }
+      }
+    })
+  },
+
+  /**
+   * 重新学习错误单词
+   */
+  restudyErrorWord(word) {
+    try {
+      // 查找包含该单词的关卡
+      const wordData = wordLibrary.getWordByEnglish(word)
+      if (wordData && wordData.level) {
+        console.log(`重新学习单词 ${word}，跳转到第${wordData.level}关`)
+        
+        wx.navigateTo({
+          url: `/pages/word-learning/word-learning?level=${wordData.level}&focusWord=${word}`,
+          fail: (error) => {
+            console.error('跳转到学习页面失败:', error)
+            wx.showToast({
+              title: '跳转失败',
+              icon: 'none'
+            })
+          }
+        })
+      } else {
+        wx.showToast({
+          title: '未找到该单词的关卡信息',
+          icon: 'none'
+        })
+      }
+    } catch (error) {
+      console.error('重新学习单词失败:', error)
+      wx.showToast({
+        title: '操作失败',
+        icon: 'none'
+      })
     }
   },
 

@@ -20,86 +20,74 @@
     <!-- 单词信息 -->
     <view class="word-display">
       <view class="word-image">{{currentWord.image || '📚'}}</view>
-      <view class="word-text">{{currentWord.word}}</view>
-      <view class="word-phonetic">{{currentWord.phonetic}}</view>
+      <view class="word-text" bindtap="onPlayPronunciation">{{currentWord.word}}</view>
+      <view class="word-phonetic-container">
+        <view class="word-phonetic">{{currentWord.phonetic}}</view>
+        <view class="pronunciation-btn" bindtap="onPlayPronunciation">
+          <view class="pronunciation-icon">🔊</view>
+        </view>
+      </view>
       <view class="word-meaning">{{currentWord.chinese}}</view>
       
       <!-- 例句区域 - 统一样式 -->
       <view class="sentence-simple" wx:if="{{currentWord.sentence && mode === 'learn'}}">
         <view class="sentence-simple-label">📚 读一读例句：</view>
-        <text class="sentence-simple-text">{{currentWord.sentence}}</text>
-      </view>
-    </view>
-
-    <!-- 操作按钮 -->
-    <view class="action-buttons-row">
-      <button 
-        class="btn btn-ai"
-        bindtap="onGetAIExplanation"
-        disabled="{{isLoadingAI}}"
-      >
-        {{isLoadingAI ? '生成中...' : '🤖 AI讲解'}}
-      </button>
-      <button class="btn btn-learned" bindtap="onConfirmLearning">
-        📝 学会了
-      </button>
-    </view>
-  </view>
-
-  <!-- AI讲解弹窗 -->
-  <view class="ai-overlay {{showAIExplanation ? 'show' : ''}}" wx:if="{{showAIExplanation}}" bindtap="onCloseAIExplanation">
-    <view class="ai-card-enhanced" catchtap="">
-      <view class="ai-close-btn" bindtap="onCloseAIExplanation">
-        <text class="close-icon">✕</text>
+        <text class="sentence-simple-text" bindtap="onPlaySentence">{{currentWord.sentence}}</text>
       </view>
       
-      <!-- Loading状态 -->
-      <view class="ai-loading" wx:if="{{isLoadingAI}}">
-        <view class="loading-robot">🤖</view>
-        <view class="loading-text">{{loadingText}}</view>
-        <view class="loading-dots">
-          <view class="dot"></view>
-          <view class="dot"></view>
-          <view class="dot"></view>
-        </view>
-      </view>
-      
-      <!-- 内容状态 -->
-      <view wx:else>
-        <view class="ai-header-enhanced">
-          <view class="ai-avatar">🤖</view>
-          <view class="ai-title-enhanced">AI老师小贴士</view>
-        </view>
-        <view class="ai-content-enhanced">
-          <view class="ai-explanation-enhanced">{{aiExplanation}}</view>
-          
-          <!-- 查看详细按钮 -->
-          <view class="ai-action-buttons" wx:if="{{aiExplanation && !showDetailedMode}}">
-            <button class="btn-detailed" bindtap="onShowDetailedExplanation">
-              📚 查看详细讲解
-            </button>
+      <!-- 学习小贴士 -->
+      <view class="word-tips" wx:if="{{currentWord.tips && currentWord.tips.length > 0 && mode === 'learn'}}">
+        <view class="tips-label">💡 学习小贴士：</view>
+        <view class="tips-list">
+          <view class="tip-item" wx:for="{{currentWord.tips}}" wx:key="*this">
+            <text class="tip-text">• {{item}}</text>
           </view>
         </view>
-        <view class="ai-footer">
-          <view class="ai-tip">💡 专为小朋友设计的学习助手</view>
-        </view>
       </view>
     </view>
   </view>
+
+  <!-- 学习模式操作按钮 - 移到word-card外部 -->
+  <view class="action-buttons-row neo-brutalism-buttons" wx:if="{{mode === 'learn'}}">
+    <button 
+      class="neo-btn neo-btn-ai"
+      bindtap="onGetAIExplanation"
+    >
+      <view class="btn-icon">🤖</view>
+      <view class="btn-text">魔法老师</view>
+      <view class="btn-decoration"></view>
+    </button>
+    <button class="neo-btn neo-btn-learned" bindtap="onConfirmLearning">
+      <view class="btn-icon">📝</view>
+      <view class="btn-text">学会了</view>
+      <view class="btn-decoration"></view>
+    </button>
+  </view>
+
+
 
   <!-- 默写模式 - 与学习模式统一设计 -->
   <view class="word-card" wx:if="{{mode === 'dictation'}}">
     <!-- 单词信息 - 简洁设计 -->
     <view class="word-display dictation-display">
-      <view class="word-image">🎯</view>
+      <view class="word-image">{{currentWord.image || '📚'}}</view>
       <view class="word-meaning-primary">{{currentWord.chinese}}</view>
-      <view class="word-phonetic">{{currentWord.phonetic}}</view>
+      <view class="word-phonetic-container">
+        <view class="word-phonetic">{{currentWord.phonetic}}</view>
+        <view class="pronunciation-btn" bindtap="onPlayPronunciation">
+          <view class="pronunciation-icon">🔊</view>
+        </view>
+      </view>
     </view>
 
     <!-- 例句填空 - 简化为单层结构 -->
     <view class="sentence-simple" wx:if="{{sentenceWithBlank}}">
       <view class="sentence-simple-label">📚 读一读例句：</view>
-      <text class="sentence-simple-text">{{sentenceWithBlank}}</text>
+      <view class="sentence-container">
+        <text class="sentence-simple-text" bindtap="onPlaySentence" wx:if="{{!sentenceWordAnimation}}">{{sentenceWithBlank}}</text>
+        <!-- 带动画单词的例句 -->
+        <rich-text class="sentence-simple-text" nodes="{{sentenceWithWord}}" bindtap="onPlaySentence" wx:if="{{sentenceWordAnimation}}"></rich-text>
+      </view>
     </view>
 
     <!-- 统一游戏区域 - 整合拼写和字母选择 -->
@@ -108,16 +96,27 @@
       <view class="answer-section">
         <view class="answer-label">点击字母拼出单词：</view>
         <view class="answer-display">
-          <view 
-            class="answer-letter {{item.status}}" 
-            wx:for="{{userAnswer}}" 
-            wx:for-item="item"
-            wx:for-index="idx"
-            wx:key="{{idx}}"
-          >
-            {{item.char}}
+          <!-- 四线三格线条 -->
+          <view class="four-line-grid">
+            <view class="grid-line line-1"></view>
+            <view class="grid-line line-2 main-line"></view>
+            <view class="grid-line line-3"></view>
+            <view class="grid-line line-4"></view>
           </view>
-          <view class="cursor" wx:if="{{userAnswer.length < targetWord.length}}">|</view>
+          <!-- 字母内容 -->
+          <view class="answer-content {{explodeAnimation ? 'explode-content' : ''}}">
+            <view 
+              class="answer-letter {{item.status}} {{wordFlashAnimation ? 'flash-letter' : ''}}"
+              wx:for="{{userAnswer}}" 
+              wx:for-item="item"
+              wx:for-index="idx"
+              wx:key="{{idx}}"
+              data-letter="{{item.char}}"
+            >
+              {{item.char}}
+            </view>
+            <view class="cursor" wx:if="{{userAnswer.length < targetWord.length && !explodeAnimation}}">|</view>
+          </view>
         </view>
       </view>
 
@@ -139,18 +138,11 @@
       </view>
     </view>
 
-    <!-- 操作按钮 - 统一样式 -->
-    <view class="action-buttons-row dictation-actions">
-      <button class="btn btn-reset" bindtap="onResetAnswer" wx:if="{{userAnswer.length > 0}}">
-        🔄 重新开始
-      </button>
-      <button class="btn btn-hint" bindtap="onShowLetterHint" wx:if="{{userAnswer.length > 0 && showHintOption}}">
-        💡 提示
-      </button>
-    </view>
+  </view>
+
+
 
     <!-- 完成提示已移除 - 统一使用反馈弹窗显示庆祝信息 -->
-  </view>
 
   <!-- 确认模式（保留作为备用） -->
   <view class="confirm-card" wx:if="{{mode === 'confirm'}}">
@@ -170,30 +162,109 @@
     </view>
   </view>
 
-  <!-- 统计信息 -->
-  <view class="stats-container" wx:if="{{mode !== 'result'}}">
-    <view class="stat-item">
-      <view class="stat-value">{{stats.correct}}</view>
-      <view class="stat-label">已掌握</view>
-    </view>
-    <view class="stat-item">
-      <view class="stat-value">{{stats.streak}}</view>
-      <view class="stat-label">连续正确</view>
-    </view>
-    <view class="stat-item">
-      <view class="stat-value">{{accuracyPercentage}}%</view>
-      <view class="stat-label">准确率</view>
-    </view>
-  </view>
+
 </view>
 </scroll-view>
 
-<!-- 反馈弹窗 -->
-<view class="feedback-overlay {{showFeedback ? 'show' : ''}}" wx:if="{{showFeedback}}">
-  <view class="feedback-card">
-    <view class="feedback-icon">{{feedbackData.success ? '🎉' : '💪'}}</view>
-    <view class="feedback-title">{{feedbackData.success ? '太棒了！' : '继续加油！'}}</view>
-    <view class="feedback-message">{{feedbackData.message}}</view>
-    <view class="feedback-word">{{feedbackData.word}}</view>
+<!-- 简化庆祝动画层 -->
+<view class="celebration-animation-overlay {{showCelebrationAnimation ? 'show' : ''}}" wx:if="{{showCelebrationAnimation}}" bindtap="onSkipCelebration">
+  <!-- 简化庆祝效果 -->
+  <view class="simple-celebration">
+    <view class="celebration-emoji emoji-icon emoji-party xxl"></view>
+    <view class="celebration-word">{{celebrationWord}}</view>
+    <view class="celebration-check emoji-icon emoji-check xxl success"></view>
+  </view>
+</view>
+
+<!-- 关卡完成庆祝弹窗 -->
+<view class="celebration-overlay {{showCelebration ? 'show' : ''}}" wx:if="{{showCelebration}}">
+  <view class="celebration-background">
+    <!-- 烟花动画背景 -->
+    <view class="firework firework-1"></view>
+    <view class="firework firework-2"></view>
+    <view class="firework firework-3"></view>
+    <view class="firework firework-4"></view>
+    
+    <!-- 飘落的星星 -->
+    <view class="falling-star star-1 emoji-icon emoji-star"></view>
+    <view class="falling-star star-2 emoji-icon emoji-sparkles"></view>
+    <view class="falling-star star-3 emoji-icon emoji-glowing-star"></view>
+    <view class="falling-star star-4 emoji-icon emoji-dizzy"></view>
+    <view class="falling-star star-5 emoji-icon emoji-star"></view>
+    <view class="falling-star star-6 emoji-icon emoji-sparkles"></view>
+  </view>
+  
+  <view class="celebration-card">
+    <!-- 主要内容区域 -->
+    <view class="main-content">
+      <!-- 左侧：奖杯和标题 -->
+      <view class="left-section">
+        <view class="trophy-container">
+          <view class="trophy-icon emoji-icon emoji-trophy xxl"></view>
+          <view class="trophy-glow"></view>
+        </view>
+        <view class="celebration-title">
+          <view class="title-main">关卡完成！</view>
+          <view class="title-sub">Level {{levelData.level}} 通关</view>
+        </view>
+      </view>
+      
+      <!-- 右侧：成绩和星级 -->
+      <view class="right-section">
+        <view class="score-display">
+          <view class="score-item">
+            <view class="score-number">{{stats.correct}}</view>
+            <view class="score-label">正确单词</view>
+          </view>
+          <view class="score-divider">/</view>
+          <view class="score-item">
+            <view class="score-number">{{stats.total}}</view>
+            <view class="score-label">总单词数</view>
+          </view>
+        </view>
+        
+        <view class="star-rating">
+          <view class="star-item {{starRating >= 1 ? 'active' : ''}} emoji-icon emoji-star"></view>
+          <view class="star-item {{starRating >= 2 ? 'active' : ''}} emoji-icon emoji-star"></view>
+          <view class="star-item {{starRating >= 3 ? 'active' : ''}} emoji-icon emoji-star"></view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 准确率和奖励信息 -->
+    <view class="bottom-content">
+      <view class="accuracy-display">
+        <view class="accuracy-label">准确率</view>
+        <view class="accuracy-value">{{accuracyPercentage}}%</view>
+      </view>
+      
+      <view class="reward-info">
+        <view class="reward-text"><view class="emoji-icon emoji-gift"></view> 获得奖励</view>
+        <view class="reward-items">
+          <view class="reward-item">
+            <view class="reward-icon emoji-icon emoji-medal"></view>
+            <view class="reward-name">学习徽章</view>
+          </view>
+          <view class="reward-item">
+            <view class="reward-icon emoji-icon emoji-lightning"></view>
+            <view class="reward-name">经验值 +{{experienceGained}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 自动跳转提示 -->
+    <view class="auto-redirect">
+      <view class="redirect-text">{{countdownSeconds}}秒后自动返回关卡选择</view>
+      <view class="redirect-progress">
+        <view class="redirect-bar" style="width: {{(3-countdownSeconds)/3*100}}%"></view>
+      </view>
+    </view>
+    
+    <!-- 立即返回按钮 -->
+    <view class="celebration-button" bindtap="onReturnToMap">
+      <view class="button-text">立即返回</view>
+      <view class="button-icon emoji-icon emoji-map"></view>
+    </view>
   </view>
 </view>

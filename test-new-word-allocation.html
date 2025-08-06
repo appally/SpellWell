@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新单词分配系统测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .level-card {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .level-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .level-theme {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .word-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .word-item {
+            background: #e3f2fd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: 1px solid #90caf9;
+        }
+        .stats {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .summary {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>新单词分配系统测试</h1>
+        <div id="summary" class="summary"></div>
+        <div id="levels-container"></div>
+    </div>
+
+    <script src="utils/word-library.js"></script>
+    <script>
+        // 测试新的单词分配系统
+        function testNewWordAllocation() {
+            const summaryDiv = document.getElementById('summary');
+            const levelsContainer = document.getElementById('levels-container');
+            
+            try {
+                // 关卡配置（从 unified-level-themes.js 获取）
+                const levelConfigs = [
+                    { level: 1, theme: "基础字母与简单词汇", categories: ["基础词汇"], difficulty: "简单", targetWords: 26 },
+                    { level: 2, theme: "家庭成员", categories: ["家庭成员"], difficulty: "简单", targetWords: 26 },
+                    { level: 3, theme: "身体部位", categories: ["身体部位"], difficulty: "简单", targetWords: 26 },
+                    { level: 4, theme: "颜色世界", categories: ["颜色"], difficulty: "简单", targetWords: 26 },
+                    { level: 5, theme: "美味食物", categories: ["食物"], difficulty: "简单", targetWords: 26 },
+                    { level: 6, theme: "学习用品", categories: ["学习用品"], difficulty: "简单", targetWords: 26 },
+                    { level: 7, theme: "温馨家居", categories: ["家居用品"], difficulty: "简单", targetWords: 26 },
+                    { level: 8, theme: "自然风光", categories: ["自然"], difficulty: "简单", targetWords: 26 },
+                    { level: 9, theme: "可爱动物", categories: ["动物"], difficulty: "简单", targetWords: 25 },
+                    { level: 10, theme: "快乐娱乐", categories: ["娱乐"], difficulty: "简单", targetWords: 25 },
+                    { level: 11, theme: "职业世界", categories: ["职业"], difficulty: "中等", targetWords: 25 },
+                    { level: 12, theme: "运动健康", categories: ["运动"], difficulty: "中等", targetWords: 25 },
+                    { level: 13, theme: "交通工具", categories: ["交通"], difficulty: "中等", targetWords: 25 },
+                    { level: 14, theme: "地理世界", categories: ["地理"], difficulty: "中等", targetWords: 25 },
+                    { level: 15, theme: "艺术音乐", categories: ["艺术"], difficulty: "中等", targetWords: 25 },
+                    { level: 16, theme: "科学技术", categories: ["科学"], difficulty: "中等", targetWords: 25 },
+                    { level: 17, theme: "植物花园", categories: ["植物"], difficulty: "困难", targetWords: 25 },
+                    { level: 18, theme: "创意制作", categories: ["创意"], difficulty: "困难", targetWords: 25 },
+                    { level: 19, theme: "情感表达", categories: ["情感"], difficulty: "困难", targetWords: 25 },
+                    { level: 20, theme: "综合复习", categories: ["基础词汇"], difficulty: "困难", targetWords: 25 }
+                ];
+                
+                let totalWords = 0;
+                let allWords = new Set();
+                let levelResults = [];
+                
+                // 测试每个关卡
+                levelConfigs.forEach(config => {
+                    try {
+                        const words = getLevelWords(config.level);
+                        const wordCount = words.length;
+                        totalWords += wordCount;
+                        
+                        // 检查重复
+                        const duplicates = [];
+                        words.forEach(word => {
+                            if (allWords.has(word.word)) {
+                                duplicates.push(word.word);
+                            } else {
+                                allWords.add(word.word);
+                            }
+                        });
+                        
+                        // 分析分类分布
+                        const categoryStats = {};
+                        words.forEach(word => {
+                            const category = word.category || '未知';
+                            categoryStats[category] = (categoryStats[category] || 0) + 1;
+                        });
+                        
+                        // 分析难度分布
+                        const difficultyStats = {};
+                        words.forEach(word => {
+                            const difficulty = word.difficulty || '未知';
+                            difficultyStats[difficulty] = (difficultyStats[difficulty] || 0) + 1;
+                        });
+                        
+                        levelResults.push({
+                            level: config.level,
+                            theme: config.theme,
+                            words: words,
+                            wordCount: wordCount,
+                            targetWords: config.targetWords,
+                            duplicates: duplicates,
+                            categoryStats: categoryStats,
+                            difficultyStats: difficultyStats
+                        });
+                        
+                    } catch (error) {
+                        console.error(`关卡 ${config.level} 测试失败:`, error);
+                        levelResults.push({
+                            level: config.level,
+                            theme: config.theme,
+                            error: error.message
+                        });
+                    }
+                });
+                
+                // 生成总结
+                const totalDuplicates = levelResults.reduce((sum, result) => sum + (result.duplicates ? result.duplicates.length : 0), 0);
+                const avgWordsPerLevel = totalWords / levelConfigs.length;
+                
+                summaryDiv.innerHTML = `
+                    <h2>分配结果总结</h2>
+                    <p><strong>总单词数:</strong> ${totalWords} / 507</p>
+                    <p><strong>平均每关单词数:</strong> ${avgWordsPerLevel.toFixed(1)}</p>
+                    <p><strong>重复单词数:</strong> <span class="${totalDuplicates > 0 ? 'error' : 'success'}">${totalDuplicates}</span></p>
+                    <p><strong>覆盖率:</strong> ${((allWords.size / 507) * 100).toFixed(1)}%</p>
+                    <p class="${totalDuplicates === 0 && allWords.size >= 500 ? 'success' : 'error'}">
+                        ${totalDuplicates === 0 && allWords.size >= 500 ? '✅ 分配成功！' : '❌ 需要优化'}
+                    </p>
+                `;
+                
+                // 生成关卡详情
+                levelResults.forEach(result => {
+                    const levelDiv = document.createElement('div');
+                    levelDiv.className = 'level-card';
+                    
+                    if (result.error) {
+                        levelDiv.innerHTML = `
+                            <div class="level-title">第 ${result.level} 关 - ${result.theme}</div>
+                            <div class="error">错误: ${result.error}</div>
+                        `;
+                    } else {
+                        const categoryStatsText = Object.entries(result.categoryStats)
+                            .map(([cat, count]) => `${cat}: ${count}`)
+                            .join(', ');
+                        
+                        const difficultyStatsText = Object.entries(result.difficultyStats)
+                            .map(([diff, count]) => `${diff}: ${count}`)
+                            .join(', ');
+                        
+                        levelDiv.innerHTML = `
+                            <div class="level-title">第 ${result.level} 关 - ${result.theme}</div>
+                            <div class="level-theme">目标主题: ${result.theme}</div>
+                            <div class="word-list">
+                                ${result.words.map(word => `<span class="word-item">${word.word}</span>`).join('')}
+                            </div>
+                            <div class="stats">
+                                <div><strong>单词数:</strong> ${result.wordCount} / ${result.targetWords} ${result.wordCount !== result.targetWords ? '⚠️' : '✅'}</div>
+                                <div><strong>分类分布:</strong> ${categoryStatsText}</div>
+                                <div><strong>难度分布:</strong> ${difficultyStatsText}</div>
+                                ${result.duplicates.length > 0 ? `<div class="error"><strong>重复单词:</strong> ${result.duplicates.join(', ')}</div>` : ''}
+                            </div>
+                        `;
+                    }
+                    
+                    levelsContainer.appendChild(levelDiv);
+                });
+                
+            } catch (error) {
+                summaryDiv.innerHTML = `<div class="error">测试失败: ${error.message}</div>`;
+                console.error('测试失败:', error);
+            }
+        }
+        
+        // 页面加载完成后执行测试
+        window.addEventListener('load', testNewWordAllocation);
+    </script>
+</body>
+</html>

@@ -3,13 +3,14 @@
     "pages/welcome/welcome",
     "pages/adventure-map/adventure-map",
     "pages/word-learning/word-learning",
-    "pages/statistics/statistics"
+    "pages/statistics/statistics",
+    "pages/ai-explanation/ai-explanation"
   ],
   "window": {
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "单词小超人",
-    "navigationBarBackgroundColor": "#7FB3D3",
-    "backgroundColor": "#F8F6F0",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF",
     "enablePullDownRefresh": false
   },
   "style": "v2",

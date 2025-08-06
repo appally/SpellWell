@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关卡解锁逻辑测试 - 修复验证</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #FFD700;
+            font-size: 1.3em;
+        }
+        button {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .status {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .level-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid transparent;
+        }
+        .level-item.completed {
+            background: rgba(76, 175, 80, 0.8);
+            border-color: #4CAF50;
+        }
+        .level-item.current {
+            background: rgba(255, 193, 7, 0.8);
+            border-color: #FFC107;
+            animation: pulse 2s infinite;
+        }
+        .level-item.available {
+            background: rgba(33, 150, 243, 0.8);
+            border-color: #2196F3;
+        }
+        .level-item.locked {
+            background: rgba(158, 158, 158, 0.8);
+            border-color: #9E9E9E;
+            opacity: 0.6;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 3px solid #4ECDC4;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .log-entry.error {
+            border-left-color: #FF6B6B;
+        }
+        .log-entry.success {
+            border-left-color: #4CAF50;
+        }
+        .log-entry.info {
+            border-left-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 关卡解锁逻辑测试</h1>
+        
+        <div class="test-section">
+            <h3>📊 当前状态</h3>
+            <div id="currentStatus" class="status">正在初始化...</div>
+            <button onclick="refreshStatus()">🔄 刷新状态</button>
+            <button onclick="resetProgress()">🔄 重置进度</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>🎯 关卡状态可视化</h3>
+            <div id="levelGrid" class="level-grid"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🧪 测试操作</h3>
+            <button onclick="completeLevel(1)">✅ 完成第1关</button>
+            <button onclick="completeLevel(2)">✅ 完成第2关</button>
+            <button onclick="completeLevel(3)">✅ 完成第3关</button>
+            <button onclick="simulateFullFlow()">🚀 模拟完整流程</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>📝 详细日志</h3>
+            <div id="detailLog" class="status"></div>
+            <button onclick="clearLog()">🗑️ 清空日志</button>
+        </div>
+    </div>
+
+    <script>
+        // 模拟小程序环境
+        const wx = {
+            getStorageSync: (key) => {
+                const value = localStorage.getItem(key);
+                return value ? JSON.parse(value) : null;
+            },
+            setStorageSync: (key, data) => {
+                localStorage.setItem(key, JSON.stringify(data));
+            },
+            removeStorageSync: (key) => {
+                localStorage.removeItem(key);
+            }
+        };
+
+        // 简化的数据管理器
+        class TestDataManager {
+            constructor() {
+                this.STORAGE_KEY = 'spellwell_user_profile';
+                this.init();
+            }
+
+            init() {
+                let profile = wx.getStorageSync(this.STORAGE_KEY);
+                if (!profile) {
+                    profile = this.createDefaultProfile();
+                    this.saveUserProfile(profile);
+                }
+            }
+
+            createDefaultProfile() {
+                return {
+                    currentLevel: 1,
+                    progress: {
+                        currentLevel: 1,
+                        completedLevels: [],
+                        totalExp: 0,
+                        totalStars: 0
+                    },
+                    settings: {
+                        soundEnabled: true,
+                        vibrationEnabled: true
+                    },
+                    createdAt: new Date().toISOString(),
+                    lastActiveAt: new Date().toISOString()
+                };
+            }
+
+            getUserProfile() {
+                return wx.getStorageSync(this.STORAGE_KEY) || this.createDefaultProfile();
+            }
+
+            async saveUserProfile(profile) {
+                profile.lastActiveAt = new Date().toISOString();
+                wx.setStorageSync(this.STORAGE_KEY, profile);
+                this.log('💾 用户档案已保存', 'success');
+            }
+
+            async completeLevelProgress(levelId, progressData) {
+                this.log(`🎯 开始完成关卡${levelId}的进度记录...`, 'info');
+                
+                try {
+                    const userProfile = this.getUserProfile();
+                    this.log(`📊 当前用户档案: currentLevel=${userProfile.currentLevel}, completedLevels=[${userProfile.progress.completedLevels.join(',')}]`, 'info');
+                    
+                    // 更新学习进度
+                    await this.updateLearningProgress(levelId, progressData);
+                    
+                    // 解锁下一关
+                    await this.unlockNextLevel(levelId);
+                    
+                    this.log(`✅ 关卡${levelId}进度记录完成`, 'success');
+                } catch (error) {
+                    this.log(`❌ 完成关卡进度失败: ${error.message}`, 'error');
+                    throw error;
+                }
+            }
+
+            async updateLearningProgress(levelId, progressData) {
+                this.log(`📈 更新关卡${levelId}学习进度...`, 'info');
+                
+                const userProfile = this.getUserProfile();
+                
+                // 标记关卡为已完成
+                if (!userProfile.progress.completedLevels.includes(levelId)) {
+                    userProfile.progress.completedLevels.push(levelId);
+                    this.log(`✅ 添加已完成关卡: ${levelId}`, 'success');
+                } else {
+                    this.log(`ℹ️ 关卡${levelId}已在完成列表中`, 'info');
+                }
+                
+                // 更新经验值和星级
+                if (progressData.experienceGained) {
+                    userProfile.progress.totalExp += progressData.experienceGained;
+                }
+                if (progressData.starRating) {
+                    userProfile.progress.totalStars += progressData.starRating;
+                }
+                
+                await this.saveUserProfile(userProfile);
+            }
+
+            async unlockNextLevel(currentLevel) {
+                this.log(`🔍 开始解锁关卡${currentLevel + 1}...`, 'info');
+                
+                try {
+                    const userProfile = this.getUserProfile();
+                    this.log(`📊 当前用户档案: currentLevel=${userProfile.currentLevel}, progress.currentLevel=${userProfile.progress.currentLevel}`, 'info');
+                    this.log(`📋 已完成关卡: [${userProfile.progress.completedLevels.join(', ')}]`, 'info');
+                    
+                    if (userProfile && currentLevel >= userProfile.currentLevel) {
+                        // 同时更新两个位置的currentLevel以确保兼容性
+                        const oldCurrentLevel = userProfile.currentLevel;
+                        userProfile.currentLevel = currentLevel + 1;
+                        userProfile.progress.currentLevel = currentLevel + 1;
+                        
+                        this.log(`📈 更新currentLevel: ${oldCurrentLevel} -> ${currentLevel + 1}`, 'success');
+                        
+                        // 标记当前关卡为已完成
+                        if (!userProfile.progress.completedLevels.includes(currentLevel)) {
+                            userProfile.progress.completedLevels.push(currentLevel);
+                            this.log(`✅ 添加已完成关卡: ${currentLevel}`, 'success');
+                        } else {
+                            this.log(`ℹ️ 关卡${currentLevel}已在完成列表中`, 'info');
+                        }
+                        
+                        // 等待保存完成
+                        this.log(`💾 保存用户档案...`, 'info');
+                        await this.saveUserProfile(userProfile);
+                        this.log(`🔓 解锁关卡 ${currentLevel + 1}，已完成关卡: [${userProfile.progress.completedLevels.join(', ')}]`, 'success');
+                    } else {
+                        this.log(`⏭️ 跳过解锁: currentLevel=${currentLevel}, userProfile.currentLevel=${userProfile.currentLevel}`, 'info');
+                    }
+                } catch (error) {
+                    this.log(`❌ 解锁下一关失败: ${error.message}`, 'error');
+                    throw error;
+                }
+            }
+
+            log(message, type = 'info') {
+                const timestamp = new Date().toLocaleTimeString();
+                const logEntry = `[${timestamp}] ${message}`;
+                console.log(logEntry);
+                
+                const logDiv = document.getElementById('detailLog');
+                const entryDiv = document.createElement('div');
+                entryDiv.className = `log-entry ${type}`;
+                entryDiv.textContent = logEntry;
+                logDiv.appendChild(entryDiv);
+                logDiv.scrollTop = logDiv.scrollHeight;
+            }
+        }
+
+        // 初始化数据管理器
+        const dataManager = new TestDataManager();
+
+        // 刷新状态显示
+        function refreshStatus() {
+            const profile = dataManager.getUserProfile();
+            const statusDiv = document.getElementById('currentStatus');
+            
+            statusDiv.textContent = `当前关卡: ${profile.currentLevel}
+进度关卡: ${profile.progress.currentLevel}
+已完成关卡: [${profile.progress.completedLevels.join(', ')}]
+总经验: ${profile.progress.totalExp}
+总星级: ${profile.progress.totalStars}
+最后活跃: ${new Date(profile.lastActiveAt).toLocaleString()}`;
+            
+            updateLevelGrid(profile);
+        }
+
+        // 更新关卡网格显示
+        function updateLevelGrid(profile) {
+            const gridDiv = document.getElementById('levelGrid');
+            gridDiv.innerHTML = '';
+            
+            const maxLevel = 10;
+            const completedLevels = profile.progress.completedLevels;
+            const currentLevel = profile.progress.currentLevel;
+            
+            for (let i = 1; i <= maxLevel; i++) {
+                const levelDiv = document.createElement('div');
+                levelDiv.className = 'level-item';
+                levelDiv.textContent = i;
+                
+                if (completedLevels.includes(i)) {
+                    levelDiv.classList.add('completed');
+                    levelDiv.title = '已完成';
+                } else if (i === currentLevel) {
+                    levelDiv.classList.add('current');
+                    levelDiv.title = '当前关卡';
+                } else if (i <= currentLevel) {
+                    levelDiv.classList.add('available');
+                    levelDiv.title = '可挑战';
+                } else {
+                    levelDiv.classList.add('locked');
+                    levelDiv.title = '未解锁';
+                }
+                
+                gridDiv.appendChild(levelDiv);
+            }
+        }
+
+        // 完成指定关卡
+        async function completeLevel(levelId) {
+            dataManager.log(`🚀 开始模拟完成关卡${levelId}...`, 'info');
+            
+            try {
+                await dataManager.completeLevelProgress(levelId, {
+                    accuracy: 0.85,
+                    starRating: 2,
+                    experienceGained: 75,
+                    completedAt: new Date().toISOString()
+                });
+                
+                // 刷新显示
+                setTimeout(() => {
+                    refreshStatus();
+                    dataManager.log(`🎉 关卡${levelId}完成流程结束，状态已刷新`, 'success');
+                }, 100);
+                
+            } catch (error) {
+                dataManager.log(`❌ 完成关卡${levelId}失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 模拟完整流程
+        async function simulateFullFlow() {
+            dataManager.log(`🎬 开始模拟完整关卡解锁流程...`, 'info');
+            
+            // 重置进度
+            resetProgress();
+            
+            // 依次完成前3关
+            for (let i = 1; i <= 3; i++) {
+                dataManager.log(`⏳ 等待2秒后完成关卡${i}...`, 'info');
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                await completeLevel(i);
+            }
+            
+            dataManager.log(`🏁 完整流程模拟结束`, 'success');
+        }
+
+        // 重置进度
+        function resetProgress() {
+            wx.removeStorageSync('spellwell_user_profile');
+            dataManager.init();
+            refreshStatus();
+            dataManager.log(`🔄 进度已重置`, 'info');
+        }
+
+        // 清空日志
+        function clearLog() {
+            document.getElementById('detailLog').innerHTML = '';
+        }
+
+        // 页面加载时初始化
+        window.onload = function() {
+            refreshStatus();
+            dataManager.log(`🎮 关卡解锁逻辑测试页面已加载`, 'success');
+        };
+    </script>
+</body>
+</html>

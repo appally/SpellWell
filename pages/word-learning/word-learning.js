@@ -2,6 +2,8 @@
 const util = require('../../utils/util.js')
 const dataManager = require('../../utils/data-manager.js')
 const aiService = require('../../utils/ai-service.js')
+const { playWordPronunciation, playSentencePronunciation, preloadPronunciations, cleanupAudio } = require('../../utils/audio-service.js')
+const { processPageEmojis } = require('../../utils/emoji-compatibility')
 
 Page({
   data: {
@@ -12,9 +14,6 @@ Page({
     
     // 学习状态
     mode: 'learn', // learn, confirm, dictation, result
-    showAIExplanation: false,
-    aiExplanation: '',
-    isLoadingAI: false,
     
     // 默写状态
     dictationInput: '',
@@ -38,15 +37,29 @@ Page({
       streak: 0
     },
     
-    // UI状态
-    showFeedback: false,
-    feedbackData: {},
+    // 庆祝动画相关
+    showCelebrationAnimation: false,
+    celebrationWord: '',
     progressPercentage: 0,
     accuracyPercentage: 0,
-    
+
+    // 庆祝弹窗状态
+    showCelebration: false,
+    starRating: 0,
+    experienceGained: 0,
+    countdownSeconds: 3,
+    countdownTimer: null,
+
     // 学习会话数据
     sessionId: '',
-    wordStartTime: null
+    wordStartTime: null,
+    
+    // 动画状态变量
+    wordFlashAnimation: false,
+    sentenceWordAnimation: false,
+    sentenceWithWord: '',
+    // 错误爆炸动画状态
+    explodeAnimation: false
   },
 
   onLoad(options) {
@@ -60,6 +73,9 @@ Page({
       wordStartTime: Date.now()
     })
     
+    // 保存关卡ID用于进度保存
+    this.levelId = options.levelId || options.level
+    
     // 加载关卡数据
     this.loadLevelData(options)
     
@@ -69,6 +85,8 @@ Page({
 
   onReady() {
     console.log('单词学习页面渲染完成')
+    // 应用表情符号兼容性处理
+    processPageEmojis(this)
   },
 
   onShow() {
@@ -76,11 +94,26 @@ Page({
   },
 
   onHide() {
-    // 页面隐藏时的处理
+    // 页面隐藏时保存进度
+    this.saveCurrentProgress()
   },
 
   onUnload() {
-    // 页面卸载时的处理
+    // 页面卸载时保存进度
+    this.saveCurrentProgress()
+    
+    // 清理定时器
+    if (this.celebrationTimer) {
+      clearTimeout(this.celebrationTimer)
+      this.celebrationTimer = null
+    }
+    
+    if (this.data.countdownTimer) {
+      clearInterval(this.data.countdownTimer)
+    }
+    
+    // 清理音频资源
+    cleanupAudio()
   },
 
   /**
@@ -88,6 +121,26 @@ Page({
    */
   async loadLevelData(options) {
     try {
+      // 检查是否是单个单词模式（从AI讲解页面跳转过来）
+      if (options.word && options.wordData) {
+        const wordData = JSON.parse(decodeURIComponent(options.wordData))
+        const singleWordLevel = {
+          id: 'single_word',
+          name: '单词练习',
+          words: [wordData]
+        }
+        
+        this.setData({
+          levelData: singleWordLevel,
+          currentWordIndex: 0,
+          mode: options.mode || 'learn' // 支持指定模式
+        })
+        
+        // 加载单词
+        this.loadCurrentWord()
+        return
+      }
+      
       // 兼容不同的参数名：levelId 或 level
       const levelId = options.levelId || options.level
       if (!levelId) {
@@ -108,13 +161,35 @@ Page({
         throw new Error('关卡数据不存在')
       }
 
+      let startWordIndex = 0
+      
+      // 检查是否有focusWord参数，如果有则定位到该单词
+      if (options.focusWord) {
+        const focusWordIndex = levelData.words.findIndex(word => 
+          word.word.toLowerCase() === options.focusWord.toLowerCase()
+        )
+        if (focusWordIndex !== -1) {
+          startWordIndex = focusWordIndex
+          console.log(`🎯 定位到目标单词: ${options.focusWord}，索引: ${focusWordIndex}`)
+        } else {
+          console.warn(`⚠️ 未找到目标单词: ${options.focusWord}，从第一个单词开始`)
+        }
+      }
+
       this.setData({
         levelData,
-        currentWordIndex: 0
+        currentWordIndex: startWordIndex
       })
 
-      // 加载第一个单词
-      this.loadCurrentWord()
+      // 检查是否有中途进度需要恢复
+      // 如果有进度恢复，restoreProgress会处理单词加载
+      // 如果没有进度或用户选择重新开始，则正常加载第一个单词
+      const hasProgress = await this.checkAndRestoreProgress()
+      
+      // 只有在没有恢复进度的情况下才加载当前单词
+      if (!hasProgress) {
+        this.loadCurrentWord()
+      }
 
     } catch (error) {
       console.error('加载关卡数据失败:', error)
@@ -150,13 +225,30 @@ Page({
 
     const currentWord = levelData.words[currentWordIndex]
     
+    console.log('📚 加载新单词，切换到学习模式')
+    console.log('  - 单词:', currentWord.word)
+    console.log('  - 例句:', currentWord.sentence)
+    
     this.setData({
       currentWord,
       mode: 'learn',
       showAIExplanation: false,
       aiExplanation: '',
-      wordStartTime: Date.now()
+      wordStartTime: Date.now(),
+      // 清除默写模式的数据，避免数据残留
+      sentenceWithBlank: '',
+      targetWord: '',
+      shuffledLetters: [],
+      userAnswer: []
     })
+    
+    console.log('✅ 学习模式数据设置完成，已清除默写模式残留数据')
+
+    // 预加载AI讲解
+    this.preloadAIExplanation()
+    
+    // 预加载当前和后续单词的发音
+    this.preloadWordPronunciations()
 
     console.log('📚 加载单词详细信息:', currentWord)
     console.log('📊 单词数据结构:')
@@ -167,152 +259,166 @@ Page({
 
 
   /**
-   * 获取AI讲解 - 优化UX版本
+   * 播放单词发音
    */
-  async onGetAIExplanation() {
-    const { currentWord, isLoadingAI } = this.data
+  onPlayPronunciation() {
+    const { currentWord } = this.data
     
-    if (!currentWord || isLoadingAI) return
-
-    // 立即显示loading UI
-    this.setData({
-      isLoadingAI: true,
-      showAIExplanation: true, // 立即显示弹窗
-      loadingText: 'AI老师正在思考中...',
-      showDetailedMode: false
-    })
-
-    // 动态更新loading文字
-    setTimeout(() => {
-      this.setData({ loadingText: '马上就好...' })
-    }, 1500)
-
-    try {
-      // 首先获取快速版本
-      const quickExplanation = await aiService.generateWordExplanation(currentWord.word, {
-        level: 'elementary',
-        style: 'friendly',
-        quick: true // 启用快速模式
-      })
-
-      // 格式化快速版本
-      const formattedQuick = this.formatAIExplanation(quickExplanation)
-
-      // 显示快速内容
-      this.setData({
-        aiExplanation: formattedQuick,
-        isLoadingAI: false,
-        loadingText: '准备好了！'
-      })
-
-      // 预加载详细版本（后台加载）
-      this.preloadDetailedExplanation(currentWord.word)
-
-    } catch (error) {
-      console.error('获取AI讲解失败:', error)
-      
-      // 使用预设讲解作为降级方案
-      const fallbackExplanation = this.getFallbackExplanation(currentWord.word)
-      
-      this.setData({
-        aiExplanation: fallbackExplanation,
-        isLoadingAI: false
-      })
-
+    if (!currentWord || !currentWord.word) {
       wx.showToast({
-        title: '使用离线讲解',
-        icon: 'none',
-        duration: 2000
+        title: '单词数据无效',
+        icon: 'none'
       })
+      return
     }
+
+    playWordPronunciation(currentWord.word)
+      .then(() => {
+        console.log('播放发音成功:', currentWord.word)
+      })
+      .catch((error) => {
+        console.error('播放发音失败:', error)
+        wx.showToast({
+          title: '发音播放失败',
+          icon: 'none'
+        })
+      })
   },
 
   /**
-   * 预加载详细讲解（后台静默加载）
+   * 播放例句朗读
+   * 点击例句文本时调用此方法
    */
-  async preloadDetailedExplanation(word) {
-    try {
-      const detailedExplanation = await aiService.generateWordExplanation(word, {
-        level: 'elementary',
-        style: 'friendly',
-        quick: false // 详细模式
-      })
-      
-      // 缓存详细内容，用户点击时立即显示
-      this.detailedExplanation = this.formatAIExplanation(detailedExplanation)
-      console.log('📚 详细讲解已预加载完成')
-      
-    } catch (error) {
-      console.log('预加载详细讲解失败，将使用扩展版本:', error)
-      this.detailedExplanation = null
-    }
-  },
-
-  /**
-   * 显示详细讲解
-   */
-  onShowDetailedExplanation() {
-    if (this.detailedExplanation) {
-      // 使用预加载的详细内容
-      this.setData({
-        aiExplanation: this.detailedExplanation,
-        showDetailedMode: true
-      })
+  onPlaySentence() {
+    const { currentWord, sentenceWithBlank, mode } = this.data
+    
+    console.log('🔊 开始播放例句')
+    console.log('📋 当前模式:', mode)
+    console.log('📝 当前单词:', currentWord)
+    console.log('📄 带空白例句:', sentenceWithBlank)
+    
+    // 确定要播放的例句内容
+    let sentenceText = ''
+    
+    if (mode === 'dictation' && sentenceWithBlank) {
+      // 默写模式：播放完整例句（将空白替换为单词）
+      const blankPattern = /_+/g
+      sentenceText = sentenceWithBlank.replace(blankPattern, currentWord.word)
+      console.log('🎯 默写模式 - 播放完整例句:', sentenceText)
+    } else if (mode === 'learn' && currentWord && currentWord.sentence) {
+      // 学习模式：播放完整例句
+      sentenceText = currentWord.sentence
+      console.log('📚 学习模式 - 播放完整例句:', sentenceText)
     } else {
-      // 降级：显示扩展版本提示
-      wx.showModal({
-        title: '📚 更多内容',
-        content: '详细讲解正在准备中，请稍后再试，或联系老师获取更多学习资料！',
-        showCancel: false,
-        confirmText: '好的'
-      })
+      // 兜底逻辑：尝试使用当前单词的例句
+      if (currentWord && currentWord.sentence) {
+        sentenceText = currentWord.sentence
+        console.log('🔄 兜底逻辑 - 使用当前单词例句:', sentenceText)
+      }
     }
-  },
-
-  /**
-   * 格式化AI输出，提高可读性
-   */
-  formatAIExplanation(text) {
-    if (!text) return ''
     
-    // 确保换行正确显示
-    let formatted = text.replace(/\n/g, '\n')
-    
-    // 为不同部分添加适当的间距
-    formatted = formatted.replace(/(\*\*\【[^】]+\】\*\*)/g, '\n$1')
-    
-    return formatted
-  },
-
-  /**
-   * 获取降级讲解内容
-   */
-  getFallbackExplanation(word) {
-    const fallbackExplanations = {
-      'a': `🌟 **【趣味解释】** "A"是英语字母表的第一个字母，也是最常用的小词！它就像一个神奇的介绍师，帮我们认识新朋友。
-
-🏠 **【生活实例】**
-• I have a cat. - 我有一只猫咪。
-• This is a book. - 这是一本书。
-
-🧠 **【记忆诀窍】** "A"的读音像"诶"，想象你指着东西惊喜地说"诶！这是一个..."
-
-🎮 **【小游戏】** 在房间里找5样东西，用"This is a..."介绍给家人听！`,
+    if (!sentenceText) {
+      console.error('❌ 无法确定要播放的例句内容')
+      console.error('📊 调试信息:')
+      console.error('  - mode:', mode)
+      console.error('  - currentWord:', currentWord)
+      console.error('  - sentenceWithBlank:', sentenceWithBlank)
       
-      'apple': `🍎 **【趣味解释】** Apple是大自然的甜蜜礼物！圆圆的、脆脆的，咬一口甜甜的汁水在嘴里爆开！
-
-🏠 **【生活实例】**
-• I eat an apple every day. - 我每天都吃一个苹果。
-• The apple is red and sweet. - 苹果又红又甜。
-
-🧠 **【记忆诀窍】** Apple读音像"爱泡"→苹果爱泡在蜂蜜里变更甜！
-
-🎮 **【小游戏】** 画苹果树，每说对一次"apple"就画一个苹果🍎`
+      wx.showToast({
+        title: '例句数据无效',
+        icon: 'none'
+      })
+      return
     }
+
+    console.log('✅ 确定播放例句:', sentenceText)
     
-    return fallbackExplanations[word.toLowerCase()] || 
-      `🌟 让我们一起学习"${word}"这个有趣的英语单词吧！虽然暂时无法获取详细讲解，但这个单词一定有它独特的魅力。试着在生活中多使用它，你会发现学英语其实很有趣！💪`
+    playSentencePronunciation(sentenceText)
+      .then(() => {
+        console.log('🎵 播放例句成功:', sentenceText)
+      })
+      .catch((error) => {
+        console.error('❌ 播放例句失败:', error)
+        wx.showToast({
+          title: '例句播放失败',
+          icon: 'none'
+        })
+      })
   },
+
+  /**
+   * 预加载单词发音
+   */
+  preloadWordPronunciations() {
+    const { levelData, currentWordIndex } = this.data
+    
+    if (!levelData || !levelData.words) return
+
+    // 预加载当前单词和后续2个单词的发音
+    const wordsToPreload = []
+    for (let i = currentWordIndex; i < Math.min(currentWordIndex + 3, levelData.words.length); i++) {
+      const word = levelData.words[i]
+      if (word && word.word) {
+        wordsToPreload.push(word.word)
+      }
+    }
+
+    if (wordsToPreload.length > 0) {
+      preloadPronunciations(wordsToPreload)
+        .then(() => {
+          console.log('预加载发音成功:', wordsToPreload)
+        })
+        .catch((error) => {
+          console.log('预加载发音失败:', error.message)
+        })
+    }
+  },
+
+  /**
+   * 获取AI讲解 - 跳转到新页面
+   */
+  onGetAIExplanation() {
+    const { currentWord } = this.data
+    
+    if (!currentWord) {
+      wx.showToast({
+        title: '请先选择单词',
+        icon: 'none'
+      })
+      return
+    }
+
+    // 准备传递给AI讲解页面的数据
+    const wordData = {
+      word: currentWord.word,
+      phonetic: currentWord.phonetic,
+      chinese: currentWord.chinese,
+      image: currentWord.image,
+      sentence: currentWord.sentence,
+      tips: currentWord.tips
+    }
+
+    // 跳转到AI讲解页面
+    wx.navigateTo({
+      url: `/pages/ai-explanation/ai-explanation?word=${currentWord.word}&wordData=${encodeURIComponent(JSON.stringify(wordData))}`,
+      success: () => {
+        console.log('跳转到AI讲解页面成功')
+      },
+      fail: (error) => {
+        console.error('跳转到AI讲解页面失败:', error)
+        wx.showToast({
+          title: '页面跳转失败',
+          icon: 'none'
+        })
+      }
+    })
+  },
+
+
+
+
+
+
 
   /**
    * 确认学习完成，进入默写模式
@@ -443,7 +549,12 @@ Page({
     }
     
     // 生成填空句子
+    console.log('📝 生成填空句子:')
+    console.log('  - 原始例句:', word.sentence)
+    console.log('  - 目标单词:', word.word)
+    
     const sentenceWithBlank = this.createSentenceWithBlank(word.sentence, word.word)
+    console.log('  - 生成的填空句子:', sentenceWithBlank)
     
     this.setData({
       mode: 'dictation',
@@ -455,6 +566,11 @@ Page({
       showHintOption: false,
       dictationAttempts: 0
     })
+    
+    console.log('✅ 默写模式数据设置完成:')
+    console.log('  - mode:', 'dictation')
+    console.log('  - targetWord:', targetWord)
+    console.log('  - sentenceWithBlank:', sentenceWithBlank)
     
     console.log('✅ 字母拼写游戏初始化完成')
     
@@ -529,12 +645,27 @@ Page({
     console.log('🔤 添加答案字母:', answerLetter)
     console.log('📝 当前答案数组:', newUserAnswer)
     
-    // 如果字母错误，显示震动效果
+    // 如果字母错误，立即触发爆炸动画
     if (!isCorrect) {
       wx.vibrateShort()
+      
+      // 记录错误拼写
+      const userInput = newUserAnswer.map(item => item.char).join('')
+      dataManager.recordWordError(targetWord, {
+        sessionId: this.data.sessionId,
+        errorType: 'spelling',
+        userInput: userInput,
+        attemptNumber: this.data.dictationAttempts + 1
+      })
+      
       this.setData({
+        shuffledLetters: newShuffledLetters,
+        userAnswer: newUserAnswer,
         showHintOption: true
       })
+      // 立即触发爆炸动画
+      this.triggerExplodeAnimation()
+      return
     }
     
     this.setData({
@@ -557,72 +688,100 @@ Page({
     const isCorrect = userWord === targetWord
     
     if (isCorrect) {
-      // 拼写正确，直接处理完成逻辑，不显示内联完成消息
-      // 使用反馈弹窗统一显示庆祝信息
-      this.handleWordCompletion(true)
-    } else {
-      // 拼写错误，等待1秒后自动重置
-      setTimeout(() => {
-        this.onResetAnswer()
-      }, 1000)
-    }
-  },
-
-  /**
-   * 重新开始拼写
-   */
-  onResetAnswer() {
-    const { targetWord, currentWord } = this.data
-    
-    // 重新打乱字母
-    const letters = targetWord.split('')
-    const shuffledLetters = this.shuffleArray([...letters]).map((char, index) => ({
-      char: char.toLowerCase(), // 改为小写
-      used: false,
-      correct: false,
-      originalIndex: index
-    }))
-    
-    this.setData({
-      shuffledLetters: shuffledLetters,
-      userAnswer: [],
-  
-      dictationAttempts: this.data.dictationAttempts + 1
-    })
-  },
-
-  /**
-   * 显示字母提示
-   */
-  onShowLetterHint() {
-    const { userAnswer, targetWord, shuffledLetters } = this.data
-    
-    if (userAnswer.length >= targetWord.length) return
-    
-    // 找到下一个正确字母的位置
-    const nextLetter = targetWord[userAnswer.length].toLowerCase()
-    const hintIndex = shuffledLetters.findIndex(letter => 
-      letter.char.toLowerCase() === nextLetter && !letter.used
-    )
-    
-    if (hintIndex !== -1) {
-      // 高亮提示字母
-      const newShuffledLetters = [...shuffledLetters]
-      newShuffledLetters[hintIndex].correct = true
+      // 拼写正确，先触发单词闪动动画
+      this.triggerWordFlashAnimation()
       
-      this.setData({
-        shuffledLetters: newShuffledLetters
+      // 触发例句单词动画
+      this.triggerSentenceWordAnimation()
+      
+      // 延迟处理完成逻辑，让动画播放完毕
+      setTimeout(() => {
+        this.handleWordCompletion(true)
+      }, 1500) // 给动画足够时间播放
+    } else {
+      // 拼写错误，记录错误并触发爆炸消失动画
+      dataManager.recordWordError(targetWord, {
+        sessionId: this.data.sessionId,
+        errorType: 'spelling',
+        userInput: userWord,
+        attemptNumber: this.data.dictationAttempts + 1
       })
       
-      // 1秒后移除高亮
-      setTimeout(() => {
-        const resetLetters = [...newShuffledLetters]
-        resetLetters[hintIndex].correct = false
-        this.setData({
-          shuffledLetters: resetLetters
-        })
-      }, 1000)
+      this.triggerExplodeAnimation()
     }
+  },
+
+  /**
+   * 触发单词闪动动画
+   */
+  triggerWordFlashAnimation() {
+    // 为所有正确的字母添加闪动效果
+    this.setData({
+      wordFlashAnimation: true
+    })
+    
+    // 动画结束后移除效果
+    setTimeout(() => {
+      this.setData({
+        wordFlashAnimation: false
+      })
+    }, 1200)
+  },
+
+  /**
+   * 触发例句单词动画
+   */
+  triggerSentenceWordAnimation() {
+    const { currentWord, sentenceWithBlank } = this.data
+    
+    if (!sentenceWithBlank || !currentWord.word) return
+    
+    // 将下划线替换为正确的单词，并添加动画效果
+    const wordLength = currentWord.word.length
+    const blank = '_'.repeat(wordLength)
+    const sentenceWithWord = sentenceWithBlank.replace(blank, `<span class="animated-sentence-word">${currentWord.word}</span>`)
+    
+    // 设置动画状态
+    this.setData({
+      sentenceWordAnimation: true,
+      sentenceWithWord: sentenceWithWord
+    })
+    
+    // 动画结束后恢复原状
+    setTimeout(() => {
+      this.setData({
+        sentenceWordAnimation: false,
+        sentenceWithWord: ''
+      })
+    }, 2000)
+  },
+
+  /**
+   * 触发爆炸消失动画
+   * 检测到错误字母时立即触发，将整个answer-content区域的字母作为整体进行爆炸消失
+   */
+  triggerExplodeAnimation() {
+    // 启动爆炸动画
+    this.setData({
+      explodeAnimation: true
+    })
+    
+    // 0.8秒后清空答案、重置字母区域并移除动画效果
+    setTimeout(() => {
+      // 重置所有字母为未使用状态
+      const resetLetters = this.data.shuffledLetters.map(letter => ({
+        ...letter,
+        used: false,
+        correct: false
+      }))
+      
+      this.setData({
+        explodeAnimation: false,
+        userAnswer: [],
+        shuffledLetters: resetLetters,
+        showHintOption: false
+      })
+    }, 800)
   },
 
   /**
@@ -671,28 +830,38 @@ Page({
     if (isCorrect) {
       // 默写成功
       this.handleWordCompletion(true)
-    } else if (newAttempts >= maxAttempts) {
-      // 达到最大尝试次数，显示正确答案并标记为失败
-      wx.showModal({
-        title: '默写完成',
-        content: `正确答案是: ${currentWord.word}`,
-        showCancel: false,
-        success: () => {
-          this.handleWordCompletion(false)
-        }
-      })
     } else {
-      // 继续尝试，显示提示
-      this.setData({
-        dictationAttempts: newAttempts,
-        showHint: newAttempts >= 2, // 第二次错误后显示提示
-        dictationInput: ''
+      // 记录听写错误
+      dataManager.recordWordError(currentWord.word, {
+        sessionId: this.data.sessionId,
+        errorType: 'dictation',
+        userInput: dictationInput.trim(),
+        attemptNumber: newAttempts
       })
       
-      wx.showToast({
-        title: `还有${maxAttempts - newAttempts}次机会`,
-        icon: 'none'
-      })
+      if (newAttempts >= maxAttempts) {
+        // 达到最大尝试次数，显示正确答案并标记为失败
+        wx.showModal({
+          title: '默写完成',
+          content: `正确答案是: ${currentWord.word}`,
+          showCancel: false,
+          success: () => {
+            this.handleWordCompletion(false)
+          }
+        })
+      } else {
+        // 继续尝试，显示提示
+        this.setData({
+          dictationAttempts: newAttempts,
+          showHint: newAttempts >= 2, // 第二次错误后显示提示
+          dictationInput: ''
+        })
+        
+        wx.showToast({
+          title: `还有${maxAttempts - newAttempts}次机会`,
+          icon: 'none'
+        })
+      }
     }
   },
 
@@ -705,6 +874,14 @@ Page({
       content: '跳过默写将直接进入下一个单词，确定吗？',
       success: (res) => {
         if (res.confirm) {
+          // 记录跳过听写的错误
+          dataManager.recordWordError(this.data.currentWord.word, {
+            sessionId: this.data.sessionId,
+            errorType: 'dictation_skip',
+            userInput: '',
+            attemptNumber: this.data.dictationAttempts + 1
+          })
+          
           this.handleWordCompletion(false)
         }
       }
@@ -754,13 +931,11 @@ Page({
         stats: newStats
       })
 
-      // 显示反馈
-      this.showWordFeedback(success)
+      // 保存当前进度
+      this.saveCurrentProgress()
 
-      // 延迟后进入下一个单词或完成关卡
-      setTimeout(() => {
-        this.proceedToNext()
-      }, 2500) // 稍微延长一点时间让用户享受成功的感觉
+      // 显示庆祝动画（替代弹窗）
+      this.showWordCelebration(success)
 
     } catch (error) {
       console.error('记录学习进度失败:', error)
@@ -770,22 +945,32 @@ Page({
   },
 
   /**
-   * 显示单词反馈
+   * 显示单词庆祝动画（替代弹窗）
    */
-  showWordFeedback(success) {
+  /**
+   * 显示简化的庆祝动画
+   */
+  showWordCelebration(success) {
     const { currentWord } = this.data
     
-    const feedbackData = {
-      success,
-      word: currentWord.word,
-      message: success ? '拼写正确！继续加油！' : '再试一次，你可以的！'
+    if (success) {
+      // 拼写正确，触发简化庆祝动画
+      this.setData({
+        showCelebrationAnimation: true,
+        celebrationWord: currentWord.word
+      })
+      
+      // 1.2秒后自动进入下一个单词
+      this.celebrationTimer = setTimeout(() => {
+        this.setData({
+          showCelebrationAnimation: false
+        })
+        this.proceedToNext()
+      }, 1200)
+    } else {
+      // 拼写错误，直接进入下一个单词
+      this.proceedToNext()
     }
-
-    this.setData({
-      showFeedback: true,
-      feedbackData,
-      mode: 'result'
-    })
   },
 
   /**
@@ -798,9 +983,12 @@ Page({
       // 还有更多单词
       this.setData({
         currentWordIndex: currentWordIndex + 1,
-        showFeedback: false,
-        feedbackData: {}
+        showCelebrationAnimation: false,
+        celebrationWord: ''
       })
+      
+      // 保存进度
+      this.saveCurrentProgress()
       
       this.loadCurrentWord()
       this.updateProgress()
@@ -814,35 +1002,101 @@ Page({
   /**
    * 完成关卡学习
    */
+  /**
+   * 完成关卡学习处理
+   * 显示庆祝弹窗并自动跳转到关卡选择页面
+   */
   async completeLevelLearning() {
     const { levelData, stats } = this.data
     
-    console.log(`完成关卡学习: level=${levelData.level}, stats=${stats.correct}/${stats.total}`)
+    console.log('🎉 开始完成关卡学习流程...')
+    console.log(`📊 当前关卡数据:`, {
+      level: levelData.level,
+      stats: stats
+    })
+    
+    // 计算星级评价（基于准确率）
+    const accuracy = stats.total > 0 ? (stats.correct / stats.total * 100) : 0
+    let starRating = 1
+    if (accuracy >= 90) {
+      starRating = 3
+    } else if (accuracy >= 70) {
+      starRating = 2
+    }
+    
+    // 计算经验值奖励
+    const baseExp = 50
+    const bonusExp = Math.floor(accuracy / 10) * 5
+    const experienceGained = baseExp + bonusExp
+    
+    console.log(`⭐ 关卡${levelData.level}完成: 准确率=${Math.round(accuracy)}%, 星级=${starRating}, 经验=${experienceGained}`)
+    
+    // 显示庆祝弹窗
+    this.setData({
+      showCelebration: true,
+      starRating,
+      experienceGained,
+      countdownSeconds: 3
+    })
+    
+    // 开始倒计时
+    this.startCountdown()
     
     try {
       // 记录关卡完成
+      console.log(`💾 调用dataManager.completeLevelProgress(${levelData.level}, ...)...`)
       await dataManager.completeLevelProgress(levelData.level, {
-        accuracy: stats.total > 0 ? (stats.correct / stats.total * 100) : 0,
+        accuracy,
         totalWords: stats.total,
         correctWords: stats.correct,
-        sessionId: this.data.sessionId
+        sessionId: this.data.sessionId,
+        starRating,
+        experienceGained
       })
-
-      // 显示完成页面
-      wx.showModal({
-        title: '关卡完成！',
-        content: `你完成了 ${stats.correct}/${stats.total} 个单词的学习`,
-        showCancel: false,
-        confirmText: '返回地图',
-        success: () => {
-          wx.navigateBack()
-        }
-      })
-
+      console.log(`✅ 关卡完成数据已保存`)
     } catch (error) {
-      console.error('完成关卡记录失败:', error)
-      wx.navigateBack()
+      console.error('❌ 完成关卡记录失败:', error)
     }
+  },
+
+  /**
+   * 开始倒计时自动跳转
+   */
+  startCountdown() {
+    const timer = setInterval(() => {
+      const currentSeconds = this.data.countdownSeconds
+      if (currentSeconds <= 1) {
+        clearInterval(timer)
+        this.redirectToMap()
+      } else {
+        this.setData({
+          countdownSeconds: currentSeconds - 1
+        })
+      }
+    }, 1000)
+    
+    this.setData({
+      countdownTimer: timer
+    })
+  },
+
+  /**
+   * 立即返回关卡选择页面
+   */
+  onReturnToMap() {
+    if (this.data.countdownTimer) {
+      clearInterval(this.data.countdownTimer)
+    }
+    this.redirectToMap()
+  },
+
+  /**
+   * 跳转到关卡选择页面
+   */
+  redirectToMap() {
+    wx.redirectTo({
+      url: '/pages/adventure-map/adventure-map'
+    })
   },
 
   /**
@@ -877,21 +1131,7 @@ Page({
     })
   },
 
-  /**
-   * 关闭AI讲解
-   */
-  onCloseAIExplanation() {
-    this.setData({
-      showAIExplanation: false,
-      aiExplanation: '', // 清理内容，节省内存
-      isLoadingAI: false, // 重置loading状态
-      loadingText: '',
-      showDetailedMode: false
-    })
-    
-    // 清理预加载的详细内容
-    this.detailedExplanation = null
-  },
+
 
   /**
    * 预加载AI讲解（性能优化）
@@ -920,12 +1160,128 @@ Page({
   },
 
   /**
-   * 关闭反馈
+   * 手动跳过庆祝动画（如果用户点击屏幕）
    */
-  onCloseFeedback() {
-    this.setData({
-      showFeedback: false
+  onSkipCelebration() {
+    if (this.data.showCelebrationAnimation) {
+      // 清除定时器
+      if (this.celebrationTimer) {
+        clearTimeout(this.celebrationTimer)
+        this.celebrationTimer = null
+      }
+      
+      // 立即进入下一个单词
+      this.setData({
+        showCelebrationAnimation: false
+      })
+      this.proceedToNext()
+    }
+  },
+
+  /**
+   * 检查并恢复中途进度
+   * @returns {Promise<boolean>} 是否恢复了进度
+   */
+  checkAndRestoreProgress() {
+    return new Promise((resolve) => {
+      if (!this.levelId) {
+        resolve(false)
+        return
+      }
+      
+      try {
+        const savedProgress = dataManager.getLevelProgress(this.levelId)
+        
+        if (savedProgress && savedProgress.currentWordIndex > 0) {
+          // 询问用户是否恢复进度
+          wx.showModal({
+            title: '发现未完成的进度',
+            content: `检测到您在第${savedProgress.currentWordIndex + 1}个单词处退出，是否继续之前的进度？`,
+            confirmText: '继续学习',
+            cancelText: '重新开始',
+            success: (res) => {
+              if (res.confirm) {
+                // 恢复进度
+                this.restoreProgress(savedProgress)
+                resolve(true) // 表示恢复了进度
+              } else {
+                // 清除旧进度，重新开始
+                dataManager.clearLevelProgress(this.levelId)
+                resolve(false) // 表示没有恢复进度
+              }
+            },
+            fail: () => {
+              resolve(false) // 弹窗失败时也返回false
+            }
+          })
+        } else {
+          resolve(false) // 没有保存的进度
+        }
+      } catch (error) {
+        console.error('检查进度失败:', error)
+        resolve(false) // 出错时返回false
+      }
     })
   },
+
+  /**
+   * 恢复保存的进度
+   * @param {Object} savedProgress - 保存的进度数据
+   */
+  restoreProgress(savedProgress) {
+    try {
+      console.log('🔄 恢复关卡进度:', savedProgress)
+      
+      this.setData({
+        currentWordIndex: savedProgress.currentWordIndex,
+        stats: savedProgress.stats || { correct: 0, total: 0, streak: 0 },
+        mode: savedProgress.mode || 'learn'
+      })
+      
+      // 更新进度显示
+      this.updateProgress()
+      
+      // 重要：加载当前单词，确保页面显示正确的单词
+      this.loadCurrentWord()
+      
+      wx.showToast({
+        title: '进度已恢复',
+        icon: 'success'
+      })
+      
+      console.log(`✅ 已恢复到第${savedProgress.currentWordIndex + 1}个单词`)
+    } catch (error) {
+      console.error('恢复进度失败:', error)
+      wx.showToast({
+        title: '恢复进度失败',
+        icon: 'none'
+      })
+    }
+  },
+
+  /**
+   * 保存当前进度
+   */
+  saveCurrentProgress() {
+    if (!this.levelId) return
+    
+    try {
+      const { currentWordIndex, stats, mode, sessionId } = this.data
+      
+      // 只有在有实际进度时才保存（不是第一个单词且有统计数据）
+      if (currentWordIndex > 0 || (stats && stats.total > 0)) {
+        const progressData = {
+          currentWordIndex,
+          stats,
+          mode,
+          sessionId
+        }
+        
+        dataManager.saveLevelProgress(this.levelId, progressData)
+      }
+    } catch (error) {
+      console.error('保存进度失败:', error)
+    }
+  }
 
 })

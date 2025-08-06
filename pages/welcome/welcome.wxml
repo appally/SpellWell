@@ -1,43 +1,56 @@
 <!-- pages/welcome/welcome.wxml -->
+<!-- Neo-Brutalism 简化启动页 - 减少视觉复杂度 -->
 
-<!-- 加载界面 -->
-<view class="loading-container {{showLoading ? '' : 'hidden'}}" wx:if="{{showLoading}}">
-  <image class="loading-logo animate-pulse" src="/images/logo.png" mode="aspectFit"></image>
-  <view class="loading-text font-display">单词小超人</view>
-  <view class="progress-bar">
-    <view class="progress-fill" style="width: {{loadingProgress}}%;"></view>
-  </view>
-</view>
-
-<!-- 背景装饰 -->
-<view class="bg-decoration">
-  <view class="floating-star star-1">✨</view>
-  <view class="floating-star star-2">⭐</view>
-  <view class="floating-star star-3">🌟</view>
-  <view class="floating-star star-4">💫</view>
-</view>
-
-<!-- 主要内容 -->
-<view class="safe-area {{showWelcome ? 'show' : ''}}" wx:if="{{showWelcome}}" animation="{{welcomeAnimation}}">
-  <view class="welcome-container text-center">
-    <!-- Logo -->
-    <image class="logo icon-lg animate-glow" src="/images/logo.png" mode="aspectFit"></image>
+<!-- 主启动页面 -->
+<view class="welcome-page" wx:if="{{showWelcome}}">
+  <view class="main-card">
     
-    <!-- 标题 -->
-    <view class="title font-display">单词小超人</view>
-    <view class="subtitle text-secondary">Word Hero</view>
-    
-    <!-- 描述 -->
-    <view class="description text-light">
-      通过AI智能讲解，让英语单词学习变得简单快乐！
+    <!-- 核心内容区 -->
+    <view class="hero-section">
+      <!-- APP LOGO -->
+      <view class="app-logo">
+        <image src="/images/logo.png" class="logo-image" mode="aspectFit"></image>
+      </view>
+      
+      <!-- 主标题 -->
+      <view class="main-title">单词小超人</view>
+      
+      <!-- 副标题 -->
+      <view class="subtitle">我的假期单词大冒险</view>
+      
+      <!-- 学习元素动画 -->
+      <view class="learning-elements">
+        <view class="learning-item letter-a">A</view>
+        <view class="learning-item book-icon">📚</view>
+        <view class="learning-item letter-b">B</view>
+        <view class="learning-item pencil-icon">✏️</view>
+        <view class="learning-item letter-c">C</view>
+      </view>
     </view>
     
-    <!-- 按钮组 -->
-    <view class="button-container">
-      <button class="btn btn-primary" bindtap="onStartAdventure">
+    <!-- 行动按钮 -->
+    <view class="action-section">
+      <button class="start-btn breathing-btn" bindtap="onStartAdventure">
         🚀 开始冒险
       </button>
       
+      <!-- 学习记录链接 -->
+      <view class="study-record-link" bindtap="onViewStatistics">
+        <text class="study-record-text">学习记录</text>
+        <text class="study-record-arrow">→</text>
+      </view>
     </view>
+    
+  </view>
+  
+  
+  <!-- 底部制作信息 - 移到屏幕底部 -->
+  <view class="footer-credits">
+    Ethan & Dad · Made with ❤️
+  </view>
+  
+  <!-- 词库和服务提供方信息 -->
+  <view class="service-info">
+    <view class="service-line">内容由锦一附小 & 阿里Qwen提供</view>
   </view>
 </view>

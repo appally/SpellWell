@@ -343,13 +343,34 @@ class DataManager {
   validateProfile(profile) {
     try {
       // 检查必要字段
-      if (!profile.userId || !profile.progress || !profile.stats) {
+      if (!profile || typeof profile !== 'object') {
+        console.warn('档案不是有效对象')
+        return false
+      }
+      
+      if (!profile.userId) {
+        console.warn('缺少用户ID')
+        return false
+      }
+      
+      if (!profile.progress || typeof profile.progress !== 'object') {
+        console.warn('缺少进度对象')
+        return false
+      }
+      
+      if (!profile.stats || typeof profile.stats !== 'object') {
+        console.warn('缺少统计对象')
         return false
       }
       
       // 检查数据类型
-      if (typeof profile.progress.currentLevel !== 'number' ||
-          !Array.isArray(profile.progress.completedLevels)) {
+      if (typeof profile.progress.currentLevel !== 'number') {
+        console.warn('当前关卡不是数字类型:', typeof profile.progress.currentLevel)
+        return false
+      }
+      
+      if (!Array.isArray(profile.progress.completedLevels)) {
+        console.warn('已完成关卡不是数组类型:', typeof profile.progress.completedLevels)
         return false
       }
       
@@ -394,53 +415,96 @@ class DataManager {
    * @returns {Object} V2.0档案
    */
   migrateFromV1(oldProfile) {
-    const newProfile = this.createDefaultProfile()
-    
-    // 迁移基本信息（兼容两种结构）
-    const currentLevel = oldProfile.currentLevel || 
-                        (oldProfile.progress && oldProfile.progress.currentLevel) || 1
-    
-    newProfile.currentLevel = currentLevel
-    newProfile.progress.currentLevel = currentLevel
-    
-    // 迁移已完成关卡
-    if (oldProfile.progress && oldProfile.progress.completedLevels) {
-      newProfile.progress.completedLevels = oldProfile.progress.completedLevels
-    } else {
-      // 根据当前关卡推算已完成关卡
-      newProfile.progress.completedLevels = []
-      for (let i = 1; i < currentLevel; i++) {
-        newProfile.progress.completedLevels.push(i)
+    try {
+      const newProfile = this.createDefaultProfile()
+      
+      // 安全地迁移基本信息（兼容两种结构）
+      let currentLevel = 1
+      
+      if (oldProfile.currentLevel && typeof oldProfile.currentLevel === 'number') {
+        currentLevel = oldProfile.currentLevel
+      } else if (oldProfile.progress && 
+                 oldProfile.progress.currentLevel && 
+                 typeof oldProfile.progress.currentLevel === 'number') {
+        currentLevel = oldProfile.progress.currentLevel
       }
+      
+      // 确保关卡数值合理
+      currentLevel = Math.max(1, Math.min(currentLevel, 35))
+      
+      newProfile.currentLevel = currentLevel
+      newProfile.progress.currentLevel = currentLevel
+      
+      // 安全地迁移已完成关卡
+      if (oldProfile.progress && 
+          oldProfile.progress.completedLevels && 
+          Array.isArray(oldProfile.progress.completedLevels)) {
+        newProfile.progress.completedLevels = [...oldProfile.progress.completedLevels]
+      } else {
+        // 根据当前关卡推算已完成关卡
+        newProfile.progress.completedLevels = []
+        for (let i = 1; i < currentLevel; i++) {
+          newProfile.progress.completedLevels.push(i)
+        }
+      }
+      
+      // 安全地迁移其他基本信息
+      if (oldProfile.nickname && typeof oldProfile.nickname === 'string') {
+        newProfile.nickname = oldProfile.nickname
+      }
+      if (oldProfile.avatar && typeof oldProfile.avatar === 'string') {
+        newProfile.avatar = oldProfile.avatar
+      }
+      if (oldProfile.grade && typeof oldProfile.grade === 'string') {
+        newProfile.grade = oldProfile.grade
+      }
+      if (oldProfile.totalWordsLearned && typeof oldProfile.totalWordsLearned === 'number') {
+        newProfile.totalWordsLearned = oldProfile.totalWordsLearned
+      }
+      if (oldProfile.streak && typeof oldProfile.streak === 'number') {
+        newProfile.streak = oldProfile.streak
+      }
+      if (oldProfile.lastStudyDate && typeof oldProfile.lastStudyDate === 'string') {
+        newProfile.lastStudyDate = oldProfile.lastStudyDate
+      }
+      
+      // 安全地迁移统计数据
+      if (oldProfile.stats && typeof oldProfile.stats === 'object') {
+        if (typeof oldProfile.stats.totalWords === 'number') {
+          newProfile.stats.totalWords = oldProfile.stats.totalWords
+        }
+        if (typeof oldProfile.stats.accuracy === 'number') {
+          newProfile.stats.accuracy = oldProfile.stats.accuracy
+        }
+        if (typeof oldProfile.stats.totalCorrect === 'number') {
+          newProfile.stats.totalCorrect = oldProfile.stats.totalCorrect
+        }
+        if (typeof oldProfile.stats.totalAttempts === 'number') {
+          newProfile.stats.totalAttempts = oldProfile.stats.totalAttempts
+        }
+      }
+      
+      // 保持原有的用户ID和创建时间
+      if (oldProfile.userId && typeof oldProfile.userId === 'string') {
+        newProfile.userId = oldProfile.userId
+      }
+      if (oldProfile.createdAt && typeof oldProfile.createdAt === 'string') {
+        newProfile.createdAt = oldProfile.createdAt
+      }
+      
+      newProfile.version = '2.0'
+      
+      console.log('数据迁移完成:', {
+        currentLevel: newProfile.progress.currentLevel,
+        completedLevels: newProfile.progress.completedLevels
+      })
+      
+      return newProfile
+    } catch (error) {
+      console.error('数据迁移失败:', error)
+      // 如果迁移失败，返回默认档案
+      return this.createDefaultProfile()
     }
-    
-    // 迁移其他基本信息
-    if (oldProfile.nickname) newProfile.nickname = oldProfile.nickname
-    if (oldProfile.avatar) newProfile.avatar = oldProfile.avatar
-    if (oldProfile.grade) newProfile.grade = oldProfile.grade
-    if (oldProfile.totalWordsLearned) newProfile.totalWordsLearned = oldProfile.totalWordsLearned
-    if (oldProfile.streak) newProfile.streak = oldProfile.streak
-    if (oldProfile.lastStudyDate) newProfile.lastStudyDate = oldProfile.lastStudyDate
-    
-    // 迁移统计数据
-    if (oldProfile.stats) {
-      newProfile.stats.totalWords = oldProfile.stats.totalWords || 0
-      newProfile.stats.accuracy = oldProfile.stats.accuracy || 0
-      newProfile.stats.totalCorrect = oldProfile.stats.totalCorrect || 0
-      newProfile.stats.totalAttempts = oldProfile.stats.totalAttempts || 0
-    }
-    
-    // 保持原有的用户ID和创建时间
-    if (oldProfile.userId) {
-      newProfile.userId = oldProfile.userId
-    }
-    if (oldProfile.createdAt) {
-      newProfile.createdAt = oldProfile.createdAt
-    }
-    
-    newProfile.version = '2.0'
-    
-    return newProfile
   }
 
   /**
@@ -632,12 +696,249 @@ class DataManager {
   }
 
   /**
+   * 记录单词错误拼写次数
+   * @param {string} word - 单词
+   * @param {Object} errorData - 错误数据
+   * @returns {boolean} 是否成功
+   */
+  recordWordError(word, errorData = {}) {
+    try {
+      const key = `word_errors_${word}`
+      const existingData = util.storage.get(key) || {
+        word,
+        totalErrors: 0,
+        errorHistory: [],
+        firstErrorDate: null,
+        lastErrorDate: null
+      }
+      
+      // 更新错误次数
+      existingData.totalErrors += 1
+      existingData.lastErrorDate = new Date().toISOString()
+      
+      if (!existingData.firstErrorDate) {
+        existingData.firstErrorDate = existingData.lastErrorDate
+      }
+      
+      // 记录错误详情
+      const errorRecord = {
+        timestamp: new Date().toISOString(),
+        sessionId: errorData.sessionId || '',
+        errorType: errorData.errorType || 'spelling', // spelling, timeout, skip
+        userInput: errorData.userInput || '',
+        correctAnswer: word,
+        attemptNumber: errorData.attemptNumber || 1
+      }
+      
+      existingData.errorHistory.push(errorRecord)
+      
+      // 保持错误历史记录在合理范围内（最多保留50条）
+      if (existingData.errorHistory.length > 50) {
+        existingData.errorHistory = existingData.errorHistory.slice(-50)
+      }
+      
+      util.storage.set(key, existingData)
+      
+      console.log(`❌ 记录单词错误: ${word} - 总错误次数: ${existingData.totalErrors}`)
+      return true
+    } catch (error) {
+      console.error('记录单词错误失败:', error)
+      return false
+    }
+  }
+
+  /**
+   * 获取单词错误统计
+   * @param {string} word - 单词
+   * @returns {Object} 错误统计数据
+   */
+  getWordErrorStats(word) {
+    try {
+      const key = `word_errors_${word}`
+      const errorData = util.storage.get(key)
+      
+      if (!errorData) {
+        return {
+          word,
+          totalErrors: 0,
+          errorHistory: [],
+          firstErrorDate: null,
+          lastErrorDate: null
+        }
+      }
+      
+      return errorData
+    } catch (error) {
+      console.error('获取单词错误统计失败:', error)
+      return {
+        word,
+        totalErrors: 0,
+        errorHistory: [],
+        firstErrorDate: null,
+        lastErrorDate: null
+      }
+    }
+  }
+
+  /**
+   * 获取用户最容易出错的单词排行榜
+   * @param {number} limit - 返回数量限制，默认10个
+   * @returns {Array} 错误单词排行榜
+   */
+  getMostErrorProneWords(limit = 10) {
+    try {
+      const allKeys = util.storage.getAllKeys()
+      const errorKeys = allKeys.filter(key => key.startsWith('word_errors_'))
+      
+      const errorStats = errorKeys.map(key => {
+        const data = util.storage.get(key)
+        return {
+          word: data.word,
+          totalErrors: data.totalErrors,
+          lastErrorDate: data.lastErrorDate,
+          errorRate: this.calculateWordErrorRate(data.word)
+        }
+      })
+      
+      // 按错误次数降序排序
+      errorStats.sort((a, b) => b.totalErrors - a.totalErrors)
+      
+      return errorStats.slice(0, limit)
+    } catch (error) {
+      console.error('获取错误单词排行榜失败:', error)
+      return []
+    }
+  }
+
+  /**
+   * 计算单词错误率
+   * @param {string} word - 单词
+   * @returns {number} 错误率（0-100）
+   */
+  calculateWordErrorRate(word) {
+    try {
+      const errorData = this.getWordErrorStats(word)
+      const progressKey = `word_progress_${word}`
+      const progressData = util.storage.get(progressKey)
+      
+      if (!progressData && errorData.totalErrors === 0) {
+        return 0
+      }
+      
+      const totalAttempts = (progressData ? 1 : 0) + errorData.totalErrors
+      const errorRate = totalAttempts > 0 ? (errorData.totalErrors / totalAttempts) * 100 : 0
+      
+      return Math.round(errorRate * 100) / 100 // 保留两位小数
+    } catch (error) {
+      console.error('计算单词错误率失败:', error)
+      return 0
+    }
+  }
+
+  /**
+   * 清除单词错误记录
+   * @param {string} word - 单词，如果不提供则清除所有错误记录
+   * @returns {boolean} 是否成功
+   */
+  clearWordErrors(word = null) {
+    try {
+      if (word) {
+        // 清除特定单词的错误记录
+        const key = `word_errors_${word}`
+        util.storage.remove(key)
+        console.log(`🧹 已清除单词 ${word} 的错误记录`)
+      } else {
+        // 清除所有单词错误记录
+        const allKeys = util.storage.getAllKeys()
+        const errorKeys = allKeys.filter(key => key.startsWith('word_errors_'))
+        
+        errorKeys.forEach(key => {
+          util.storage.remove(key)
+        })
+        
+        console.log(`🧹 已清除所有单词错误记录，共 ${errorKeys.length} 条`)
+      }
+      
+      return true
+    } catch (error) {
+      console.error('清除单词错误记录失败:', error)
+      return false
+    }
+  }
+
+  /**
+   * 保存关卡中途进度
+   * @param {number} levelId - 关卡ID
+   * @param {Object} progressData - 进度数据
+   * @returns {boolean} 是否成功
+   */
+  saveLevelProgress(levelId, progressData) {
+    try {
+      const progressKey = `level_progress_${levelId}`
+      const saveData = {
+        levelId,
+        currentWordIndex: progressData.currentWordIndex,
+        stats: progressData.stats,
+        sessionId: progressData.sessionId,
+        savedAt: new Date().toISOString(),
+        mode: progressData.mode || 'learn'
+      }
+      
+      util.storage.set(progressKey, saveData)
+      console.log(`💾 保存关卡${levelId}中途进度: 单词索引${progressData.currentWordIndex}`)
+      return true
+    } catch (error) {
+      console.error('保存关卡进度失败:', error)
+      return false
+    }
+  }
+
+  /**
+   * 获取关卡中途进度
+   * @param {number} levelId - 关卡ID
+   * @returns {Object|null} 进度数据
+   */
+  getLevelProgress(levelId) {
+    try {
+      const progressKey = `level_progress_${levelId}`
+      const progressData = util.storage.get(progressKey)
+      
+      if (progressData) {
+        console.log(`📖 找到关卡${levelId}的中途进度: 单词索引${progressData.currentWordIndex}`)
+        return progressData
+      }
+      
+      return null
+    } catch (error) {
+      console.error('获取关卡进度失败:', error)
+      return null
+    }
+  }
+
+  /**
+   * 清除关卡中途进度
+   * @param {number} levelId - 关卡ID
+   * @returns {boolean} 是否成功
+   */
+  clearLevelProgress(levelId) {
+    try {
+      const progressKey = `level_progress_${levelId}`
+      util.storage.remove(progressKey)
+      console.log(`🗑️ 清除关卡${levelId}的中途进度`)
+      return true
+    } catch (error) {
+      console.error('清除关卡进度失败:', error)
+      return false
+    }
+  }
+
+  /**
    * 完成关卡学习
    * @param {number} levelId - 关卡ID
    * @param {Object} stats - 统计数据
-   * @returns {boolean} 是否成功
+   * @returns {Promise<boolean>} 是否成功
    */
-  completeLevelProgress(levelId, stats) {
+  async completeLevelProgress(levelId, stats) {
     try {
       const levelKey = `level_complete_${levelId}`
       const levelData = {
@@ -651,8 +952,11 @@ class DataManager {
       
       util.storage.set(levelKey, levelData)
       
+      // 清除中途进度
+      this.clearLevelProgress(levelId)
+      
       // 解锁下一关
-      this.unlockNextLevel(levelId)
+      await this.unlockNextLevel(levelId)
       
       console.log(`🎉 完成关卡 ${levelId}: ${stats.correctWords}/${stats.totalWords} 正确`)
       return true
@@ -665,25 +969,41 @@ class DataManager {
   /**
    * 解锁下一关
    * @param {number} currentLevel - 当前关卡
+   * @returns {Promise<void>}
    */
-  unlockNextLevel(currentLevel) {
+  async unlockNextLevel(currentLevel) {
     try {
+      console.log(`🔍 开始解锁关卡${currentLevel + 1}...`)
+      
       const userProfile = this.getUserProfile()
+      console.log(`📊 当前用户档案: currentLevel=${userProfile.currentLevel}, progress.currentLevel=${userProfile.progress.currentLevel}`)
+      console.log(`📋 已完成关卡: [${userProfile.progress.completedLevels.join(', ')}]`)
+      
       if (userProfile && currentLevel >= userProfile.currentLevel) {
         // 同时更新两个位置的currentLevel以确保兼容性
+        const oldCurrentLevel = userProfile.currentLevel
         userProfile.currentLevel = currentLevel + 1
         userProfile.progress.currentLevel = currentLevel + 1
+        
+        console.log(`📈 更新currentLevel: ${oldCurrentLevel} -> ${currentLevel + 1}`)
         
         // 标记当前关卡为已完成
         if (!userProfile.progress.completedLevels.includes(currentLevel)) {
           userProfile.progress.completedLevels.push(currentLevel)
+          console.log(`✅ 添加已完成关卡: ${currentLevel}`)
+        } else {
+          console.log(`ℹ️ 关卡${currentLevel}已在完成列表中`)
         }
         
-        this.saveUserProfile(userProfile)
-        console.log(`🔓 解锁关卡 ${currentLevel + 1}，已完成关卡: ${userProfile.progress.completedLevels.join(', ')}`)
+        // 等待保存完成
+        console.log(`💾 保存用户档案...`)
+        await this.saveUserProfile(userProfile)
+        console.log(`🔓 解锁关卡 ${currentLevel + 1}，已完成关卡: [${userProfile.progress.completedLevels.join(', ')}]`)
+      } else {
+        console.log(`⏭️ 跳过解锁: currentLevel=${currentLevel}, userProfile.currentLevel=${userProfile.currentLevel}`)
       }
     } catch (error) {
-      console.error('解锁下一关失败:', error)
+      console.error('❌ 解锁下一关失败:', error)
     }
   }
 

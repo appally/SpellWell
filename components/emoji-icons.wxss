@@ -1,0 +1,159 @@
+/* ===== 表情符号兼容性解决方案 ===== */
+/* 使用CSS伪元素和Unicode字符确保跨平台兼容性 */
+
+/* 基础图标样式 */
+.emoji-icon {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  vertical-align: middle;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+/* 庆祝相关图标 */
+.emoji-party::before {
+  content: "\1F389"; /* 🎉 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-star::before {
+  content: "\2B50"; /* ⭐ */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-sparkles::before {
+  content: "\2728"; /* ✨ */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-glowing-star::before {
+  content: "\1F31F"; /* 🌟 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-trophy::before {
+  content: "\1F3C6"; /* 🏆 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-gift::before {
+  content: "\1F381"; /* 🎁 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-medal::before {
+  content: "\1F3C5"; /* 🏅 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-lightning::before {
+  content: "\26A1"; /* ⚡ */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-map::before {
+  content: "\1F5FA"; /* 🗺️ */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-share::before {
+  content: "\1F4E4"; /* 📤 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-book::before {
+  content: "\1F4DA"; /* 📚 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-bulb::before {
+  content: "\1F4A1"; /* 💡 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-speaker::before {
+  content: "\1F50A"; /* 🔊 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-smile::before {
+  content: "\1F60A"; /* 😊 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-gem::before {
+  content: "\1F48E"; /* 💎 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-dizzy::before {
+  content: "\1F4AB"; /* 💫 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-share::before {
+  content: "\1F4E4"; /* 📤 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.emoji-check::before {
+  content: "\2713"; /* ✓ */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+/* 安卓兼容性备用方案 */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* 针对安卓设备的备用文字方案 */
+  .emoji-party.fallback::before { content: "[庆祝]"; }
+  .emoji-star.fallback::before { content: "★"; }
+  .emoji-sparkles.fallback::before { content: "✦"; }
+  .emoji-glowing-star.fallback::before { content: "☆"; }
+  .emoji-trophy.fallback::before { content: "[奖杯]"; }
+  .emoji-gift.fallback::before { content: "[礼物]"; }
+  .emoji-medal.fallback::before { content: "[奖牌]"; }
+  .emoji-lightning.fallback::before { content: "⚡"; }
+  .emoji-map.fallback::before { content: "[地图]"; }
+  .emoji-share.fallback::before { content: "[分享]"; }
+  .emoji-book.fallback::before { content: "[书本]"; }
+  .emoji-bulb.fallback::before { content: "[灯泡]"; }
+  .emoji-speaker.fallback::before { content: "♪"; }
+  .emoji-smile.fallback::before { content: "☺"; }
+  .emoji-gem.fallback::before { content: "◆"; }
+  .emoji-dizzy.fallback::before { content: "✧"; }
+}
+
+/* 检查标记 */
+.emoji-check {
+  color: #2E7D32;
+  font-weight: bold;
+  font-size: inherit;
+}
+
+.emoji-check::before {
+  content: "✓";
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* 动画兼容性 */
+.emoji-icon.animate {
+  animation-duration: inherit;
+  animation-timing-function: inherit;
+  animation-iteration-count: inherit;
+}
+
+/* 尺寸变体 */
+.emoji-icon.small { font-size: 0.8em; }
+.emoji-icon.medium { font-size: 1em; }
+.emoji-icon.large { font-size: 1.2em; }
+.emoji-icon.xl { font-size: 1.5em; }
+.emoji-icon.xxl { font-size: 2.5em; }
+.emoji-icon.xxxl { font-size: 3em; }
+
+/* 颜色变体 */
+.emoji-icon.primary { color: var(--color-primary, #4ECDC4); }
+.emoji-icon.secondary { color: var(--color-secondary, #FFD93D); }
+.emoji-icon.success { color: var(--color-success, #2E7D32); }
+.emoji-icon.warning { color: var(--color-warning, #FFB74D); }
+.emoji-icon.error { color: var(--color-error, #FF6B6B); }

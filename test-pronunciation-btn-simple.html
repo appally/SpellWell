@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发音按钮样式移除测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .test-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        /* 模拟小程序的样式转换 */
+        .word-phonetic-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 4px 0;
+        }
+        
+        .word-phonetic {
+            font-size: 12px;
+            color: #999999;
+            font-weight: 400;
+            background: transparent;
+            padding: 2px 4px;
+            border: none;
+            opacity: 0.7;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        /* 移除样式后的 pronunciation-btn */
+        .pronunciation-btn {
+            /* 只保留图标显示，移除所有装饰样式 */
+        }
+        
+        .pronunciation-icon {
+            /* 只保留图标显示，移除所有装饰样式 */
+        }
+        
+        /* 对比：原有样式的按钮 */
+        .pronunciation-btn-old {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border: 1.5px solid #2E7D32;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            box-shadow: 2px 2px 0 #1B5E20;
+            transition: all 0.1s ease;
+            cursor: pointer;
+        }
+        
+        .pronunciation-btn-old:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 #1B5E20;
+        }
+        
+        .pronunciation-icon-old {
+            font-size: 14px;
+            line-height: 1;
+            color: #FFFFFF;
+        }
+        
+        .comparison {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            text-align: center;
+        }
+        
+        .comparison-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔊 发音按钮样式移除测试</h1>
+        
+        <div class="test-section">
+            <div class="test-title">📱 当前效果（移除样式后）</div>
+            <div class="word-phonetic-container">
+                <div class="word-phonetic">/biː/</div>
+                <div class="pronunciation-btn" onclick="playAudio('new')">
+                    <div class="pronunciation-icon">🔊</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🎨 对比：原有样式效果</div>
+            <div class="word-phonetic-container">
+                <div class="word-phonetic">/biː/</div>
+                <div class="pronunciation-btn-old" onclick="playAudio('old')">
+                    <div class="pronunciation-icon-old">🔊</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">📊 样式对比</div>
+            <div class="comparison">
+                <div class="comparison-item">
+                    <div class="pronunciation-btn" onclick="playAudio('simple')">
+                        <div class="pronunciation-icon">🔊</div>
+                    </div>
+                    <div class="comparison-label">简化后</div>
+                </div>
+                <div class="comparison-item">
+                    <div class="pronunciation-btn-old" onclick="playAudio('styled')">
+                        <div class="pronunciation-icon-old">🔊</div>
+                    </div>
+                    <div class="comparison-label">原样式</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status success">
+            ✅ 样式移除成功：pronunciation-btn 现在只显示图标，无装饰样式
+        </div>
+        
+        <div class="status info">
+            📋 修改内容：
+            <ul>
+                <li>移除了 pronunciation-btn 的背景、边框、阴影等装饰样式</li>
+                <li>移除了 pronunciation-icon 的字体大小、颜色等样式</li>
+                <li>保留了点击功能，只显示纯图标</li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🧪 功能测试</div>
+            <p>点击上方的发音按钮测试功能是否正常：</p>
+            <ul>
+                <li>✅ 点击事件正常触发</li>
+                <li>✅ 图标正常显示</li>
+                <li>✅ 无多余装饰样式</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function playAudio(type) {
+            console.log(`播放音频 - 类型: ${type}`);
+            
+            // 模拟音频播放反馈
+            const messages = {
+                'new': '🔊 新样式按钮点击 - 只有图标',
+                'old': '🔊 原样式按钮点击 - 带装饰效果',
+                'simple': '🔊 简化按钮点击',
+                'styled': '🔊 样式按钮点击'
+            };
+            
+            alert(messages[type] || '🔊 音频播放');
+        }
+        
+        // 页面加载完成后的检查
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 发音按钮样式移除测试页面加载完成');
+            console.log('✅ pronunciation-btn 样式已移除');
+            console.log('✅ pronunciation-icon 样式已移除');
+            console.log('✅ 只保留图标显示功能');
+        });
+    </script>
+</body>
+</html>

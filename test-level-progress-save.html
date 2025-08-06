@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关卡进度保存测试 - 修复版</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            background: #f8f9fa;
+        }
+        
+        .test-section h3 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+        }
+        
+        .status {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button.danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+        }
+        
+        button.success {
+            background: linear-gradient(45deg, #28a745, #218838);
+        }
+        
+        button.warning {
+            background: linear-gradient(45deg, #ffc107, #e0a800);
+            color: #212529;
+        }
+        
+        .progress-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .progress-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+        
+        .progress-card h4 {
+            margin: 0 0 10px 0;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .progress-card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        
+        .log-info { background: #d1ecf1; color: #0c5460; }
+        .log-success { background: #d4edda; color: #155724; }
+        .log-error { background: #f8d7da; color: #721c24; }
+        .log-warning { background: #fff3cd; color: #856404; }
+        
+        .scenario-test {
+            background: #e7f3ff;
+            border: 2px solid #007bff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        
+        .scenario-test h4 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+        
+        .step {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #007bff;
+        }
+        
+        .fix-highlight {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .fix-highlight h4 {
+            color: #155724;
+            margin: 0 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 关卡进度保存测试 - 修复版</h1>
+        
+        <div class="fix-highlight">
+            <h4>🔧 修复内容</h4>
+            <p><strong>问题：</strong>检测到进度后仍然重新开始默写</p>
+            <p><strong>原因：</strong>restoreProgress方法没有调用loadCurrentWord()，导致页面显示错误的单词</p>
+            <p><strong>修复：</strong>在restoreProgress中添加loadCurrentWord()调用，并优化加载时序</p>
+        </div>
+        
+        <div class="test-section">
+            <h3>📊 当前状态</h3>
+            <div class="progress-info">
+                <div class="progress-card">
+                    <h4>关卡ID</h4>
+                    <div class="value" id="currentLevel">-</div>
+                </div>
+                <div class="progress-card">
+                    <h4>当前单词索引</h4>
+                    <div class="value" id="currentWordIndex">-</div>
+                </div>
+                <div class="progress-card">
+                    <h4>正确/总数</h4>
+                    <div class="value" id="statsDisplay">-/-</div>
+                </div>
+                <div class="progress-card">
+                    <h4>学习模式</h4>
+                    <div class="value" id="currentMode">-</div>
+                </div>
+            </div>
+            <button onclick="refreshStatus()">🔄 刷新状态</button>
+            <button onclick="clearAllProgress()" class="danger">🗑️ 清除所有进度</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>🧪 场景测试</h3>
+            
+            <div class="scenario-test">
+                <h4>场景1：正常进度保存和恢复</h4>
+                <div class="step">步骤1：模拟学习到第5个单词</div>
+                <div class="step">步骤2：测试进度恢复，应该从第5个单词继续</div>
+                <button onclick="testScenario1()" class="success">🎯 测试场景1</button>
+            </div>
+            
+            <div class="scenario-test">
+                <h4>场景2：用户选择重新开始</h4>
+                <div class="step">步骤1：模拟学习到第3个单词</div>
+                <div class="step">步骤2：测试进度恢复，模拟用户选择重新开始</div>
+                <button onclick="testScenario2()" class="warning">🔄 测试场景2</button>
+            </div>
+            
+            <div class="scenario-test">
+                <h4>场景3：多关卡进度管理</h4>
+                <div class="step">步骤1：在多个关卡中保存进度</div>
+                <div class="step">步骤2：测试不同关卡的进度恢复</div>
+                <button onclick="testScenario3()" class="success">🎮 测试场景3</button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔧 手动测试</h3>
+            <button onclick="simulateProgress(1, 0)">📝 关卡1开始</button>
+            <button onclick="simulateProgress(1, 3)">📝 关卡1第4个单词</button>
+            <button onclick="simulateProgress(1, 7)">📝 关卡1第8个单词</button>
+            <button onclick="simulateProgress(2, 2)">📝 关卡2第3个单词</button>
+            <br>
+            <button onclick="testProgressRestore(1)">🔄 测试关卡1恢复</button>
+            <button onclick="testProgressRestore(2)">🔄 测试关卡2恢复</button>
+            <button onclick="testProgressRestore(3)">🔄 测试关卡3恢复</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>📝 详细日志</h3>
+            <div id="detailLog" class="status"></div>
+            <button onclick="clearLog()">🗑️ 清空日志</button>
+            <button onclick="exportLog()" class="success">📤 导出日志</button>
+        </div>
+    </div>
+
+    <script>
+        // 模拟小程序环境
+        const wx = {
+            getStorageSync: (key) => {
+                const value = localStorage.getItem(key);
+                return value ? JSON.parse(value) : null;
+            },
+            setStorageSync: (key, data) => {
+                localStorage.setItem(key, JSON.stringify(data));
+            },
+            removeStorageSync: (key) => {
+                localStorage.removeItem(key);
+            },
+            showModal: (options) => {
+                return new Promise((resolve) => {
+                    const result = confirm(`${options.title}\n\n${options.content}`);
+                    if (options.success) {
+                        options.success({ confirm: result, cancel: !result });
+                    }
+                    resolve({ confirm: result, cancel: !result });
+                });
+            },
+            showToast: (options) => {
+                log(`Toast: ${options.title}`, 'info');
+            }
+        };
+
+        // 模拟数据管理器
+        class TestDataManager {
+            constructor() {
+                this.STORAGE_PREFIX = 'level_progress_';
+            }
+
+            /**
+             * 保存关卡中途进度
+             */
+            saveLevelProgress(levelId, progressData) {
+                try {
+                    const progressKey = `${this.STORAGE_PREFIX}${levelId}`;
+                    const saveData = {
+                        levelId,
+                        currentWordIndex: progressData.currentWordIndex,
+                        stats: progressData.stats,
+                        sessionId: progressData.sessionId,
+                        savedAt: new Date().toISOString(),
+                        mode: progressData.mode || 'learn'
+                    };
+                    
+                    wx.setStorageSync(progressKey, saveData);
+                    log(`💾 保存关卡${levelId}中途进度: 单词索引${progressData.currentWordIndex}`, 'success');
+                    return true;
+                } catch (error) {
+                    log(`保存关卡进度失败: ${error.message}`, 'error');
+                    return false;
+                }
+            }
+
+            /**
+             * 获取关卡中途进度
+             */
+            getLevelProgress(levelId) {
+                try {
+                    const progressKey = `${this.STORAGE_PREFIX}${levelId}`;
+                    const progressData = wx.getStorageSync(progressKey);
+                    
+                    if (progressData) {
+                        log(`📖 找到关卡${levelId}的中途进度: 单词索引${progressData.currentWordIndex}`, 'info');
+                        return progressData;
+                    }
+                    
+                    log(`📖 关卡${levelId}没有保存的进度`, 'info');
+                    return null;
+                } catch (error) {
+                    log(`获取关卡进度失败: ${error.message}`, 'error');
+                    return null;
+                }
+            }
+
+            /**
+             * 清除关卡中途进度
+             */
+            clearLevelProgress(levelId) {
+                try {
+                    const progressKey = `${this.STORAGE_PREFIX}${levelId}`;
+                    wx.removeStorageSync(progressKey);
+                    log(`🗑️ 清除关卡${levelId}的中途进度`, 'success');
+                    return true;
+                } catch (error) {
+                    log(`清除关卡进度失败: ${error.message}`, 'error');
+                    return false;
+                }
+            }
+
+            /**
+             * 获取所有保存的进度
+             */
+            getAllSavedProgress() {
+                const allProgress = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith(this.STORAGE_PREFIX)) {
+                        const levelId = key.replace(this.STORAGE_PREFIX, '');
+                        const progress = this.getLevelProgress(levelId);
+                        if (progress) {
+                            allProgress.push(progress);
+                        }
+                    }
+                }
+                return allProgress;
+            }
+        }
+
+        const dataManager = new TestDataManager();
+
+        // 日志函数
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            
+            const logContainer = document.getElementById('detailLog');
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+
+        // 清空日志
+        function clearLog() {
+            document.getElementById('detailLog').innerHTML = '';
+        }
+
+        // 导出日志
+        function exportLog() {
+            const logContainer = document.getElementById('detailLog');
+            const logs = Array.from(logContainer.children).map(entry => entry.textContent).join('\n');
+            
+            const blob = new Blob([logs], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `progress-test-log-${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 刷新状态显示
+        function refreshStatus() {
+            log('🔄 刷新状态显示...', 'info');
+            
+            const allProgress = dataManager.getAllSavedProgress();
+            
+            if (allProgress.length > 0) {
+                const latest = allProgress[allProgress.length - 1];
+                document.getElementById('currentLevel').textContent = latest.levelId;
+                document.getElementById('currentWordIndex').textContent = latest.currentWordIndex;
+                document.getElementById('statsDisplay').textContent = 
+                    `${latest.stats.correct}/${latest.stats.total}`;
+                document.getElementById('currentMode').textContent = latest.mode;
+                
+                log(`📊 显示最新进度: 关卡${latest.levelId}, 单词${latest.currentWordIndex}`, 'success');
+            } else {
+                document.getElementById('currentLevel').textContent = '-';
+                document.getElementById('currentWordIndex').textContent = '-';
+                document.getElementById('statsDisplay').textContent = '-/-';
+                document.getElementById('currentMode').textContent = '-';
+                
+                log('📊 没有找到任何保存的进度', 'info');
+            }
+            
+            // 显示所有保存的进度
+            allProgress.forEach(progress => {
+                log(`📋 关卡${progress.levelId}: 单词${progress.currentWordIndex}, 统计${progress.stats.correct}/${progress.stats.total}, 模式${progress.mode}`, 'info');
+            });
+        }
+
+        // 清除所有进度
+        function clearAllProgress() {
+            log('🗑️ 开始清除所有进度...', 'warning');
+            
+            const keys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('level_progress_')) {
+                    keys.push(key);
+                }
+            }
+            
+            keys.forEach(key => {
+                localStorage.removeItem(key);
+            });
+            
+            log(`🗑️ 已清除${keys.length}个进度记录`, 'success');
+            refreshStatus();
+        }
+
+        // 模拟进度保存
+        function simulateProgress(levelId, wordIndex) {
+            log(`🎮 模拟关卡${levelId}进度保存: 单词索引${wordIndex}`, 'info');
+            
+            const progressData = {
+                currentWordIndex: wordIndex,
+                stats: {
+                    correct: Math.floor(wordIndex * 0.8),
+                    total: wordIndex,
+                    streak: Math.floor(Math.random() * 3)
+                },
+                sessionId: `test_session_${Date.now()}`,
+                mode: 'learn'
+            };
+            
+            const success = dataManager.saveLevelProgress(levelId, progressData);
+            
+            if (success) {
+                log(`✅ 关卡${levelId}进度保存成功`, 'success');
+                refreshStatus();
+            } else {
+                log(`❌ 关卡${levelId}进度保存失败`, 'error');
+            }
+        }
+
+        // 测试进度恢复
+        async function testProgressRestore(levelId) {
+            log(`🔄 测试关卡${levelId}进度恢复...`, 'info');
+            
+            const savedProgress = dataManager.getLevelProgress(levelId);
+            
+            if (savedProgress) {
+                log(`✅ 找到关卡${levelId}的保存进度:`, 'success');
+                log(`   - 单词索引: ${savedProgress.currentWordIndex}`, 'info');
+                log(`   - 统计数据: ${savedProgress.stats.correct}/${savedProgress.stats.total}`, 'info');
+                log(`   - 学习模式: ${savedProgress.mode}`, 'info');
+                log(`   - 保存时间: ${savedProgress.savedAt}`, 'info');
+                
+                // 模拟用户选择恢复进度
+                const result = await wx.showModal({
+                    title: '发现未完成的进度',
+                    content: `检测到您在第${savedProgress.currentWordIndex + 1}个单词处退出，是否继续之前的进度？`
+                });
+                
+                if (result.confirm) {
+                    log(`🔄 用户选择恢复关卡${levelId}的进度`, 'success');
+                    log(`📚 模拟加载第${savedProgress.currentWordIndex + 1}个单词`, 'success');
+                } else {
+                    log(`🔄 用户选择重新开始关卡${levelId}`, 'info');
+                    dataManager.clearLevelProgress(levelId);
+                    refreshStatus();
+                }
+            } else {
+                log(`❌ 关卡${levelId}没有保存的进度`, 'warning');
+            }
+        }
+
+        // 场景测试
+        async function testScenario1() {
+            log('🎯 开始场景1测试：正常进度保存和恢复', 'info');
+            
+            // 步骤1：模拟学习到第5个单词
+            simulateProgress(1, 4);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // 步骤2：测试进度恢复
+            await testProgressRestore(1);
+            
+            log('🎯 场景1测试完成', 'success');
+        }
+
+        async function testScenario2() {
+            log('🔄 开始场景2测试：用户选择重新开始', 'warning');
+            
+            // 步骤1：模拟学习到第3个单词
+            simulateProgress(2, 2);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // 步骤2：测试进度恢复（用户会选择重新开始）
+            log('💡 提示：在弹窗中选择"取消"来模拟重新开始', 'warning');
+            await testProgressRestore(2);
+            
+            log('🔄 场景2测试完成', 'success');
+        }
+
+        async function testScenario3() {
+            log('🎮 开始场景3测试：多关卡进度管理', 'info');
+            
+            // 在多个关卡中保存进度
+            simulateProgress(1, 3);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            simulateProgress(2, 5);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            simulateProgress(3, 1);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            log('📊 多关卡进度已保存，现在测试恢复...', 'info');
+            
+            // 测试不同关卡的进度恢复
+            await testProgressRestore(1);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await testProgressRestore(2);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await testProgressRestore(3);
+            
+            log('🎮 场景3测试完成', 'success');
+        }
+
+        // 页面加载时初始化
+        window.onload = function() {
+            log('🚀 关卡进度保存测试页面已加载（修复版）', 'success');
+            log('🔧 修复内容：在restoreProgress中添加loadCurrentWord()调用', 'info');
+            refreshStatus();
+        };
+    </script>
+</body>
+</html>

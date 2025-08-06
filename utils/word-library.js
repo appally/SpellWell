@@ -11,8 +11,8 @@ const PRIMARY_WORD_DATABASE = {
       "a"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "不定冠词，用在单数可数名词前，如：a book, a cat",
+      "这是最简单的英文字母，也是最常用的词汇之一"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -28,8 +28,8 @@ const PRIMARY_WORD_DATABASE = {
       "ut"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示'关于'，常用句型：talk about, think about",
+      "重音在第二个音节'baʊt'上"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -45,8 +45,8 @@ const PRIMARY_WORD_DATABASE = {
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "时间介词，表示'在...之后'，与before相对",
+      "记忆：After - 在time后面，在事情after发生"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -63,8 +63,8 @@ const PRIMARY_WORD_DATABASE = {
       "on"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解记忆：after + noon = afternoon",
+      "noon是中午，中午之后就是下午！"
     ],
     "difficulty": "advanced",
     "category": "基础词汇",
@@ -80,8 +80,8 @@ const PRIMARY_WORD_DATABASE = {
       "in"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "副词，表示'再次'，常放在句末",
+      "ag-ain，ag像'哎呀'，ain像'爱您'，哎呀又爱您一次！"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -91,13 +91,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "ago": {
-    "phonetic": "/ago/",
+    "phonetic": "/əˈɡoʊ/",
     "syllables": [
       "ago"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "副词，表示'以前'，用于一般过去时",
+      "ago = A Go，时间'已经走了'"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -107,13 +107,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "air": {
-    "phonetic": "/air/",
+    "phonetic": "/eər/",
     "syllables": [
       "air"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "不可数名词，表示'空气'",
+      "想象：没有air就不能呼吸，air很重要！"
     ],
     "difficulty": "easy",
     "category": "自然景观",
@@ -128,8 +128,8 @@ const PRIMARY_WORD_DATABASE = {
       "all"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "限定词，表示'全部的'，后接复数名词",
+      "记忆：all = 所有的，ALL CAPS表示全大写"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -145,8 +145,8 @@ const PRIMARY_WORD_DATABASE = {
       "ys"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：all + ways = 所有的路，所以是'总是'",
+      "想象：所有的路都通向同一个结果，就是'总是'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -161,8 +161,8 @@ const PRIMARY_WORD_DATABASE = {
       "and"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "并列连词，连接相同成分",
+      "想象用绳子连接两个东西，and就是那根绳子"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -172,15 +172,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "animal": {
-    "phonetic": "/animal/",
+    "phonetic": "/ˈænɪməl/",
     "syllables": [
       "ani",
       "ma",
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，复数形式：animals",
+      "分音节：ANI-MAL，重音在第一个音节"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -190,14 +190,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "answer": {
-    "phonetic": "/answer/",
+    "phonetic": "/ˈɑːnsər/",
     "syllables": [
       "answe",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词和名词，answer the question（回答问题）",
+      "记忆：老师问问题，学生要answer（回答）"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -207,13 +207,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "any": {
-    "phonetic": "/ˈen.i/",
+    "phonetic": "/ˈeni/",
     "syllables": [
       "any"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "用于否定句和疑问句，表示'任何的'",
+      "想象：任何Any东西都可以，很宽泛"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -229,8 +229,8 @@ const PRIMARY_WORD_DATABASE = {
       "le"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，复数：apples",
+      "APP + LE，像手机上的苹果应用程序！"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -240,13 +240,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "arm": {
-    "phonetic": "/arm/",
+    "phonetic": "/ɑːrm/",
     "syllables": [
       "arm"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，人有两只arms",
+      "动作：伸展你的arm（手臂），帮助记忆"
     ],
     "difficulty": "easy",
     "category": "身体部位",
@@ -256,13 +256,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👤"
   },
   "art": {
-    "phonetic": "/art/",
+    "phonetic": "/ɑːrt/",
     "syllables": [
       "art"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "不可数名词，表示'艺术'",
+      "记忆：ART = A Real Talent（真正的天赋）"
     ],
     "difficulty": "easy",
     "category": "音乐艺术",
@@ -272,13 +272,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "ask": {
-    "phonetic": "/ask/",
+    "phonetic": "/æsk/",
     "syllables": [
       "ask"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，ask sb sth（问某人某事）",
+      "想象：举手提问时说'ASK'"
     ],
     "difficulty": "easy",
     "category": "学习用品",
@@ -288,13 +288,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "at": {
-    "phonetic": "/at/",
+    "phonetic": "/æt/",
     "syllables": [
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示地点、时间",
+      "想象：手指指向某个地方说'at'"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -304,14 +304,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "aunt": {
-    "phonetic": "/aunt/",
+    "phonetic": "/ænt/",
     "syllables": [
       "au",
       "nt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，家庭成员词汇",
+      "记忆：AUNT和UNCLE都是亲戚，一个是姨姨一个是叔叔"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -321,15 +321,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "autumn": {
-    "phonetic": "/autumn/",
+    "phonetic": "/ˈɔːtəm/",
     "syllables": [
       "au",
       "tu",
       "mn"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "季节名词，也可说fall",
+      "记忆：秋天autumn的时候，叶子像AU金一样黄"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -339,14 +339,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "baby": {
-    "phonetic": "/baby/",
+    "phonetic": "/ˈbeɪbi/",
     "syllables": [
       "ba",
       "by"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，复数：babies（y变i加es）",
+      "BA-BY，像爸爸和宝贝的结合"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -356,14 +356,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "back": {
-    "phonetic": "/back/",
+    "phonetic": "/bæk/",
     "syllables": [
       "ba",
       "ck"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词/副词，go back（回去），at the back（在后面）",
+      "记忆：back to school（返回学校）"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -373,13 +373,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "bad": {
-    "phonetic": "/bad/",
+    "phonetic": "/bæd/",
     "syllables": [
       "bad"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，比较级：worse，最高级：worst",
+      "记忆：good的反义词就是bad"
     ],
     "difficulty": "easy",
     "category": "情感表达",
@@ -389,13 +389,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "bag": {
-    "phonetic": "/bag/",
+    "phonetic": "/bæɡ/",
     "syllables": [
       "bag"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，schoolbag（书包）是复合词",
+      "动作：背上你的书包bag"
     ],
     "difficulty": "easy",
     "category": "学习用品",
@@ -405,14 +405,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "ball": {
-    "phonetic": "/ball/",
+    "phonetic": "/bɔːl/",
     "syllables": [
       "ba",
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，球类运动词汇",
+      "动作：做打球的动作说'ball'"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -422,15 +422,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "banana": {
-    "phonetic": "/banana/",
+    "phonetic": "/bəˈnænə/",
     "syllables": [
       "ba",
       "na",
       "na"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，复数：bananas",
+      "ba-na-na，三个音节，像猴子吃香蕉的声音"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -440,7 +440,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "basketball": {
-    "phonetic": "/basketball/",
+    "phonetic": "/ˈbæskɪtbɔːl/",
     "syllables": [
       "ba",
       "ske",
@@ -448,8 +448,8 @@ const PRIMARY_WORD_DATABASE = {
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：basket（篮子）+ ball（球）= 篮球",
+      "想象：把球投进篮子里的运动"
     ],
     "difficulty": "advanced",
     "category": "运动健身",
@@ -459,13 +459,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "be": {
-    "phonetic": "/be/",
+    "phonetic": "/biː/",
     "syllables": [
       "be"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "系动词，am/is/are的原形",
+      "记忆：I am, you are, he/she is 都来自 be"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -475,14 +475,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "beach": {
-    "phonetic": "/beach/",
+    "phonetic": "/biːtʃ/",
     "syllables": [
       "bea",
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，度假话题词汇",
+      "记忆：beach和peach韵母相同，但意思不同"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -492,7 +492,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "beautiful": {
-    "phonetic": "/beautiful/",
+    "phonetic": "/ˈbjuːtɪfəl/",
     "syllables": [
       "be",
       "au",
@@ -501,8 +501,8 @@ const PRIMARY_WORD_DATABASE = {
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，比lovely更正式",
+      "分解：beauty（美丽）+ ful（充满）= 充满美丽的"
     ],
     "difficulty": "advanced",
     "category": "情感表达",
@@ -512,15 +512,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "because": {
-    "phonetic": "/because/",
+    "phonetic": "/bɪˈkɔːz/",
     "syllables": [
       "be",
       "ca",
       "use"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "连词，引导原因状语从句",
+      "分解：be + cause（原因）→ 因为某个原因"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -535,8 +535,8 @@ const PRIMARY_WORD_DATABASE = {
       "bed"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，go to bed（上床睡觉）",
+      "动作：躺在bed上睡觉的样子"
     ],
     "difficulty": "easy",
     "category": "家庭用品",
@@ -546,13 +546,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "bee": {
-    "phonetic": "/bee/",
+    "phonetic": "/biː/",
     "syllables": [
       "bee"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，昆虫类词汇",
+      "声音：模仿蜂蜘'buzzing'的声音"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -562,15 +562,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "before": {
-    "phonetic": "/before/",
+    "phonetic": "/bɪˈfɔːr/",
     "syllables": [
       "be",
       "fo",
       "re"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词/连词，表示'在...之前'",
+      "记忆：before和after是反义词，一个是前一个是后"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -580,14 +580,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "begin": {
-    "phonetic": "/begin/",
+    "phonetic": "/bɪˈɡɪn/",
     "syllables": [
       "beg",
       "in"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，过去式：began，过去分词：begun",
+      "记忆：begin和start都表示开始，是同义词"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -597,15 +597,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "behind": {
-    "phonetic": "/behind/",
+    "phonetic": "/bɪˈhaɪnd/",
     "syllables": [
       "be",
       "hi",
       "nd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示'在...后面'",
+      "动作：藏在某个东西的behind（后面）"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -615,15 +615,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "beside": {
-    "phonetic": "/beside/",
+    "phonetic": "/bɪˈsaɪd/",
     "syllables": [
       "be",
       "si",
       "de"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示'在...旁边'",
+      "分解：be + side（边）→ 在某个边上"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -639,8 +639,8 @@ const PRIMARY_WORD_DATABASE = {
       "st"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词最高级，good的最高级形式",
+      "记忆：good → better → best（好→更好→最好）"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -650,15 +650,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "between": {
-    "phonetic": "/between/",
+    "phonetic": "/bɪˈtwiːn/",
     "syllables": [
       "be",
       "twe",
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示'在两者之间'",
+      "记忆：be + tween，想象在两个东西中间"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -668,14 +668,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "bike": {
-    "phonetic": "/bike/",
+    "phonetic": "/baɪk/",
     "syllables": [
       "bi",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，bicycle的缩写",
+      "动作：做骑车的动作说'bike'"
     ],
     "difficulty": "medium",
     "category": "交通工具",
@@ -685,14 +685,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "bird": {
-    "phonetic": "/bird/",
+    "phonetic": "/bɜːrd/",
     "syllables": [
       "bi",
       "rd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，动物类词汇",
+      "记忆：小鸟bird会唱歌，发出美妙的声音"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -702,15 +702,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "birthday": {
-    "phonetic": "/birthday/",
+    "phonetic": "/ˈbɜːrθdeɪ/",
     "syllables": [
       "bi",
       "rthda",
       "y"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：birth（出生）+ day（日子）= 生日",
+      "想象：生日蛋糕和生日帽，开心的birthday！"
     ],
     "difficulty": "hard",
     "category": "娱乐活动",
@@ -720,14 +720,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "black": {
-    "phonetic": "/black/",
+    "phonetic": "/blæk/",
     "syllables": [
       "bla",
       "ck"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "颜色形容词，也可作名词",
+      "记忆：black和white是反义词，一个黑一个白"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -737,15 +737,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌈"
   },
   "blackboard": {
-    "phonetic": "/blackboard/",
+    "phonetic": "/ˈblækbɔːrd/",
     "syllables": [
       "bla",
       "ckbo",
       "ard"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：black（黑色）+ board（板子）= 黑板",
+      "想象：老师在blackboard上写字的情景"
     ],
     "difficulty": "advanced",
     "category": "学习用品",
@@ -761,8 +761,8 @@ const PRIMARY_WORD_DATABASE = {
       "ue"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "颜色形容词，也可作名词",
+      "记忆：blue像blue牛仔裤，都是蓝色的"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -772,14 +772,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌈"
   },
   "body": {
-    "phonetic": "/body/",
+    "phonetic": "/ˈbɑːdi/",
     "syllables": [
       "bo",
       "dy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，身体部位话题",
+      "动作：指着自己的body（身体）各部位"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -795,8 +795,8 @@ const PRIMARY_WORD_DATABASE = {
       "ok"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，学习用品",
+      "动作：翻阅book的动作，从左到右"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -806,13 +806,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "box": {
-    "phonetic": "/box/",
+    "phonetic": "/bɑːks/",
     "syllables": [
       "box"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，复数：boxes",
+      "形状：用手比划出正方形box的形状"
     ],
     "difficulty": "easy",
     "category": "家庭用品",
@@ -822,14 +822,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "bread": {
-    "phonetic": "/bread/",
+    "phonetic": "/bred/",
     "syllables": [
       "bre",
       "ad"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "不可数名词，食物类词汇",
+      "记忆：bread和cake都是糕点，一个是面包一个是蛋糕"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -839,15 +839,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "breakfast": {
-    "phonetic": "/breakfast/",
+    "phonetic": "/ˈbrekfəst/",
     "syllables": [
       "bre",
       "akfa",
       "st"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：break（打破）+ fast（禁食）= 打破禁食→早餐",
+      "想象：早上的第一顿饭，打破夜间的空腹状态"
     ],
     "difficulty": "advanced",
     "category": "美食天地",
@@ -857,14 +857,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "bring": {
-    "phonetic": "/bring/",
+    "phonetic": "/brɪŋ/",
     "syllables": [
       "bri",
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，过去式：brought",
+      "动作：做把东西拿过来的动作说'bring'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -874,15 +874,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "brother": {
-    "phonetic": "/brother/",
+    "phonetic": "/ˈbrʌðər/",
     "syllables": [
       "bro",
       "the",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，家庭成员",
+      "记忆：brother和sister都是兄弟姐妹，一个男一个女"
     ],
     "difficulty": "hard",
     "category": "家庭成员",
@@ -892,14 +892,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "brown": {
-    "phonetic": "/brown/",
+    "phonetic": "/braʊn/",
     "syllables": [
       "bro",
       "wn"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "颜色形容词，也可作名词",
+      "记忆：brown像巧克力的色彩，温暖的棕色"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -909,13 +909,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌈"
   },
   "bus": {
-    "phonetic": "/bus/",
+    "phonetic": "/bʌs/",
     "syllables": [
       "bus"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "可数名词，复数：buses",
+      "动作：做上下车的动作，说'Take the bus'"
     ],
     "difficulty": "easy",
     "category": "交通工具",
@@ -925,14 +925,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "busy": {
-    "phonetic": "/busy/",
+    "phonetic": "/ˈbɪzi/",
     "syllables": [
       "bu",
       "sy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，表示'忙碌的'",
+      "动作：做很忙碌的手势，说'I'm busy'"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -942,13 +942,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "but": {
-    "phonetic": "/but/",
+    "phonetic": "/bʌt/",
     "syllables": [
       "but"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "转折连词，表示'但是'",
+      "记忆：but用来转折，表示相反的意思"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -958,13 +958,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "buy": {
-    "phonetic": "/buy/",
+    "phonetic": "/baɪ/",
     "syllables": [
       "buy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，过去式：bought",
+      "动作：做付钱买东西的动作说'buy'"
     ],
     "difficulty": "easy",
     "category": "娱乐活动",
@@ -974,13 +974,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "by": {
-    "phonetic": "/by/",
+    "phonetic": "/baɪ/",
     "syllables": [
       "by"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示方式、方法",
+      "记忆：by car（开车）、by bus（坐公交）"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -990,14 +990,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "cake": {
-    "phonetic": "/cake/",
+    "phonetic": "/keɪk/",
     "syllables": [
       "ca",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：cake和make韵母相同，都是-ake结尾"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -1007,13 +1007,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "can": {
-    "phonetic": "/can/",
+    "phonetic": "/kæn/",
     "syllables": [
       "can"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：I can swim（我会游泳），表示能力"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -1023,14 +1023,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "candle": {
-    "phonetic": "/candle/",
+    "phonetic": "/ˈkændəl/",
     "syllables": [
       "ca",
       "ndle"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：生日蛋糕上的candle，要吹灭许愿！"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1040,13 +1040,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "cap": {
-    "phonetic": "/cap/",
+    "phonetic": "/kæp/",
     "syllables": [
       "cap"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做戴帽子的动作说'wear a cap'"
     ],
     "difficulty": "easy",
     "category": "学习用品",
@@ -1056,13 +1056,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "car": {
-    "phonetic": "/car/",
+    "phonetic": "/kɑːr/",
     "syllables": [
       "car"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做开车的动作，说'drive a car'"
     ],
     "difficulty": "easy",
     "category": "交通工具",
@@ -1072,7 +1072,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "careful": {
-    "phonetic": "/careful/",
+    "phonetic": "/ˈkeərfəl/",
     "syllables": [
       "ca",
       "re",
@@ -1080,8 +1080,8 @@ const PRIMARY_WORD_DATABASE = {
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：care（关心）+ ful（充满）= 小心的",
+      "记忆：充满关心就是小心谨慎"
     ],
     "difficulty": "hard",
     "category": "情感表达",
@@ -1096,8 +1096,8 @@ const PRIMARY_WORD_DATABASE = {
       "cat"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "声音：模仿小猫的叫声'meow'"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -1107,14 +1107,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "catch": {
-    "phonetic": "/catch/",
+    "phonetic": "/kætʃ/",
     "syllables": [
       "cat",
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做接球的动作说'catch the ball'"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -1124,14 +1124,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "chair": {
-    "phonetic": "/chair/",
+    "phonetic": "/tʃeər/",
     "syllables": [
       "cha",
       "ir"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做坐在chair上的动作"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1141,15 +1141,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "chicken": {
-    "phonetic": "/chicken/",
+    "phonetic": "/ˈtʃɪkən/",
     "syllables": [
       "chi",
       "cke",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "声音：模仿小鸡的叫声'cock-a-doodle-doo'"
     ],
     "difficulty": "hard",
     "category": "美食天地",
@@ -1159,14 +1159,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "child": {
-    "phonetic": "/child/",
+    "phonetic": "/tʃaɪld/",
     "syllables": [
       "chi",
       "ld"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：child的复数是children，都表示孩子"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -1176,14 +1176,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "china": {
-    "phonetic": "/china/",
+    "phonetic": "/ˈtʃaɪnə/",
     "syllables": [
       "chi",
       "na"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：China是世界上最美丽的国家之一"
     ],
     "difficulty": "medium",
     "category": "世界地理",
@@ -1193,15 +1193,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌍"
   },
   "chinese": {
-    "phonetic": "/chinese/",
+    "phonetic": "/tʃaɪˈniːz/",
     "syllables": [
       "chi",
       "ne",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忉：我们都是Chinese，会说Chinese！"
     ],
     "difficulty": "hard",
     "category": "世界地理",
@@ -1211,7 +1211,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌍"
   },
   "chocolate": {
-    "phonetic": "/chocolate/",
+    "phonetic": "/ˈtʃɔːkələt/",
     "syllables": [
       "cho",
       "co",
@@ -1219,8 +1219,8 @@ const PRIMARY_WORD_DATABASE = {
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：chocolate和coffee都是棕色的美味"
     ],
     "difficulty": "advanced",
     "category": "美食天地",
@@ -1230,14 +1230,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "choose": {
-    "phonetic": "/choose/",
+    "phonetic": "/tʃuːz/",
     "syllables": [
       "cho",
       "ose"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做挑选的手势，在多个选项中选一个"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -1247,15 +1247,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "cinema": {
-    "phonetic": "/cinema/",
+    "phonetic": "/ˈsɪnəmə/",
     "syllables": [
       "ci",
       "ne",
       "ma"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：cinema和movie theater都表示电影院"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -1265,14 +1265,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "class": {
-    "phonetic": "/class/",
+    "phonetic": "/klæs/",
     "syllables": [
       "cla",
       "ss"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：我们都在class里上课学习"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -1282,15 +1282,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "classmate": {
-    "phonetic": "/classmate/",
+    "phonetic": "/ˈklæsmeɪt/",
     "syllables": [
       "cla",
       "ssma",
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：class（班级）+ mate（伙伴）= 同学",
+      "记忆：在同一个class里的mate（伙伴）就是同学"
     ],
     "difficulty": "advanced",
     "category": "学习用品",
@@ -1300,15 +1300,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "classroom": {
-    "phonetic": "/classroom/",
+    "phonetic": "/ˈklæsruːm/",
     "syllables": [
       "cla",
       "ssro",
       "om"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：class（班级）+ room（房间）= 教室",
+      "想象：我们在classroom里上课的场景"
     ],
     "difficulty": "advanced",
     "category": "学习用品",
@@ -1318,14 +1318,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "clean": {
-    "phonetic": "/clean/",
+    "phonetic": "/kliːn/",
     "syllables": [
       "cle",
       "an"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：clean和dirty是反义词，一个净一个脏"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1335,14 +1335,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "clock": {
-    "phonetic": "/clock/",
+    "phonetic": "/klɑːk/",
     "syllables": [
       "clo",
       "ck"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "声音：模仿时钟'tick-tock'的声音"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1352,14 +1352,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "close": {
-    "phonetic": "/close/",
+    "phonetic": "/kloʊz/",
     "syllables": [
       "clo",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做关门的动作说'close the door'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -1369,15 +1369,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "clothes": {
-    "phonetic": "/clothes/",
+    "phonetic": "/kloʊðz/",
     "syllables": [
       "clo",
       "the",
       "s"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：clothes总是复数，像我们穿的各种衣服"
     ],
     "difficulty": "hard",
     "category": "家庭用品",
@@ -1387,14 +1387,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "cloudy": {
-    "phonetic": "/cloudy/",
+    "phonetic": "/ˈklaʊdi/",
     "syllables": [
       "clo",
       "udy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：cloud（云）+ y = 多云的",
+      "想象：天空中有很多白云的cloudy天气"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -1404,14 +1404,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "coat": {
-    "phonetic": "/coat/",
+    "phonetic": "/koʊt/",
     "syllables": [
       "co",
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做穿上coat的动作，保暖身体"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1421,15 +1421,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "coffee": {
-    "phonetic": "/coffee/",
+    "phonetic": "/ˈkɔːfi/",
     "syllables": [
       "co",
       "ffe",
       "e"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：coffee和tea都是常见的建料"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -1439,14 +1439,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "cold": {
-    "phonetic": "/cold/",
+    "phonetic": "/koʊld/",
     "syllables": [
       "co",
       "ld"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：cold和hot是反义词，一个冷一个热"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -1456,15 +1456,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "colour": {
-    "phonetic": "/colour/",
+    "phonetic": "/ˈkʌlər/",
     "syllables": [
       "co",
       "lo",
       "ur"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "想象：彩虹有很多美丽的colour（颜色）"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -1474,14 +1474,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌈"
   },
   "come": {
-    "phonetic": "/come/",
+    "phonetic": "/kʌm/",
     "syllables": [
       "co",
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做手势叫人过来，说'Come here!'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -1491,7 +1491,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "computer": {
-    "phonetic": "/computer/",
+    "phonetic": "/kəmˈpjuːtər/",
     "syllables": [
       "co",
       "mpu",
@@ -1499,8 +1499,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：computer能计算（compute），是现代科技的结晶"
     ],
     "difficulty": "hard",
     "category": "科学探索",
@@ -1510,14 +1510,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🔬"
   },
   "cook": {
-    "phonetic": "/cook/",
+    "phonetic": "/kʊk/",
     "syllables": [
       "co",
       "ok"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "想象：妈妈在厨房cook美味的食物"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -1527,14 +1527,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "cool": {
-    "phonetic": "/cool/",
+    "phonetic": "/kuːl/",
     "syllables": [
       "co",
       "ol"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：cool的双重意思：凉爽 + 酷炅"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -1544,15 +1544,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "cousin": {
-    "phonetic": "/cousin/",
+    "phonetic": "/ˈkʌzən/",
     "syllables": [
       "co",
       "usi",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：cousin是表亲，比brother/sister更远的亲戚"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -1562,13 +1562,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "cow": {
-    "phonetic": "/cow/",
+    "phonetic": "/kaʊ/",
     "syllables": [
       "cow"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "声音：模仿奶牛的叫声'moo~'"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -1578,15 +1578,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "crayon": {
-    "phonetic": "/crayon/",
+    "phonetic": "/ˈkreɪɑːn/",
     "syllables": [
       "cra",
       "yo",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：用crayon画彩虹，七彩缤纷"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -1596,13 +1596,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "cry": {
-    "phonetic": "/cry/",
+    "phonetic": "/kraɪ/",
     "syllables": [
       "cry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做擦眼泪的动作，表社cry"
     ],
     "difficulty": "easy",
     "category": "情感表达",
@@ -1612,13 +1612,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "cup": {
-    "phonetic": "/cup/",
+    "phonetic": "/kʌp/",
     "syllables": [
       "cup"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做用cup喝水的动作"
     ],
     "difficulty": "easy",
     "category": "家庭用品",
@@ -1628,13 +1628,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "cut": {
-    "phonetic": "/cut/",
+    "phonetic": "/kʌt/",
     "syllables": [
       "cut"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做用剪刀cut纸的动作"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -1644,14 +1644,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "dance": {
-    "phonetic": "/dance/",
+    "phonetic": "/dæns/",
     "syllables": [
       "dan",
       "ce"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做手舞足蹈的动作说'dance'"
     ],
     "difficulty": "medium",
     "category": "音乐艺术",
@@ -1661,13 +1661,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "day": {
-    "phonetic": "/day/",
+    "phonetic": "/deɪ/",
     "syllables": [
       "day"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：day和night是反义词，一个白天一个夜晚"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -1677,14 +1677,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "dear": {
-    "phonetic": "/dear/",
+    "phonetic": "/dɪr/",
     "syllables": [
       "de",
       "ar"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：写信时开头用'Dear...'表示尊敬"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -1700,8 +1700,8 @@ const PRIMARY_WORD_DATABASE = {
       "sk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：指着自己的desk，在上面写字画画"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1711,7 +1711,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "difficult": {
-    "phonetic": "/difficult/",
+    "phonetic": "/ˈdɪfɪkəlt/",
     "syllables": [
       "di",
       "ffi",
@@ -1719,8 +1719,8 @@ const PRIMARY_WORD_DATABASE = {
       "lt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：difficult和easy是反义词，一个难一个简单"
     ],
     "difficulty": "advanced",
     "category": "情感表达",
@@ -1730,15 +1730,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "dinner": {
-    "phonetic": "/dinner/",
+    "phonetic": "/ˈdɪnər/",
     "syllables": [
       "di",
       "nne",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：breakfast、lunch、dinner是一天三顿饭"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -1748,14 +1748,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "dirty": {
-    "phonetic": "/dirty/",
+    "phonetic": "/ˈdɜːrti/",
     "syllables": [
       "dir",
       "ty"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：dirty和clean是反义词，一个脏一个净"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -1765,13 +1765,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "do": {
-    "phonetic": "/do/",
+    "phonetic": "/duː/",
     "syllables": [
       "do"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：do homework（做作业）是最常用的搭配"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -1781,15 +1781,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "doctor": {
-    "phonetic": "/doctor/",
+    "phonetic": "/ˈdɑːktər/",
     "syllables": [
       "do",
       "cto",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：doctor用听诊器检查身体，帮助病人恢复健康"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -1804,8 +1804,8 @@ const PRIMARY_WORD_DATABASE = {
       "dog"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "声音：模仿小狗的叫声'woof woof'"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -1815,14 +1815,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "doll": {
-    "phonetic": "/doll/",
+    "phonetic": "/dɑːl/",
     "syllables": [
       "do",
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：女孩子喜欢玩doll，给她们穿衣服梳头发"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -1832,14 +1832,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "door": {
-    "phonetic": "/door/",
+    "phonetic": "/dɔːr/",
     "syllables": [
       "do",
       "or"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做开关door的动作，'open/close the door'"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1849,14 +1849,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "down": {
-    "phonetic": "/down/",
+    "phonetic": "/daʊn/",
     "syllables": [
       "do",
       "wn"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：手指向下说'down'，和up相反"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -1866,14 +1866,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "draw": {
-    "phonetic": "/draw/",
+    "phonetic": "/drɔː/",
     "syllables": [
       "dr",
       "aw"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做用笔draw图画的动作"
     ],
     "difficulty": "medium",
     "category": "艺术创作",
@@ -1883,14 +1883,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎨"
   },
   "dress": {
-    "phonetic": "/dress/",
+    "phonetic": "/dres/",
     "syllables": [
       "dre",
       "ss"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：女孩子穿美丽的dress参加聚会"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -1900,14 +1900,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "drink": {
-    "phonetic": "/drink/",
+    "phonetic": "/drɪŋk/",
     "syllables": [
       "dri",
       "nk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做喝水的动作说'drink water'"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -1917,15 +1917,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "driver": {
-    "phonetic": "/driver/",
+    "phonetic": "/ˈdraɪvər/",
     "syllables": [
       "dri",
       "ve",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：drive（开车）+ r（人）= 司机",
+      "想象：driver开着公交车或出租车载客人"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -1935,14 +1935,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "duck": {
-    "phonetic": "/duck/",
+    "phonetic": "/dʌk/",
     "syllables": [
       "du",
       "ck"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "声音：模仿鸭子的叫声'quack quack'"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -1952,14 +1952,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "early": {
-    "phonetic": "/early/",
+    "phonetic": "/ˈɜːrli/",
     "syllables": [
       "ear",
       "ly"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：early bird（早起的鸟）是勤奋的象征"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -1969,14 +1969,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "earth": {
-    "phonetic": "/earth/",
+    "phonetic": "/ɜːrθ/",
     "syllables": [
       "ear",
       "th"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：Earth是我们的家园，要爱护地球"
     ],
     "difficulty": "medium",
     "category": "世界地理",
@@ -1986,14 +1986,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌍"
   },
   "easy": {
-    "phonetic": "/easy/",
+    "phonetic": "/ˈiːzi/",
     "syllables": [
       "ea",
       "sy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：easy和difficult是反义词，一个简单一个困难"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2003,13 +2003,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "eat": {
-    "phonetic": "/eat/",
+    "phonetic": "/iːt/",
     "syllables": [
       "eat"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做吃东西的动作说'eat food'"
     ],
     "difficulty": "easy",
     "category": "美食天地",
@@ -2019,13 +2019,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "egg": {
-    "phonetic": "/egg/",
+    "phonetic": "/eɡ/",
     "syllables": [
       "egg"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "形状：用手比划出椭圆形的egg形状"
     ],
     "difficulty": "easy",
     "category": "美食天地",
@@ -2035,15 +2035,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "elephant": {
-    "phonetic": "/elephant/",
+    "phonetic": "/ˈelɪfənt/",
     "syllables": [
       "ele",
       "pha",
       "nt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：用手臂做象鼻子，模仿大象的动作"
     ],
     "difficulty": "hard",
     "category": "动物世界",
@@ -2053,15 +2053,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "eleven": {
-    "phonetic": "/eleven/",
+    "phonetic": "/ɪˈlevən/",
     "syllables": [
       "ele",
       "ve",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：10之后就是eleven，数数字：1,2,3...10,eleven"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2071,14 +2071,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "email": {
-    "phonetic": "/email/",
+    "phonetic": "/ˈiːmeɪl/",
     "syllables": [
       "ema",
       "il"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：e + mail = 电子邮件",
+      "记忆：用电脑发送的mail（邮件）就是email"
     ],
     "difficulty": "medium",
     "category": "科学探索",
@@ -2088,14 +2088,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🔬"
   },
   "english": {
-    "phonetic": "/english/",
+    "phonetic": "/ˈɪŋɡlɪʃ/",
     "syllables": [
       "engli",
       "sh"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：English来自England（英国），是世界通用语言"
     ],
     "difficulty": "hard",
     "category": "学习用品",
@@ -2105,14 +2105,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "enjoy": {
-    "phonetic": "/enjoy/",
+    "phonetic": "/ɪnˈdʒɔɪ/",
     "syllables": [
       "enj",
       "oy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：enjoy yourself（玩得开心）是常用表达"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2122,14 +2122,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "every": {
-    "phonetic": "/every/",
+    "phonetic": "/ˈevri/",
     "syllables": [
       "eve",
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：every day（每天）、every student（每个学生）"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2139,15 +2139,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "excited": {
-    "phonetic": "/excited/",
+    "phonetic": "/ɪkˈsaɪtɪd/",
     "syllables": [
       "exci",
       "te",
       "d"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "情绪：做很兴奋的表情，说'I'm excited!'"
     ],
     "difficulty": "hard",
     "category": "情感表达",
@@ -2157,14 +2157,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "excuse": {
-    "phonetic": "/excuse/",
+    "phonetic": "/ɪkˈskjuːz/",
     "syllables": [
       "excu",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "礼貌：'Excuse me'是很常用的礼貌用语"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2174,13 +2174,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "eye": {
-    "phonetic": "/eye/",
+    "phonetic": "/aɪ/",
     "syllables": [
       "eye"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：指着自己的eye（眼睛），眨眨眼"
     ],
     "difficulty": "easy",
     "category": "身体部位",
@@ -2190,14 +2190,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👤"
   },
   "face": {
-    "phonetic": "/face/",
+    "phonetic": "/feɪs/",
     "syllables": [
       "fa",
       "ce"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：指着自己的face（脸），做各种表情"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -2214,8 +2214,8 @@ const PRIMARY_WORD_DATABASE = {
       "ly"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：family包括father、mother、children等所有家人"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -2225,15 +2225,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "famous": {
-    "phonetic": "/famous/",
+    "phonetic": "/ˈfeɪməs/",
     "syllables": [
       "fa",
       "mo",
       "us"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：电影明星和歌手都是famous people"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -2243,13 +2243,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "fan": {
-    "phonetic": "/fan/",
+    "phonetic": "/fæn/",
     "syllables": [
       "fan"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做扇扇子的动作，或做热情粉丝的欢呼"
     ],
     "difficulty": "easy",
     "category": "娱乐活动",
@@ -2259,13 +2259,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "far": {
-    "phonetic": "/far/",
+    "phonetic": "/fɑːr/",
     "syllables": [
       "far"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：far和near是反义词，一个远一个近"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -2275,14 +2275,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "farm": {
-    "phonetic": "/farm/",
+    "phonetic": "/fɑːrm/",
     "syllables": [
       "fa",
       "rm"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "想象：farm里有很多动物，cow、pig、chicken等"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -2292,15 +2292,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "farmer": {
-    "phonetic": "/farmer/",
+    "phonetic": "/ˈfɑːrmər/",
     "syllables": [
       "fa",
       "rme",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：farm（农场）+ er（人）= 农民",
+      "想象：farmer在farm里种菜养动物，辛勤劳作"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -2310,14 +2310,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "fast": {
-    "phonetic": "/fast/",
+    "phonetic": "/fæst/",
     "syllables": [
       "fa",
       "st"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：fast和slow是反义词，一个快一个慢"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2327,15 +2327,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "father": {
-    "phonetic": "/father/",
+    "phonetic": "/ˈfɑːðər/",
     "syllables": [
       "fa",
       "the",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：father和mother是一对，爸爸和妈妈"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -2345,7 +2345,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "favourite": {
-    "phonetic": "/favourite/",
+    "phonetic": "/ˈfeɪvərɪt/",
     "syllables": [
       "fa",
       "vo",
@@ -2353,8 +2353,8 @@ const PRIMARY_WORD_DATABASE = {
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：My favourite...（我最喜欢的...）是常用表达"
     ],
     "difficulty": "advanced",
     "category": "情感表达",
@@ -2364,14 +2364,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "feel": {
-    "phonetic": "/feel/",
+    "phonetic": "/fiːl/",
     "syllables": [
       "fe",
       "el"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "情绪：做各种情绪表情，说'I feel happy/sad'"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2381,14 +2381,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "film": {
-    "phonetic": "/film/",
+    "phonetic": "/fɪlm/",
     "syllables": [
       "fi",
       "lm"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：film和movie都表示电影，意思相同"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -2398,14 +2398,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "find": {
-    "phonetic": "/find/",
+    "phonetic": "/faɪnd/",
     "syllables": [
       "fi",
       "nd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：find和lose/lost是相对的，找到和丢失"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2415,14 +2415,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "fine": {
-    "phonetic": "/fine/",
+    "phonetic": "/faɪn/",
     "syllables": [
       "fi",
       "ne"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "对话：'How are you?' 'I'm fine!'是经典对话"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2432,14 +2432,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "fish": {
-    "phonetic": "/fish/",
+    "phonetic": "/fɪʃ/",
     "syllables": [
       "fi",
       "sh"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做鱼在水里游动的手势"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -2449,14 +2449,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "floor": {
-    "phonetic": "/floor/",
+    "phonetic": "/flɔːr/",
     "syllables": [
       "flo",
       "or"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：指着脚下的floor（地板），踩踩脚"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -2466,15 +2466,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "flower": {
-    "phonetic": "/flower/",
+    "phonetic": "/ˈflaʊər/",
     "syllables": [
       "flo",
       "we",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做闻花香的动作，说'Beautiful flower!'"
     ],
     "difficulty": "medium",
     "category": "植物花卉",
@@ -2484,13 +2484,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌸"
   },
   "fly": {
-    "phonetic": "/fly/",
+    "phonetic": "/flaɪ/",
     "syllables": [
       "fly"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做小鸟或飞机飞行的动作"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -2500,14 +2500,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "food": {
-    "phonetic": "/food/",
+    "phonetic": "/fuːd/",
     "syllables": [
       "fo",
       "od"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "oo发长音/uː/，像说'呜'的声音"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -2517,15 +2517,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "football": {
-    "phonetic": "/football/",
+    "phonetic": "/ˈfʊtbɔːl/",
     "syllables": [
       "fo",
       "otba",
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：foot（脚）+ ball（球）= 用脚踢的球",
+      "重音在第一个音节'foot'上"
     ],
     "difficulty": "hard",
     "category": "运动健身",
@@ -2535,13 +2535,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "for": {
-    "phonetic": "/for/",
+    "phonetic": "/fɔːr/",
     "syllables": [
       "for"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "常用短语：for you（为了你），for me（为了我）"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -2551,15 +2551,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "forest": {
-    "phonetic": "/forest/",
+    "phonetic": "/ˈfɔːrəst/",
     "syllables": [
       "fo",
       "re",
       "st"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "重音在第一个音节'fo'上，像'佛'字"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -2569,14 +2569,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "fork": {
-    "phonetic": "/fork/",
+    "phonetic": "/fɔːrk/",
     "syllables": [
       "fo",
       "rk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做用叉子吃东西的动作"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -2586,14 +2586,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "forty": {
-    "phonetic": "/forty/",
+    "phonetic": "/ˈfɔːrti/",
     "syllables": [
       "for",
       "ty"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "注意：four变forty时，u消失了"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2609,8 +2609,8 @@ const PRIMARY_WORD_DATABASE = {
       "ee"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ee发长音/iː/，像'衣'的长音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2626,8 +2626,8 @@ const PRIMARY_WORD_DATABASE = {
       "sh"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "sh发/ʃ/音，像'嘘'的声音"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -2643,8 +2643,8 @@ const PRIMARY_WORD_DATABASE = {
       "end"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "记忆：friend到最后end都是朋友"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -2660,8 +2660,8 @@ const PRIMARY_WORD_DATABASE = {
       "om"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "常用句型：I am from...（我来自...）"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2677,8 +2677,8 @@ const PRIMARY_WORD_DATABASE = {
       "nt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "反义词：back（后面），front（前面）"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2694,8 +2694,8 @@ const PRIMARY_WORD_DATABASE = {
       "it"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ui发/uː/音，像'呜'的长音"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -2705,14 +2705,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "game": {
-    "phonetic": "/game/",
+    "phonetic": "/ɡeɪm/",
     "syllables": [
       "ga",
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发/eɪ/音，像'诶'的声音"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -2722,15 +2722,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "garden": {
-    "phonetic": "/garden/",
+    "phonetic": "/ˈɡɑːrdən/",
     "syllables": [
       "ga",
       "rde",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "重音在第一个音节'gar'上"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -2740,13 +2740,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "get": {
-    "phonetic": "/get/",
+    "phonetic": "/ɡet/",
     "syllables": [
       "get"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "常用短语：get up（起床），get to（到达）"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -2756,14 +2756,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "gift": {
-    "phonetic": "/gift/",
+    "phonetic": "/ɡɪft/",
     "syllables": [
       "gi",
       "ft"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "i发短音/ɪ/，像'衣'的短音"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -2773,14 +2773,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "girl": {
-    "phonetic": "/girl/",
+    "phonetic": "/ɡɜːrl/",
     "syllables": [
       "gi",
       "rl"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ir发/ɜːr/音，像'额儿'的声音"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -2790,14 +2790,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "give": {
-    "phonetic": "/give/",
+    "phonetic": "/ɡɪv/",
     "syllables": [
       "gi",
       "ve"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：做给予的手势帮助记忆"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -2807,14 +2807,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "glad": {
-    "phonetic": "/glad/",
+    "phonetic": "/ɡlæd/",
     "syllables": [
       "gl",
       "ad"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "同义词：happy, pleased（都表示高兴）"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2824,14 +2824,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "glass": {
-    "phonetic": "/glass/",
+    "phonetic": "/ɡlæs/",
     "syllables": [
       "gla",
       "ss"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发/æ/音，像'啊'的声音"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -2841,13 +2841,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "go": {
-    "phonetic": "/go/",
+    "phonetic": "/ɡoʊ/",
     "syllables": [
       "go"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "常用短语：go to school（去学校），let's go（我们走）"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -2857,14 +2857,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "good": {
-    "phonetic": "/good/",
+    "phonetic": "/ɡʊd/",
     "syllables": [
       "go",
       "od"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "oo发/ʊ/音，像'乌'的短音"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2874,14 +2874,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "goodbye": {
-    "phonetic": "/goodbye/",
+    "phonetic": "/ɡʊdˈbaɪ/",
     "syllables": [
       "go",
       "odbye"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：good + bye = 好的再见",
+      "重音在第二个音节'bye'上"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -2891,7 +2891,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "grandfather": {
-    "phonetic": "/grandfather/",
+    "phonetic": "/ˈɡrændfɑːðər/",
     "syllables": [
       "gra",
       "ndfa",
@@ -2899,8 +2899,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：grand（伟大的）+ father（父亲）= 爷爷",
+      "重音在第一个音节'grand'上"
     ],
     "difficulty": "advanced",
     "category": "家庭成员",
@@ -2910,7 +2910,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "grandmother": {
-    "phonetic": "/grandmother/",
+    "phonetic": "/ˈɡrænmʌðər/",
     "syllables": [
       "gra",
       "ndmo",
@@ -2918,8 +2918,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：grand（伟大的）+ mother（母亲）= 奶奶",
+      "重音在第一个音节'grand'上"
     ],
     "difficulty": "advanced",
     "category": "家庭成员",
@@ -2929,14 +2929,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "grape": {
-    "phonetic": "/grape/",
+    "phonetic": "/ɡreɪp/",
     "syllables": [
       "gra",
       "pe"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发/eɪ/音，像'诶'的声音"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -2946,14 +2946,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "grass": {
-    "phonetic": "/grass/",
+    "phonetic": "/ɡræs/",
     "syllables": [
       "gra",
       "ss"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发/æ/音，像'啊'的声音"
     ],
     "difficulty": "medium",
     "category": "植物花卉",
@@ -2963,14 +2963,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌸"
   },
   "great": {
-    "phonetic": "/great/",
+    "phonetic": "/ɡreɪt/",
     "syllables": [
       "gre",
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ea发/eɪ/音，像'诶'的声音"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -2980,14 +2980,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "green": {
-    "phonetic": "/green/",
+    "phonetic": "/ɡriːn/",
     "syllables": [
       "gre",
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ee发长音/iː/，像'衣'的长音"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -3003,8 +3003,8 @@ const PRIMARY_WORD_DATABASE = {
       "ir"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "air发/eər/音，像'爱儿'的声音"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -3020,8 +3020,8 @@ const PRIMARY_WORD_DATABASE = {
       "lf"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发/æ/音，像'啊'的声音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3037,8 +3037,8 @@ const PRIMARY_WORD_DATABASE = {
       "nd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "动作：挥挥你的hand（手）"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -3054,8 +3054,8 @@ const PRIMARY_WORD_DATABASE = {
       "py"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "重音在第一个音节'hap'上"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3071,8 +3071,8 @@ const PRIMARY_WORD_DATABASE = {
       "rd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "反义词：easy（容易的），hard（困难的）"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3087,8 +3087,8 @@ const PRIMARY_WORD_DATABASE = {
       "has"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "用法：He/She has...（他/她有...）"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3103,8 +3103,8 @@ const PRIMARY_WORD_DATABASE = {
       "hat"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发短音/æ/，像'啊'的声音"
     ],
     "difficulty": "easy",
     "category": "家庭用品",
@@ -3120,8 +3120,8 @@ const PRIMARY_WORD_DATABASE = {
       "ve"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "a发短音/æ/，ve发/v/音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3136,8 +3136,8 @@ const PRIMARY_WORD_DATABASE = {
       "he"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "e发长音/iː/，像'衣'的长音"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3153,8 +3153,8 @@ const PRIMARY_WORD_DATABASE = {
       "ad"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ea发短音/e/，像'诶'的声音"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -3170,8 +3170,8 @@ const PRIMARY_WORD_DATABASE = {
       "althy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "分解：health（健康）+ y = 健康的",
+      "重音在第一个音节'heal'上"
     ],
     "difficulty": "hard",
     "category": "情感表达",
@@ -3187,8 +3187,8 @@ const PRIMARY_WORD_DATABASE = {
       "ar"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ear发/ɪər/音，像'衣儿'的声音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3204,8 +3204,8 @@ const PRIMARY_WORD_DATABASE = {
       "vy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ea发短音/e/，重音在第一个音节"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3221,8 +3221,8 @@ const PRIMARY_WORD_DATABASE = {
       "lo"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "重音在第二个音节'lo'上"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3238,8 +3238,8 @@ const PRIMARY_WORD_DATABASE = {
       "lp"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "e发短音/e/，lp要清晰发音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3254,8 +3254,8 @@ const PRIMARY_WORD_DATABASE = {
       "her"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "er发/ɜːr/音，像'额儿'的声音"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3271,8 +3271,8 @@ const PRIMARY_WORD_DATABASE = {
       "re"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "ere发/ɪər/音，像'衣儿'的声音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3288,8 +3288,8 @@ const PRIMARY_WORD_DATABASE = {
       "rs"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "s发/z/音，注意与her的区别"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3304,8 +3304,8 @@ const PRIMARY_WORD_DATABASE = {
       "hi"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "i发长音/aɪ/，像'爱'的声音"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3321,8 +3321,8 @@ const PRIMARY_WORD_DATABASE = {
       "gh"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "igh发/aɪ/音，gh不发音"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3337,8 +3337,8 @@ const PRIMARY_WORD_DATABASE = {
       "him"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "i发短音/ɪ/，像'衣'的短音"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3353,8 +3353,8 @@ const PRIMARY_WORD_DATABASE = {
       "his"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "i发短音/ɪ/，s发/z/音"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3371,8 +3371,8 @@ const PRIMARY_WORD_DATABASE = {
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "重音在第一个音节'his'上"
     ],
     "difficulty": "hard",
     "category": "学习用品",
@@ -3388,8 +3388,8 @@ const PRIMARY_WORD_DATABASE = {
       "by"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重要词汇，建议多练习拼写和用法",
+      "重音在第一个音节'hob'上"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -3405,8 +3405,8 @@ const PRIMARY_WORD_DATABASE = {
       "ld"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/oʊ/音的发音，ld结尾要清晰",
+      "常用动词，练习hold on、hold up等短语"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3424,8 +3424,8 @@ const PRIMARY_WORD_DATABASE = {
       "y"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意day的发音",
+      "与vacation区别使用，holiday更正式"
     ],
     "difficulty": "hard",
     "category": "娱乐活动",
@@ -3441,8 +3441,8 @@ const PRIMARY_WORD_DATABASE = {
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/oʊ/音，与house区别含义",
+      "练习at home、go home等常用搭配"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -3460,8 +3460,8 @@ const PRIMARY_WORD_DATABASE = {
       "wn"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "复合词，重音在第一部分home",
+      "描述出生地或成长地的专用词"
     ],
     "difficulty": "hard",
     "category": "世界地理",
@@ -3479,8 +3479,8 @@ const PRIMARY_WORD_DATABASE = {
       "rk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "复合词，重音在home，work要清晰",
+      "不可数名词，说much homework而非many"
     ],
     "difficulty": "hard",
     "category": "学习用品",
@@ -3496,8 +3496,8 @@ const PRIMARY_WORD_DATABASE = {
       "pe"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/oʊ/音和/p/音的清晰发音",
+      "既是动词也是名词，表达希望和期待"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3513,8 +3513,8 @@ const PRIMARY_WORD_DATABASE = {
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɔr/音，与house发音区别",
+      "动物名词，练习相关短语如ride a horse"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -3532,8 +3532,8 @@ const PRIMARY_WORD_DATABASE = {
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意spi的发音",
+      "医疗场所词汇，练习in the hospital用法"
     ],
     "difficulty": "hard",
     "category": "职业体验",
@@ -3548,8 +3548,8 @@ const PRIMARY_WORD_DATABASE = {
       "hot"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "短元音/ɒ/，与hat发音相似",
+      "温度形容词，与cold相对，练习比较级hotter"
     ],
     "difficulty": "easy",
     "category": "自然景观",
@@ -3565,8 +3565,8 @@ const PRIMARY_WORD_DATABASE = {
       "ur"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意h不发音，读作/aʊər/",
+      "时间单位，用an hour而非a hour"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3582,8 +3582,8 @@ const PRIMARY_WORD_DATABASE = {
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aʊ/音，与home区别含义",
+      "建筑物名词，练习at my house等用法"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -3598,8 +3598,8 @@ const PRIMARY_WORD_DATABASE = {
       "how"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aʊ/音，疑问词用法",
+      "练习How are you?等常用问句"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3615,8 +3615,8 @@ const PRIMARY_WORD_DATABASE = {
       "ngry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意ng音的发音，重音在第一音节",
+      "形容词，表示饥饿状态，与thirsty对比"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3632,8 +3632,8 @@ const PRIMARY_WORD_DATABASE = {
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "双写r，注意/ʌ/音的发音",
+      "动词，练习hurry up短语用法"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3649,8 +3649,8 @@ const PRIMARY_WORD_DATABASE = {
       "rt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɜr/音，rt结尾要清晰",
+      "不规则动词，过去式也是hurt"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3665,8 +3665,8 @@ const PRIMARY_WORD_DATABASE = {
       "i"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "第一人称代词，永远大写",
+      "最基础的英语单词，注意/aɪ/音"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3676,13 +3676,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "ice": {
-    "phonetic": "/ice/",
+    "phonetic": "/aɪs/",
     "syllables": [
       "ice"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/音和清晰的/s/音",
+      "与nice押韵，练习ice cream等复合词"
     ],
     "difficulty": "easy",
     "category": "自然景观",
@@ -3699,8 +3699,8 @@ const PRIMARY_WORD_DATABASE = {
       "am"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "复合词，注意连字符的使用",
+      "美食词汇，练习I like ice-cream句型"
     ],
     "difficulty": "advanced",
     "category": "美食天地",
@@ -3710,14 +3710,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "idea": {
-    "phonetic": "/idea/",
+    "phonetic": "/aɪˈdiːə/",
     "syllables": [
       "id",
       "ea"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第二音节，注意/iː/长音",
+      "抽象名词，练习good idea等搭配"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3732,8 +3732,8 @@ const PRIMARY_WORD_DATABASE = {
       "if"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "条件连词，注意/ɪ/短音",
+      "引导条件句，练习if...then句型"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3748,8 +3748,8 @@ const PRIMARY_WORD_DATABASE = {
       "ill"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "双写l，注意/ɪ/音",
+      "形容词，与sick同义，更正式"
     ],
     "difficulty": "easy",
     "category": "情感表达",
@@ -3759,13 +3759,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "in": {
-    "phonetic": "/in/",
+    "phonetic": "/ɪn/",
     "syllables": [
       "in"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，注意/ɪ/短音",
+      "表示位置，与on、at区别使用"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3775,7 +3775,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "interesting": {
-    "phonetic": "/interesting/",
+    "phonetic": "/ˈɪntrəstɪŋ/",
     "syllables": [
       "inte",
       "re",
@@ -3783,8 +3783,8 @@ const PRIMARY_WORD_DATABASE = {
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意-ing结尾",
+      "形容词，与interested区别：物interesting人interested"
     ],
     "difficulty": "advanced",
     "category": "情感表达",
@@ -3801,8 +3801,8 @@ const PRIMARY_WORD_DATABASE = {
       "t"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意net的发音",
+      "科技词汇，通常与the连用：the Internet"
     ],
     "difficulty": "hard",
     "category": "科学探索",
@@ -3818,8 +3818,8 @@ const PRIMARY_WORD_DATABASE = {
       "to"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "介词，表示进入动作，重音在第一音节",
+      "与in区别：into强调动作，in强调状态"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3829,13 +3829,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "it": {
-    "phonetic": "/it/",
+    "phonetic": "/ɪt/",
     "syllables": [
       "it"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "第三人称单数代词，注意/ɪ/短音",
+      "指代事物或动物，练习It is...句型"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3850,8 +3850,8 @@ const PRIMARY_WORD_DATABASE = {
       "its"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "物主代词，注意与it's(it is)区别",
+      "表示所属关系，无撇号"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -3866,8 +3866,8 @@ const PRIMARY_WORD_DATABASE = {
       "job"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/dʒ/音和/ɒ/短音",
+      "与work区别：job指具体职位，work指工作行为"
     ],
     "difficulty": "easy",
     "category": "职业体验",
@@ -3877,14 +3877,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "juice": {
-    "phonetic": "/juice/",
+    "phonetic": "/dʒuːs/",
     "syllables": [
       "jui",
       "ce"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/dʒ/音和/uː/长音，ce发/s/音",
+      "饮品词汇，练习orange juice等搭配"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -3894,14 +3894,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "jump": {
-    "phonetic": "/jump/",
+    "phonetic": "/dʒʌmp/",
     "syllables": [
       "ju",
       "mp"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/dʒ/音和/ʌ/短音，mp结尾要清晰",
+      "动作动词，练习jump up、jump over等短语"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -3917,8 +3917,8 @@ const PRIMARY_WORD_DATABASE = {
       "ep"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，双写e",
+      "不规则动词，过去式kept，练习keep doing用法"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -3928,13 +3928,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "key": {
-    "phonetic": "/key/",
+    "phonetic": "/kiː/",
     "syllables": [
       "key"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与tea押韵",
+      "既是名词也是形容词，key point关键点"
     ],
     "difficulty": "easy",
     "category": "家庭用品",
@@ -3949,8 +3949,8 @@ const PRIMARY_WORD_DATABASE = {
       "kid"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɪ/短音，与child同义但更口语化",
+      "非正式用词，表示小孩或年轻人"
     ],
     "difficulty": "easy",
     "category": "家庭成员",
@@ -3966,8 +3966,8 @@ const PRIMARY_WORD_DATABASE = {
       "nd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/音，nd结尾要清晰",
+      "形容词表示善良，名词表示种类"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -3984,8 +3984,8 @@ const PRIMARY_WORD_DATABASE = {
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意tch发/tʃ/音，重音在第一音节",
+      "房间名词，练习in the kitchen等介词搭配"
     ],
     "difficulty": "hard",
     "category": "家庭用品",
@@ -4001,8 +4001,8 @@ const PRIMARY_WORD_DATABASE = {
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/音，与bite、site押韵",
+      "玩具名词，练习fly a kite短语"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -4018,8 +4018,8 @@ const PRIMARY_WORD_DATABASE = {
       "ow"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "k不发音，读作/noʊ/，与no同音",
+      "不规则动词，过去式knew，过去分词known"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4029,14 +4029,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "lake": {
-    "phonetic": "/lake/",
+    "phonetic": "/leɪk/",
     "syllables": [
       "la",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/音，与make、cake押韵",
+      "自然地理词汇，比river大比sea小"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -4046,14 +4046,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "late": {
-    "phonetic": "/late/",
+    "phonetic": "/leɪt/",
     "syllables": [
       "la",
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/音，与gate、date押韵",
+      "形容词和副词，练习be late for用法"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4063,14 +4063,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "learn": {
-    "phonetic": "/learn/",
+    "phonetic": "/lɜːrn/",
     "syllables": [
       "lea",
       "rn"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɜːr/音，ea发/ɜː/音",
+      "动词，练习learn to do和learn about用法"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -4080,13 +4080,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "leg": {
-    "phonetic": "/leg/",
+    "phonetic": "/leɡ/",
     "syllables": [
       "leg"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/e/短音和清晰的/g/音",
+      "身体部位词汇，与arm对应下肢"
     ],
     "difficulty": "easy",
     "category": "身体部位",
@@ -4096,15 +4096,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👤"
   },
   "lesson": {
-    "phonetic": "/lesson/",
+    "phonetic": "/ˈlesən/",
     "syllables": [
       "le",
       "sso",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，双写s",
+      "教育词汇，练习have a lesson用法"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -4119,8 +4119,8 @@ const PRIMARY_WORD_DATABASE = {
       "let"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/e/短音，与get、set押韵",
+      "使役动词，练习let sb do sth句型"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -4130,15 +4130,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "letter": {
-    "phonetic": "/letter/",
+    "phonetic": "/ˈletər/",
     "syllables": [
       "le",
       "tte",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "双写t，重音在第一音节",
+      "既指字母也指信件，根据语境判断"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -4148,15 +4148,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "library": {
-    "phonetic": "/library/",
+    "phonetic": "/ˈlaɪbreri/",
     "syllables": [
       "li",
       "bra",
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/aɪ/音",
+      "公共场所词汇，练习in the library用法"
     ],
     "difficulty": "hard",
     "category": "学习用品",
@@ -4166,14 +4166,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "light": {
-    "phonetic": "/light/",
+    "phonetic": "/laɪt/",
     "syllables": [
       "lig",
       "ht"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/音，gh不发音",
+      "多义词：轻的、光线、点亮，与heavy相对"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4183,14 +4183,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "like": {
-    "phonetic": "/like/",
+    "phonetic": "/laɪk/",
     "syllables": [
       "li",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/音，与bike、mike押韵",
+      "常用动词，练习like doing和like to do用法"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -4200,14 +4200,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "line": {
-    "phonetic": "/line/",
+    "phonetic": "/laɪn/",
     "syllables": [
       "li",
       "ne"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/双元音，读作'来恩'",
+      "多义词：线条、排队、台词等，根据语境理解"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4217,14 +4217,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "lion": {
-    "phonetic": "/lion/",
+    "phonetic": "/ˈlaɪən/",
     "syllables": [
       "li",
       "on"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，/aɪ/音要饱满",
+      "动物之王，练习The lion roars等表达"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -4234,15 +4234,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "listen": {
-    "phonetic": "/listen/",
+    "phonetic": "/ˈlɪsən/",
     "syllables": [
       "li",
       "ste",
       "n"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "t不发音，读作'利森'，重音在第一音节",
+      "常用搭配：listen to music/radio，注意介词to"
     ],
     "difficulty": "medium",
     "category": "音乐艺术",
@@ -4252,14 +4252,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "little": {
-    "phonetic": "/little/",
+    "phonetic": "/ˈlɪtəl/",
     "syllables": [
       "li",
       "ttle"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "双写t，末尾le读作/əl/，重音在第一音节",
+      "与small区别：little更口语化，a little表示'一点点'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4269,14 +4269,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "live": {
-    "phonetic": "/live/",
+    "phonetic": "/lɪv/",
     "syllables": [
       "li",
       "ve"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词读/lɪv/，形容词读/laɪv/，注意区分",
+      "常用搭配：live in/at/with，练习居住地表达"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -4286,14 +4286,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "long": {
-    "phonetic": "/long/",
+    "phonetic": "/lɔːŋ/",
     "syllables": [
       "lo",
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɔː/长音，ng鼻音要清晰",
+      "与short相对，练习How long...?句型"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4303,14 +4303,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "look": {
-    "phonetic": "/look/",
+    "phonetic": "/lʊk/",
     "syllables": [
       "lo",
       "ok"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʊ/短音，与book同音",
+      "常用搭配：look at/for/after，区分不同含义"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4320,13 +4320,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "lot": {
-    "phonetic": "/lot/",
+    "phonetic": "/lɑːt/",
     "syllables": [
       "lot"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɑː/长音，与hot的/ɑ/音区分",
+      "常用短语：a lot of = lots of，表示'许多'"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -4336,15 +4336,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "lovely": {
-    "phonetic": "/lovely/",
+    "phonetic": "/ˈlʌvli/",
     "syllables": [
       "lo",
       "ve",
       "ly"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "love + ly构成，重音在第一音节",
+      "形容词，表示'可爱的、美好的'，语气温和"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -4354,14 +4354,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "lunch": {
-    "phonetic": "/lunch/",
+    "phonetic": "/lʌntʃ/",
     "syllables": [
       "lun",
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʌ/音和/tʃ/音，ch读作'吃'",
+      "三餐之一，练习have lunch、lunch time等表达"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -4371,14 +4371,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "make": {
-    "phonetic": "/make/",
+    "phonetic": "/meɪk/",
     "syllables": [
       "ma",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，不规则动词：make-made-made",
+      "多义词：制作、使得、赚钱等，用法丰富"
     ],
     "difficulty": "medium",
     "category": "艺术创作",
@@ -4388,13 +4388,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎨"
   },
   "man": {
-    "phonetic": "/man/",
+    "phonetic": "/mæn/",
     "syllables": [
       "man"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/æ/音，与woman相对",
+      "复数形式：men，不规则变化要记住"
     ],
     "difficulty": "easy",
     "category": "家庭成员",
@@ -4404,14 +4404,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "many": {
-    "phonetic": "/many/",
+    "phonetic": "/ˈmeni/",
     "syllables": [
       "ma",
       "ny"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/e/音",
+      "修饰可数名词复数，与much(不可数)区分"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4421,13 +4421,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "map": {
-    "phonetic": "/map/",
+    "phonetic": "/mæp/",
     "syllables": [
       "map"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/æ/音，与cap、tap押韵",
+      "既是名词也是动词，练习on the map表达"
     ],
     "difficulty": "easy",
     "category": "世界地理",
@@ -4437,14 +4437,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌍"
   },
   "maths": {
-    "phonetic": "/maths/",
+    "phonetic": "/mæθs/",
     "syllables": [
       "mat",
       "hs"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/θ/音，th咬舌音要准确",
+      "英式英语用maths，美式用math，都表示数学"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -4454,13 +4454,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "may": {
-    "phonetic": "/may/",
+    "phonetic": "/meɪ/",
     "syllables": [
       "may"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，与day、way押韵",
+      "情态动词表示'可以、可能'，比can更礼貌"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -4470,13 +4470,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "me": {
-    "phonetic": "/me/",
+    "phonetic": "/miː/",
     "syllables": [
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与see、bee同音",
+      "I的宾格形式，用于动词或介词后"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -4486,14 +4486,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "meal": {
-    "phonetic": "/meal/",
+    "phonetic": "/miːl/",
     "syllables": [
       "me",
       "al"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与real、deal押韵",
+      "指一顿饭，练习three meals a day表达"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -4503,14 +4503,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "meat": {
-    "phonetic": "/meat/",
+    "phonetic": "/miːt/",
     "syllables": [
       "me",
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与meet同音但拼写不同",
+      "不可数名词，表示肉类食物"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -4520,14 +4520,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "meet": {
-    "phonetic": "/meet/",
+    "phonetic": "/miːt/",
     "syllables": [
       "me",
       "et"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与meat同音但意思不同",
+      "不规则动词：meet-met-met，表示遇见"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4537,14 +4537,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "middle": {
-    "phonetic": "/middle/",
+    "phonetic": "/ˈmɪdəl/",
     "syllables": [
       "mi",
       "ddle"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "双写d，末尾le读作/əl/，重音在第一音节",
+      "常用搭配：in the middle of，表示'在...中间'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4554,14 +4554,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "milk": {
-    "phonetic": "/milk/",
+    "phonetic": "/mɪlk/",
     "syllables": [
       "mi",
       "lk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɪ/短音，lk连读要清晰",
+      "不可数名词，练习a glass of milk表达"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -4571,15 +4571,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "minute": {
-    "phonetic": "/minute/",
+    "phonetic": "/ˈmɪnɪt/",
     "syllables": [
       "mi",
       "nu",
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意两个/ɪ/短音",
+      "时间单位，60 minutes = 1 hour"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4589,14 +4589,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "miss": {
-    "phonetic": "/miss/",
+    "phonetic": "/mɪs/",
     "syllables": [
       "mi",
       "ss"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɪ/短音，双写s",
+      "多义词：错过、想念、小姐，根据语境理解"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -4606,14 +4606,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "money": {
-    "phonetic": "/money/",
+    "phonetic": "/ˈmʌni/",
     "syllables": [
       "mon",
       "ey"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ʌ/音",
+      "不可数名词，练习save money、spend money等表达"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4623,15 +4623,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "monkey": {
-    "phonetic": "/monkey/",
+    "phonetic": "/ˈmʌŋki/",
     "syllables": [
       "mo",
       "nke",
       "y"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，nk连读，末尾y读/i/",
+      "可爱的动物，练习monkey business等习语"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -4641,14 +4641,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "month": {
-    "phonetic": "/month/",
+    "phonetic": "/mʌnθ/",
     "syllables": [
       "mon",
       "th"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʌ/音和/θ/咬舌音",
+      "时间单位，复数months，练习月份名称"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4658,14 +4658,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "moon": {
-    "phonetic": "/moon/",
+    "phonetic": "/muːn/",
     "syllables": [
       "mo",
       "on"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/uː/长音，与noon、soon押韵",
+      "天体名词，练习full moon、new moon等表达"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -4675,15 +4675,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "morning": {
-    "phonetic": "/morning/",
+    "phonetic": "/ˈmɔːrnɪŋ/",
     "syllables": [
       "mo",
       "rni",
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ɔːr/音和ng鼻音",
+      "时间词，常用Good morning问候语"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -4693,15 +4693,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "mother": {
-    "phonetic": "/mother/",
+    "phonetic": "/ˈmʌðər/",
     "syllables": [
       "mo",
       "the",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ʌ/音和/ð/音",
+      "家庭成员，与father相对，可简称mom"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -4711,14 +4711,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "move": {
-    "phonetic": "/move/",
+    "phonetic": "/muːv/",
     "syllables": [
       "mo",
       "ve"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/uː/长音，与prove押韵",
+      "动词，表示移动，练习move to/from等搭配"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4728,13 +4728,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "mr": {
-    "phonetic": "/mr/",
+    "phonetic": "/ˈmɪstər/",
     "syllables": [
       "mr"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "Mister的缩写，读作'米斯特'",
+      "男性敬称，用于姓氏前，注意大写"
     ],
     "difficulty": "easy",
     "category": "职业体验",
@@ -4744,13 +4744,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "mrs": {
-    "phonetic": "/mrs/",
+    "phonetic": "/ˈmɪsɪz/",
     "syllables": [
       "mrs"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "Missus的缩写，读作'米西斯'",
+      "已婚女性敬称，用于姓氏前，注意大写"
     ],
     "difficulty": "easy",
     "category": "职业体验",
@@ -4760,14 +4760,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "much": {
-    "phonetic": "/much/",
+    "phonetic": "/mʌtʃ/",
     "syllables": [
       "mu",
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʌ/音和/tʃ/音",
+      "修饰不可数名词，与many(可数)区分"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4777,14 +4777,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "music": {
-    "phonetic": "/music/",
+    "phonetic": "/ˈmjuːzɪk/",
     "syllables": [
       "mus",
       "ic"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/mj/音和/uː/长音",
+      "不可数名词，练习listen to music、play music等表达"
     ],
     "difficulty": "medium",
     "category": "音乐艺术",
@@ -4794,14 +4794,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "must": {
-    "phonetic": "/must/",
+    "phonetic": "/mʌst/",
     "syllables": [
       "mu",
       "st"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʌ/音，st结尾要清晰",
+      "情态动词表示'必须'，语气强烈，无人称变化"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4811,13 +4811,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "my": {
-    "phonetic": "/my/",
+    "phonetic": "/maɪ/",
     "syllables": [
       "my"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/双元音，与I押韵",
+      "物主代词，表示'我的'，后接名词"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -4827,14 +4827,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "name": {
-    "phonetic": "/name/",
+    "phonetic": "/neɪm/",
     "syllables": [
       "na",
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，与game、same押韵",
+      "既是名词也是动词，练习What's your name?句型"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4844,14 +4844,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "near": {
-    "phonetic": "/near/",
+    "phonetic": "/nɪr/",
     "syllables": [
       "ne",
       "ar"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɪr/音，与here、dear押韵",
+      "介词和形容词，与far相对，练习near to用法"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4861,14 +4861,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "neat": {
-    "phonetic": "/neat/",
+    "phonetic": "/niːt/",
     "syllables": [
       "ne",
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与meet、seat押韵",
+      "形容词，表示'整洁的、干净的'，褒义词"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -4878,14 +4878,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "neck": {
-    "phonetic": "/neck/",
+    "phonetic": "/nek/",
     "syllables": [
       "ne",
       "ck"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/e/音，ck读/k/音",
+      "身体部位名词，练习long neck等表达"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -4895,14 +4895,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👤"
   },
   "need": {
-    "phonetic": "/need/",
+    "phonetic": "/niːd/",
     "syllables": [
       "ne",
       "ed"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，与feed、seed押韵",
+      "动词，表示'需要'，后接名词或to do结构"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4912,14 +4912,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "never": {
-    "phonetic": "/never/",
+    "phonetic": "/ˈnevər/",
     "syllables": [
       "nev",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/e/音和/ər/音",
+      "频度副词，表示'从不'，与always相对"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4929,13 +4929,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "new": {
-    "phonetic": "/new/",
+    "phonetic": "/nuː/",
     "syllables": [
       "new"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/uː/长音，与blue、true押韵",
+      "形容词，与old相对，练习brand new等表达"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -4945,14 +4945,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "next": {
-    "phonetic": "/next/",
+    "phonetic": "/nekst/",
     "syllables": [
       "ne",
       "xt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/e/音，xt连读要清晰",
+      "表示'下一个'，常用next to表示'紧挨着'"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4962,14 +4962,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "nice": {
-    "phonetic": "/nice/",
+    "phonetic": "/naɪs/",
     "syllables": [
       "ni",
       "ce"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/双元音，ce读/s/音",
+      "形容词，表示'好的、友善的'，常用于赞美"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -4979,14 +4979,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "night": {
-    "phonetic": "/night/",
+    "phonetic": "/naɪt/",
     "syllables": [
       "nig",
       "ht"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/双元音，gh不发音",
+      "时间名词，与day相对，练习Good night问候语"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -4996,14 +4996,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "nine": {
-    "phonetic": "/nine/",
+    "phonetic": "/naɪn/",
     "syllables": [
       "ni",
       "ne"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/双元音，与fine、line押韵",
+      "数字9，序数词ninth，练习nine years old表达"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5018,8 +5018,8 @@ const PRIMARY_WORD_DATABASE = {
       "no"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/oʊ/双元音，与go、so押韵",
+      "否定词，与yes相对，也可作形容词'没有的'"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5029,14 +5029,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "noodle": {
-    "phonetic": "/noodle/",
+    "phonetic": "/ˈnuːdəl/",
     "syllables": [
       "no",
       "odle"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/uː/长音和/əl/音",
+      "可数名词，复数noodles，中式食物词汇"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -5046,14 +5046,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "noon": {
-    "phonetic": "/noon/",
+    "phonetic": "/nuːn/",
     "syllables": [
       "no",
       "on"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/uː/长音，与moon、soon押韵",
+      "时间名词，表示'正午12点'，at noon固定搭配"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5063,14 +5063,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "nose": {
-    "phonetic": "/nose/",
+    "phonetic": "/noʊz/",
     "syllables": [
       "no",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/oʊ/双元音，se读/z/音",
+      "身体部位名词，练习big nose、small nose等表达"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -5080,13 +5080,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👤"
   },
   "not": {
-    "phonetic": "/not/",
+    "phonetic": "/nɑːt/",
     "syllables": [
       "not"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɑː/长音，与hot的/ɑ/音区分",
+      "否定副词，常与be动词、助动词连用构成否定"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5101,8 +5101,8 @@ const PRIMARY_WORD_DATABASE = {
       "now"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aʊ/双元音，与how、cow押韵",
+      "时间副词，表示'现在'，常用right now强调"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5112,14 +5112,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "nurse": {
-    "phonetic": "/nurse/",
+    "phonetic": "/nɜːrs/",
     "syllables": [
       "nur",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɜːr/音，与first、work中的音相似",
+      "职业名词，可数，练习male nurse、head nurse等"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -5129,14 +5129,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "o'clock": {
-    "phonetic": "/o'clock/",
+    "phonetic": "/əˈklɑːk/",
     "syllables": [
       "o'clo",
       "ck"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在clock上，o读/ə/音",
+      "时间表达，只用于整点，如three o'clock"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -5146,13 +5146,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "of": {
-    "phonetic": "/of/",
+    "phonetic": "/ʌv/",
     "syllables": [
       "of"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "弱读音/əv/，强读音/ʌv/，f读/v/音",
+      "介词，表示所属关系，用法极其广泛"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5162,13 +5162,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "off": {
-    "phonetic": "/off/",
+    "phonetic": "/ɔːf/",
     "syllables": [
       "off"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɔː/长音，与on相对",
+      "介词/副词，表示'离开、关闭'，turn off常用"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5178,14 +5178,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "often": {
-    "phonetic": "/often/",
+    "phonetic": "/ˈɔːfən/",
     "syllables": [
       "oft",
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，t可以不发音",
+      "频度副词，表示'经常'，位置灵活多变"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5195,13 +5195,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "old": {
-    "phonetic": "/old/",
+    "phonetic": "/oʊld/",
     "syllables": [
       "old"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/oʊ/双元音，与cold、told押韵",
+      "形容词，与new、young相对，询问年龄用How old"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5211,13 +5211,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "on": {
-    "phonetic": "/on/",
+    "phonetic": "/ɑːn/",
     "syllables": [
       "on"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɑː/长音，与off相对",
+      "介词，表示'在...上面'，用法广泛多样"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5227,13 +5227,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "one": {
-    "phonetic": "/one/",
+    "phonetic": "/wʌn/",
     "syllables": [
       "one"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意读音/wʌn/，与won同音，o不发音",
+      "数字1，序数词first，练习one of...结构"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5243,14 +5243,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "open": {
-    "phonetic": "/open/",
+    "phonetic": "/ˈoʊpən/",
     "syllables": [
       "op",
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/oʊ/双元音",
+      "动词/形容词，与close相对，open up常用短语"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5260,13 +5260,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "or": {
-    "phonetic": "/or/",
+    "phonetic": "/ɔːr/",
     "syllables": [
       "or"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɔːr/音，与for、door押韵",
+      "连词，表示选择'或者'，either...or...句型"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5276,13 +5276,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "our": {
-    "phonetic": "/our/",
+    "phonetic": "/aʊr/",
     "syllables": [
       "our"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aʊr/音，与hour同音",
+      "物主代词，表示'我们的'，与ours区分用法"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5292,14 +5292,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "ours": {
-    "phonetic": "/ours/",
+    "phonetic": "/aʊrz/",
     "syllables": [
       "ou",
       "rs"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aʊrz/音，与hours同音",
+      "名词性物主代词，独立使用，不修饰名词"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5309,13 +5309,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "out": {
-    "phonetic": "/out/",
+    "phonetic": "/aʊt/",
     "syllables": [
       "out"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aʊ/双元音，与about、shout押韵",
+      "介词/副词，与in相对，go out常用短语"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5325,14 +5325,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "over": {
-    "phonetic": "/over/",
+    "phonetic": "/ˈoʊvər/",
     "syllables": [
       "ov",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/oʊ/双元音",
+      "介词，表示'在...上方、超过'，用法丰富"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5342,14 +5342,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "panda": {
-    "phonetic": "/panda/",
+    "phonetic": "/ˈpændə/",
     "syllables": [
       "pan",
       "da"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/æ/音",
+      "可数名词，中国国宝，giant panda大熊猫"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -5359,14 +5359,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "paper": {
-    "phonetic": "/paper/",
+    "phonetic": "/ˈpeɪpər/",
     "syllables": [
       "pap",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/eɪ/双元音",
+      "不可数名词，a piece of paper一张纸"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -5376,15 +5376,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "parent": {
-    "phonetic": "/parent/",
+    "phonetic": "/ˈperənt/",
     "syllables": [
       "pa",
       "re",
       "nt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/e/音和/ər/音",
+      "可数名词，常用复数parents，单亲single parent"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -5394,14 +5394,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "park": {
-    "phonetic": "/park/",
+    "phonetic": "/pɑːrk/",
     "syllables": [
       "pa",
       "rk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɑːr/音，与car、far押韵",
+      "名词/动词，公园或停车，theme park主题公园"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -5411,14 +5411,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "party": {
-    "phonetic": "/party/",
+    "phonetic": "/ˈpɑːrti/",
     "syllables": [
       "par",
       "ty"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ɑːr/音",
+      "可数名词，聚会，birthday party生日聚会"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -5428,14 +5428,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "p.e.": {
-    "phonetic": "/p.e./",
+    "phonetic": "/piː iː/",
     "syllables": [
       "p.",
       "e."
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "缩写词，读作/piː iː/，每个字母分别读",
+      "Physical Education体育教育的缩写"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -5450,8 +5450,8 @@ const PRIMARY_WORD_DATABASE = {
       "pen"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/e/音，与ten、hen押韵",
+      "可数名词，钢笔，ball-point pen圆珠笔"
     ],
     "difficulty": "easy",
     "category": "学习用品",
@@ -5461,15 +5461,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "pencil": {
-    "phonetic": "/pencil/",
+    "phonetic": "/ˈpensəl/",
     "syllables": [
       "pe",
       "nci",
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/e/音和/səl/音",
+      "可数名词，铅笔，colored pencil彩色铅笔"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -5479,14 +5479,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "people": {
-    "phonetic": "/people/",
+    "phonetic": "/ˈpiːpəl/",
     "syllables": [
       "pe",
       "ople"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/iː/长音",
+      "集合名词，表示'人们'，单复数同形"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5496,14 +5496,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "photo": {
-    "phonetic": "/photo/",
+    "phonetic": "/ˈfoʊtoʊ/",
     "syllables": [
       "pho",
       "to"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，ph读/f/音",
+      "可数名词，照片，take a photo拍照"
     ],
     "difficulty": "medium",
     "category": "艺术创作",
@@ -5513,14 +5513,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎨"
   },
   "piano": {
-    "phonetic": "/piano/",
+    "phonetic": "/piˈænoʊ/",
     "syllables": [
       "pia",
       "no"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第二音节，注意/æ/音和/oʊ/双元音",
+      "可数名词，乐器，play the piano弹钢琴"
     ],
     "difficulty": "medium",
     "category": "音乐艺术",
@@ -5530,15 +5530,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "picture": {
-    "phonetic": "/picture/",
+    "phonetic": "/ˈpɪktʃər/",
     "syllables": [
       "pi",
       "ctu",
       "re"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ɪ/音和/tʃ/音",
+      "可数名词，图片，draw a picture画画"
     ],
     "difficulty": "hard",
     "category": "艺术创作",
@@ -5548,13 +5548,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎨"
   },
   "pig": {
-    "phonetic": "/pig/",
+    "phonetic": "/pɪɡ/",
     "syllables": [
       "pig"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɪ/音，与big、dig押韵",
+      "可数名词，动物，little pig小猪"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -5564,15 +5564,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "ping-pong": {
-    "phonetic": "/ping-pong/",
+    "phonetic": "/ˈpɪŋ pɔːŋ/",
     "syllables": [
       "pi",
       "ng-po",
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "复合词，两个音节重音相等",
+      "不可数名词，运动项目，也叫table tennis"
     ],
     "difficulty": "advanced",
     "category": "运动健身",
@@ -5582,14 +5582,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "pink": {
-    "phonetic": "/pink/",
+    "phonetic": "/pɪŋk/",
     "syllables": [
       "pi",
       "nk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ɪ/音，nk连读要清晰",
+      "形容词/名词，颜色，light pink浅粉色"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -5599,14 +5599,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌈"
   },
   "place": {
-    "phonetic": "/place/",
+    "phonetic": "/pleɪs/",
     "syllables": [
       "pla",
       "ce"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，ce读/s/音",
+      "名词/动词，地方或放置，take place发生"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5616,14 +5616,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "plane": {
-    "phonetic": "/plane/",
+    "phonetic": "/pleɪn/",
     "syllables": [
       "pla",
       "ne"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，与place发音相似",
+      "可数名词，飞机，by plane乘飞机"
     ],
     "difficulty": "medium",
     "category": "交通工具",
@@ -5633,14 +5633,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "plant": {
-    "phonetic": "/plant/",
+    "phonetic": "/plænt/",
     "syllables": [
       "pla",
       "nt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/æ/音，与can't、hand押韵",
+      "名词/动词，植物或种植，plant trees植树"
     ],
     "difficulty": "medium",
     "category": "植物花卉",
@@ -5650,14 +5650,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌸"
   },
   "play": {
-    "phonetic": "/play/",
+    "phonetic": "/pleɪ/",
     "syllables": [
       "pl",
       "ay"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，与day、way押韵",
+      "动词/名词，玩耍或戏剧，play with和...一起玩"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -5667,15 +5667,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "playground": {
-    "phonetic": "/playground/",
+    "phonetic": "/ˈpleɪɡraʊnd/",
     "syllables": [
       "pla",
       "ygro",
       "und"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "复合词，重音在第一音节play上",
+      "可数名词，操场，school playground学校操场"
     ],
     "difficulty": "advanced",
     "category": "娱乐活动",
@@ -5685,14 +5685,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "please": {
-    "phonetic": "/please/",
+    "phonetic": "/pliːz/",
     "syllables": [
       "ple",
       "ase"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/iː/长音，ase读/iːz/音",
+      "副词，表示'请'，礼貌用语，常用于请求"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5702,14 +5702,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "p.m.": {
-    "phonetic": "/p.m./",
+    "phonetic": "/piː em/",
     "syllables": [
       "p.",
       "m."
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "缩写词，读作/piː em/，每个字母分别读",
+      "Post Meridiem下午的缩写，与a.m.相对"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5719,15 +5719,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "potato": {
-    "phonetic": "/potato/",
+    "phonetic": "/pəˈteɪtoʊ/",
     "syllables": [
       "po",
       "ta",
       "to"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第二音节，注意/eɪ/双元音",
+      "可数名词，复数potatoes，sweet potato红薯"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -5737,14 +5737,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "pretty": {
-    "phonetic": "/pretty/",
+    "phonetic": "/ˈprɪti/",
     "syllables": [
       "pre",
       "tty"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ɪ/音",
+      "形容词/副词，漂亮的或相当地，pretty good很好"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -5754,13 +5754,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "put": {
-    "phonetic": "/put/",
+    "phonetic": "/pʊt/",
     "syllables": [
       "put"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʊ/音，与foot、good押韵",
+      "不规则动词，过去式put，put on穿上"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -5770,15 +5770,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "question": {
-    "phonetic": "/question/",
+    "phonetic": "/ˈkwestʃən/",
     "syllables": [
       "qu",
       "esti",
       "on"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，qu读/kw/音",
+      "可数名词，问题，ask a question问问题"
     ],
     "difficulty": "hard",
     "category": "学习用品",
@@ -5788,14 +5788,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "quiet": {
-    "phonetic": "/quiet/",
+    "phonetic": "/ˈkwaɪət/",
     "syllables": [
       "qui",
       "et"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/aɪ/双元音",
+      "形容词，安静的，与noisy相对，keep quiet保持安静"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -5805,15 +5805,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "rabbit": {
-    "phonetic": "/rabbit/",
+    "phonetic": "/ˈræbɪt/",
     "syllables": [
       "ra",
       "bbi",
       "t"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/æ/音和双写b",
+      "可数名词，动物，white rabbit白兔子"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -5823,14 +5823,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "race": {
-    "phonetic": "/race/",
+    "phonetic": "/reɪs/",
     "syllables": [
       "ra",
       "ce"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，ce读/s/音",
+      "名词/动词，比赛或赛跑，running race跑步比赛"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -5840,14 +5840,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "read": {
-    "phonetic": "/read/",
+    "phonetic": "/riːd/",
     "syllables": [
       "re",
       "ad"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "现在时读/riːd/，过去式读/red/，同形异音",
+      "不规则动词，阅读，read books读书"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -5862,8 +5862,8 @@ const PRIMARY_WORD_DATABASE = {
       "red"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/e/音，与bed、head押韵",
+      "形容词/名词，红色的，traffic light红绿灯"
     ],
     "difficulty": "easy",
     "category": "颜色彩虹",
@@ -5873,14 +5873,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌈"
   },
   "right": {
-    "phonetic": "/right/",
+    "phonetic": "/raɪt/",
     "syllables": [
       "rig",
       "ht"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/aɪ/双元音，gh不发音，与write同音",
+      "形容词/副词/名词，正确的、右边的，turn right右转"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -5890,14 +5890,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "river": {
-    "phonetic": "/river/",
+    "phonetic": "/ˈrɪvər/",
     "syllables": [
       "riv",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/ɪ/音和/ər/音",
+      "可数名词，河流，Yellow River黄河"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -5907,14 +5907,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "robot": {
-    "phonetic": "/robot/",
+    "phonetic": "/ˈroʊbɑːt/",
     "syllables": [
       "rob",
       "ot"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/oʊ/双元音",
+      "可数名词，机器人，AI robot人工智能机器人"
     ],
     "difficulty": "medium",
     "category": "科学探索",
@@ -5924,14 +5924,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🔬"
   },
   "room": {
-    "phonetic": "/room/",
+    "phonetic": "/ruːm/",
     "syllables": [
       "ro",
       "om"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/uː/长音，与moon、soon押韵",
+      "可数名词，房间，living room客厅"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -5941,14 +5941,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "ruler": {
-    "phonetic": "/ruler/",
+    "phonetic": "/ˈruːlər/",
     "syllables": [
       "rul",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "重音在第一音节，注意/uː/长音",
+      "可数名词，尺子或统治者，plastic ruler塑料尺"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -5958,13 +5958,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "run": {
-    "phonetic": "/run/",
+    "phonetic": "/rʌn/",
     "syllables": [
       "run"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/ʌ/音，与sun、fun押韵",
+      "不规则动词，过去式ran，run fast跑得快"
     ],
     "difficulty": "easy",
     "category": "运动健身",
@@ -5974,13 +5974,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "sad": {
-    "phonetic": "/sad/",
+    "phonetic": "/sæd/",
     "syllables": [
       "sad"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/æ/音，与bad、had押韵",
+      "形容词，悲伤的，与happy相对，feel sad感到悲伤"
     ],
     "difficulty": "easy",
     "category": "情感表达",
@@ -5990,14 +5990,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "safe": {
-    "phonetic": "/safe/",
+    "phonetic": "/seɪf/",
     "syllables": [
       "sa",
       "fe"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "注意/eɪ/双元音，与same、name押韵",
+      "形容词，安全的，与dangerous相对，stay safe保持安全"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -6013,8 +6013,8 @@ const PRIMARY_WORD_DATABASE = {
       "ol"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，学校，注意/uː/长音发音，go to school上学",
+      "复合词：high school高中，primary school小学"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -6024,15 +6024,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "schoolbag": {
-    "phonetic": "/schoolbag/",
+    "phonetic": "/ˈskuːlbæɡ/",
     "syllables": [
-      "scho",
-      "olba",
-      "g"
+      "school",
+      "bag"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "复合名词，书包，由school+bag组成，重音在第一音节",
+      "同义词：backpack背包，carry a schoolbag背书包"
     ],
     "difficulty": "advanced",
     "category": "学习用品",
@@ -6042,14 +6041,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "science": {
-    "phonetic": "/science/",
+    "phonetic": "/ˈsaɪəns/",
     "syllables": [
       "sci",
       "ence"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，科学，注意/aɪ/双元音发音，不可数名词",
+      "相关词：scientist科学家，scientific科学的"
     ],
     "difficulty": "hard",
     "category": "科学探索",
@@ -6059,13 +6058,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🔬"
   },
   "sea": {
-    "phonetic": "/sea/",
+    "phonetic": "/siː/",
     "syllables": [
       "sea"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，大海，注意/iː/长音发音，与see同音",
+      "短语：by the sea在海边，at sea在海上"
     ],
     "difficulty": "easy",
     "category": "自然景观",
@@ -6075,15 +6074,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "season": {
-    "phonetic": "/season/",
+    "phonetic": "/ˈsiːzən/",
     "syllables": [
-      "se",
-      "aso",
-      "n"
+      "sea",
+      "son"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，季节，重音在第一音节，四季：spring/summer/autumn/winter",
+      "短语：in season当季的，rainy season雨季"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -6093,13 +6091,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "see": {
-    "phonetic": "/see/",
+    "phonetic": "/siː/",
     "syllables": [
       "see"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，看见，注意/iː/长音发音，与sea同音",
+      "不规则动词：see-saw-seen，see you later再见"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -6109,14 +6107,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "sell": {
-    "phonetic": "/sell/",
+    "phonetic": "/sel/",
     "syllables": [
-      "se",
-      "ll"
+      "sell"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，卖，注意双写ll，不规则动词：sell-sold-sold",
+      "反义词：buy买，短语：sell out卖完，for sale待售"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -6126,16 +6123,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "september": {
-    "phonetic": "/september/",
+    "phonetic": "/sepˈtembər/",
     "syllables": [
-      "se",
-      "pte",
-      "mbe",
-      "r"
+      "Sep",
+      "tem",
+      "ber"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，九月，重音在第二音节，首字母大写September",
+      "缩写：Sep.，in September在九月"
     ],
     "difficulty": "advanced",
     "category": "基础词汇",
@@ -6145,14 +6141,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "seven": {
-    "phonetic": "/seven/",
+    "phonetic": "/ˈsevən/",
     "syllables": [
       "sev",
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "数词，七，重音在第一音节，序数词：seventh第七",
+      "相关词：seventeen十七，seventy七十"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6162,13 +6158,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "she": {
-    "phonetic": "/she/",
+    "phonetic": "/ʃiː/",
     "syllables": [
       "she"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "代词，她，注意/ʃ/音和/iː/长音，主格形式",
+      "宾格：her她，所有格：her她的，hers她的(名词性)"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -6178,14 +6174,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "sheep": {
-    "phonetic": "/sheep/",
+    "phonetic": "/ʃiːp/",
     "syllables": [
-      "she",
-      "ep"
+      "sheep"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，羊，单复数同形：one sheep, two sheep",
+      "相关词：lamb小羊羔，wool羊毛，shepherd牧羊人"
     ],
     "difficulty": "medium",
     "category": "动物世界",
@@ -6195,14 +6190,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🐾"
   },
   "ship": {
-    "phonetic": "/ship/",
+    "phonetic": "/ʃɪp/",
     "syllables": [
-      "sh",
-      "ip"
+      "ship"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，船，注意/ʃ/音和短音/ɪ/，与sheep发音不同",
+      "相关词：by ship乘船，spaceship宇宙飞船"
     ],
     "difficulty": "medium",
     "category": "交通工具",
@@ -6212,14 +6206,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "shirt": {
-    "phonetic": "/shirt/",
+    "phonetic": "/ʃɜːrt/",
     "syllables": [
-      "shi",
-      "rt"
+      "shirt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，衬衫，注意/ɜːr/音，T-shirt T恤衫",
+      "短语：put on a shirt穿衬衫，long-sleeved shirt长袖衬衫"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -6229,14 +6222,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "shoe": {
-    "phonetic": "/shoe/",
+    "phonetic": "/ʃuː/",
     "syllables": [
-      "sh",
-      "oe"
+      "shoe"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，鞋子，注意/uː/长音，通常用复数shoes",
+      "短语：a pair of shoes一双鞋，put on shoes穿鞋"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -6246,14 +6238,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "shop": {
-    "phonetic": "/shop/",
+    "phonetic": "/ʃɒp/",
     "syllables": [
-      "sh",
-      "op"
+      "shop"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词/动词，商店/购物，go shopping去购物",
+      "复合词：bookshop书店，workshop工作坊"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -6263,14 +6254,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "short": {
-    "phonetic": "/short/",
+    "phonetic": "/ʃɔːrt/",
     "syllables": [
-      "sho",
-      "rt"
+      "short"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，短的，反义词：long长的，tall高的",
+      "短语：short hair短发，in short简而言之"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6280,14 +6270,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "should": {
-    "phonetic": "/should/",
+    "phonetic": "/ʃʊd/",
     "syllables": [
-      "sho",
-      "uld"
+      "should"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "情态动词，应该，注意/ʊ/音，后接动词原形",
+      "用法：You should study hard.你应该努力学习"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6297,14 +6286,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "show": {
-    "phonetic": "/show/",
+    "phonetic": "/ʃoʊ/",
     "syllables": [
-      "sh",
-      "ow"
+      "show"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词/名词，展示/表演，注意/oʊ/双元音发音",
+      "不规则动词：show-showed-shown，TV show电视节目"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -6314,14 +6302,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "sick": {
-    "phonetic": "/sick/",
+    "phonetic": "/sɪk/",
     "syllables": [
-      "si",
-      "ck"
+      "sick"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，生病的，注意/ɪ/短音，be sick生病",
+      "同义词：ill生病的，短语：feel sick感觉不舒服"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -6331,14 +6318,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "sing": {
-    "phonetic": "/sing/",
+    "phonetic": "/sɪŋ/",
     "syllables": [
-      "si",
-      "ng"
+      "sing"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，唱歌，注意/ŋ/鼻音，不规则动词：sing-sang-sung",
+      "相关词：singer歌手，song歌曲，sing a song唱歌"
     ],
     "difficulty": "medium",
     "category": "音乐艺术",
@@ -6348,15 +6334,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "sister": {
-    "phonetic": "/sister/",
+    "phonetic": "/ˈsɪstər/",
     "syllables": [
-      "si",
-      "ste",
-      "r"
+      "sis",
+      "ter"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，姐妹，重音在第一音节，对应词：brother兄弟",
+      "短语：big sister姐姐，little sister妹妹"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -6366,13 +6351,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "sit": {
-    "phonetic": "/sit/",
+    "phonetic": "/sɪt/",
     "syllables": [
       "sit"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，坐，注意/ɪ/短音，过去式：sat",
+      "短语：sit down坐下，sit up坐直"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -6382,13 +6367,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "six": {
-    "phonetic": "/six/",
+    "phonetic": "/sɪks/",
     "syllables": [
       "six"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "数词，六，注意/ks/音，序数词：sixth第六",
+      "相关词：sixteen十六，sixty六十"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -6398,14 +6383,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "skirt": {
-    "phonetic": "/skirt/",
+    "phonetic": "/skɜːrt/",
     "syllables": [
-      "ski",
-      "rt"
+      "skirt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，裙子，注意/ɜːr/音，女性服装",
+      "短语：a long skirt长裙，wear a skirt穿裙子"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -6415,14 +6399,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "sleep": {
-    "phonetic": "/sleep/",
+    "phonetic": "/sliːp/",
     "syllables": [
-      "sle",
-      "ep"
+      "sleep"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词/名词，睡觉/睡眠，注意/iː/长音，不规则动词：sleep-slept-slept",
+      "短语：go to sleep去睡觉，have a good sleep睡个好觉"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6432,14 +6415,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "small": {
-    "phonetic": "/small/",
+    "phonetic": "/smɔːl/",
     "syllables": [
-      "sma",
-      "ll"
+      "small"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，小的，注意双写ll，反义词：big大的，large大的",
+      "比较级：smaller更小的，最高级：smallest最小的"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6449,14 +6431,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "snack": {
-    "phonetic": "/snack/",
+    "phonetic": "/snæk/",
     "syllables": [
-      "sna",
-      "ck"
+      "snack"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，零食/点心，注意/æ/音，have a snack吃零食",
+      "相关词：snack bar小吃店，healthy snack健康零食"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -6466,13 +6447,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "so": {
-    "phonetic": "/so/",
+    "phonetic": "/soʊ/",
     "syllables": [
       "so"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "副词/连词，如此/所以，注意/oʊ/双元音发音",
+      "用法：so big如此大，so...that如此...以至于"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -6482,14 +6463,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "some": {
-    "phonetic": "/some/",
+    "phonetic": "/sʌm/",
     "syllables": [
-      "so",
-      "me"
+      "some"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "限定词，一些，注意/ʌ/音，用于肯定句和疑问句",
+      "对应词：any任何(否定句)，some books一些书"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6499,17 +6479,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "sometimes": {
-    "phonetic": "/sometimes/",
+    "phonetic": "/ˈsʌmtaɪmz/",
     "syllables": [
-      "so",
-      "me",
-      "ti",
-      "me",
-      "s"
+      "some",
+      "times"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "副词，有时候，由some+times组成，重音在第一音节",
+      "频率副词：always总是，usually通常，sometimes有时，never从不"
     ],
     "difficulty": "advanced",
     "category": "基础词汇",
@@ -6519,14 +6496,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "song": {
-    "phonetic": "/song/",
+    "phonetic": "/sɔːŋ/",
     "syllables": [
-      "so",
-      "ng"
+      "song"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，歌曲，注意/ŋ/鼻音结尾，与sing动词相关",
+      "短语：sing a song唱歌，pop song流行歌曲"
     ],
     "difficulty": "medium",
     "category": "音乐艺术",
@@ -6536,14 +6512,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎵"
   },
   "sorry": {
-    "phonetic": "/sorry/",
+    "phonetic": "/ˈsɑːri/",
     "syllables": [
       "sor",
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词/感叹词，对不起/抱歉，重音在第一音节",
+      "用法：I'm sorry对不起，sorry for迟到等道歉表达"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -6553,14 +6529,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "soup": {
-    "phonetic": "/soup/",
+    "phonetic": "/suːp/",
     "syllables": [
-      "so",
-      "up"
+      "soup"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，汤，注意/uː/长音，不可数名词",
+      "短语：chicken soup鸡汤，have soup喝汤"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -6570,14 +6545,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "space": {
-    "phonetic": "/space/",
+    "phonetic": "/speɪs/",
     "syllables": [
-      "spa",
-      "ce"
+      "space"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，空间/太空，注意/eɪ/双元音发音",
+      "短语：outer space外太空，make space腾出空间"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6587,14 +6561,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "speak": {
-    "phonetic": "/speak/",
+    "phonetic": "/spiːk/",
     "syllables": [
-      "spe",
-      "ak"
+      "speak"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，说话，注意/iː/长音，不规则动词：speak-spoke-spoken",
+      "短语：speak English说英语，speak to与...说话"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6604,14 +6577,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "sport": {
-    "phonetic": "/sport/",
+    "phonetic": "/spɔːrt/",
     "syllables": [
-      "spo",
-      "rt"
+      "sport"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，运动，注意/ɔːr/音，复数sports体育运动",
+      "短语：do sports做运动，sports car跑车"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -6621,14 +6593,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "spring": {
-    "phonetic": "/spring/",
+    "phonetic": "/sprɪŋ/",
     "syllables": [
-      "spri",
-      "ng"
+      "spring"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，春天，注意/spr/辅音群和/ŋ/鼻音结尾",
+      "四季之一：spring春天，summer夏天，autumn秋天，winter冬天"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -6638,14 +6609,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "stand": {
-    "phonetic": "/stand/",
+    "phonetic": "/stænd/",
     "syllables": [
-      "sta",
-      "nd"
+      "stand"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，站立，注意/æ/音，不规则动词：stand-stood-stood",
+      "短语：stand up起立，stand by等待，反义词：sit坐"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6655,14 +6625,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "star": {
-    "phonetic": "/star/",
+    "phonetic": "/stɑːr/",
     "syllables": [
-      "st",
-      "ar"
+      "star"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，星星/明星，注意/ɑːr/音，复数stars",
+      "短语：movie star电影明星，shooting star流星"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -6672,14 +6641,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "start": {
-    "phonetic": "/start/",
+    "phonetic": "/stɑːrt/",
     "syllables": [
-      "sta",
-      "rt"
+      "start"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词/名词，开始，注意/ɑːr/音，反义词：finish结束",
+      "短语：start to do开始做，at the start在开始时"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6689,15 +6657,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "station": {
-    "phonetic": "/station/",
+    "phonetic": "/ˈsteɪʃən/",
     "syllables": [
       "sta",
-      "ti",
-      "on"
+      "tion"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，车站，重音在第一音节，注意/eɪ/和/ʃən/音",
+      "复合词：train station火车站，bus station汽车站"
     ],
     "difficulty": "hard",
     "category": "交通工具",
@@ -6707,14 +6674,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "stay": {
-    "phonetic": "/stay/",
+    "phonetic": "/steɪ/",
     "syllables": [
-      "st",
-      "ay"
+      "stay"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词，停留/保持，注意/eɪ/双元音发音",
+      "短语：stay at home待在家，stay healthy保持健康"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6726,12 +6692,11 @@ const PRIMARY_WORD_DATABASE = {
   "step": {
     "phonetic": "/step/",
     "syllables": [
-      "st",
-      "ep"
+      "step"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词/动词，步骤/踏步，注意/e/短音",
+      "短语：step by step一步一步，take a step迈一步"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6741,14 +6706,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "still": {
-    "phonetic": "/still/",
+    "phonetic": "/stɪl/",
     "syllables": [
-      "sti",
-      "ll"
+      "still"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "副词/形容词，仍然/静止的，注意双写ll",
+      "用法：still hungry仍然饿，keep still保持静止"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6758,14 +6722,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "story": {
-    "phonetic": "/story/",
+    "phonetic": "/ˈstɔːri/",
     "syllables": [
       "sto",
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，故事，重音在第一音节，复数stories",
+      "短语：tell a story讲故事，fairy story童话故事"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -6775,14 +6739,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "street": {
-    "phonetic": "/street/",
+    "phonetic": "/striːt/",
     "syllables": [
-      "stre",
-      "et"
+      "street"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，街道，注意/iː/长音，与road路的区别",
+      "短语：on the street在街上，main street主街道"
     ],
     "difficulty": "medium",
     "category": "世界地理",
@@ -6792,14 +6755,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌍"
   },
   "strong": {
-    "phonetic": "/strong/",
+    "phonetic": "/strɔːŋ/",
     "syllables": [
-      "stro",
-      "ng"
+      "strong"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "形容词，强壮的，注意/ŋ/鼻音结尾，反义词：weak弱的",
+      "比较级：stronger更强，最高级：strongest最强"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -6809,15 +6771,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "student": {
-    "phonetic": "/student/",
+    "phonetic": "/ˈstuːdənt/",
     "syllables": [
       "stu",
-      "de",
-      "nt"
+      "dent"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，学生，重音在第一音节，注意/uː/长音",
+      "相关词：study学习，teacher老师，school学校"
     ],
     "difficulty": "hard",
     "category": "职业体验",
@@ -6827,14 +6788,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "💼"
   },
   "study": {
-    "phonetic": "/study/",
+    "phonetic": "/ˈstʌdi/",
     "syllables": [
       "stu",
       "dy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "动词/名词，学习/研究，重音在第一音节，注意/ʌ/音",
+      "相关词：student学生，studies复数，study hard努力学习"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -6844,15 +6805,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "subject": {
-    "phonetic": "/subject/",
+    "phonetic": "/ˈsʌbdʒɪkt/",
     "syllables": [
-      "su",
-      "bje",
-      "ct"
+      "sub",
+      "ject"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，科目/主题，重音在第一音节，注意/dʒ/音",
+      "学科：math数学，English英语，science科学等"
     ],
     "difficulty": "hard",
     "category": "学习用品",
@@ -6862,15 +6822,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📚"
   },
   "summer": {
-    "phonetic": "/summer/",
+    "phonetic": "/ˈsʌmər/",
     "syllables": [
-      "su",
-      "mme",
-      "r"
+      "sum",
+      "mer"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，夏天，重音在第一音节，注意双写mm",
+      "四季之一，短语：summer vacation暑假，in summer在夏天"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -6880,13 +6839,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "sun": {
-    "phonetic": "/sun/",
+    "phonetic": "/sʌn/",
     "syllables": [
       "sun"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，太阳，注意/ʌ/音，与son儿子同音",
+      "短语：in the sun在阳光下，sunrise日出，sunset日落"
     ],
     "difficulty": "easy",
     "category": "自然景观",
@@ -6896,15 +6855,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "sunday": {
-    "phonetic": "/sunday/",
+    "phonetic": "/ˈsʌndeɪ/",
     "syllables": [
-      "su",
-      "nda",
-      "y"
+      "Sun",
+      "day"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，星期日，由sun+day组成，首字母大写Sunday",
+      "一周七天：Sunday-Saturday，on Sunday在星期日"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -6914,17 +6872,16 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "supermarket": {
-    "phonetic": "/supermarket/",
+    "phonetic": "/ˈsuːpərmɑːrkɪt/",
     "syllables": [
       "su",
-      "pe",
-      "rma",
-      "rke",
-      "t"
+      "per",
+      "mar",
+      "ket"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "名词，超市，由super+market组成，重音在第一音节",
+      "同义词：grocery store杂货店，go to the supermarket去超市"
     ],
     "difficulty": "advanced",
     "category": "职业体验",
@@ -6941,8 +6898,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "家庭用品",
@@ -6958,8 +6915,8 @@ const PRIMARY_WORD_DATABASE = {
       "ep"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -6975,8 +6932,8 @@ const PRIMARY_WORD_DATABASE = {
       "im"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -6986,14 +6943,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "table": {
-    "phonetic": "/table/",
+    "phonetic": "/ˈteɪbəl/",
     "syllables": [
       "tab",
       "le"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -7003,14 +6960,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "tail": {
-    "phonetic": "/tail/",
+    "phonetic": "/teɪl/",
     "syllables": [
       "ta",
       "il"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "身体部位",
@@ -7020,14 +6977,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👤"
   },
   "take": {
-    "phonetic": "/take/",
+    "phonetic": "/teɪk/",
     "syllables": [
       "ta",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7037,14 +6994,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "talk": {
-    "phonetic": "/talk/",
+    "phonetic": "/tɔːk/",
     "syllables": [
       "ta",
       "lk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7054,14 +7011,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "taxi": {
-    "phonetic": "/taxi/",
+    "phonetic": "/ˈtæksi/",
     "syllables": [
       "ta",
       "xi"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "交通工具",
@@ -7071,13 +7028,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "tea": {
-    "phonetic": "/tea/",
+    "phonetic": "/tiː/",
     "syllables": [
       "tea"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "美食天地",
@@ -7087,14 +7044,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "teach": {
-    "phonetic": "/teach/",
+    "phonetic": "/tiːtʃ/",
     "syllables": [
       "tea",
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -7111,8 +7068,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "职业体验",
@@ -7128,8 +7085,8 @@ const PRIMARY_WORD_DATABASE = {
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7144,8 +7101,8 @@ const PRIMARY_WORD_DATABASE = {
       "ten"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7155,14 +7112,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "thank": {
-    "phonetic": "/thank/",
+    "phonetic": "/θæŋk/",
     "syllables": [
       "tha",
       "nk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7172,14 +7129,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "that": {
-    "phonetic": "/that/",
+    "phonetic": "/ðæt/",
     "syllables": [
       "th",
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7189,13 +7146,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "the": {
-    "phonetic": "/the/",
+    "phonetic": "/ðə/",
     "syllables": [
       "the"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7205,14 +7162,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "their": {
-    "phonetic": "/their/",
+    "phonetic": "/ðer/",
     "syllables": [
       "the",
       "ir"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7222,14 +7179,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "theirs": {
-    "phonetic": "/theirs/",
+    "phonetic": "/ðerz/",
     "syllables": [
       "the",
       "irs"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7239,14 +7196,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "them": {
-    "phonetic": "/them/",
+    "phonetic": "/ðem/",
     "syllables": [
       "th",
       "em"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7256,14 +7213,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "then": {
-    "phonetic": "/then/",
+    "phonetic": "/ðen/",
     "syllables": [
       "th",
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7273,14 +7230,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "there": {
-    "phonetic": "/there/",
+    "phonetic": "/ðer/",
     "syllables": [
       "the",
       "re"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7290,14 +7247,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "these": {
-    "phonetic": "/these/",
+    "phonetic": "/ðiːz/",
     "syllables": [
       "the",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7307,14 +7264,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "they": {
-    "phonetic": "/they/",
+    "phonetic": "/ðeɪ/",
     "syllables": [
       "th",
       "ey"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7324,14 +7281,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "thin": {
-    "phonetic": "/thin/",
+    "phonetic": "/θɪn/",
     "syllables": [
       "th",
       "in"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7341,14 +7298,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "thing": {
-    "phonetic": "/thing/",
+    "phonetic": "/θɪŋ/",
     "syllables": [
       "thi",
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7358,14 +7315,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "think": {
-    "phonetic": "/think/",
+    "phonetic": "/θɪŋk/",
     "syllables": [
       "thi",
       "nk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7375,14 +7332,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "this": {
-    "phonetic": "/this/",
+    "phonetic": "/ðɪs/",
     "syllables": [
       "th",
       "is"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7392,14 +7349,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "those": {
-    "phonetic": "/those/",
+    "phonetic": "/ðoʊz/",
     "syllables": [
       "tho",
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7409,14 +7366,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "three": {
-    "phonetic": "/three/",
+    "phonetic": "/θriː/",
     "syllables": [
       "thr",
       "ee"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7426,14 +7383,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "time": {
-    "phonetic": "/time/",
+    "phonetic": "/taɪm/",
     "syllables": [
       "ti",
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7443,14 +7400,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "tired": {
-    "phonetic": "/tired/",
+    "phonetic": "/ˈtaɪərd/",
     "syllables": [
       "tir",
       "ed"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -7460,13 +7417,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "to": {
-    "phonetic": "/to/",
+    "phonetic": "/tuː/",
     "syllables": [
       "to"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7476,14 +7433,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "today": {
-    "phonetic": "/today/",
+    "phonetic": "/təˈdeɪ/",
     "syllables": [
       "tod",
       "ay"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7493,15 +7450,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "tomato": {
-    "phonetic": "/tomato/",
+    "phonetic": "/təˈmeɪtoʊ/",
     "syllables": [
       "to",
       "ma",
       "to"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -7511,7 +7468,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "tomorrow": {
-    "phonetic": "/tomorrow/",
+    "phonetic": "/təˈmɑːroʊ/",
     "syllables": [
       "to",
       "mo",
@@ -7519,8 +7476,8 @@ const PRIMARY_WORD_DATABASE = {
       "w"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -7530,13 +7487,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "too": {
-    "phonetic": "/too/",
+    "phonetic": "/tuː/",
     "syllables": [
       "too"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7546,13 +7503,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "toy": {
-    "phonetic": "/toy/",
+    "phonetic": "/tɔɪ/",
     "syllables": [
       "toy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "娱乐活动",
@@ -7562,14 +7519,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "train": {
-    "phonetic": "/train/",
+    "phonetic": "/treɪn/",
     "syllables": [
       "tra",
       "in"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "交通工具",
@@ -7579,15 +7536,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🚗"
   },
   "travel": {
-    "phonetic": "/travel/",
+    "phonetic": "/ˈtrævəl/",
     "syllables": [
       "tra",
       "ve",
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -7597,14 +7554,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "tree": {
-    "phonetic": "/tree/",
+    "phonetic": "/triː/",
     "syllables": [
       "tr",
       "ee"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "植物花卉",
@@ -7614,15 +7571,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌸"
   },
   "trousers": {
-    "phonetic": "/trousers/",
+    "phonetic": "/ˈtraʊzərz/",
     "syllables": [
       "tro",
       "use",
       "rs"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "家庭用品",
@@ -7632,13 +7589,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "try": {
-    "phonetic": "/try/",
+    "phonetic": "/traɪ/",
     "syllables": [
       "try"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7648,14 +7605,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "turn": {
-    "phonetic": "/turn/",
+    "phonetic": "/tɜːrn/",
     "syllables": [
       "tu",
       "rn"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7665,13 +7622,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "tv": {
-    "phonetic": "/tv/",
+    "phonetic": "/ˈtiːˈviː/",
     "syllables": [
       "tv"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "娱乐活动",
@@ -7681,14 +7638,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "umbrella": {
-    "phonetic": "/umbrella/",
+    "phonetic": "/ʌmˈbrelə/",
     "syllables": [
       "umbre",
       "lla"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "家庭用品",
@@ -7698,14 +7655,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "uncle": {
-    "phonetic": "/uncle/",
+    "phonetic": "/ˈʌŋkəl/",
     "syllables": [
       "unc",
       "le"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -7715,14 +7672,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "👨‍👩‍👧‍👦"
   },
   "under": {
-    "phonetic": "/under/",
+    "phonetic": "/ˈʌndər/",
     "syllables": [
       "und",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7732,13 +7689,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "up": {
-    "phonetic": "/up/",
+    "phonetic": "/ʌp/",
     "syllables": [
       "up"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7748,13 +7705,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "us": {
-    "phonetic": "/us/",
+    "phonetic": "/ʌs/",
     "syllables": [
       "us"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7764,13 +7721,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "use": {
-    "phonetic": "/use/",
+    "phonetic": "/juːz/",
     "syllables": [
       "use"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -7780,7 +7737,7 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "vegetable": {
-    "phonetic": "/vegetable/",
+    "phonetic": "/ˈved͡ʒtəbəl/",
     "syllables": [
       "ve",
       "ge",
@@ -7788,8 +7745,8 @@ const PRIMARY_WORD_DATABASE = {
       "ble"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "advanced",
     "category": "美食天地",
@@ -7799,14 +7756,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "very": {
-    "phonetic": "/very/",
+    "phonetic": "/ˈveri/",
     "syllables": [
       "ve",
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7816,14 +7773,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "visit": {
-    "phonetic": "/visit/",
+    "phonetic": "/ˈvɪzɪt/",
     "syllables": [
       "vis",
       "it"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -7833,14 +7790,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "wait": {
-    "phonetic": "/wait/",
+    "phonetic": "/weɪt/",
     "syllables": [
       "wa",
       "it"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7850,14 +7807,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "wake": {
-    "phonetic": "/wake/",
+    "phonetic": "/weɪk/",
     "syllables": [
       "wa",
       "ke"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7867,14 +7824,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "walk": {
-    "phonetic": "/walk/",
+    "phonetic": "/wɔːk/",
     "syllables": [
       "wa",
       "lk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "运动健身",
@@ -7884,14 +7841,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "⚽"
   },
   "wall": {
-    "phonetic": "/wall/",
+    "phonetic": "/wɔːl/",
     "syllables": [
       "wa",
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -7901,14 +7858,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "want": {
-    "phonetic": "/want/",
+    "phonetic": "/wɑːnt/",
     "syllables": [
       "wa",
       "nt"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -7918,14 +7875,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "😊"
   },
   "warm": {
-    "phonetic": "/warm/",
+    "phonetic": "/wɔːrm/",
     "syllables": [
       "wa",
       "rm"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -7935,14 +7892,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "wash": {
-    "phonetic": "/wash/",
+    "phonetic": "/wɑːʃ/",
     "syllables": [
       "wa",
       "sh"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -7952,14 +7909,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "watch": {
-    "phonetic": "/watch/",
+    "phonetic": "/wɑːtʃ/",
     "syllables": [
       "wat",
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "娱乐活动",
@@ -7969,14 +7926,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🎮"
   },
   "water": {
-    "phonetic": "/water/",
+    "phonetic": "/ˈwɔːtər/",
     "syllables": [
       "wat",
       "er"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "美食天地",
@@ -7986,13 +7943,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🍎"
   },
   "way": {
-    "phonetic": "/way/",
+    "phonetic": "/weɪ/",
     "syllables": [
       "way"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -8002,13 +7959,13 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "we": {
-    "phonetic": "/we/",
+    "phonetic": "/wiː/",
     "syllables": [
       "we"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -8018,14 +7975,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "wear": {
-    "phonetic": "/wear/",
+    "phonetic": "/wer/",
     "syllables": [
       "we",
       "ar"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -8035,15 +7992,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🏠"
   },
   "weather": {
-    "phonetic": "/weather/",
+    "phonetic": "/ˈweðər/",
     "syllables": [
       "we",
       "athe",
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "自然景观",
@@ -8053,14 +8010,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "🌳"
   },
   "week": {
-    "phonetic": "/week/",
+    "phonetic": "/wiːk/",
     "syllables": [
       "we",
       "ek"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8070,15 +8027,15 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "welcome": {
-    "phonetic": "/welcome/",
+    "phonetic": "/ˈwelkəm/",
     "syllables": [
       "we",
       "lco",
       "me"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "hard",
     "category": "基础词汇",
@@ -8088,14 +8045,14 @@ const PRIMARY_WORD_DATABASE = {
     "image": "📝"
   },
   "well": {
-    "phonetic": "/well/",
+    "phonetic": "/wel/",
     "syllables": [
       "we",
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -8111,8 +8068,8 @@ const PRIMARY_WORD_DATABASE = {
       "at"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8128,8 +8085,8 @@ const PRIMARY_WORD_DATABASE = {
       "en"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8145,8 +8102,8 @@ const PRIMARY_WORD_DATABASE = {
       "re"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8162,8 +8119,8 @@ const PRIMARY_WORD_DATABASE = {
       "ch"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8179,8 +8136,8 @@ const PRIMARY_WORD_DATABASE = {
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -8195,8 +8152,8 @@ const PRIMARY_WORD_DATABASE = {
       "who"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -8212,8 +8169,8 @@ const PRIMARY_WORD_DATABASE = {
       "se"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8228,8 +8185,8 @@ const PRIMARY_WORD_DATABASE = {
       "why"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -8245,8 +8202,8 @@ const PRIMARY_WORD_DATABASE = {
       "ll"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8262,8 +8219,8 @@ const PRIMARY_WORD_DATABASE = {
       "nd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -8280,8 +8237,8 @@ const PRIMARY_WORD_DATABASE = {
       "w"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭用品",
@@ -8297,8 +8254,8 @@ const PRIMARY_WORD_DATABASE = {
       "dy"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -8315,8 +8272,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "自然景观",
@@ -8332,8 +8289,8 @@ const PRIMARY_WORD_DATABASE = {
       "th"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8349,8 +8306,8 @@ const PRIMARY_WORD_DATABASE = {
       "an"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "家庭成员",
@@ -8368,8 +8325,8 @@ const PRIMARY_WORD_DATABASE = {
       "l"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "advanced",
     "category": "情感表达",
@@ -8385,8 +8342,8 @@ const PRIMARY_WORD_DATABASE = {
       "rd"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -8402,8 +8359,8 @@ const PRIMARY_WORD_DATABASE = {
       "rk"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -8420,8 +8377,8 @@ const PRIMARY_WORD_DATABASE = {
       "r"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "职业体验",
@@ -8437,8 +8394,8 @@ const PRIMARY_WORD_DATABASE = {
       "ld"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "世界地理",
@@ -8454,8 +8411,8 @@ const PRIMARY_WORD_DATABASE = {
       "ry"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -8471,8 +8428,8 @@ const PRIMARY_WORD_DATABASE = {
       "te"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "学习用品",
@@ -8488,8 +8445,8 @@ const PRIMARY_WORD_DATABASE = {
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "情感表达",
@@ -8505,8 +8462,8 @@ const PRIMARY_WORD_DATABASE = {
       "ar"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8523,8 +8480,8 @@ const PRIMARY_WORD_DATABASE = {
       "w"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "颜色彩虹",
@@ -8539,8 +8496,8 @@ const PRIMARY_WORD_DATABASE = {
       "yes"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -8558,8 +8515,8 @@ const PRIMARY_WORD_DATABASE = {
       "y"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "advanced",
     "category": "基础词汇",
@@ -8574,8 +8531,8 @@ const PRIMARY_WORD_DATABASE = {
       "you"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "基础词汇",
@@ -8591,8 +8548,8 @@ const PRIMARY_WORD_DATABASE = {
       "ng"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8608,8 +8565,8 @@ const PRIMARY_WORD_DATABASE = {
       "ur"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "medium",
     "category": "基础词汇",
@@ -8624,8 +8581,8 @@ const PRIMARY_WORD_DATABASE = {
       "zoo"
     ],
     "tips": [
-      "注意发音清晰",
-      "注意重音位置"
+      "掌握正确发音，多听多练",
+      "注意音标和重音，提高口语流利度"
     ],
     "difficulty": "easy",
     "category": "动物世界",
@@ -8797,26 +8754,26 @@ function getAllPrimaryWords() {
  */
 function getLevelConfiguration(level) {
   const configs = {
-    1: { theme: '基础入门', description: '最简单的英语单词', icon: '🌟', targetWords: 12, difficulty: 'easy', categories: ['基础词汇'] },
-    2: { theme: '日常问候', description: '打招呼和基本交流', icon: '👋', targetWords: 12, difficulty: 'easy', categories: ['基础词汇', '情感表达'] },
-    3: { theme: '家庭成员', description: '家人称呼', icon: '👨‍👩‍👧‍👦', targetWords: 12, difficulty: 'easy', categories: ['家庭成员', '基础词汇'] },
-    4: { theme: '动物世界', description: '常见动物名称', icon: '🐾', targetWords: 13, difficulty: 'easy', categories: ['动物世界', '基础词汇'] },
-    5: { theme: '颜色彩虹', description: '基本颜色词汇', icon: '🌈', targetWords: 13, difficulty: 'easy', categories: ['颜色彩虹', '基础词汇'] },
-    6: { theme: '美食天地', description: '食物和饮品', icon: '🍎', targetWords: 14, difficulty: 'medium', categories: ['美食天地', '基础词汇'] },
-    7: { theme: '身体部位', description: '身体器官名称', icon: '👤', targetWords: 14, difficulty: 'medium', categories: ['身体部位', '基础词汇'] },
-    8: { theme: '学习用品', description: '学习相关用品', icon: '📚', targetWords: 15, difficulty: 'medium', categories: ['学习用品', '基础词汇'] },
-    9: { theme: '自然景观', description: '自然环境词汇', icon: '🌳', targetWords: 15, difficulty: 'medium', categories: ['自然景观', '基础词汇'] },
-    10: { theme: '交通工具', description: '各种交通工具', icon: '🚗', targetWords: 15, difficulty: 'medium', categories: ['交通工具', '基础词汇'] },
-    11: { theme: '运动健身', description: '运动相关词汇', icon: '⚽', targetWords: 16, difficulty: 'medium', categories: ['运动健身', '基础词汇'] },
-    12: { theme: '家庭用品', description: '家具和日用品', icon: '🏠', targetWords: 16, difficulty: 'medium', categories: ['家庭用品', '基础词汇'] },
-    13: { theme: '情感表达', description: '情感和感受', icon: '😊', targetWords: 16, difficulty: 'medium', categories: ['情感表达', '基础词汇'] },
-    14: { theme: '娱乐活动', description: '游戏和娱乐', icon: '🎮', targetWords: 17, difficulty: 'medium', categories: ['娱乐活动', '基础词汇'] },
-    15: { theme: '职业体验', description: '各种职业', icon: '💼', targetWords: 17, difficulty: 'medium', categories: ['职业体验', '基础词汇'] },
-    16: { theme: '进阶挑战', description: '中等难度词汇', icon: '🎯', targetWords: 18, difficulty: 'advanced', categories: ['基础词汇', '情感表达'] },
-    17: { theme: '高级词汇', description: '较难的单词', icon: '🏆', targetWords: 15, difficulty: 'advanced', categories: ['基础词汇', '自然景观'] },
-    18: { theme: '复合概念', description: '复杂概念词汇', icon: '🧠', targetWords: 15, difficulty: 'hard', categories: ['基础词汇', '科学探索'] },
-    19: { theme: '创意表达', description: '艺术创作词汇', icon: '🎨', targetWords: 12, difficulty: 'hard', categories: ['艺术创作', '音乐艺术'] },
-    20: { theme: '终极挑战', description: '最高难度挑战', icon: '👑', targetWords: 11, difficulty: 'hard', categories: ['基础词汇', '世界地理'] }
+    1: { theme: '基础入门', description: '最简单的英语单词', icon: '🌟', targetWords: 26, difficulty: 'easy', categories: ['基础词汇'] },
+    2: { theme: '日常问候', description: '打招呼和基本交流', icon: '👋', targetWords: 26, difficulty: 'easy', categories: ['基础词汇', '情感表达'] },
+    3: { theme: '家庭成员', description: '家人称呼', icon: '👨‍👩‍👧‍👦', targetWords: 26, difficulty: 'easy', categories: ['家庭成员', '基础词汇'] },
+    4: { theme: '动物世界', description: '常见动物名称', icon: '🐾', targetWords: 26, difficulty: 'easy', categories: ['动物世界', '基础词汇'] },
+    5: { theme: '颜色彩虹', description: '基本颜色词汇', icon: '🌈', targetWords: 26, difficulty: 'easy', categories: ['颜色彩虹', '基础词汇'] },
+    6: { theme: '美食天地', description: '食物和饮品', icon: '🍎', targetWords: 26, difficulty: 'medium', categories: ['美食天地', '基础词汇'] },
+    7: { theme: '身体部位', description: '身体器官名称', icon: '👤', targetWords: 26, difficulty: 'medium', categories: ['身体部位', '基础词汇'] },
+    8: { theme: '学习用品', description: '学习相关用品', icon: '📚', targetWords: 26, difficulty: 'medium', categories: ['学习用品', '基础词汇'] },
+    9: { theme: '自然景观', description: '自然环境词汇', icon: '🌳', targetWords: 26, difficulty: 'medium', categories: ['自然景观', '基础词汇'] },
+    10: { theme: '交通工具', description: '各种交通工具', icon: '🚗', targetWords: 26, difficulty: 'medium', categories: ['交通工具', '基础词汇'] },
+    11: { theme: '运动健身', description: '运动相关词汇', icon: '⚽', targetWords: 26, difficulty: 'medium', categories: ['运动健身', '基础词汇'] },
+    12: { theme: '家庭用品', description: '家具和日用品', icon: '🏠', targetWords: 26, difficulty: 'medium', categories: ['家庭用品', '基础词汇'] },
+    13: { theme: '情感表达', description: '情感和感受', icon: '😊', targetWords: 26, difficulty: 'medium', categories: ['情感表达', '基础词汇'] },
+    14: { theme: '娱乐活动', description: '游戏和娱乐', icon: '🎮', targetWords: 26, difficulty: 'medium', categories: ['娱乐活动', '基础词汇'] },
+    15: { theme: '职业体验', description: '各种职业', icon: '💼', targetWords: 26, difficulty: 'medium', categories: ['职业体验', '基础词汇'] },
+    16: { theme: '进阶挑战', description: '中等难度词汇', icon: '🎯', targetWords: 26, difficulty: 'advanced', categories: ['基础词汇', '情感表达'] },
+    17: { theme: '高级词汇', description: '较难的单词', icon: '🏆', targetWords: 26, difficulty: 'advanced', categories: ['基础词汇', '自然景观'] },
+    18: { theme: '复合概念', description: '复杂概念词汇', icon: '🧠', targetWords: 26, difficulty: 'hard', categories: ['基础词汇', '科学探索'] },
+    19: { theme: '创意表达', description: '艺术创作词汇', icon: '🎨', targetWords: 26, difficulty: 'hard', categories: ['艺术创作', '音乐艺术'] },
+    20: { theme: '终极挑战', description: '最高难度挑战', icon: '👑', targetWords: 15, difficulty: 'hard', categories: ['基础词汇', '世界地理'] }
   }
   
   return configs[level] || configs[1]
@@ -8828,44 +8785,65 @@ function getLevelConfiguration(level) {
  * @param {Object} config 关卡配置
  * @returns {Array} 选中的单词键数组
  */
+/**
+ * 新的基于主题优先的单词选择函数
+ * 替换原有的按索引分配策略，实现科学合理的关卡分布
+ */
 function selectWordsForLevel(level, config) {
-  const allWords = Object.keys(PRIMARY_WORD_DATABASE)
-  const selectedWords = []
+  // 预定义的关卡映射（基于主题优先分配）
+  const LEVEL_WORD_MAPPING = {
+    "1": ["a", "i", "at", "be", "by", "do", "go", "he", "hi", "if", "in", "it", "me", "my", "no", "of", "on", "or", "so", "to", "up", "us", "we", "ago", "all", "and"],
+    "2": ["kid", "man", "aunt", "baby", "girl", "child", "family", "father", "friend", "mother", "parent", "sister", "woman", "uncle", "any", "but", "can", "cut", "day", "far", "for", "get", "has", "her", "him", "how"],
+    "3": ["arm", "eye", "leg", "back", "body", "face", "hair", "hand", "head", "neck", "nose", "his", "how", "its", "let", "lot", "may", "new", "not", "now", "off", "old", "one", "our", "out", "put"],
+    "4": ["red", "blue", "pink", "black", "brown", "green", "white", "yellow", "see", "she", "sit", "six", "ten", "the", "too", "try", "use", "way", "who", "why", "yes", "you", "back", "come", "down", "fresh"],
+    "5": ["eat", "egg", "tea", "cake", "fish", "food", "meat", "milk", "soup", "apple", "bread", "chicken", "coffee", "dinner", "drink", "fruit", "juice", "lunch", "water", "hungry", "kitchen", "breakfast", "vegetable", "chocolate", "ice", "meal"],
+    "6": ["about", "after", "afternoon", "again", "air", "always", "animal", "answer", "art", "ask", "autumn", "bad", "bag", "ball", "banana", "basketball", "beach", "beautiful", "because", "bed", "bee", "before", "begin", "behind", "beside", "best"],
+    "7": ["between", "bike", "bird", "birthday", "blackboard", "book", "box", "bring", "brother", "bus", "busy", "buy", "candle", "cap", "car", "careful", "cat", "catch", "chair", "china", "chinese", "choose", "cinema", "class", "classmate", "classroom"],
+    "8": ["clean", "clock", "close", "clothes", "cloudy", "coat", "cold", "colour", "computer", "cook", "cool", "cousin", "cow", "crayon", "cry", "cup", "dance", "dear", "desk", "difficult", "dirty", "doctor", "dog", "doll", "door", "draw"],
+    "9": ["dress", "driver", "duck", "early", "earth", "easy", "elephant", "eleven", "email", "english", "enjoy", "every", "excited", "excuse", "famous", "fan", "farm", "farmer", "fast", "favourite", "feel", "film", "find", "fine", "floor", "flower"],
+    "10": ["fly", "football", "forest", "fork", "forty", "free", "from", "front", "game", "garden", "gift", "give", "glad", "glass", "good", "goodbye", "grandfather", "grandmother", "grape", "grass", "great", "half", "happy", "hard", "hat", "have"],
+    "11": ["healthy", "hear", "heavy", "hello", "help", "here", "hers", "high", "history", "hobby", "hold", "holiday", "home", "hometown", "homework", "hope", "horse", "hospital", "hot", "hour", "house", "hurry", "hurt", "ice-cream", "idea", "ill"],
+    "12": ["interesting", "internet", "into", "job", "jump", "keep", "key", "kind", "kite", "know", "lake", "late", "learn", "lesson", "letter", "library", "light", "like", "line", "lion", "listen", "little", "live", "long", "look", "lovely"],
+    "13": ["make", "many", "map", "maths", "meet", "middle", "minute", "miss", "money", "monkey", "month", "moon", "morning", "move", "mr", "mrs", "much", "music", "must", "name", "near", "neat", "need", "never", "next", "nice"],
+    "14": ["night", "nine", "noodle", "noon", "nurse", "o'clock", "often", "open", "ours", "over", "panda", "paper", "park", "party", "p.e.", "pen", "pencil", "people", "photo", "piano", "picture", "pig", "ping-pong", "place", "plane", "plant"],
+    "15": ["play", "playground", "please", "p.m.", "potato", "pretty", "question", "quiet", "rabbit", "race", "read", "right", "river", "robot", "room", "ruler", "run", "sad", "safe", "school", "schoolbag", "science", "sea", "season", "sell", "september"],
+    "16": ["seven", "sheep", "ship", "shirt", "shoe", "shop", "short", "should", "show", "sick", "sing", "skirt", "sleep", "small", "snack", "some", "sometimes", "song", "sorry", "space", "speak", "sport", "spring", "stand", "star", "start"],
+    "17": ["station", "stay", "step", "still", "story", "street", "strong", "student", "study", "subject", "summer", "sun", "sunday", "supermarket", "sweater", "sweep", "swim", "table", "tail", "take", "talk", "taxi", "teach", "teacher", "tell", "thank"],
+    "18": ["that", "their", "theirs", "them", "then", "there", "these", "they", "thin", "thing", "think", "this", "those", "three", "time", "tired", "today", "tomato", "tomorrow", "toy", "train", "travel", "tree", "trousers", "turn", "tv"],
+    "19": ["umbrella", "under", "very", "visit", "wait", "wake", "walk", "wall", "want", "warm", "wash", "watch", "wear", "weather", "week", "welcome", "well", "what", "when", "where", "which", "whose", "will", "wind", "window", "windy"],
+    "20": ["winter", "with", "wonderful", "word", "work", "worker", "world", "worry", "write", "wrong", "year", "yesterday", "young", "your", "zoo"]
+  };
   
-  // 简化策略：根据关卡数量和总词数，确保每关有不重复的单词
-  const wordsPerLevel = Math.floor(507 / 20) // 约25个单词/关
-  const startIndex = (level - 1) * wordsPerLevel
-  const endIndex = Math.min(startIndex + config.targetWords, 507)
-  
-  // 获取指定难度和分类的单词
-  const targetWords = allWords.filter(wordKey => {
-    const word = PRIMARY_WORD_DATABASE[wordKey]
-    return config.categories.includes(word.category) || word.difficulty === config.difficulty
-  })
-  
-  // 获取基础词汇作为补充
-  const basicWords = allWords.filter(wordKey => {
-    const word = PRIMARY_WORD_DATABASE[wordKey]
-    return word.category === '基础词汇' && word.difficulty === config.difficulty
-  })
-  
-  // 合并目标词汇和基础词汇
-  const candidateWords = [...new Set([...targetWords, ...basicWords])]
-  
-  // 根据关卡编号选择不重复的单词段
-  const levelWords = candidateWords.slice(startIndex, endIndex)
-  
-  // 如果不够，从剩余词汇中补充
-  if (levelWords.length < config.targetWords) {
-    const remainingWords = allWords.filter(wordKey => 
-      !levelWords.includes(wordKey) && 
-      PRIMARY_WORD_DATABASE[wordKey].difficulty === config.difficulty
-    )
-    const needed = config.targetWords - levelWords.length
-    levelWords.push(...remainingWords.slice(0, needed))
+  // 确保关卡在有效范围内
+  if (level < 1 || level > 20) {
+    level = 1;
   }
   
-  return levelWords.slice(0, config.targetWords)
+  // 获取预分配的单词
+  const preAllocatedWords = LEVEL_WORD_MAPPING[level.toString()] || [];
+  
+  // 如果预分配的单词数量符合要求，直接返回
+  if (preAllocatedWords.length >= config.targetWords) {
+    return preAllocatedWords.slice(0, config.targetWords);
+  }
+  
+  // 如果预分配单词不足，从基础词汇中补充
+  const allWords = Object.keys(PRIMARY_WORD_DATABASE);
+  const basicWords = allWords.filter(wordKey => {
+    const word = PRIMARY_WORD_DATABASE[wordKey];
+    return word.category === '基础词汇' && 
+           word.difficulty === config.difficulty &&
+           !preAllocatedWords.includes(wordKey);
+  });
+  
+  const finalWords = [...preAllocatedWords];
+  const needed = config.targetWords - finalWords.length;
+  
+  if (needed > 0) {
+    finalWords.push(...basicWords.slice(0, needed));
+  }
+  
+  return finalWords.slice(0, config.targetWords);
 }
 
 /**
@@ -8880,7 +8858,7 @@ function getUsedWordsUpToLevel(maxLevel) {
 
 /**
  * 获取指定关卡的单词 - 基于真实词库的智能分配
- * @param {number} level 关卡编号 (1-20)
+ * @param {number} level 关卡编号 (1-35)
  * @returns {Object} 关卡数据
  */
 function getLevelWords(level) {
@@ -8898,6 +8876,21 @@ function getLevelWords(level) {
   // 格式化单词数据
   const words = selectedWords.map(wordKey => {
     const wordData = PRIMARY_WORD_DATABASE[wordKey]
+    // 添加安全检查，防止wordData为undefined
+    if (!wordData) {
+      console.warn(`⚠️ 单词数据不存在: ${wordKey}`)
+      return {
+        word: wordKey,
+        phonetic: `/${wordKey}/`,
+        chinese: wordKey,
+        image: '📝',
+        category: '基础词汇',
+        difficulty: 'medium',
+        syllables: [wordKey],
+        tips: ['注意发音'],
+        sentence: `This is ${wordKey}.`
+      }
+    }
     return {
       word: wordData.word || wordKey,
       phonetic: wordData.phonetic,
@@ -8914,6 +8907,7 @@ function getLevelWords(level) {
   return {
     level,
     theme: levelConfig.theme,
+    name: levelConfig.theme, // 添加name字段，与theme保持一致
     description: levelConfig.description,
     icon: levelConfig.icon,
     words,
@@ -8979,6 +8973,20 @@ function getRandomWords(count = 5) {
   const allWords = getAllPrimaryWords()
   const shuffled = allWords.sort(() => 0.5 - Math.random())
   return shuffled.slice(0, count)
+}
+
+/**
+ * 根据英文单词获取单词数据
+ * @param {string} englishWord 英文单词
+ * @returns {Object|null} 单词数据对象，如果未找到则返回null
+ */
+function getWordByEnglish(englishWord) {
+  if (!englishWord || typeof englishWord !== 'string') {
+    return null
+  }
+  
+  const wordKey = englishWord.toLowerCase().trim()
+  return PRIMARY_WORD_DATABASE[wordKey] || null
 }
 
 /**
@@ -9087,12 +9095,596 @@ function getWordsByGrade(grade) {
   return getAllPrimaryWords()
 }
 
+
+
+// 优化的关卡单词映射 (35关卡，100%覆盖率)
+const OPTIMIZED_LEVEL_MAPPING = {
+  "1": [
+    "a",
+    "ago",
+    "air",
+    "all",
+    "and",
+    "any",
+    "arm",
+    "art",
+    "ask",
+    "at",
+    "bad",
+    "bag"
+  ],
+  "2": [
+    "be",
+    "bed",
+    "bee",
+    "box",
+    "bus",
+    "but",
+    "buy",
+    "by",
+    "can",
+    "cap",
+    "car",
+    "cat"
+  ],
+  "3": [
+    "cow",
+    "cry",
+    "cup",
+    "cut",
+    "day",
+    "do",
+    "dog",
+    "eat",
+    "egg",
+    "eye",
+    "fan",
+    "far"
+  ],
+  "4": [
+    "fly",
+    "for",
+    "get",
+    "go",
+    "has",
+    "hat",
+    "he",
+    "her",
+    "hi",
+    "him",
+    "his",
+    "hot"
+  ],
+  "5": [
+    "how",
+    "i",
+    "ice",
+    "if",
+    "ill",
+    "in",
+    "it",
+    "its",
+    "job",
+    "key",
+    "kid",
+    "leg",
+    "let",
+    "lot"
+  ],
+  "6": [
+    "man",
+    "map",
+    "may",
+    "me",
+    "mr",
+    "mrs",
+    "my",
+    "new",
+    "no",
+    "not",
+    "now",
+    "of",
+    "off",
+    "old"
+  ],
+  "7": [
+    "on",
+    "one",
+    "or",
+    "our",
+    "out",
+    "pen",
+    "pig",
+    "put",
+    "red",
+    "run",
+    "sad",
+    "sea",
+    "see",
+    "she"
+  ],
+  "8": [
+    "sit",
+    "six",
+    "so",
+    "sun",
+    "tea",
+    "ten",
+    "the",
+    "to",
+    "too",
+    "toy",
+    "try",
+    "tv",
+    "up",
+    "us"
+  ],
+  "9": [
+    "use",
+    "way",
+    "we",
+    "who",
+    "why",
+    "yes",
+    "you",
+    "zoo",
+    "about",
+    "after",
+    "again",
+    "always",
+    "animal",
+    "answer"
+  ],
+  "10": [
+    "apple",
+    "aunt",
+    "autumn",
+    "baby",
+    "back",
+    "ball",
+    "banana",
+    "beach",
+    "before",
+    "begin",
+    "behind",
+    "beside",
+    "best",
+    "bike",
+    "bird",
+    "black"
+  ],
+  "11": [
+    "blue",
+    "body",
+    "book",
+    "bread",
+    "bring",
+    "brown",
+    "busy",
+    "cake",
+    "candle",
+    "catch",
+    "chair",
+    "child",
+    "china",
+    "choose",
+    "cinema",
+    "class"
+  ],
+  "12": [
+    "clean",
+    "clock",
+    "close",
+    "cloudy",
+    "coat",
+    "coffee",
+    "cold",
+    "colour",
+    "come",
+    "cook",
+    "cool",
+    "cousin",
+    "crayon",
+    "dance",
+    "dear",
+    "desk"
+  ],
+  "13": [
+    "dinner",
+    "dirty",
+    "doctor",
+    "doll",
+    "door",
+    "down",
+    "draw",
+    "dress",
+    "drink",
+    "driver",
+    "duck",
+    "early",
+    "earth",
+    "easy",
+    "eleven",
+    "email"
+  ],
+  "14": [
+    "enjoy",
+    "every",
+    "excuse",
+    "face",
+    "family",
+    "famous",
+    "farm",
+    "farmer",
+    "fast",
+    "father",
+    "feel",
+    "film",
+    "find",
+    "fine",
+    "fish",
+    "floor"
+  ],
+  "15": [
+    "flower",
+    "food",
+    "forest",
+    "fork",
+    "forty",
+    "free",
+    "fresh",
+    "friend",
+    "from",
+    "front",
+    "fruit",
+    "game",
+    "garden",
+    "gift",
+    "girl",
+    "give",
+    "glad",
+    "glass"
+  ],
+  "16": [
+    "good",
+    "grape",
+    "grass",
+    "great",
+    "green",
+    "hair",
+    "half",
+    "hand",
+    "happy",
+    "hard",
+    "have",
+    "head",
+    "hear",
+    "heavy",
+    "hello",
+    "help",
+    "here",
+    "hers"
+  ],
+  "17": [
+    "high",
+    "hobby",
+    "hold",
+    "home",
+    "hope",
+    "horse",
+    "hour",
+    "house",
+    "hungry",
+    "hurry",
+    "hurt",
+    "idea",
+    "into",
+    "juice",
+    "jump",
+    "keep",
+    "kind",
+    "kite"
+  ],
+  "18": [
+    "know",
+    "lake",
+    "late",
+    "learn",
+    "lesson",
+    "letter",
+    "light",
+    "like",
+    "line",
+    "lion",
+    "listen",
+    "little",
+    "live",
+    "long",
+    "look",
+    "lovely",
+    "lunch",
+    "make"
+  ],
+  "19": [
+    "many",
+    "maths",
+    "meal",
+    "meat",
+    "meet",
+    "middle",
+    "milk",
+    "minute",
+    "miss",
+    "money",
+    "monkey",
+    "month",
+    "moon",
+    "mother",
+    "move",
+    "much",
+    "music",
+    "must"
+  ],
+  "20": [
+    "name",
+    "near",
+    "neat",
+    "neck",
+    "need",
+    "never",
+    "next",
+    "nice",
+    "night",
+    "nine",
+    "noodle",
+    "noon",
+    "nose",
+    "nurse",
+    "often",
+    "open",
+    "ours",
+    "over"
+  ],
+  "21": [
+    "panda",
+    "paper",
+    "parent",
+    "park",
+    "party",
+    "p.e.",
+    "pencil",
+    "people",
+    "photo",
+    "piano",
+    "pink",
+    "place",
+    "plane",
+    "plant"
+  ],
+  "22": [
+    "play",
+    "please",
+    "p.m.",
+    "potato",
+    "pretty",
+    "quiet",
+    "rabbit",
+    "race",
+    "read",
+    "right",
+    "river",
+    "robot",
+    "room",
+    "ruler"
+  ],
+  "23": [
+    "safe",
+    "school",
+    "season",
+    "sell",
+    "seven",
+    "sheep",
+    "ship",
+    "shirt",
+    "shoe",
+    "shop",
+    "short",
+    "should",
+    "show",
+    "sick"
+  ],
+  "24": [
+    "sing",
+    "sister",
+    "skirt",
+    "sleep",
+    "small",
+    "snack",
+    "some",
+    "song",
+    "sorry",
+    "soup",
+    "space",
+    "speak",
+    "sport",
+    "spring"
+  ],
+  "25": [
+    "stand",
+    "star",
+    "start",
+    "stay",
+    "step",
+    "still",
+    "story",
+    "street",
+    "strong",
+    "study",
+    "summer",
+    "sunday",
+    "sweep",
+    "swim"
+  ],
+  "26": [
+    "table",
+    "tail",
+    "take",
+    "talk",
+    "taxi",
+    "teach",
+    "tell",
+    "thank",
+    "that",
+    "their",
+    "theirs",
+    "them",
+    "then",
+    "there"
+  ],
+  "27": [
+    "these",
+    "they",
+    "thin",
+    "thing",
+    "think",
+    "this",
+    "those",
+    "three",
+    "time",
+    "tired",
+    "today",
+    "tomato",
+    "train"
+  ],
+  "28": [
+    "travel",
+    "tree",
+    "turn",
+    "uncle",
+    "under",
+    "very",
+    "visit",
+    "wait",
+    "wake",
+    "walk",
+    "wall",
+    "want",
+    "warm"
+  ],
+  "29": [
+    "wash",
+    "watch",
+    "water",
+    "wear",
+    "week",
+    "well",
+    "what",
+    "when",
+    "where",
+    "which",
+    "white",
+    "whose",
+    "will"
+  ],
+  "30": [
+    "wind",
+    "window",
+    "windy",
+    "winter",
+    "with",
+    "woman",
+    "word",
+    "work",
+    "worker",
+    "world",
+    "worry",
+    "write",
+    "wrong"
+  ],
+  "31": [
+    "year",
+    "yellow",
+    "young",
+    "your",
+    "because",
+    "between",
+    "birthday",
+    "brother",
+    "careful",
+    "chicken",
+    "chinese",
+    "clothes",
+    "computer"
+  ],
+  "32": [
+    "elephant",
+    "english",
+    "excited",
+    "football",
+    "goodbye",
+    "healthy",
+    "history",
+    "holiday",
+    "hometown",
+    "homework",
+    "hospital",
+    "internet",
+    "kitchen"
+  ],
+  "33": [
+    "library",
+    "morning",
+    "o'clock",
+    "picture",
+    "question",
+    "science",
+    "station",
+    "student",
+    "subject",
+    "sweater",
+    "teacher",
+    "tomorrow",
+    "trousers"
+  ],
+  "34": [
+    "umbrella",
+    "weather",
+    "welcome",
+    "afternoon",
+    "basketball",
+    "beautiful",
+    "blackboard",
+    "breakfast",
+    "chocolate",
+    "classmate",
+    "classroom",
+    "difficult",
+    "favourite"
+  ],
+  "35": [
+    "grandfather",
+    "grandmother",
+    "ice-cream",
+    "interesting",
+    "ping-pong",
+    "playground",
+    "schoolbag",
+    "september",
+    "sometimes",
+    "supermarket",
+    "vegetable",
+    "wonderful",
+    "yesterday"
+  ]
+};
+
 module.exports = {
   getAllPrimaryWords,
   getLevelWords,
   getWordsByCategory,
   getWordsByDifficulty,
   getRandomWords,
+  getWordByEnglish,
   validateSpelling,
   calculateSimilarity,
   getFeedbackMessage,

@@ -17,17 +17,36 @@ const API_CONFIG = {
   
   // AI服务配置
   ai: {
-    deepseek: {
+    qwenplus: {
       enabled: true,
       // 生产环境应使用后端代理或环境变量
       apiKey: CURRENT_ENV === ENV.DEVELOPMENT ? 
-        "sk-your-development-key" : 
+        "sk-d8fa10db341a41f189d582a7486841c7" : 
         null,
       baseUrl: CURRENT_ENV === ENV.DEVELOPMENT ?
-        "https://api.deepseek.com/chat/completions" :
-        "/api/ai/deepseek",
+        "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions" :
+        "/api/ai/qwenplus",
+      model: "qwen-plus",
       timeout: 15000,
       retryTimes: 2
+    },
+    
+    // TTS语音合成配置
+    tts: {
+      enabled: true,
+      apiKey: CURRENT_ENV === ENV.DEVELOPMENT ? 
+        "sk-d8fa10db341a41f189d582a7486841c7" : 
+        null,
+      baseUrl: CURRENT_ENV === ENV.DEVELOPMENT ?
+        "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation" :
+        "/api/ai/tts",
+      model: "qwen-tts",
+      timeout: 10000,
+      retryTimes: 1,
+      voice: "samantha", // 默认英文女声
+      format: "wav",
+      speed: 1.0,
+      volume: 1.0
     }
   },
   
@@ -42,6 +61,26 @@ const CACHE_CONFIG = {
       enabled: true,
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30天过期
       keyPrefix: 'spellwell_ai_'
+    }
+  },
+  
+  // 音频缓存配置
+  audio: {
+    storage: {
+      enabled: true,
+      maxAge: 20 * 60 * 60 * 1000, // 20小时过期（阿里云URL有效期24小时）
+      maxCacheSize: 50, // 最大缓存50个音频文件
+      keyPrefix: 'spellwell_audio_'
+    },
+    memory: {
+      enabled: true,
+      maxSize: 50, // 内存缓存最大50个项目
+      maxAge: 20 * 60 * 60 * 1000 // 20小时过期
+    },
+    preload: {
+      enabled: true,
+      maxPreloadWords: 5, // 最多预加载5个单词的发音
+      preloadOnLevelStart: true
     }
   },
   
@@ -206,7 +245,7 @@ function validateConfig() {
   // 检查生产环境配置
   if (CURRENT_ENV === ENV.PRODUCTION) {
     // 检查API密钥
-    if (API_CONFIG.ai && API_CONFIG.ai.deepseek && API_CONFIG.ai.deepseek.apiKey) {
+    if (API_CONFIG.ai && API_CONFIG.ai.qwenplus && API_CONFIG.ai.qwenplus.apiKey) {
       issues.push('生产环境不应在前端包含完整API密钥')
     }
     

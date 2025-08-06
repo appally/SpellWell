@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词小超人 - Neo-Brutalism 欢迎页</title>
+    <style>
+        /* Neo-Brutalism 儿童友好欢迎页设计 */
+        /* 基于 neo-brutalism.json 视觉规范 */
+        
+        :root {
+            /* Neo-Brutalism 色彩系统 */
+            --background: oklch(1.0000 0 0);
+            --foreground: oklch(0 0 0);
+            --primary: oklch(0.6489 0.2370 26.9728);
+            --primary-foreground: oklch(1.0000 0 0);
+            --secondary: oklch(0.9680 0.2110 109.7692);
+            --secondary-foreground: oklch(0 0 0);
+            --accent: oklch(0.5635 0.2408 260.8178);
+            --accent-foreground: oklch(1.0000 0 0);
+            --muted: oklch(0.9551 0 0);
+            --muted-foreground: oklch(0.3211 0 0);
+            --border: oklch(0 0 0);
+            
+            /* Neo-Brutalism 阴影系统 */
+            --shadow-color: hsl(0 0% 0%);
+            --shadow-offset-x: 4px;
+            --shadow-offset-y: 4px;
+            --shadow-sm: 4px 4px 0px 0px hsl(0 0% 0% / 1.00);
+            --shadow-md: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 2px 4px -1px hsl(0 0% 0% / 1.00);
+            --shadow-lg: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 4px 6px -1px hsl(0 0% 0% / 1.00);
+            --shadow-xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.00), 4px 8px 10px -1px hsl(0 0% 0% / 1.00);
+            
+            /* 字体系统 */
+            --font-sans: 'DM Sans', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'Space Mono', 'Courier New', monospace;
+            
+            /* 无圆角设计 */
+            --radius: 0px;
+            
+            /* 间距系统 */
+            --spacing: 0.25rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: var(--background);
+            color: var(--foreground);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            letter-spacing: 0em;
+        }
+        
+        /* Neo-Brutalism 背景网格 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* 主容器 */
+        .welcome-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: calc(var(--spacing) * 8);
+            text-align: center;
+        }
+        
+        /* 装饰元素 - Neo-Brutalism 风格 */
+        .decoration-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .deco-shape {
+            position: absolute;
+            background: var(--accent);
+            border: 3px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .deco-1 {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 10%;
+            transform: rotate(15deg);
+            animation: brutalistFloat 4s ease-in-out infinite;
+        }
+        
+        .deco-2 {
+            width: 40px;
+            height: 80px;
+            top: 20%;
+            right: 15%;
+            background: var(--secondary);
+            transform: rotate(-10deg);
+            animation: brutalistFloat 3s ease-in-out infinite 0.5s;
+        }
+        
+        .deco-3 {
+            width: 80px;
+            height: 40px;
+            bottom: 20%;
+            left: 15%;
+            background: var(--primary);
+            transform: rotate(25deg);
+            animation: brutalistFloat 5s ease-in-out infinite 1s;
+        }
+        
+        .deco-4 {
+            width: 50px;
+            height: 50px;
+            bottom: 15%;
+            right: 20%;
+            background: var(--muted);
+            transform: rotate(-20deg);
+            animation: brutalistFloat 3.5s ease-in-out infinite 1.5s;
+        }
+        
+        /* Logo 区域 */
+        .logo-section {
+            margin-bottom: calc(var(--spacing) * 12);
+            animation: brutalistSlideIn 0.8s ease-out;
+        }
+        
+        .logo-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo {
+            width: 140px;
+            height: 140px;
+            background: var(--primary);
+            border: 6px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: var(--primary-foreground);
+            animation: brutalistPulse 2s ease-in-out infinite;
+            transform: rotate(-2deg);
+        }
+        
+        /* 标题区域 */
+        .title-section {
+            margin-bottom: calc(var(--spacing) * 16);
+        }
+        
+        .main-title {
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--foreground);
+            background: var(--secondary);
+            padding: calc(var(--spacing) * 6) calc(var(--spacing) * 8);
+            border: 6px solid var(--border);
+            box-shadow: var(--shadow-xl);
+            display: inline-block;
+            margin-bottom: calc(var(--spacing) * 6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transform: rotate(1deg);
+            animation: brutalistSlideIn 0.8s ease-out 0.2s both;
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--foreground);
+            background: var(--accent);
+            color: var(--accent-foreground);
+            padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+            border: 4px solid var(--border);
+            box-shadow: var(--shadow-md);
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            transform: rotate(-1deg);
+            animation: brutalistSlideIn 0.8s ease-out 0.4s both;
+        }
+        
+        /* 特色功能区域 */
+        .features-section {
+            display: flex;
+            justify-content: center;
+            gap: calc(var(--spacing) * 8);
+            margin-bottom: calc(var(--spacing) * 16);
+            animation: brutalistSlideIn 0.8s ease-out 0.6s both;
+        }
+        
+        .feature-card {
+            width: 100px;
+            height: 100px;
+            background: var(--muted);
+            border: 4px solid var(--border);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            transform: rotate(0deg);
+        }
+        
+        .feature-card:nth-child(1) { transform: rotate(2deg); }
+        .feature-card:nth-child(2) { transform: rotate(-1deg); }
+        .feature-card:nth-child(3) { transform: rotate(3deg); }
+        
+        .feature-card:hover {
+            transform: rotate(0deg) translate(-2px, -2px);
+            box-shadow: calc(var(--shadow-offset-x) + 2px) calc(var(--shadow-offset-y) + 2px) 0px 0px var(--shadow-color);
+        }
+        
+        .feature-card:active {
+            transform: rotate(0deg) translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px var(--shadow-color);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+        
+        .feature-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+        
+        /* 按钮区域 */
+        .button-section {
+            margin-bottom: calc(var(--spacing) * 12);
+        }
+        
+        .start-button {
+            background: oklch(0.7323 0.2492 142.4953); /* 更显眼的绿色 */
+            color: var(--primary-foreground);
+            border: 6px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            padding: calc(var(--spacing) * 6) calc(var(--spacing) * 12);
+            font-size: 32px;
+            font-weight: 900;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: calc(var(--spacing) * 6);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transform: rotate(-1deg);
+            animation: brutalistSlideIn 0.8s ease-out 0.8s both;
+        }
+        
+        .start-button:hover {
+            transform: rotate(-1deg) translate(-2px, -2px);
+            box-shadow: calc(var(--shadow-offset-x) + 2px) calc(var(--shadow-offset-y) + 2px) 0px 0px var(--shadow-color), calc(var(--shadow-offset-x) + 2px) 4px 6px -1px var(--shadow-color);
+        }
+        
+        .start-button:active {
+            transform: rotate(-1deg) translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px var(--shadow-color);
+        }
+        
+        .secondary-button {
+            background: oklch(0.9800 0.0500 109.7692); /* 很浅的颜色 */
+            color: var(--muted-foreground);
+            border: 2px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+            font-size: 14px; /* 更小的字号 */
+            font-weight: 600;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            transform: rotate(1deg);
+        }
+        
+        .secondary-button:hover {
+            background: var(--muted);
+            transform: rotate(1deg) translate(-1px, -1px);
+            box-shadow: calc(var(--shadow-offset-x) + 1px) calc(var(--shadow-offset-y) + 1px) 0px 0px var(--shadow-color);
+        }
+        
+        .secondary-button:active {
+            transform: rotate(1deg) translate(1px, 1px);
+            box-shadow: 1px 1px 0px 0px var(--shadow-color);
+        }
+        
+        /* 底部信息 */
+        .footer-info {
+            position: absolute;
+            bottom: calc(var(--spacing) * 8);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--muted);
+            color: var(--muted-foreground);
+            padding: calc(var(--spacing) * 3) calc(var(--spacing) * 6);
+            border: 2px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            animation: brutalistSlideIn 0.8s ease-out 1s both;
+        }
+        
+        /* Neo-Brutalism 动画 */
+        @keyframes brutalistFloat {
+            0%, 100% { transform: translateY(0px) rotate(var(--initial-rotation, 0deg)); }
+            50% { transform: translateY(-8px) rotate(var(--initial-rotation, 0deg)); }
+        }
+        
+        @keyframes brutalistSlideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) rotate(var(--initial-rotation, 0deg)); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotate(var(--initial-rotation, 0deg)); 
+            }
+        }
+        
+        @keyframes brutalistPulse {
+            0%, 100% { 
+                transform: rotate(-2deg) scale(1); 
+                box-shadow: var(--shadow-lg);
+            }
+            50% { 
+                transform: rotate(-2deg) scale(1.05); 
+                box-shadow: calc(var(--shadow-offset-x) + 2px) calc(var(--shadow-offset-y) + 2px) 0px 0px var(--shadow-color), calc(var(--shadow-offset-x) + 2px) 6px 8px -1px var(--shadow-color);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 42px;
+                padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+            }
+            
+            .subtitle {
+                font-size: 22px;
+                padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+            }
+            
+            .start-button {
+                font-size: 24px;
+                padding: calc(var(--spacing) * 4) calc(var(--spacing) * 8);
+            }
+            
+            .logo {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+            
+            .features-section {
+                gap: calc(var(--spacing) * 4);
+            }
+            
+            .feature-card {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .feature-icon {
+                font-size: 28px;
+            }
+            
+            .feature-label {
+                font-size: 10px;
+            }
+        }
+        
+        /* 可访问性 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* 高对比度模式 */
+        @media (prefers-contrast: high) {
+            :root {
+                --shadow-sm: 6px 6px 0px 0px hsl(0 0% 0% / 1.00);
+                --shadow-md: 6px 6px 0px 0px hsl(0 0% 0% / 1.00), 6px 3px 6px -1px hsl(0 0% 0% / 1.00);
+                --shadow-lg: 6px 6px 0px 0px hsl(0 0% 0% / 1.00), 6px 6px 8px -1px hsl(0 0% 0% / 1.00);
+                --shadow-xl: 6px 6px 0px 0px hsl(0 0% 0% / 1.00), 6px 10px 12px -1px hsl(0 0% 0% / 1.00);
+            }
+            
+            .logo,
+            .main-title,
+            .subtitle,
+            .feature-card,
+            .start-button,
+            .secondary-button,
+            .footer-info {
+                border-width: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="decoration-elements">
+        <div class="deco-shape deco-1"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="deco-shape deco-3"></div>
+        <div class="deco-shape deco-4"></div>
+    </div>
+    
+    <!-- 主要内容区域 -->
+    <div class="welcome-container">
+        <!-- Logo 区域 -->
+        <div class="logo-section">
+            <div class="logo-container">
+                <div class="logo">
+                    📚
+                </div>
+            </div>
+        </div>
+        
+        <!-- 标题区域 -->
+        <div class="title-section">
+            <h1 class="main-title">单词小超人</h1>
+            <p class="subtitle">我的假期单词大冒险</p>
+        </div>
+        
+        <!-- 特色功能区域 -->
+        <div class="features-section">
+            <div class="feature-card" onclick="showFeature('learn')">
+                <div class="feature-icon">📖</div>
+                <div class="feature-label">趣味学习</div>
+            </div>
+            <div class="feature-card" onclick="showFeature('game')">
+                <div class="feature-icon">🎮</div>
+                <div class="feature-label">游戏闯关</div>
+            </div>
+            <div class="feature-card" onclick="showFeature('trophy')">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-label">成就奖励</div>
+            </div>
+        </div>
+        
+        <!-- 按钮区域 -->
+        <div class="button-section">
+            <button class="start-button" onclick="startAdventure()">
+                🚀 开始冒险
+            </button>
+            <button class="secondary-button" onclick="viewErrorRecords()">
+                📝 易错记录
+            </button>
+        </div>
+    </div>
+    
+    <!-- 底部信息 -->
+    <div class="footer-info">
+        Ethan & Dad · Made with ❤️
+    </div>
+    
+    <script>
+        /**
+         * 开始冒险功能
+         * 提供Neo-Brutalism风格的交互反馈
+         */
+        function startAdventure() {
+            const button = event.target;
+            
+            // Neo-Brutalism 点击效果
+            button.style.transform = 'rotate(-1deg) translate(4px, 4px)';
+            button.style.boxShadow = '2px 2px 0px 0px var(--shadow-color)';
+            
+            setTimeout(() => {
+                button.style.transform = '';
+                button.style.boxShadow = '';
+                
+                // 这里可以添加页面跳转逻辑
+                alert('🎉 准备好开始你的单词冒险了吗？让我们开始吧！');
+            }, 150);
+        }
+        
+        /**
+         * 查看易错记录功能
+         * 展示学习中的错误单词记录
+         */
+        function viewErrorRecords() {
+            const button = event.target;
+            
+            // Neo-Brutalism 点击效果
+            button.style.transform = 'rotate(1deg) translate(3px, 3px)';
+            button.style.boxShadow = '1px 1px 0px 0px var(--shadow-color)';
+            
+            setTimeout(() => {
+                button.style.transform = '';
+                button.style.boxShadow = '';
+                
+                alert('📝 查看你的易错单词记录，针对性复习！');
+            }, 150);
+        }
+        
+        /**
+         * 显示功能特色
+         * 为每个功能卡片提供交互反馈
+         */
+        function showFeature(type) {
+            const messages = {
+                learn: '📖 通过有趣的方式学习新单词！',
+                game: '🎮 在游戏中巩固你的单词知识！',
+                trophy: '🏆 完成挑战获得成就奖励！'
+            };
+            
+            alert(messages[type] || '🌟 发现更多精彩功能！');
+        }
+        
+        /**
+         * 页面初始化
+         * 设置Neo-Brutalism交互效果
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有可交互元素添加键盘支持
+            const interactiveElements = document.querySelectorAll('button, .feature-card');
+            
+            interactiveElements.forEach(element => {
+                element.setAttribute('tabindex', '0');
+                
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+            
+            // 添加焦点样式
+            const style = document.createElement('style');
+            style.textContent = `
+                button:focus,
+                .feature-card:focus {
+                    outline: 3px solid var(--accent);
+                    outline-offset: 2px;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        /**
+         * 触摸设备优化
+         * 为移动设备提供更好的交互体验
+         */
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+            
+            // 为触摸设备添加特殊样式
+            const touchStyle = document.createElement('style');
+            touchStyle.textContent = `
+                .touch-device .feature-card:hover,
+                .touch-device .start-button:hover,
+                .touch-device .secondary-button:hover {
+                    transform: none;
+                }
+            `;
+            document.head.appendChild(touchStyle);
+        }
+    </script>
+</body>
+</html>

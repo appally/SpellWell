@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习统计页面 - 重新设计预览</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FA;
+            padding: 12px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 简化的背景设计 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 50%, #FFE66D 1px, transparent 1px),
+                linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+            background-size: 40px 40px, 100% 100%;
+            background-position: 0 0, 0 0;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 头部信息卡片 - 简化设计 */
+        .header-card {
+            background: #4ECDC4;
+            border: 3px solid #000000;
+            box-shadow: 3px 3px 0 #FF6B35;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #000000;
+            box-shadow: 2px 2px 0 #000000;
+            background: #FFE66D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 20px;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .user-level {
+            font-size: 12px;
+            font-weight: 700;
+            color: #000000;
+            background: #FFFFFF;
+            padding: 3px 6px;
+            border: 1px solid #000000;
+            box-shadow: 1px 1px 0 #000000;
+            display: inline-block;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            background: #FFE66D;
+            border: 2px solid #000000;
+            box-shadow: 2px 2px 0 #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 卡片通用样式 - 简化设计 */
+        .card {
+            background: #FFFFFF;
+            border: 3px solid #000000;
+            box-shadow: 3px 3px 0 #A8E6CF;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 0 !important;
+        }
+
+        .card-header {
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 900;
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .card-subtitle {
+            font-size: 10px;
+            font-weight: 600;
+            color: #666666;
+            margin-top: 3px;
+        }
+
+        /* 错误统计概览 - 简化设计 */
+        .error-overview {
+            background: #FFE66D;
+            box-shadow: 3px 3px 0 #FF6B35;
+        }
+
+        .error-stats-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .error-stat-item {
+            flex: 1;
+            background: #FFFFFF;
+            border: 2px solid #000000;
+            box-shadow: 2px 2px 0 #000000;
+            padding: 8px 4px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .error-stat-item:nth-child(1) {
+            background: #A8E6CF;
+        }
+
+        .error-stat-item:nth-child(2) {
+            background: #FFE66D;
+        }
+
+        .error-stat-item:nth-child(3) {
+            background: #FF9999;
+        }
+
+        .error-stat-item:hover {
+            transform: scale(1.02);
+        }
+
+        .error-stat-icon {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .error-stat-value {
+            font-size: 14px;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 2px;
+        }
+
+        .error-stat-label {
+            font-size: 8px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1.2;
+        }
+
+        /* 错误单词列表 - 简化网格布局 */
+        .error-words-list {
+            background: #A8E6CF;
+            box-shadow: 3px 3px 0 #4ECDC4;
+        }
+
+        .error-words-container {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 6px;
+        }
+
+        .error-word-item {
+            background: #FFFFFF;
+            border: 2px solid #000000;
+            box-shadow: 2px 2px 0 #000000;
+            padding: 6px 8px;
+            position: relative;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .error-word-item:nth-child(even) {
+            background: #FFF9E6;
+        }
+
+        .error-word-item:nth-child(3n) {
+            background: #F0F8FF;
+        }
+
+        .error-word-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .error-word-english {
+            font-size: 14px;
+            font-weight: 900;
+            color: #000000;
+            text-transform: lowercase;
+            margin-bottom: 3px;
+        }
+
+        .error-count {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #FF6B35;
+            color: #FFFFFF;
+            font-size: 8px;
+            font-weight: 900;
+            padding: 2px 4px;
+            border: 1px solid #000000;
+            box-shadow: 1px 1px 0 #000000;
+            z-index: 5;
+            min-width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        /* 特殊样式 */
+        .error-word-item:nth-child(1) .error-count {
+            background: #FFD700;
+            color: #000000;
+        }
+
+        .error-word-item:nth-child(2) .error-count {
+            background: #C0C0C0;
+            color: #000000;
+        }
+
+        .error-word-item:nth-child(3) .error-count {
+            background: #CD7F32;
+            color: #FFFFFF;
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 30px 16px;
+        }
+
+        .empty-icon {
+            font-size: 60px;
+            margin-bottom: 12px;
+        }
+
+        .empty-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .empty-desc {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部信息卡片 -->
+        <div class="header-card">
+            <div class="user-avatar">🎯</div>
+            <div class="user-info">
+                <div class="user-name">单词小超人</div>
+                <div class="user-level">第2关</div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn">🗺️</button>
+                <button class="icon-btn">📤</button>
+            </div>
+        </div>
+
+        <!-- 错误统计概览 -->
+        <div class="card error-overview">
+            <div class="card-header">
+                <div class="card-title">❌ 错误统计概览</div>
+            </div>
+            <div class="error-stats-grid">
+                <div class="error-stat-item">
+                    <div class="error-stat-icon">📊</div>
+                    <div class="error-stat-value">12</div>
+                    <div class="error-stat-label">总错误次数</div>
+                </div>
+                <div class="error-stat-item">
+                    <div class="error-stat-icon">📝</div>
+                    <div class="error-stat-value">7</div>
+                    <div class="error-stat-label">出错单词数</div>
+                </div>
+                <div class="error-stat-item">
+                    <div class="error-stat-icon">🎯</div>
+                    <div class="error-stat-value">1.7</div>
+                    <div class="error-stat-label">平均错误次数</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最容易出错的单词列表 -->
+        <div class="card error-words-list">
+            <div class="card-header">
+                <div class="card-title">🔍 最容易出错的单词</div>
+                <div class="card-subtitle">发现你的薄弱环节</div>
+            </div>
+            
+            <div class="error-words-container">
+                <div class="error-word-item">
+                    <div class="error-word-english">family</div>
+                    <div class="error-count">4</div>
+                </div>
+                <div class="error-word-item">
+                    <div class="error-word-english">child</div>
+                    <div class="error-count">3</div>
+                </div>
+                <div class="error-word-item">
+                    <div class="error-word-english">go</div>
+                    <div class="error-count">2</div>
+                </div>
+                <div class="error-word-item">
+                    <div class="error-word-english">he</div>
+                    <div class="error-count">1</div>
+                </div>
+                <div class="error-word-item">
+                    <div class="error-word-english">me</div>
+                    <div class="error-count">1</div>
+                </div>
+                <div class="error-word-item">
+                    <div class="error-word-english">parent</div>
+                    <div class="error-count">1</div>
+                </div>
+                <div class="error-word-item">
+                    <div class="error-word-english">sister</div>
+                    <div class="error-count">1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 简单的交互效果
+        document.querySelectorAll('.error-word-item').forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('点击单词:', this.querySelector('.error-word-english').textContent);
+                // 这里可以添加单词详情查看功能
+            });
+        });
+
+        document.querySelectorAll('.icon-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                console.log('点击按钮');
+            });
+        });
+    </script>
+</body>
+</html>

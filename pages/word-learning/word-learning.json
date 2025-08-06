@@ -1,8 +1,8 @@
 {
   "navigationBarTitleText": "单词学习",
-  "navigationBarBackgroundColor": "#7FB3D3",
-  "navigationBarTextStyle": "white",
-  "backgroundColor": "#F8F6F0",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#FFFFFF",
   "enablePullDownRefresh": false,
   "disableScroll": true
 }

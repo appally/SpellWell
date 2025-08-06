@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计页面测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .error-word {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        .log {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 统计页面测试</h1>
+        
+        <div>
+            <button class="btn" onclick="generateTestData()">生成测试数据</button>
+            <button class="btn" onclick="testStatistics()">测试统计功能</button>
+            <button class="btn" onclick="clearData()">清除数据</button>
+        </div>
+        
+        <h3>错误单词列表:</h3>
+        <div id="error-words-list">
+            <p>暂无数据</p>
+        </div>
+        
+        <h3>调试日志:</h3>
+        <div id="log" class="log">等待操作...</div>
+    </div>
+
+    <script>
+        // 模拟小程序存储
+        const mockStorage = {
+            data: {},
+            get(key) {
+                return this.data[key] || null;
+            },
+            set(key, value) {
+                this.data[key] = value;
+            },
+            getAllKeys() {
+                return Object.keys(this.data);
+            },
+            remove(key) {
+                delete this.data[key];
+            }
+        };
+
+        // 模拟单词库
+        const mockWordLibrary = {
+            getWordByEnglish(word) {
+                const words = {
+                    'apple': { chinese: '苹果', phonetic: '/ˈæpl/' },
+                    'banana': { chinese: '香蕉', phonetic: '/bəˈnænə/' },
+                    'cat': { chinese: '猫', phonetic: '/kæt/' },
+                    'dog': { chinese: '狗', phonetic: '/dɔːɡ/' },
+                    'hello': { chinese: '你好', phonetic: '/həˈloʊ/' }
+                };
+                return words[word.toLowerCase()];
+            }
+        };
+
+        // 模拟DataManager
+        const mockDataManager = {
+            recordWordError(word, errorData = {}) {
+                const key = `word_errors_${word}`;
+                const existingData = mockStorage.get(key) || {
+                    word,
+                    totalErrors: 0,
+                    errorHistory: [],
+                    firstErrorDate: null,
+                    lastErrorDate: null
+                };
+                
+                existingData.totalErrors += 1;
+                existingData.lastErrorDate = new Date().toISOString();
+                
+                if (!existingData.firstErrorDate) {
+                    existingData.firstErrorDate = existingData.lastErrorDate;
+                }
+                
+                existingData.errorHistory.push({
+                    timestamp: new Date().toISOString(),
+                    errorType: errorData.errorType || 'spelling',
+                    userInput: errorData.userInput || '',
+                    correctAnswer: word
+                });
+                
+                mockStorage.set(key, existingData);
+                log(`记录错误: ${word} (总计: ${existingData.totalErrors})`);
+                return true;
+            },
+
+            getMostErrorProneWords(limit = 10) {
+                const allKeys = mockStorage.getAllKeys();
+                const errorKeys = allKeys.filter(key => key.startsWith('word_errors_'));
+                
+                const errorStats = errorKeys.map(key => {
+                    const data = mockStorage.get(key);
+                    return {
+                        word: data.word,
+                        totalErrors: data.totalErrors,
+                        lastErrorDate: data.lastErrorDate,
+                        errorRate: 0
+                    };
+                });
+                
+                errorStats.sort((a, b) => b.totalErrors - a.totalErrors);
+                return errorStats.slice(0, limit);
+            }
+        };
+
+        // 修复后的统计逻辑
+        function getErrorWordsStats() {
+            try {
+                log('🔍 开始获取错误单词统计...');
+                
+                const allKeys = mockStorage.getAllKeys();
+                const errorKeys = allKeys.filter(key => key.startsWith('word_errors_'));
+                log(`📊 找到 ${errorKeys.length} 个错误数据键: ${errorKeys.join(', ')}`);
+                
+                if (errorKeys.length === 0) {
+                    log('⚠️ 没有找到任何错误数据，返回空数组');
+                    return [];
+                }
+                
+                const errorWords = mockDataManager.getMostErrorProneWords(20);
+                log(`📈 getMostErrorProneWords返回: ${JSON.stringify(errorWords)}`);
+                
+                if (!errorWords || errorWords.length === 0) {
+                    log('⚠️ getMostErrorProneWords返回空数组，尝试手动构建数据...');
+                    
+                    const manualErrorWords = errorKeys.map(key => {
+                        const data = mockStorage.get(key);
+                        log(`📋 处理错误数据 ${key}: ${JSON.stringify(data)}`);
+                        return {
+                            word: data.word,
+                            totalErrors: data.totalErrors,
+                            lastErrorDate: data.lastErrorDate,
+                            errorRate: 0
+                        };
+                    }).filter(word => word.totalErrors > 0);
+                    
+                    manualErrorWords.sort((a, b) => b.totalErrors - a.totalErrors);
+                    log(`🔧 手动构建的错误单词数据: ${JSON.stringify(manualErrorWords)}`);
+                    
+                    const errorWordsToProcess = manualErrorWords.slice(0, 20);
+                    
+                    const wordsWithMeaning = errorWordsToProcess.map(errorWord => {
+                        let wordData = mockWordLibrary.getWordByEnglish(errorWord.word);
+                        
+                        return {
+                            ...errorWord,
+                            chinese: wordData ? wordData.chinese : '未知',
+                            phonetic: wordData ? wordData.phonetic : '',
+                            difficulty: calculateWordDifficulty(errorWord.totalErrors)
+                        };
+                    });
+                    
+                    log(`✅ 最终处理的错误单词数据: ${JSON.stringify(wordsWithMeaning)}`);
+                    return wordsWithMeaning;
+                }
+                
+                const wordsWithMeaning = errorWords.map(errorWord => {
+                    let wordData = mockWordLibrary.getWordByEnglish(errorWord.word);
+                    
+                    return {
+                        ...errorWord,
+                        chinese: wordData ? wordData.chinese : '未知',
+                        phonetic: wordData ? wordData.phonetic : '',
+                        difficulty: calculateWordDifficulty(errorWord.totalErrors)
+                    };
+                });
+                
+                const validErrorWords = wordsWithMeaning.filter(word => word.totalErrors > 0);
+                log(`✅ 最终返回的有效错误单词: ${JSON.stringify(validErrorWords)}`);
+                
+                return validErrorWords;
+            } catch (error) {
+                log(`❌ 获取错误单词统计失败: ${error.message}`);
+                return [];
+            }
+        }
+
+        function calculateWordDifficulty(errorCount) {
+            if (errorCount >= 10) return '困难';
+            if (errorCount >= 5) return '中等';
+            if (errorCount >= 2) return '简单';
+            return '很简单';
+        }
+
+        function generateTestData() {
+            log('生成测试错误数据...');
+            
+            const testWords = ['apple', 'banana', 'cat', 'dog', 'hello'];
+            const errorCounts = [3, 7, 2, 5, 1];
+            
+            testWords.forEach((word, index) => {
+                for (let i = 0; i < errorCounts[index]; i++) {
+                    mockDataManager.recordWordError(word, {
+                        errorType: 'spelling',
+                        userInput: word.slice(0, -1) + 'x'
+                    });
+                }
+            });
+            
+            log(`✅ 测试数据生成完成`);
+        }
+
+        function testStatistics() {
+            log('\n=== 开始测试统计功能 ===');
+            
+            const errorWords = getErrorWordsStats();
+            
+            // 更新页面显示
+            const listEl = document.getElementById('error-words-list');
+            
+            if (errorWords.length === 0) {
+                listEl.innerHTML = '<p>太棒了！你还没有出错的单词</p>';
+            } else {
+                const html = errorWords.map(word => `
+                    <div class="error-word">
+                        <div>
+                            <strong>${word.word}</strong> - ${word.chinese} ${word.phonetic}
+                            <br><small>难度: ${word.difficulty}</small>
+                        </div>
+                        <div><strong>${word.totalErrors}次</strong></div>
+                    </div>
+                `).join('');
+                listEl.innerHTML = html;
+            }
+            
+            log(`\n=== 测试完成: 显示了 ${errorWords.length} 个错误单词 ===`);
+        }
+
+        function clearData() {
+            const keys = mockStorage.getAllKeys().filter(key => key.startsWith('word_errors_'));
+            keys.forEach(key => mockStorage.remove(key));
+            log(`清除了 ${keys.length} 个错误数据`);
+            
+            document.getElementById('error-words-list').innerHTML = '<p>暂无数据</p>';
+        }
+
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEl = document.getElementById('log');
+            logEl.textContent += `[${timestamp}] ${message}\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(message);
+        }
+
+        // 初始化
+        log('页面加载完成，准备测试...');
+    </script>
+</body>
+</html>

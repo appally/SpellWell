@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音频播放UI测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .word-display {
+            text-align: center;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .word-text {
+            font-size: 32px;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: 1px;
+            background: #FFE66D;
+            padding: 8px 16px;
+            border: 2px solid #000000;
+            box-shadow: 2px 2px 0 #000000;
+            border-radius: 4px;
+            margin: 0;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+        
+        .word-text:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 #000000;
+            background: #FFD93D;
+        }
+        
+        .word-phonetic-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .word-phonetic {
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .pronunciation-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border: 2px solid #2E7D32;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            box-shadow: 2px 2px 0 #1B5E20;
+            transition: all 0.1s ease;
+            cursor: pointer;
+        }
+        
+        .pronunciation-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 #1B5E20;
+        }
+        
+        .pronunciation-icon {
+            font-size: 14px;
+            line-height: 1;
+            color: #FFFFFF;
+        }
+        
+        .test-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .click-feedback {
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h2>音频播放UI优化测试</h2>
+        <p><strong>优化内容：</strong></p>
+        <ul>
+            <li>✅ pronunciation-btn 从 button 改为 view</li>
+            <li>✅ word-text 添加点击事件触发音频播放</li>
+            <li>✅ 添加点击视觉反馈效果</li>
+        </ul>
+    </div>
+    
+    <div class="word-display">
+        <div class="word-text" onclick="playAudio('word')">bee</div>
+        <div class="word-phonetic-container">
+            <div class="word-phonetic">/biː/</div>
+            <div class="pronunciation-btn" onclick="playAudio('pronunciation')">
+                <div class="pronunciation-icon">🔊</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="click-feedback" id="feedback">
+        <strong>点击反馈：</strong>等待点击...
+    </div>
+    
+    <script>
+        /**
+         * 模拟音频播放功能
+         * @param {string} source - 点击来源 ('word' 或 'pronunciation')
+         */
+        function playAudio(source) {
+            const feedback = document.getElementById('feedback');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            if (source === 'word') {
+                feedback.innerHTML = `<strong>点击反馈：</strong>[${timestamp}] 点击单词文本 "bee" 触发音频播放 ✅`;
+            } else {
+                feedback.innerHTML = `<strong>点击反馈：</strong>[${timestamp}] 点击发音按钮 🔊 触发音频播放 ✅`;
+            }
+            
+            // 模拟音频播放
+            console.log(`播放单词 "bee" 的发音 - 触发来源: ${source}`);
+            
+            // 添加临时高亮效果
+            const element = source === 'word' ? 
+                document.querySelector('.word-text') : 
+                document.querySelector('.pronunciation-btn');
+            
+            element.style.background = '#90EE90';
+            setTimeout(() => {
+                if (source === 'word') {
+                    element.style.background = '#FFE66D';
+                } else {
+                    element.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                }
+            }, 200);
+        }
+        
+        // 页面加载完成提示
+        window.onload = function() {
+            console.log('音频播放UI测试页面加载完成');
+            console.log('测试说明：');
+            console.log('1. 点击单词 "bee" 可以触发音频播放');
+            console.log('2. 点击发音按钮 🔊 也可以触发音频播放');
+            console.log('3. 两种方式都有视觉反馈效果');
+        };
+    </script>
+</body>
+</html>

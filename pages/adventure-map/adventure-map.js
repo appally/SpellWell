@@ -1,6 +1,7 @@
 // pages/adventure-map/adventure-map.js
 const util = require('../../utils/util.js')
 const dataManager = require('../../utils/data-manager.js')
+const unifiedThemes = require('../../utils/unified-level-themes.js')
 
 Page({
   data: {
@@ -10,14 +11,14 @@ Page({
       avatar: '🎓'
     },
     currentLevel: 1,
-    maxLevel: 20,
+    maxLevel: 35, // 将在 onLoad 中动态设置
     userProgress: 1,
     levels: [],
     selectedLevel: null,
     showLevelPreview: false,
     previewData: {},
     progressPercentage: 0,
-    progressText: '1/20',
+    progressText: '1/35', // 将在 onLoad 中动态设置
     
     // 新增数据
     dailyStreak: 3,
@@ -27,6 +28,14 @@ Page({
 
   onLoad(options) {
     console.log('冒险地图页面加载')
+    
+    // 动态获取最大关卡数
+    const maxLevel = unifiedThemes.getMaxLevel()
+    this.setData({ 
+      maxLevel,
+      progressText: `1/${maxLevel}`
+    })
+    
     this.loadUserData()
     this.generateLevels()
   },
@@ -85,6 +94,7 @@ Page({
   // 生成关卡数据 (优化版 - 使用数据管理器和缓存)
   generateLevels() {
     try {
+      console.log('🗺️ 开始生成关卡数据...')
       const levels = []
       const levelNumbers = Array.from({length: this.data.maxLevel}, (_, i) => i + 1)
       
@@ -92,6 +102,13 @@ Page({
       const userProfile = dataManager.getUserProfile()
       const completedLevels = userProfile?.progress?.completedLevels || []
       const currentLevel = userProfile?.progress?.currentLevel || 1
+      
+      console.log(`📊 地图页面用户档案: currentLevel=${currentLevel}, completedLevels=[${completedLevels.join(',')}]`)
+      console.log(`🔍 用户档案完整数据:`, JSON.stringify({
+        currentLevel: userProfile.currentLevel,
+        progressCurrentLevel: userProfile.progress.currentLevel,
+        completedLevels: userProfile.progress.completedLevels
+      }, null, 2))
       
       // 批量获取关卡数据（带缓存）
       const levelDataList = dataManager.getBatchLevelData(levelNumbers)
@@ -111,8 +128,8 @@ Page({
         }
         
         // 调试日志
-        if (levelNumber <= 3) {
-          console.log(`关卡${levelNumber}: currentLevel=${currentLevel}, completedLevels=[${completedLevels.join(',')}], status=${status}`)
+        if (levelNumber <= 5) {
+          console.log(`🎯 关卡${levelNumber}: currentLevel=${currentLevel}, completedLevels=[${completedLevels.join(',')}], status=${status}`)
         }
         
         // 获取关卡详细进度
@@ -259,7 +276,7 @@ Page({
       previewData: {
         ...level,
         title: `第${level.id}关 - ${level.name}`,
-        description: `学习${level.name}相关的${level.wordCount}个单词，完成手写练习挑战`
+        description: `学习${level.name}相关的${level.wordCount}个单词，完成默写挑战`
       },
       showLevelPreview: true
     })
@@ -330,90 +347,21 @@ Page({
       })
   },
 
-  // 绘制地图路径
+  // 简化的地图路径绘制
   drawMapPath(ctx, width, height) {
-    ctx.strokeStyle = 'rgba(127, 179, 211, 0.4)'
-    ctx.lineWidth = 4
+    // 简单的背景装饰路径
+    ctx.strokeStyle = 'rgba(127, 179, 211, 0.3)'
+    ctx.lineWidth = 3
     ctx.lineCap = 'round'
-    ctx.lineJoin = 'round'
-    ctx.setLineDash([12, 8])
+    ctx.setLineDash([10, 6])
     
-    // 计算关卡位置 (基于2列网格布局)
-    const levels = this.data.levels || []
-    const gridCols = 2
-    const levelPositions = []
-    
-    // rpx到px的转换比例 (假设375px设计稿)
-    const rpxToPx = width / 750 // 微信小程序的rpx基准
-    
-    // 计算每个关卡的中心位置
-    for (let i = 0; i < Math.min(levels.length, 20); i++) {
-      const row = Math.floor(i / gridCols)
-      const col = i % gridCols
-      
-      // 基于CSS网格布局计算位置
-      // grid-template-columns: repeat(2, 1fr); gap: 80rpx 60rpx; padding: 40rpx 30rpx;
-      const containerPadding = 30 * rpxToPx
-      const gapX = 60 * rpxToPx
-      const gapY = 80 * rpxToPx
-      const ringSize = 120 * rpxToPx
-      
-      // 计算每列的宽度
-      const availableWidth = width - (containerPadding * 2)
-      const colWidth = (availableWidth - gapX) / gridCols
-      
-      const x = containerPadding + (col * (colWidth + gapX)) + (colWidth / 2)
-      const y = 40 * rpxToPx + (row * (ringSize + gapY + 80 * rpxToPx)) + (ringSize / 2)
-      
-      levelPositions.push({ x, y })
-    }
-    
-    if (levelPositions.length < 2) return
-    
-    // 绘制连接路径
+    // 绘制简单的装饰性背景路径
     ctx.beginPath()
-    
-    // 从第一个关卡开始
-    ctx.moveTo(levelPositions[0].x, levelPositions[0].y)
-    
-    // 连接每个关卡
-    for (let i = 1; i < levelPositions.length; i++) {
-      const current = levelPositions[i]
-      const previous = levelPositions[i - 1]
-      
-      // 使用二次贝塞尔曲线创建自然的连接
-      const controlX = (previous.x + current.x) / 2
-      const controlY = previous.y + (current.y - previous.y) * 0.3
-      
-      ctx.quadraticCurveTo(controlX, controlY, current.x, current.y)
-    }
-    
+    ctx.moveTo(width * 0.1, height * 0.2)
+    ctx.quadraticCurveTo(width * 0.5, height * 0.4, width * 0.9, height * 0.6)
+    ctx.quadraticCurveTo(width * 0.3, height * 0.8, width * 0.7, height * 0.9)
     ctx.stroke()
-    
-    // 重置虚线设置
     ctx.setLineDash([])
-    
-    // 添加一些装饰性的点
-    this.drawPathDecorations(ctx, levelPositions)
-  },
-
-  // 绘制路径装饰
-  drawPathDecorations(ctx, levelPositions) {
-    ctx.fillStyle = 'rgba(127, 179, 211, 0.2)'
-    
-    // 在路径上添加一些小点作为装饰
-    for (let i = 0; i < levelPositions.length - 1; i++) {
-      const current = levelPositions[i]
-      const next = levelPositions[i + 1]
-      
-      // 在两点之间添加装饰点
-      const midX = (current.x + next.x) / 2
-      const midY = (current.y + next.y) / 2
-      
-      ctx.beginPath()
-      ctx.arc(midX, midY, 2, 0, 2 * Math.PI)
-      ctx.fill()
-    }
   },
 
   // 打开统计页面
