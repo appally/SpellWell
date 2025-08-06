@@ -12,3 +12,52 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 微信小程序
+# 微信开发者工具生成的文件
+.vscode/
+.idea/
+*.log
+
+# 临时文件和测试文件
+temp_deleted/
+test-*.html
+test-*.js
+debug-*.html
+
+# 文档和报告（与小程序核心功能无关）
+*_REPORT.md
+*_GUIDE.md
+*_SUMMARY.md
+*_CHECKLIST.md
+*_PLAN.md
+AI_*.md
+TTS_*.md
+DEPLOYMENT_*.md
+optimization-*.md
+final-*.md
+todo.md
+
+# 开发过程文档
+welcome-*.html
+项目文件清理总结.md
+
+# 备份文件
+*.backup
+*.bak
+*-bak.*
+
+# 临时配置文件
+kodama-grove.json
+neo-brutalism.json
+
+# 云开发相关（保留主要配置，忽略临时文件）
+cloudbase/*/containers/
+cloudbase/*/functions/*/node_modules/
+
+# IDE和编辑器
+.claude/
+.cursor/
