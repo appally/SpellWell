@@ -61,3 +61,5 @@ cloudbase/*/functions/*/node_modules/
 # IDE和编辑器
 .claude/
 .cursor/
+
+DOC/
