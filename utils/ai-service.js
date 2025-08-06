@@ -113,7 +113,7 @@ async function callQwenPlusAPI(word, options = {}) {
   let prompt
   if (isQuickMode) {
     // 快速模式：简洁prompt，快速响应
-    prompt = `为单词"${word}"生成60字内的儿童解释：
+    prompt = `为单词"${word}"生成120字内的儿童解释：
     
 🎯 简单含义 + 1个例句（英文+中文）
 要求：简洁有趣，用emoji，适合小学生

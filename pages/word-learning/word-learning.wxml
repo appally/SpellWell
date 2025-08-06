@@ -20,7 +20,7 @@
     <!-- 单词信息 -->
     <view class="word-display">
       <view class="word-image">{{currentWord.image || '📚'}}</view>
-      <view class="word-text" bindtap="onPlayPronunciation">{{currentWord.word}}</view>
+      <view class="word-text {{wordAudioLoading ? 'loading' : ''}}" bindtap="onPlayPronunciation">{{currentWord.word}}</view>
       <view class="word-phonetic-container">
         <view class="word-phonetic">{{currentWord.phonetic}}</view>
         <view class="pronunciation-btn" bindtap="onPlayPronunciation">
@@ -32,7 +32,7 @@
       <!-- 例句区域 - 统一样式 -->
       <view class="sentence-simple" wx:if="{{currentWord.sentence && mode === 'learn'}}">
         <view class="sentence-simple-label">📚 读一读例句：</view>
-        <text class="sentence-simple-text" bindtap="onPlaySentence">{{currentWord.sentence}}</text>
+        <text class="sentence-simple-text {{sentenceAudioLoading ? 'loading' : ''}}" bindtap="onPlaySentence">{{currentWord.sentence}}</text>
       </view>
       
       <!-- 学习小贴士 -->
@@ -84,9 +84,9 @@
     <view class="sentence-simple" wx:if="{{sentenceWithBlank}}">
       <view class="sentence-simple-label">📚 读一读例句：</view>
       <view class="sentence-container">
-        <text class="sentence-simple-text" bindtap="onPlaySentence" wx:if="{{!sentenceWordAnimation}}">{{sentenceWithBlank}}</text>
+        <text class="sentence-simple-text {{sentenceAudioLoading ? 'loading' : ''}}" bindtap="onPlaySentence" wx:if="{{!sentenceWordAnimation}}">{{sentenceWithBlank}}</text>
         <!-- 带动画单词的例句 -->
-        <rich-text class="sentence-simple-text" nodes="{{sentenceWithWord}}" bindtap="onPlaySentence" wx:if="{{sentenceWordAnimation}}"></rich-text>
+        <rich-text class="sentence-simple-text {{sentenceAudioLoading ? 'loading' : ''}}" nodes="{{sentenceWithWord}}" bindtap="onPlaySentence" wx:if="{{sentenceWordAnimation}}"></rich-text>
       </view>
     </view>
 
@@ -104,7 +104,7 @@
             <view class="grid-line line-4"></view>
           </view>
           <!-- 字母内容 -->
-          <view class="answer-content {{explodeAnimation ? 'explode-content' : ''}}">
+          <view class="answer-content {{explodeAnimation ? 'explode-content' : ''}} {{answerCompleted ? 'completed' : ''}}">
             <view 
               class="answer-letter {{item.status}} {{wordFlashAnimation ? 'flash-letter' : ''}}"
               wx:for="{{userAnswer}}" 
@@ -172,7 +172,6 @@
   <view class="simple-celebration">
     <view class="celebration-emoji emoji-icon emoji-party xxl"></view>
     <view class="celebration-word">{{celebrationWord}}</view>
-    <view class="celebration-check emoji-icon emoji-check xxl success"></view>
   </view>
 </view>
 

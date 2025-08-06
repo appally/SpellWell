@@ -8753,27 +8753,43 @@ function getAllPrimaryWords() {
  * @returns {Object} 关卡配置
  */
 function getLevelConfiguration(level) {
+  // 使用统一主题配置系统
+  const unifiedThemes = require('./unified-level-themes.js')
+  const themeConfig = unifiedThemes.getUnifiedLevelConfig(level)
+  
+  if (themeConfig) {
+    return {
+      theme: themeConfig.theme,
+      description: themeConfig.description,
+      icon: themeConfig.icon,
+      targetWords: themeConfig.targetWords,
+      difficulty: themeConfig.difficulty,
+      categories: themeConfig.focusCategories
+    }
+  }
+  
+  // 如果找不到配置，返回与统一主题配置一致的默认值
   const configs = {
-    1: { theme: '基础入门', description: '最简单的英语单词', icon: '🌟', targetWords: 26, difficulty: 'easy', categories: ['基础词汇'] },
-    2: { theme: '日常问候', description: '打招呼和基本交流', icon: '👋', targetWords: 26, difficulty: 'easy', categories: ['基础词汇', '情感表达'] },
-    3: { theme: '家庭成员', description: '家人称呼', icon: '👨‍👩‍👧‍👦', targetWords: 26, difficulty: 'easy', categories: ['家庭成员', '基础词汇'] },
-    4: { theme: '动物世界', description: '常见动物名称', icon: '🐾', targetWords: 26, difficulty: 'easy', categories: ['动物世界', '基础词汇'] },
-    5: { theme: '颜色彩虹', description: '基本颜色词汇', icon: '🌈', targetWords: 26, difficulty: 'easy', categories: ['颜色彩虹', '基础词汇'] },
-    6: { theme: '美食天地', description: '食物和饮品', icon: '🍎', targetWords: 26, difficulty: 'medium', categories: ['美食天地', '基础词汇'] },
-    7: { theme: '身体部位', description: '身体器官名称', icon: '👤', targetWords: 26, difficulty: 'medium', categories: ['身体部位', '基础词汇'] },
-    8: { theme: '学习用品', description: '学习相关用品', icon: '📚', targetWords: 26, difficulty: 'medium', categories: ['学习用品', '基础词汇'] },
-    9: { theme: '自然景观', description: '自然环境词汇', icon: '🌳', targetWords: 26, difficulty: 'medium', categories: ['自然景观', '基础词汇'] },
-    10: { theme: '交通工具', description: '各种交通工具', icon: '🚗', targetWords: 26, difficulty: 'medium', categories: ['交通工具', '基础词汇'] },
-    11: { theme: '运动健身', description: '运动相关词汇', icon: '⚽', targetWords: 26, difficulty: 'medium', categories: ['运动健身', '基础词汇'] },
-    12: { theme: '家庭用品', description: '家具和日用品', icon: '🏠', targetWords: 26, difficulty: 'medium', categories: ['家庭用品', '基础词汇'] },
-    13: { theme: '情感表达', description: '情感和感受', icon: '😊', targetWords: 26, difficulty: 'medium', categories: ['情感表达', '基础词汇'] },
-    14: { theme: '娱乐活动', description: '游戏和娱乐', icon: '🎮', targetWords: 26, difficulty: 'medium', categories: ['娱乐活动', '基础词汇'] },
-    15: { theme: '职业体验', description: '各种职业', icon: '💼', targetWords: 26, difficulty: 'medium', categories: ['职业体验', '基础词汇'] },
-    16: { theme: '进阶挑战', description: '中等难度词汇', icon: '🎯', targetWords: 26, difficulty: 'advanced', categories: ['基础词汇', '情感表达'] },
-    17: { theme: '高级词汇', description: '较难的单词', icon: '🏆', targetWords: 26, difficulty: 'advanced', categories: ['基础词汇', '自然景观'] },
-    18: { theme: '复合概念', description: '复杂概念词汇', icon: '🧠', targetWords: 26, difficulty: 'hard', categories: ['基础词汇', '科学探索'] },
-    19: { theme: '创意表达', description: '艺术创作词汇', icon: '🎨', targetWords: 26, difficulty: 'hard', categories: ['艺术创作', '音乐艺术'] },
-    20: { theme: '终极挑战', description: '最高难度挑战', icon: '👑', targetWords: 15, difficulty: 'hard', categories: ['基础词汇', '世界地理'] }
+    1: { theme: '英语启蒙', description: '最简单的英语单词，开始英语之旅', icon: '🌟', targetWords: 25, difficulty: 'beginner', categories: ['基础词汇'] },
+    2: { theme: '我的家人', description: '认识家庭成员，学习亲情表达', icon: '👨‍👩‍👧‍👦', targetWords: 18, difficulty: 'beginner', categories: ['家庭成员'] },
+    3: { theme: '身体认知', description: '学习身体各部位名称，关爱自己的身体', icon: '👤', targetWords: 11, difficulty: 'beginner', categories: ['身体部位'] },
+    4: { theme: '缤纷色彩', description: '探索色彩奥秘，发现生活中的美', icon: '🌈', targetWords: 9, difficulty: 'beginner', categories: ['颜色彩虹'] },
+    5: { theme: '美味食物', description: '认识各种食物，培养健康饮食观念', icon: '🍎', targetWords: 31, difficulty: 'easy', categories: ['美食天地'] },
+    6: { theme: '学习用品', description: '认识各种学习用品，培养学习兴趣', icon: '📚', targetWords: 31, difficulty: 'easy', categories: ['学习用品'] },
+    7: { theme: '家居生活', description: '认识家居用品，学会整理家务', icon: '🏠', targetWords: 33, difficulty: 'easy', categories: ['家庭用品'] },
+    8: { theme: '自然风光', description: '欣赏自然美景，培养环保意识', icon: '🌳', targetWords: 24, difficulty: 'easy', categories: ['自然景观'] },
+    9: { theme: '可爱动物', description: '探索动物世界，学习动物名称', icon: '🐾', targetWords: 19, difficulty: 'medium', categories: ['动物世界'] },
+    10: { theme: '娱乐活动', description: '学习各种娱乐活动，培养兴趣爱好', icon: '🎮', targetWords: 20, difficulty: 'medium', categories: ['娱乐活动'] },
+    11: { theme: '职业世界', description: '认识各种职业，树立职业理想', icon: '💼', targetWords: 18, difficulty: 'medium', categories: ['职业体验'] },
+    12: { theme: '运动健身', description: '学习运动项目，培养健康体魄', icon: '⚽', targetWords: 12, difficulty: 'medium', categories: ['运动健身'] },
+    13: { theme: '交通出行', description: '学习各种交通工具，掌握出行知识', icon: '🚗', targetWords: 8, difficulty: 'hard', categories: ['交通工具'] },
+    14: { theme: '世界地理', description: '了解世界各地，开拓国际视野', icon: '🌍', targetWords: 7, difficulty: 'hard', categories: ['世界地理'] },
+    15: { theme: '艺术创作', description: '体验艺术创作，培养创造力', icon: '🎨', targetWords: 7, difficulty: 'hard', categories: ['音乐艺术'] },
+    16: { theme: '科学探索', description: '探索科学奥秘，激发求知欲', icon: '🔬', targetWords: 5, difficulty: 'hard', categories: ['科学探索'] },
+    17: { theme: '植物花卉', description: '认识美丽的植物花卉，热爱自然', icon: '🌸', targetWords: 4, difficulty: 'hard', categories: ['植物花卉'] },
+    18: { theme: '艺术创作', description: '体验艺术创作的乐趣', icon: '🖌️', targetWords: 4, difficulty: 'hard', categories: ['艺术创作'] },
+    19: { theme: '情感表达', description: '学会表达情感，理解他人感受', icon: '😊', targetWords: 46, difficulty: 'expert', categories: ['情感表达'] },
+    20: { theme: '基础词汇强化', description: '最高难度的综合挑战，成为英语小达人', icon: '👑', targetWords: 175, difficulty: 'expert', categories: ['基础词汇'] }
   }
   
   return configs[level] || configs[1]

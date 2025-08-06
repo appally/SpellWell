@@ -58,8 +58,12 @@ Page({
     wordFlashAnimation: false,
     sentenceWordAnimation: false,
     sentenceWithWord: '',
+    answerCompleted: false, // 添加答案完成状态
     // 错误爆炸动画状态
-    explodeAnimation: false
+    explodeAnimation: false,
+    // 朗读加载状态
+    wordAudioLoading: false,
+    sentenceAudioLoading: false
   },
 
   onLoad(options) {
@@ -239,7 +243,14 @@ Page({
       sentenceWithBlank: '',
       targetWord: '',
       shuffledLetters: [],
-      userAnswer: []
+      userAnswer: [],
+      // 重置视觉反馈状态
+      answerCompleted: false,
+      wordFlashAnimation: false,
+      explodeAnimation: false,
+      // 重置朗读加载状态
+      wordAudioLoading: false,
+      sentenceAudioLoading: false
     })
     
     console.log('✅ 学习模式数据设置完成，已清除默写模式残留数据')
@@ -262,7 +273,7 @@ Page({
    * 播放单词发音
    */
   onPlayPronunciation() {
-    const { currentWord } = this.data
+    const { currentWord, wordAudioLoading } = this.data
     
     if (!currentWord || !currentWord.word) {
       wx.showToast({
@@ -271,6 +282,16 @@ Page({
       })
       return
     }
+
+    // 防止重复点击
+    if (wordAudioLoading) {
+      return
+    }
+
+    // 设置加载状态
+    this.setData({
+      wordAudioLoading: true
+    })
 
     playWordPronunciation(currentWord.word)
       .then(() => {
@@ -283,6 +304,14 @@ Page({
           icon: 'none'
         })
       })
+      .finally(() => {
+        // 延迟一点时间再移除加载状态，确保用户看到反馈
+        setTimeout(() => {
+          this.setData({
+            wordAudioLoading: false
+          })
+        }, 800)
+      })
   },
 
   /**
@@ -290,12 +319,17 @@ Page({
    * 点击例句文本时调用此方法
    */
   onPlaySentence() {
-    const { currentWord, sentenceWithBlank, mode } = this.data
+    const { currentWord, sentenceWithBlank, mode, sentenceAudioLoading } = this.data
     
     console.log('🔊 开始播放例句')
     console.log('📋 当前模式:', mode)
     console.log('📝 当前单词:', currentWord)
     console.log('📄 带空白例句:', sentenceWithBlank)
+    
+    // 防止重复点击
+    if (sentenceAudioLoading) {
+      return
+    }
     
     // 确定要播放的例句内容
     let sentenceText = ''
@@ -333,6 +367,11 @@ Page({
 
     console.log('✅ 确定播放例句:', sentenceText)
     
+    // 设置加载状态
+    this.setData({
+      sentenceAudioLoading: true
+    })
+    
     playSentencePronunciation(sentenceText)
       .then(() => {
         console.log('🎵 播放例句成功:', sentenceText)
@@ -343,6 +382,14 @@ Page({
           title: '例句播放失败',
           icon: 'none'
         })
+      })
+      .finally(() => {
+        // 延迟一点时间再移除加载状态，确保用户看到反馈
+        setTimeout(() => {
+          this.setData({
+            sentenceAudioLoading: false
+          })
+        }, 1200) // 例句加载时间稍长一些
       })
   },
 
@@ -564,7 +611,14 @@ Page({
       sentenceWithBlank: sentenceWithBlank,
   
       showHintOption: false,
-      dictationAttempts: 0
+      dictationAttempts: 0,
+      // 重置视觉反馈状态
+      answerCompleted: false,
+      wordFlashAnimation: false,
+      explodeAnimation: false,
+      // 重置朗读加载状态
+      wordAudioLoading: false,
+      sentenceAudioLoading: false
     })
     
     console.log('✅ 默写模式数据设置完成:')
@@ -715,9 +769,10 @@ Page({
    * 触发单词闪动动画
    */
   triggerWordFlashAnimation() {
-    // 为所有正确的字母添加闪动效果
+    // 为所有正确的字母添加闪动效果，并添加完成状态的视觉反馈
     this.setData({
-      wordFlashAnimation: true
+      wordFlashAnimation: true,
+      answerCompleted: true // 添加完成状态标记
     })
     
     // 动画结束后移除效果
@@ -779,7 +834,12 @@ Page({
         explodeAnimation: false,
         userAnswer: [],
         shuffledLetters: resetLetters,
-        showHintOption: false
+        showHintOption: false,
+        // 重置完成状态
+        answerCompleted: false,
+        // 重置朗读加载状态
+        wordAudioLoading: false,
+        sentenceAudioLoading: false
       })
     }, 800)
   },

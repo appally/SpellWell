@@ -14,7 +14,7 @@ Page({
     // AI讲解内容
     aiExplanation: '',
     isLoadingAI: false,
-    loadingText: 'AI老师正在思考中...',
+    loadingText: '魔法老师正在思考中...',
     
     // 页面状态
     hasError: false,
@@ -56,7 +56,7 @@ Page({
     
     // 设置导航栏标题
     wx.setNavigationBarTitle({
-      title: `${word} - AI讲解`
+      title: `魔法老师讲${word}`
     })
     
     // 开始获取AI讲解
@@ -72,7 +72,7 @@ Page({
     this.setData({
       isLoadingAI: true,
       hasError: false,
-      loadingText: 'AI老师正在思考中...'
+      loadingText: '魔法老师正在思考中...'
     })
     
     // 动态更新loading文字
