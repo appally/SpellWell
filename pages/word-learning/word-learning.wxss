@@ -134,13 +134,14 @@
   border-right: 3rpx solid #000000;
   transition: width 0.5s ease;
   position: relative;
+
 }
 
 .progress-fill::after {
   content: '🚀';
   position: absolute;
   top: -8rpx;
-  right: -12rpx;
+  right: -16rpx; /* 火箭在进度条右端 */
   font-size: 20rpx;
   background: #FFE66D;
   border: 2rpx solid #000000;
@@ -152,7 +153,12 @@
   justify-content: center;
   transform: rotate(15deg);
   animation: brutalistBounce 2s ease-in-out infinite;
+  transition: all 0.5s ease;
+  z-index: 10;
+
 }
+
+
 
 /* ===== 优化后的单词卡片 ===== */
 .word-card {

@@ -1446,6 +1446,9 @@ Page({
         stats: newStats
       })
 
+      // 立即更新进度显示
+      this.updateProgress()
+
       // 保存当前进度
       this.saveCurrentProgress()
 
@@ -1496,17 +1499,28 @@ Page({
     
     if (currentWordIndex + 1 < levelData.words.length) {
       // 还有更多单词
-      this.setData({
-        currentWordIndex: currentWordIndex + 1,
-        showCelebrationAnimation: false,
-        celebrationWord: ''
+      const newWordIndex = currentWordIndex + 1
+      
+      console.log('🚀 proceedToNext:', {
+        oldIndex: currentWordIndex,
+        newIndex: newWordIndex,
+        totalWords: levelData.words.length
       })
       
-      // 保存进度
-      this.saveCurrentProgress()
-      
-      this.loadCurrentWord()
-      this.updateProgress()
+      this.setData({
+        currentWordIndex: newWordIndex,
+        showCelebrationAnimation: false,
+        celebrationWord: ''
+      }, () => {
+        // 在setData完成后再调用其他方法，确保数据已更新
+        console.log('✅ setData完成，当前索引:', this.data.currentWordIndex)
+        
+        // 保存进度
+        this.saveCurrentProgress()
+        
+        this.loadCurrentWord()
+        this.updateProgress()
+      })
       
     } else {
       // 关卡完成
@@ -1708,12 +1722,35 @@ Page({
     
     if (!levelData || !levelData.words) return
 
+    // 进度计算逻辑：
+    // - currentWordIndex 是当前正在学习的单词索引（从0开始）
+    // - 显示文本是 (currentWordIndex + 1)/totalWords，表示正在学习第几个单词
+    // - 进度条应该显示已完成的比例，所以使用 currentWordIndex/totalWords
+    // - 例如：正在学习第6个单词时，currentWordIndex=5，已完成5个，进度=5/26≈19%
     const progressPercentage = Math.round((currentWordIndex / levelData.words.length) * 100)
     const accuracyPercentage = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
+
+    console.log('🚀 更新进度详情:', {
+      currentWordIndex,
+      totalWords: levelData.words.length,
+      progressPercentage,
+      accuracyPercentage,
+      displayText: `${currentWordIndex + 1}/${levelData.words.length}`,
+      explanation: `正在学习第${currentWordIndex + 1}个单词，已完成${currentWordIndex}个，进度${progressPercentage}%`
+    })
+
+    console.log('🔧 setData前的数据:', {
+      oldProgressPercentage: this.data.progressPercentage,
+      newProgressPercentage: progressPercentage
+    })
 
     this.setData({
       progressPercentage,
       accuracyPercentage
+    })
+
+    console.log('✅ setData后的数据:', {
+      currentProgressPercentage: this.data.progressPercentage
     })
   },
 

@@ -315,6 +315,7 @@ page {
   position: relative;
 }
 
+/*
 .progress-fill::after {
   content: '';
   position: absolute;
@@ -325,7 +326,7 @@ page {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
   animation: shimmer 2s ease-in-out infinite;
 }
-
+*/
 /* === 图标组件 === */
 .icon {
   display: inline-flex;
