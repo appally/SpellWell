@@ -443,17 +443,58 @@ Page({
   },
 
   /**
+   * 查找包含指定单词的关卡
+   * @param {string} word - 要查找的单词
+   * @returns {number|null} 关卡编号，如果未找到则返回null
+   */
+  findWordLevel(word) {
+    try {
+      // 遍历所有关卡（1-35）查找包含该单词的关卡
+      for (let level = 1; level <= 35; level++) {
+        try {
+          const levelData = wordLibrary.getLevelWords(level)
+          if (levelData && levelData.words) {
+            const foundWord = levelData.words.find(w => 
+              w.word && w.word.toLowerCase() === word.toLowerCase()
+            )
+            if (foundWord) {
+              console.log(`找到单词 ${word} 在第${level}关`)
+              return level
+            }
+          }
+        } catch (levelError) {
+          // 某个关卡数据获取失败，继续查找下一个关卡
+          console.warn(`获取第${level}关数据失败:`, levelError)
+          continue
+        }
+      }
+      
+      console.warn(`未在任何关卡中找到单词: ${word}`)
+      return null
+    } catch (error) {
+      console.error('查找单词关卡失败:', error)
+      return null
+    }
+  },
+
+  /**
    * 重新学习错误单词
    */
   restudyErrorWord(word) {
     try {
+      console.log(`开始查找单词 ${word} 的关卡信息...`)
+      
       // 查找包含该单词的关卡
-      const wordData = wordLibrary.getWordByEnglish(word)
-      if (wordData && wordData.level) {
-        console.log(`重新学习单词 ${word}，跳转到第${wordData.level}关`)
+      const levelId = this.findWordLevel(word)
+      
+      if (levelId) {
+        console.log(`重新学习单词 ${word}，跳转到第${levelId}关`)
         
         wx.navigateTo({
-          url: `/pages/word-learning/word-learning?level=${wordData.level}&focusWord=${word}`,
+          url: `/pages/word-learning/word-learning?level=${levelId}&focusWord=${word}`,
+          success: () => {
+            console.log(`成功跳转到第${levelId}关学习单词 ${word}`)
+          },
           fail: (error) => {
             console.error('跳转到学习页面失败:', error)
             wx.showToast({
@@ -463,6 +504,7 @@ Page({
           }
         })
       } else {
+        console.warn(`未找到单词 ${word} 的关卡信息`)
         wx.showToast({
           title: '未找到该单词的关卡信息',
           icon: 'none'

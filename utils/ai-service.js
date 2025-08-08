@@ -113,36 +113,63 @@ async function callQwenPlusAPI(word, options = {}) {
   let prompt
   if (isQuickMode) {
     // 快速模式：简洁prompt，快速响应
-    prompt = `为单词"${word}"生成120字内的儿童解释：
-    
-🎯 简单含义 + 1个例句（英文+中文）
-要求：简洁有趣，用emoji，适合小学生
+    prompt = `为10岁小学生讲解单词"${word}"（120字内）：
 
-例如：
-🐱 cat：小猫咪，喵喵叫的可爱动物
-I have a cat. 我有一只猫咪。`
+📖 核心含义：用最简单的话解释单词意思
+🏠 实用例句：2个日常生活例句（英文+中文翻译）
+🎯 记忆方法：提供1个具体可操作的记忆技巧
+✨ 词汇扩展：相关的词形变化或近义词（1-2个）
+
+要求：
+- 语言简洁明了，避免复杂比喻
+- 例句贴近小学生日常生活
+- 记忆方法要具体可操作
+- 内容实用，学了就能用
+
+示例格式：
+📖 Cat是猫咪，家里常见的宠物动物
+🏠 I have a cat. 我有一只猫。/ The cat is cute. 猫咪很可爱。
+🎯 做猫爪手势，学猫叫"meow"来记忆
+✨ 复数形式cats，相关词pet（宠物）`
   } else {
     // 详细模式：完整内容
-    prompt = `你是一位专业的小学英语老师，请为6-12岁的小学生生成关于单词"${word}"的趣味学习内容。
+    prompt = `为10岁小学生详细讲解单词"${word}"（280字内）：
 
-🎯 **学习目标**：让孩子轻松记住并会用这个单词
+📖【核心含义】
+用最简单的话解释单词意思，避免复杂词汇
 
-📚 **内容要求**：
-**🌟【趣味解释】** 用生动的比喻、有趣的故事或形象的描述来解释单词含义，让孩子产生深刻印象
-**🏠【生活实例】** 提供3-4个贴近小学生日常生活的简单例句（英文+中文对照），涵盖不同使用场景
-**🧠【记忆诀窍】** 提供创意记忆方法：谐音联想、字形记忆、动作记忆、故事记忆等多种技巧
-**🎮【小游戏】** 设计一个简单有趣的互动游戏或活动来练习这个单词
-**✨【小贴士】** 补充相关的词汇扩展、语法小知识或文化背景（如适用）
+🏠【实用例句】
+提供3个小学生日常会用到的例句（英文+中文），场景要真实：
+- 家庭生活场景
+- 学校学习场景  
+- 游戏娱乐场景
 
-💡 **语言风格要求**：
-- 使用儿童喜欢的词汇和表达方式
-- 大量使用emoji让内容生动活泼
-- 避免复杂的语法术语
-- 内容丰富但易懂，总字数控制在350字以内
-- 用温暖鼓励的语气，激发学习兴趣
-- 每个部分都要有具体的内容，不能过于简单
+🎯【记忆方法】
+提供1个具体可操作的记忆方法：
+- 动作记忆（做手势动作）
+- 画面联想（想象具体场景）
+- 声音联想（模仿相关声音）
+选择最适合的一种，要具体可操作
 
-请开始生成内容：`
+🧩【词汇构成】（如适用）
+如果单词有明显构成规律，用简单方式解释：
+- 复合词：如classroom = class + room
+- 前缀词：如unhappy = un（不）+ happy（开心）
+没有明显构成的单词可跳过此部分
+
+✨【词汇扩展】
+补充相关词汇，帮助系统学习：
+- 词形变化：复数、过去式、比较级等（选择适用的）
+- 近义词：意思相近的词（1-2个）
+- 相关词：同类别的词（1-2个）
+
+💡 要求：
+- 语言简单直接，避免复杂比喻和想象故事
+- 内容实用，孩子学了就能立即使用
+- 记忆方法要具体，可以马上操作
+- 重点突出，便于快速掌握
+
+开始讲解：`
   }
 
   return new Promise((resolve, reject) => {
@@ -164,9 +191,11 @@ I have a cat. 我有一只猫咪。`
             content: prompt
           }
         ],
-        max_tokens: isQuickMode ? 150 : 600, // 快速模式使用更少tokens
-        temperature: isQuickMode ? 0.3 : 0.7, // 快速模式降低随机性
-        top_p: 0.95
+        max_tokens: isQuickMode ? 120 : 350, // 进一步减少tokens提高性能
+        temperature: isQuickMode ? 0.2 : 0.5, // 降低随机性，提高一致性
+        top_p: 0.9, // 稍微降低，提高质量
+        frequency_penalty: 0.1, // 减少重复内容
+        presence_penalty: 0.1 // 鼓励多样性但不过度
       },
       timeout: apiConfig.timeout, // 使用配置的超时时间
       success: (response) => {
@@ -247,47 +276,56 @@ function getMockExplanations() {
 
 ✨【小贴士】"a"和"an"是好朋友，遇到元音字母开头的单词时要用"an"哦！比如：an apple, an egg。`,
 
-    'apple': `🍎【趣味解释】Apple是大自然的糖果盒！它圆圆的、脆脆的，咬一口"咔嚓"响，甜甜的汁水就流出来了！苹果有很多颜色：红的像小朋友的脸蛋，绿的像春天的叶子，黄的像温暖的阳光。
+    'apple': `📖【核心含义】
+Apple是苹果，红色的水果，脆脆甜甜很好吃
 
-🏠【生活实例】
-• I eat an apple every day. - 我每天都吃一个苹果。
-• The apple is red and sweet. - 苹果又红又甜。
-• Mom bought five apples. - 妈妈买了五个苹果。
-• Apple pie is delicious. - 苹果派很好吃。
+🏠【实用例句】
+• I like apples. - 我喜欢苹果。
+• This apple is sweet. - 这个苹果很甜。
+• I eat an apple every day. - 我每天吃一个苹果。
 
-🧠【记忆诀窍】Apple读音像"爱泡"，苹果爱泡在果汁里游泳！还可以想象：A-P-P-L-E，A是苹果的第一个字母，很好记！
+🎯【记忆方法】
+做咬苹果动作：张嘴做"咔嚓"咬苹果的声音，边咬边说"apple"
 
-🎮【小游戏】画苹果树：画一棵树，上面挂满苹果，边画边说"Apple, apple, on the tree"！还可以数苹果：one apple, two apples, three apples！
+🧩【词汇构成】
+Apple可以组成：apple tree（苹果树）、apple juice（苹果汁）
 
-🌈【颜色学习】苹果教我们颜色：red apple（红苹果）、green apple（青苹果）、yellow apple（黄苹果）。`,
+✨【词汇扩展】
+• 词形变化：apples（很多苹果）
+• 近义词：fruit（水果）
+• 相关词：orange（橙子）、banana（香蕉）`,
 
-    'cat': `🐱【趣味解释】Cat是世界上最会撒娇的小精灵！它们有超能力：会爬树、会钻箱子，还会用"喵喵"语和人类对话呢！猫咪的眼睛在黑暗中会发光，像两颗小星星，它们的胡须能感知周围的一切变化。
+    'cat': `📖【核心含义】
+Cat是猫咪，家里常见的宠物动物，会"喵喵"叫
 
-🏠【生活实例】
+🏠【实用例句】
+• I have a cat. - 我有一只猫咪。
+• The cat is sleeping. - 猫咪在睡觉。
 • My cat likes fish. - 我的猫咪喜欢吃鱼。
-• The cat is sleeping. - 小猫在睡觉。
-• A black cat is sitting there. - 一只黑猫坐在那里。
-• Cats can climb trees. - 猫咪会爬树。
 
-🧠【记忆诀窍】Cat读音像"开特"，小猫咪开着特殊的眼睛看世界！还可以记住：C像猫咪弯弯的身体，A像猫咪竖起的耳朵，T像猫咪的尾巴！
+🎯【记忆方法】
+做猫爪手势：双手弯曲放在脸旁，学猫叫"meow meow"，边做边说"cat"
 
-🎮【小游戏】学小猫走路：踮起脚尖，轻轻地走，边走边说"I am a cat"！还可以模仿猫咪洗脸、伸懒腰的动作。
+✨【词汇扩展】
+• 词形变化：cats（很多猫咪）
+• 近义词：pet（宠物）
+• 相关词：dog（狗）、fish（鱼）`,
 
-🎵【小儿歌】"Cat, cat, meow meow meow, soft and cute, I love you!"（小猫小猫喵喵叫，又软又萌我爱你！）`,
+    'dog': `📖【核心含义】
+Dog是狗狗，人类最好的朋友，会"汪汪"叫，很忠诚
 
-    'dog': `🐕【趣味解释】Dog是地球上最忠诚的好朋友！它们有一颗超大的爱心，会保护主人，还是最棒的玩伴哦！狗狗有敏锐的嗅觉，能闻到很远的味道，它们摇尾巴表示开心，是最会表达情感的动物朋友。
+🏠【实用例句】
+• I have a dog. - 我有一只狗狗。
+• The dog is running. - 狗狗在跑步。
+• Dogs like to play. - 狗狗喜欢玩耍。
 
-🏠【生活实例】
-• My dog can run fast. - 我的小狗能跑得很快。
-• The dog is barking loudly. - 小狗在大声叫。
-• I walk my dog every morning. - 我每天早上遛狗。
-• Dogs love to play with balls. - 狗狗喜欢玩球。
+🎯【记忆方法】
+学狗叫声：张开嘴巴说"woof woof"（汪汪），然后说"dog"
 
-🧠【记忆诀窍】Dog读音像"到格"，小狗狗到处跑格外活泼！还可以记住：D像狗狗竖起的耳朵，O像狗狗圆圆的眼睛，G像狗狗弯弯的尾巴！
-
-🎮【小游戏】学小狗走路：四肢着地爬行，边爬边说"Woof! Woof! I am a dog!"还可以玩"狗狗听指令"：坐下(sit)、趴下(lie down)、握手(shake hands)！
-
-✨【小贴士】不同的狗狗叫声：big dog说"Woof!"，small dog说"Yip!"，记住这些声音帮助理解英语拟声词哦！`,
+✨【词汇扩展】
+• 词形变化：dogs（很多狗狗）
+• 近义词：pet（宠物）
+• 相关词：cat（猫）、bone（骨头）`,
 
     'book': `📚【趣味解释】Book是知识的宝藏盒！每一本书都像一扇神奇的门，打开它就能进入不同的世界：有童话王国、科学实验室、历史时光机...书本是最好的老师，永远不会生气，随时准备教你新知识！
 
@@ -303,19 +341,24 @@ function getMockExplanations() {
 
 ✨【小贴士】书的种类：story book(故事书)、picture book(图画书)、textbook(教科书)，每种书都有不同的用途哦！`,
 
-    'house': `🏠【趣味解释】House是我们温暖的家！它有坚固的墙壁保护我们，有明亮的窗户让阳光进来，有结实的屋顶为我们遮风挡雨。每个房子都有自己的故事和温暖的回忆。
+    'house': `🔤【读音记忆】
+House读音像"好死"，好房子让人舍不得离开！
 
-🏠【生活实例】
-• I live in a big house. - 我住在一座大房子里。
-• Our house has a red door. - 我们的房子有一扇红门。
-• There are many rooms in the house. - 房子里有很多房间。
-• Welcome to my house! - 欢迎来我家！
+📖【核心含义】
+房子，人住的地方，有门有窗有屋顶
 
-🧠【记忆诀窍】House读音像"好死"，好的房子让人舍不得离开！还可以想象：H像房子的柱子，O像圆圆的窗户，U像房子的墙壁，S像弯弯的烟囱，E像房子的地基！
+🏠【实用例句】
+• I live in a house. - 我住在房子里。
+• This is my house. - 这是我的房子。
+• The house is big. - 房子很大。
 
-🎮【小游戏】画房子：画一个正方形做墙壁，上面画三角形做屋顶，再画门和窗户，边画边说"This is my house"！
+🎯【记忆绝招】
+画面联想：想象一个温暖的house，里面有家人在一起，很温馨的感觉。
 
-✨【小贴士】房子的部分：door(门)、window(窗户)、roof(屋顶)、wall(墙壁)，每个部分都很重要！`,
+✨【词汇家族】
+词形变化：houses（复数，很多房子）
+近义词：home（家，更温馨的感觉）
+相关词：door（门）、window（窗户）`,
 
     'hello': `👋【趣味解释】Hello是世界上最温暖的魔法词！无论走到哪里，说一声"Hello"能打开友谊的大门，让陌生人变成朋友。它就像阳光一样，能瞬间照亮别人的心情，是每个人都应该学会的第一个英语单词！
 
@@ -331,33 +374,43 @@ function getMockExplanations() {
 
 ✨【小贴士】不同时间的问候：Good morning(早上好)、Good afternoon(下午好)、Good evening(晚上好)，但Hello任何时候都可以用！`,
 
-    'school': `🏫【趣味解释】School是知识的游乐园！这里有亲爱的老师、可爱的同学，还有无数有趣的课程等着你探索。学校就像一个大家庭，每个人都在这里成长、学习、交朋友，创造美好的回忆！
+    'school': `🔤【读音记忆】
+School读音像"思酷"，在学校思考很酷！
 
-🏠【生活实例】
-• I go to school by bus. - 我坐公交车上学。
-• Our school is very beautiful. - 我们的学校很漂亮。
-• School starts at 8 o'clock. - 学校8点开始上课。
-• I love my school and teachers. - 我爱我的学校和老师。
+📖【核心含义】
+学校，小朋友学习的地方，有老师和同学
 
-🧠【记忆诀窍】School读音像"思酷"，在学校思考很酷！还可以想象：S像弯弯的小路通向学校，C像教室的形状，H像黑板，O像圆圆的时钟，两个L像排列整齐的课桌！
+🏠【实用例句】
+• I go to school. - 我去上学。
+• My school is big. - 我的学校很大。
+• I like school. - 我喜欢学校。
 
-🎮【小游戏】"我的学校"：画出梦想中的学校，包括教室、操场、图书馆，边画边说"This is my school!"还可以扮演小老师给玩具上课！
+🎯【记忆绝招】
+画面联想：想象自己背着书包走进school，看到老师和同学，很开心的样子。
 
-✨【小贴士】学校设施：classroom(教室)、playground(操场)、library(图书馆)、cafeteria(食堂)，每个地方都有特殊的用途！`,
+✨【词汇家族】
+词形变化：schools（复数，很多学校）
+近义词：class（班级，更小的范围）
+相关词：teacher（老师）、student（学生）`,
 
-    'water': `💧【趣味解释】Water是生命的源泉！它透明无色却充满魔力：可以变成冰块、蒸汽、雨滴...水是地球上最珍贵的宝贝，没有它就没有美丽的花朵、绿色的树木，也没有我们人类！
+    'water': `🔤【读音记忆】
+Water读音像"沃特"，想象沃土特别需要水！
 
-🏠【生活实例】
-• I drink water every day. - 我每天都喝水。
-• The water is very clean. - 这水很干净。
-• Fish live in the water. - 鱼儿生活在水中。
-• Please save water! - 请节约用水！
+📖【核心含义】
+水，透明的液体，人和动物都需要喝
 
-🧠【记忆诀窍】Water读音像"沃特"，沃土需要特别多的水！还可以想象：W像水波纹，A像水滴的形状，T像水龙头，E像水流，R像雨滴！
+🏠【实用例句】
+• I drink water. - 我喝水。
+• Fish live in water. - 鱼生活在水里。
+• Water is important. - 水很重要。
 
-🎮【小游戏】"水的变化"：用手势表演水的三种状态：液体(流动)、固体(结冰)、气体(蒸发)，边做边说"Water can change!"！
+🎯【记忆绝招】
+动作记忆：做喝水的动作，然后说"water"，身体记住喝水的感觉。
 
-✨【小贴士】水的形态：ice(冰)、steam(蒸汽)、rain(雨)、snow(雪)，都是水的不同样子！`,
+✨【词汇家族】
+词形变化：water（不可数名词，没有复数）
+近义词：drink（饮料，但更广泛）
+相关词：ice（冰）、rain（雨）`,
 
     'fish': `🐠【趣味解释】Fish是水中的游泳冠军！它们有流线型的身体，像小小的潜水艇在水中自由穿梭。鱼儿用鳃呼吸，身上有美丽的鳞片，就像穿着闪闪发光的盔甲！
 
@@ -483,7 +536,76 @@ function getMockExplanations() {
 
 🎮【小游戏】做纸飞机：折一架纸飞机，边飞边说"My plane is flying!"还可以张开双臂模仿飞机飞行，发出"嗡嗡"的引擎声。
 
-🌍【飞机知识】飞机的种类：big plane（大飞机）、small plane（小飞机）、jet plane（喷气式飞机）。`
+🌍【飞机知识】飞机的种类：big plane（大飞机）、small plane（小飞机）、jet plane（喷气式飞机）。`,
+
+    'classroom': `🔤【读音记忆】
+Classroom读音像"克拉斯如母"，想象教室里的老师像妈妈一样关心我们！
+
+📖【核心含义】
+教室，在学校里上课的房间
+
+🏠【实用例句】
+• Our classroom is big. - 我们的教室很大。
+• I like my classroom. - 我喜欢我的教室。
+• The classroom has many desks. - 教室里有很多桌子。
+
+🎯【记忆绝招】
+画面联想：想象自己坐在classroom里，看到黑板、桌子、椅子，老师在讲课。
+
+🧩【词根解析】
+Classroom = class（班级）+ room（房间）
+意思是：班级的房间 = 教室
+
+✨【词汇家族】
+词形变化：classrooms（复数，很多教室）
+近义词：class（班级，但更指人）
+相关词：teacher（老师）、desk（桌子）`,
+
+    'playground': `🔤【读音记忆】
+Playground读音像"普雷格朗德"，想象在操场上玩得很开心！
+
+📖【核心含义】
+操场，小朋友在学校里玩耍的地方
+
+🏠【实用例句】
+• I play on the playground. - 我在操场上玩。
+• The playground is fun. - 操场很好玩。
+• We run on the playground. - 我们在操场上跑步。
+
+🎯【记忆绝招】
+动作记忆：做跑步的动作，想象在playground上快乐地奔跑。
+
+🧩【词根解析】
+Playground = play（玩）+ ground（地面）
+意思是：玩耍的地面 = 操场
+
+✨【词汇家族】
+词形变化：playgrounds（复数，很多操场）
+近义词：park（公园，更大的概念）
+相关词：play（玩）、run（跑）`,
+
+    'unhappy': `🔤【读音记忆】
+Unhappy读音像"安哈皮"，想象不开心的时候说"安静，不哈皮"！
+
+📖【核心含义】
+不开心，不高兴的意思
+
+🏠【实用例句】
+• I am unhappy today. - 我今天不开心。
+• Don't be unhappy. - 别不开心。
+• She looks unhappy. - 她看起来不开心。
+
+🎯【记忆绝招】
+表情记忆：做不开心的表情，然后说"unhappy"，用表情帮助记忆。
+
+🧩【词根解析】
+Unhappy = un（不）+ happy（开心）
+意思是：不开心
+
+✨【词汇家族】
+词形变化：unhappily（副词，不开心地）
+反义词：happy（开心的）
+相关词：sad（伤心）、angry（生气）`
   }
 }
 

@@ -8838,9 +8838,10 @@ function selectWordsForLevel(level, config) {
   // 获取预分配的单词
   const preAllocatedWords = LEVEL_WORD_MAPPING[level.toString()] || [];
   
-  // 如果预分配的单词数量符合要求，直接返回
-  if (preAllocatedWords.length >= config.targetWords) {
-    return preAllocatedWords.slice(0, config.targetWords);
+  // 直接返回预分配的单词列表，不受targetWords限制
+  // 这样可以确保20关覆盖所有507个单词的设计意图
+  if (preAllocatedWords.length > 0) {
+    return preAllocatedWords;
   }
   
   // 如果预分配单词不足，从基础词汇中补充

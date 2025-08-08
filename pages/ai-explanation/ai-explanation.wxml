@@ -30,8 +30,8 @@
         <!-- Loading状态 -->
         <view class="ai-loading-section" wx:if="{{isLoadingAI}}">
           <view class="loading-header">
-            <view class="loading-robot">🤖</view>
-            <view class="loading-title">魔法老师正在准备讲解</view>
+            <view class="loading-robot">🧙‍♂️</view>
+            <view class="loading-title">{{fromDictation ? '魔法老师来帮忙了' : '魔法老师正在准备讲解'}}</view>
           </view>
           <view class="loading-text">{{loadingText}}</view>
           <view class="loading-animation">
@@ -41,12 +41,17 @@
               <view class="dot"></view>
             </view>
           </view>
+          <!-- 从默写页面跳转过来的特殊提示 -->
+          <view class="dictation-help-tip" wx:if="{{fromDictation}}">
+            <view class="tip-icon">💡</view>
+            <view class="tip-text">别担心，每个人学习都会遇到困难，让我来帮你更好地理解这个单词！</view>
+          </view>
         </view>
         
         <!-- AI讲解内容 -->
         <view class="ai-content-section" wx:else>
           <view class="ai-explanation-content">
-            <text class="explanation-text">{{aiExplanation}}</text>
+            <view class="explanation-text">{{aiExplanation}}</view>
           </view>
           
           <!-- 操作按钮 - Neo-Brutalism设计 -->

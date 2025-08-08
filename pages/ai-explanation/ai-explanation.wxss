@@ -264,9 +264,13 @@
   background: #FFFFFF;
   border: 6rpx solid #000000;
   box-shadow: 6rpx 6rpx 0 #FFE66D;
-  padding: 60rpx 32rpx;
+  padding: 48rpx 36rpx;
   margin-bottom: 40rpx;
   position: relative;
+  border-radius: 12rpx;
+  
+  /* 内容区域的渐变背景 */
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFBFC 50%, #F8F9FA 100%);
 }
 
 .ai-explanation-content::before {
@@ -287,11 +291,118 @@
 }
 
 .explanation-text {
-  font-size: 32rpx;
-  line-height: 1.8;
-  color: #000000;
-  letter-spacing: 1rpx;
+  font-size: 30rpx;
+  line-height: 2.0;
+  color: #2D3748;
+  letter-spacing: 0.5rpx;
   display: block;
+  white-space: pre-line;
+  word-break: break-word;
+  
+  /* 优化文本渲染 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  
+  /* 段落间距 */
+  margin-bottom: 0;
+}
+
+/* ===== 内容格式化样式 ===== */
+/* 为AI生成的内容添加更好的视觉层次 */
+
+/* 模拟富文本效果 - 通过CSS选择器实现 */
+.explanation-text {
+  /* 重置默认样式 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* 内容分段样式 */
+.content-section {
+  margin-bottom: 32rpx;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8rpx;
+  border-left: 6rpx solid #4ECDC4;
+}
+
+.content-section:last-child {
+  margin-bottom: 0;
+}
+
+/* 标题样式（emoji + 文字） */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.section-emoji {
+  font-size: 36rpx;
+  filter: drop-shadow(1rpx 1rpx 2rpx rgba(0, 0, 0, 0.1));
+}
+
+/* 内容文本样式 */
+.section-content {
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: #4A5568;
+  margin-left: 48rpx;
+}
+
+/* 例句特殊样式 */
+.example-sentence {
+  background: rgba(76, 205, 196, 0.1);
+  padding: 16rpx 20rpx;
+  margin: 12rpx 0;
+  border-radius: 6rpx;
+  border-left: 4rpx solid #4ECDC4;
+  font-family: 'Courier New', monospace;
+}
+
+.english-text {
+  font-weight: 600;
+  color: #2D3748;
+  margin-bottom: 6rpx;
+}
+
+.chinese-text {
+  color: #718096;
+  font-size: 26rpx;
+}
+
+/* 记忆方法高亮 */
+.memory-tip {
+  background: rgba(255, 230, 109, 0.2);
+  padding: 20rpx;
+  border-radius: 8rpx;
+  border: 2rpx dashed #FFE66D;
+  margin: 16rpx 0;
+}
+
+/* 词汇扩展样式 */
+.vocabulary-expansion {
+  background: rgba(168, 230, 207, 0.15);
+  padding: 20rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid rgba(168, 230, 207, 0.3);
+}
+
+.expansion-item {
+  margin: 8rpx 0;
+  padding-left: 24rpx;
+  position: relative;
+}
+
+.expansion-item::before {
+  content: '•';
+  position: absolute;
+  left: 8rpx;
+  color: #4ECDC4;
+  font-weight: bold;
 }
 
 /* ===== Neo-Brutalism按钮样式 ===== */
@@ -521,5 +632,46 @@
   
   .btn {
     flex: none;
+  }
+}
+/* =
+==== 从默写页面跳转的特殊提示样式 ===== */
+.dictation-help-tip {
+  background: #A8E6CF;
+  border: 4rpx solid #000000;
+  box-shadow: 6rpx 6rpx 0 #000000;
+  padding: 24rpx;
+  margin-top: 32rpx;
+  transform: rotate(-1deg);
+  position: relative;
+  z-index: 1;
+}
+
+.tip-icon {
+  font-size: 48rpx;
+  text-align: center;
+  margin-bottom: 16rpx;
+  filter: drop-shadow(2rpx 2rpx 0 rgba(0,0,0,0.2));
+  animation: tipGlow 2s ease-in-out infinite;
+}
+
+.tip-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2D3748;
+  text-align: center;
+  line-height: 1.5;
+  text-shadow: 1rpx 1rpx 0 rgba(255,255,255,0.5);
+}
+
+/* 提示图标发光动画 */
+@keyframes tipGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(2rpx 2rpx 0 rgba(0,0,0,0.2));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(4rpx 4rpx 0 rgba(0,0,0,0.3)) drop-shadow(0 0 20rpx rgba(255, 230, 109, 0.6));
   }
 }

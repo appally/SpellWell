@@ -212,13 +212,13 @@
       <view class="right-section">
         <view class="score-display">
           <view class="score-item">
-            <view class="score-number">{{stats.correct}}</view>
-            <view class="score-label">正确单词</view>
+            <view class="score-number">{{errorWords}}</view>
+            <view class="score-label">出错单词</view>
           </view>
-          <view class="score-divider">/</view>
+          <view class="score-divider">|</view>
           <view class="score-item">
-            <view class="score-number">{{stats.total}}</view>
-            <view class="score-label">总单词数</view>
+            <view class="score-number">{{errorCount}}</view>
+            <view class="score-label">错误次数</view>
           </view>
         </view>
         
@@ -230,23 +230,19 @@
       </view>
     </view>
     
-    <!-- 准确率和奖励信息 -->
+    <!-- 奖励信息 -->
     <view class="bottom-content">
-      <view class="accuracy-display">
-        <view class="accuracy-label">准确率</view>
-        <view class="accuracy-value">{{accuracyPercentage}}%</view>
-      </view>
-      
       <view class="reward-info">
         <view class="reward-text"><view class="emoji-icon emoji-gift"></view> 获得奖励</view>
-        <view class="reward-items">
+        <view class="reward-items-horizontal">
           <view class="reward-item">
             <view class="reward-icon emoji-icon emoji-medal"></view>
             <view class="reward-name">学习徽章</view>
           </view>
+          <view class="reward-separator">+</view>
           <view class="reward-item">
             <view class="reward-icon emoji-icon emoji-lightning"></view>
-            <view class="reward-name">经验值 +{{experienceGained}}</view>
+            <view class="reward-name">经验值 {{experienceGained}}</view>
           </view>
         </view>
       </view>
@@ -254,16 +250,63 @@
     
     <!-- 自动跳转提示 -->
     <view class="auto-redirect">
-      <view class="redirect-text">{{countdownSeconds}}秒后自动返回关卡选择</view>
+      <view class="redirect-text">{{countdownSeconds}}秒后自动进入下一关</view>
       <view class="redirect-progress">
         <view class="redirect-bar" style="width: {{(3-countdownSeconds)/3*100}}%"></view>
       </view>
     </view>
     
-    <!-- 立即返回按钮 -->
+    <!-- 进入下一关按钮 -->
     <view class="celebration-button" bindtap="onReturnToMap">
-      <view class="button-text">立即返回</view>
-      <view class="button-icon emoji-icon emoji-map"></view>
+      <view class="button-text">进入下一关</view>
+      <view class="button-icon emoji-icon emoji-arrow-right"></view>
+    </view>
+  </view>
+</view>
+
+<!-- 记忆方法弹窗 -->
+<view class="memory-tip-modal" wx:if="{{showMemoryTip}}">
+  <view class="memory-tip-mask" bindtap="onCloseMemoryTip"></view>
+  <view class="memory-tip-container">
+    <!-- 弹窗头部 -->
+    <view class="memory-tip-header">
+      <view class="memory-tip-title">
+        <view class="title-icon">🧠</view>
+        <view class="title-text">记忆魔法屋</view>
+      </view>
+      <view class="memory-tip-close" bindtap="onCloseMemoryTip">✕</view>
+    </view>
+    
+    <!-- 单词信息 -->
+    <view class="memory-tip-word">
+      <view class="word-display-mini">
+        <view class="word-text-mini">{{currentWord.word}}</view>
+        <view class="word-meaning-mini">{{currentWord.chinese}}</view>
+      </view>
+    </view>
+    
+    <!-- 记忆方法内容 -->
+    <view class="memory-tip-content">
+      <view class="loading-container" wx:if="{{memoryTipLoading}}">
+        <view class="loading-spinner"></view>
+        <view class="loading-text">魔法老师正在为你准备记忆方法...</view>
+      </view>
+      
+      <view class="memory-content" wx:if="{{!memoryTipLoading && memoryTipContent}}">
+        <text class="memory-text">{{memoryTipContent}}</text>
+      </view>
+    </view>
+    
+    <!-- 操作按钮 -->
+    <view class="memory-tip-actions" wx:if="{{!memoryTipLoading}}">
+      <button class="memory-btn memory-btn-practice" bindtap="onContinuePractice">
+        <view class="btn-icon">🔄</view>
+        <view class="btn-text">继续练习</view>
+      </button>
+      <button class="memory-btn memory-btn-skip" bindtap="onSkipWord">
+        <view class="btn-icon">⏭️</view>
+        <view class="btn-text">跳过单词</view>
+      </button>
     </view>
   </view>
 </view>

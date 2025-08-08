@@ -5,6 +5,7 @@
 
 const { getApiConfig, getCacheConfig } = require('./config.js')
 const cacheManager = require('./cache-manager.js')
+const { generateSuccessSound, generateErrorSound, generateClickSound } = require('./sound-generator.js')
 
 /**
  * 音频服务类
@@ -13,9 +14,11 @@ const cacheManager = require('./cache-manager.js')
 class AudioService {
   constructor() {
     this.audioContext = null
+    this.webAudioContext = null // Web Audio API上下文
     this.currentAudio = null
     this.isPlaying = false
     this.audioCache = new Map()
+    this.soundBuffers = new Map() // 缓存生成的音效
     this.maxCacheSize = 50 // 最大缓存50个音频文件
     
     // 从配置文件获取TTS API配置
@@ -23,6 +26,9 @@ class AudioService {
     this.ttsConfig = aiConfig ? aiConfig.tts : null
     
     console.log('🎵 音频服务初始化完成', this.ttsConfig)
+    
+    // 初始化Web Audio API
+    this.initWebAudioContext()
   }
 
   /**
@@ -58,6 +64,191 @@ class AudioService {
       console.log('🎵 音频上下文初始化完成')
     }
     return this.audioContext
+  }
+
+  /**
+   * 初始化Web Audio API上下文
+   * 用于播放生成的音效
+   */
+  initWebAudioContext() {
+    try {
+      // 微信小程序环境下的Web Audio API
+      this.webAudioContext = wx.createWebAudioContext()
+      console.log('🎵 Web Audio API上下文初始化完成')
+    } catch (error) {
+      console.warn('🎵 Web Audio API不可用，将使用降级方案:', error)
+      this.webAudioContext = null
+    }
+  }
+
+  /**
+   * 播放成功音效
+   * @param {Object} options - 播放选项
+   */
+  async playSuccessSound(options = {}) {
+    try {
+      console.log('🎵 播放成功音效')
+      
+      // 使用 success.ogg 文件
+      const successAudioPath = '/static/audio/success.ogg'
+      
+      // 停止当前播放
+      this.stopCurrentAudio()
+      
+      // 初始化音频上下文
+      const audioContext = this.initAudioContext()
+      
+      return new Promise((resolve) => {
+        // 设置音频源
+        audioContext.src = successAudioPath
+        audioContext.volume = options.volume || 0.8
+        
+        // 设置播放完成回调
+        const onEnded = () => {
+          console.log('🎵 成功音效播放完成')
+          audioContext.offEnded(onEnded)
+          audioContext.offError(onError)
+          this.isPlaying = false
+          resolve(true)
+        }
+        
+        const onError = (error) => {
+          console.error('🎵 成功音效播放错误:', error)
+          audioContext.offEnded(onEnded)
+          audioContext.offError(onError)
+          this.isPlaying = false
+          
+          // 降级方案：震动反馈
+          wx.vibrateShort({
+            type: 'light'
+          })
+          resolve(false)
+        }
+        
+        audioContext.onEnded(onEnded)
+        audioContext.onError(onError)
+        
+        // 开始播放
+        audioContext.play()
+        this.isPlaying = true
+        
+        console.log('🎵 开始播放成功音效文件:', successAudioPath)
+      })
+
+    } catch (error) {
+      console.error('🎵 播放成功音效失败:', error)
+      // 降级方案：震动反馈
+      wx.vibrateShort({
+        type: 'light'
+      })
+      return false
+    }
+  }
+
+  /**
+   * 播放错误音效
+   * @param {Object} options - 播放选项
+   */
+  async playErrorSound(options = {}) {
+    try {
+      console.log('🎵 播放错误音效')
+      
+      if (!this.webAudioContext) {
+        // 降级方案：震动反馈
+        wx.vibrateShort({
+          type: 'heavy'
+        })
+        return false
+      }
+
+      // 检查是否已缓存
+      if (!this.soundBuffers.has('error')) {
+        const buffer = generateErrorSound(this.webAudioContext)
+        if (buffer) {
+          this.soundBuffers.set('error', buffer)
+        }
+      }
+
+      const buffer = this.soundBuffers.get('error')
+      if (buffer) {
+        await this.playAudioBuffer(buffer, options.volume || 0.4)
+        return true
+      }
+
+      return false
+
+    } catch (error) {
+      console.error('🎵 播放错误音效失败:', error)
+      // 降级方案：震动反馈
+      wx.vibrateShort({
+        type: 'heavy'
+      })
+      return false
+    }
+  }
+
+  /**
+   * 播放点击音效
+   * @param {Object} options - 播放选项
+   */
+  async playClickSound(options = {}) {
+    try {
+      console.log('🎵 播放点击音效')
+      
+      if (!this.webAudioContext) {
+        return false
+      }
+
+      // 检查是否已缓存
+      if (!this.soundBuffers.has('click')) {
+        const buffer = generateClickSound(this.webAudioContext)
+        if (buffer) {
+          this.soundBuffers.set('click', buffer)
+        }
+      }
+
+      const buffer = this.soundBuffers.get('click')
+      if (buffer) {
+        await this.playAudioBuffer(buffer, options.volume || 0.3)
+        return true
+      }
+
+      return false
+
+    } catch (error) {
+      console.error('🎵 播放点击音效失败:', error)
+      return false
+    }
+  }
+
+  /**
+   * 播放音频缓冲区
+   * @param {AudioBuffer} buffer - 音频缓冲区
+   * @param {number} volume - 音量 (0-1)
+   */
+  async playAudioBuffer(buffer, volume = 0.5) {
+    return new Promise((resolve, reject) => {
+      try {
+        const source = this.webAudioContext.createBufferSource()
+        const gainNode = this.webAudioContext.createGain()
+        
+        source.buffer = buffer
+        gainNode.gain.value = Math.max(0, Math.min(1, volume))
+        
+        source.connect(gainNode)
+        gainNode.connect(this.webAudioContext.destination)
+        
+        source.onended = () => {
+          resolve(true)
+        }
+        
+        source.start()
+        
+      } catch (error) {
+        console.error('🎵 播放音频缓冲区失败:', error)
+        reject(error)
+      }
+    })
   }
 
   /**
@@ -469,6 +660,30 @@ function cleanupAudio() {
   audioService.cleanup()
 }
 
+/**
+ * 播放成功音效（简化接口）
+ * @param {Object} options - 播放选项
+ */
+async function playSuccessSound(options = {}) {
+  return await audioService.playSuccessSound(options)
+}
+
+/**
+ * 播放错误音效（简化接口）
+ * @param {Object} options - 播放选项
+ */
+async function playErrorSound(options = {}) {
+  return await audioService.playErrorSound(options)
+}
+
+/**
+ * 播放点击音效（简化接口）
+ * @param {Object} options - 播放选项
+ */
+async function playClickSound(options = {}) {
+  return await audioService.playClickSound(options)
+}
+
 module.exports = {
   AudioService,
   audioService,
@@ -476,5 +691,8 @@ module.exports = {
   playSentencePronunciation,
   preloadPronunciations,
   stopAudio,
-  cleanupAudio
+  cleanupAudio,
+  playSuccessSound,
+  playErrorSound,
+  playClickSound
 }
